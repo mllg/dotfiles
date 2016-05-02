@@ -13,10 +13,15 @@ zplug "plugins/autojump", from:oh-my-zsh
 zplug "plugins/brew", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "oz/safe-paste"
 zplug "plugins/git", from:oh-my-zsh, nice:10
 zplug "voronkovich/gitignore.plugin.zsh", nice:10
-zplug "Shougo/neobundle.vim", ignore:"*"
 zplug "junegunn/fzf", use:"shell/*.zsh", hook-build:"./install --no-key-bindings --no-completion --no-update-rc --bin"
+zplug "Shougo/neobundle.vim", ignore:"*"
+zplug "tmux-plugins/tmux-yank", ignore:"*"
+zplug "tmux-plugins/tmux-sensible", ignore:"*"
+zplug "tmux-plugins/tmux-copycat", ignore:"*"
+zplug "tmux-plugins/tmux-pain-control", ignore:"*"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -28,43 +33,44 @@ fi
 zplug load
 
 path=(
-    ~/.bin 
+    ~/.bin
     ~/.local/bin
-    ~/.zplug/repos/junegunn/fzf/bin 
+    ~/.zplug/repos/junegunn/fzf/bin
     ~/.R/library/rt/bin
     $path
 )
 
+# Completion
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
+setopt completeinword
 
-setopt noflowcontrol
-setopt prompt_subst
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 setopt append_history
-setopt extended_history
 setopt share_history
 setopt histignorealldups
-setopt autopushd
 
-setopt noshwordsplit
+# Misc
+KEYTIMEOUT=1
+setopt noflowcontrol
+setopt prompt_subst
+setopt autopushd
+setopt pushd_ignore_dups
 setopt extended_glob
-setopt completeinword
-setopt longlistjobs
-setopt notify
-setopt hash_list_all
-setopt interactivecomments
-setopt pathdirs
 setopt autoparamslash
 
+# Vi key bindings
 bindkey -v
 bindkey '^ ' autosuggest-accept
-# bindkey -M vicmd 'yy' vi-yank-whole-line
-# bindkey -M vicmd 'Y' vi-yank-eol
-# bindkey -M vicmd 'u' undo
-# bindkey -M vicmd 'U' redo
-# bindkey -M viins '^w' backward-kill-word
-# bindkey -M viins '^h' backward-delete-char
+bindkey -M vicmd 'yy' vi-yank-whole-line
+bindkey -M vicmd 'Y' vi-yank-eol
+bindkey -M vicmd 'u' undo
+bindkey -M vicmd 'U' redo
 
+# Aliases
 alias '..'='cd ..'
 alias '...'='cd ../..'
 alias '....'='cd ../../..'
@@ -85,6 +91,7 @@ alias lmk='latexmk -pdf'
 alias vim='nvim'
 alias depclean='sudo pacman -Rns $(pacman -Qtdq)'
 
+# Associate file types
 alias -s pdf=xdg-open
 alias -s ps=xdg-open
 alias -s txt=nvim
