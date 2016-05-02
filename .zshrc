@@ -63,13 +63,13 @@ bindkey '^ ' autosuggest-accept
 # bindkey -M viins '^w' backward-kill-word
 # bindkey -M viins '^h' backward-delete-char
 
+alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias la='ls -lha'
 alias tmux='tmux -2'
 alias du='du -h'
 alias df='df -h'
 alias mkdir='mkdir -p'
-alias mr='mr -s'
 alias gst='git status -sb'
 alias gs='git status -sb'
 alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
@@ -91,15 +91,15 @@ alias -s c=nvim
 alias -s cpp=nvim
 alias -s h=nvim
 
-function greset {
-    git fetch origin
-    git reset --hard origin/master
-}
-
 function init {
     curl -sL git.io/zplug | zsh
     source $HOME/.zplug/zplug
     zplug install
+}
+
+function greset {
+    git fetch origin
+    git reset --hard origin/master
 }
 
 function swap() {
