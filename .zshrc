@@ -1,3 +1,8 @@
+if [[ ! -d ~/.zplug ]]; then
+    curl -sL git.io/zplug | zsh
+    source $HOME/.zplug/zplug
+fi
+
 DISABLE_AUTO_UPDATE=true
 source ~/.zplug/zplug
 
@@ -90,12 +95,6 @@ alias -s Rnw=nvim
 alias -s c=nvim
 alias -s cpp=nvim
 alias -s h=nvim
-
-function init {
-    curl -sL git.io/zplug | zsh
-    source $HOME/.zplug/zplug
-    zplug install
-}
 
 function greset {
     git fetch origin
