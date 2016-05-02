@@ -1,0 +1,62 @@
+snippet fun
+abbr function () {}
+    ${1:#:f} = function(${2:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet if
+abbr if () {}
+options head
+    if (${1:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet ei
+abbr else if () {}
+    else if (${1:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet el
+abbr else {}
+    else {
+        ${0:TARGET}
+    }
+
+snippet ife
+abbr if () {} else {}
+options head
+    if (${1:#:condition}) {
+        ${2:TARGET}
+    } else {
+        ${3}
+    }
+
+snippet for
+abbr for () {}
+options head
+    for (${1:#:var} in ${2:#:vector}) {
+        ${0:TARGET}
+    }
+
+snippet wh
+abbr while () {}
+options     head
+    while (${1:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet re
+abbr repeat () {}
+options head
+    repeat {
+        ${0:TARGET}
+    }
+
+snippet cl
+abbr code/link () {}
+    \code{\link{${1:FUN}}}${3}
+
+snippet clp
+abbr code/link () {}
+    \code{\link[${1:PKG}]{${2:FUN}}}${3}
