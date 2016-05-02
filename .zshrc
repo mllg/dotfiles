@@ -41,9 +41,12 @@ path=(
 )
 
 # Completion
+autoload -Uz compinit
+compinit
 zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
+zstyle ':completion:*' menu select
 setopt completeinword
+setopt complete_aliases
 
 # History
 HISTFILE=~/.zsh_history
