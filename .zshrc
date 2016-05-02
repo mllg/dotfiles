@@ -13,7 +13,6 @@ zplug "plugins/autojump", from:oh-my-zsh
 zplug "plugins/brew", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
 zplug "plugins/git", from:oh-my-zsh, nice:10
 zplug "voronkovich/gitignore.plugin.zsh", nice:10
 zplug "Shougo/neobundle.vim", ignore:"*"
@@ -26,6 +25,8 @@ if ! zplug check --verbose; then
     fi
 fi
 
+zplug load
+
 path=(
     ~/.bin 
     ~/.local/bin
@@ -34,12 +35,8 @@ path=(
     $path
 )
 
-# [[ -d ~/.zplug/repos/junegunn/fzf/shell ]] && source ~/.zplug/repos/junegunn/fzf/shell/key-bindings.zsh
-# [[ -d ~/.zplug/repos/junegunn/fzf/shell ]] && source ~/.zplug/repos/junegunn/fzf/shell/completion.zsh
-
-zplug load
-
 zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
 
 setopt noflowcontrol
 setopt prompt_subst
@@ -68,6 +65,10 @@ bindkey '^ ' autosuggest-accept
 # bindkey -M viins '^w' backward-kill-word
 # bindkey -M viins '^h' backward-delete-char
 
+alias '..'='cd ..'
+alias '...'='cd ../..'
+alias '....'='cd ../../..'
+alias '.....'='cd ../../../..'
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias la='ls -lha'
