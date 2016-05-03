@@ -1,5 +1,5 @@
 if [[ ! -d ~/.zplug ]]; then
-    curl -sL git.io/zplug | zsh
+    git clone --depth=1 https://github.com/zplug/zplug.git ~/.zplug
     source $HOME/.zplug/zplug
 fi
 
