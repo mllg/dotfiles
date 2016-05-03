@@ -7,7 +7,6 @@ endif
 
 call neobundle#begin(expand('~/.config/nvim/bundle/'))
 let g:neobundle#types#git#clone_depth = 1
-let g:neobundle#types#git#default_protocol = 'ssh'
 
 " ======================================================================================================================
 " 1.1 Plugin List

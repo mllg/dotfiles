@@ -3,8 +3,8 @@ if [[ ! -d ~/.zplug ]]; then
     source $HOME/.zplug/zplug
 fi
 
-DISABLE_AUTO_UPDATE=true
 source ~/.zplug/zplug
+ZPLUG_CLONE_DEPTH=1
 
 zplug "b4b4r07/zplug"
 zplug "themes/gentoo", from:oh-my-zsh
