@@ -6,7 +6,7 @@ fi
 source ~/.zplug/zplug
 ZPLUG_CLONE_DEPTH=1
 
-zplug "b4b4r07/zplug"
+zplug "zplug/zplug"
 zplug "themes/gentoo", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/autojump", from:oh-my-zsh

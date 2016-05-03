@@ -312,7 +312,6 @@ nmap <leader>p :UnitePrev<cr>
 nmap <leader>u :UniteResume<cr>
 nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
 nmap <leader>ff :call UniteFromSearch()<cr>
-command! Nup :execute ":Unite -tab neobundle/update"
 
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 noremap <cr> i<Enter><esc>
@@ -322,6 +321,9 @@ nnoremap <silent> <Left> :vertical resize -1<CR>
 nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
+
+command W w !sudo tee % > /dev/null
+command! Nup :execute ":Unite -tab neobundle/update"
 
 " ======================================================================================================================
 " 4.0 Plugin Config
