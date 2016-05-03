@@ -47,6 +47,8 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' menu select
 setopt completeinword
 setopt complete_aliases
+bindkey '^ ' autosuggest-accept
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=("expand-or-complete")
 
 # History
 HISTFILE=~/.zsh_history
@@ -67,7 +69,6 @@ setopt autoparamslash
 
 # Vi key bindings
 bindkey -v
-bindkey '^ ' autosuggest-accept
 bindkey -M vicmd 'yy' vi-yank-whole-line
 bindkey -M vicmd 'Y' vi-yank-eol
 bindkey -M vicmd 'u' undo
@@ -133,4 +134,9 @@ z() {
     cd $(autojump -s | head -n -7 | awk '{print $2}' | tac | fzf +s)
 }
 
+function update_secrets {
+    printf "GITHUB_TOKEN=%s\nOPENML_API_KEY=%s\n" $(pass show github.token) $(pass show openml.api.key) > ~/.secrets
+}
+
 [[ -f ~/.zshlocal ]] && source ~/.zshlocal
+[[ -f ~/.secrets ]] && source ~/.secrets
