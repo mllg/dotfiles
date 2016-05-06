@@ -82,8 +82,8 @@ alias '.....'='cd ../../../..'
 if hash gls 2>/dev/null; then
     alias ls='gls'
 fi
-alias ll='ls -lhF --color=auto --group-directories-first --time-style=+%Y/%m/%d\ %H:%M'
-alias la='ls -lhaF --color=auto --group-directories-first --time-style=+%Y/%m/%d\ %H:%M'
+alias ll='ls -lhF --color=auto --group-directories-first --time-style=+%Y-%m-%d\ %H:%M'
+alias la='ls -lhaF --color=auto --group-directories-first --time-style=+%Y-%m-%d\ %H:%M'
 alias tmux='tmux -2'
 alias du='du -h'
 alias df='df -h'
@@ -137,7 +137,7 @@ z() {
 }
 
 function update_secrets {
-    printf "GITHUB_TOKEN=%s\nOPENML_API_KEY=%s\n" $(pass show github.token) $(pass show openml.api.key) > ~/.secrets
+    printf "export GITHUB_TOKEN=%s\nexport OPENML_API_KEY=%s\n" $(pass show github.token) $(pass show openml.api.key) > ~/.secrets
 }
 
 [[ -f ~/.zshlocal ]] && source ~/.zshlocal
