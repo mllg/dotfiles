@@ -1,6 +1,7 @@
 if [[ ! -d ~/.zplug ]]; then
     git clone --depth=1 https://github.com/zplug/zplug.git ~/.zplug
     source $HOME/.zplug/zplug
+    zplug update --self
 fi
 
 source ~/.zplug/zplug
