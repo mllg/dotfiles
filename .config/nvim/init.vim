@@ -2,7 +2,7 @@
 " 1.0 Plugin manager (Plug) settings
 " ======================================================================================================================
 if has('vim_starting')
-    set runtimepath+=~/.zplug/repos/Shougo/neobundle.vim/
+    set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('~/.config/nvim/bundle/'))

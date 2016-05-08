@@ -1,3 +1,5 @@
+set fish_greeting ""
+
 abbr -a vim nvim
 abbr -a gc git commit
 abbr -a gd git diff
@@ -5,7 +7,7 @@ abbr -a ga git add
 abbr -a gs git status
 abbr -a gst git status
 abbr -a gp git push
-
+abbr -a gco git checkout
 alias ll="ls -lhF --color=auto --group-directories-first --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhaF --color=auto --group-directories-first --time-style=+%Y-%m-%d\ %H:%M"
 alias du="du -h"
