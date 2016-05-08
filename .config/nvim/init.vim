@@ -87,6 +87,7 @@ NeoBundle 'git@github.com:mllg/vim-devtools-plugin.git'
 " ---------------------------------------------------------------------------------------------------------------------
 NeoBundle 'keith/tmux.vim'
 NeoBundle 'honza/dockerfile.vim'
+NeoBundle 'dag/vim-fish'
 NeoBundle 'jez/vim-superman'
 
 " ---------------------------------------------------------------------------------------------------------------------

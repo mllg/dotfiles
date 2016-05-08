@@ -19,10 +19,6 @@ zplug "plugins/git", from:oh-my-zsh, nice:10
 zplug "voronkovich/gitignore.plugin.zsh", nice:10
 zplug "junegunn/fzf", use:"shell/*.zsh", hook-build:"./install --no-key-bindings --no-completion --no-update-rc --bin"
 zplug "Shougo/neobundle.vim", ignore:"*"
-zplug "tmux-plugins/tmux-yank", ignore:"*"
-zplug "tmux-plugins/tmux-sensible", ignore:"*"
-zplug "tmux-plugins/tmux-copycat", ignore:"*"
-zplug "tmux-plugins/tmux-pain-control", ignore:"*"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
