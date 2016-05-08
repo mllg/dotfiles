@@ -4,6 +4,7 @@ abbr -a gd git diff
 abbr -a ga git add
 abbr -a gs git status
 abbr -a gst git status
+abbr -a gp git push
 
 alias ll="ls -lhF --color=auto --group-directories-first --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhaF --color=auto --group-directories-first --time-style=+%Y-%m-%d\ %H:%M"
