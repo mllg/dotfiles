@@ -45,7 +45,7 @@ for file in ~/.config/fish/conf.d/*.fish
 end
 
 function set_secrets
-    set -xU OPENML_API_KEY (pass show openml.api.key)
+    set -xU OPENMLAPIKEY (pass show openml.api.key)
     set -xU GITHUB_TOKEN (pass show github.token)
 end
 

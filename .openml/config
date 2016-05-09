@@ -1,0 +1,3 @@
+confirm.upload=FALSE
+arff.reader=farff
+cachedir=~/.openml/cache
