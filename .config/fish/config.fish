@@ -10,7 +10,12 @@ abbr -a gp git push
 abbr -a gco git checkout
 abbr -a gl git pull
 
-alias ls="command ls -hF --color=auto --group-directories-first $ARGV"
+if test (uname) = "Darwin"
+    alias ls="gls -hF --color=auto"
+else
+    alias ls="command ls -hF --color=auto"
+end
+
 alias ll="ls -l --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -la --time-style=+%Y-%m-%d\ %H:%M"
 alias du="du -h"
@@ -37,5 +42,16 @@ end
 
 if status --is-login
     set -g fish_key_bindings my_vi_key_bindings
-    set PATH ~/.R/library/rt/bin $PATH
+    set -gx PATH ~/.R/library/rt/bin $PATH
+    set -gx EDITOR nvim
 end
+
+for file in ~/.config/fish/conf.d/*.fish
+    source $file
+end
+
+if test -r ~/.config/fish/local.fish
+  source ~/.config/fish/local.fish
+end
+
+

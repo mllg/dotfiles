@@ -19,7 +19,7 @@ NeoBundle 'Shougo/vimproc.vim', {'build' : { 'mac' : 'make -f make_mac.mak', 'li
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'visualrepeat'
 NeoBundle 'mbbill/undotree'
-NeoBundle 'benekastah/neomake'
+NeoBundle 'neomake/neomake'
 NeoBundle 'nelstrom/vim-visual-star-search'
 NeoBundle 'tpope/vim-abolish' " Case insensitive replace
 NeoBundle 'tpope/vim-eunuch' " Commands like :Remove
