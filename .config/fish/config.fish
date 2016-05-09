@@ -38,7 +38,7 @@ set -g fish_key_bindings my_vi_key_bindings
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
-set -U fish_user_paths ~/.R/library/rt/bin
+set -gx PATH ~/.R/library/rt/bin $PATH
 
 for file in ~/.config/fish/conf.d/*.fish
     source $file
