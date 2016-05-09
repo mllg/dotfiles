@@ -39,11 +39,12 @@ function my_vi_key_bindings
     bind \cf accept-autosuggestion
     bind \cr accept-autosuggestion
 end
+set -g fish_key_bindings my_vi_key_bindings
 
 if status --is-login
-    set -g fish_key_bindings my_vi_key_bindings
     set -gx PATH ~/.R/library/rt/bin $PATH
     set -gx EDITOR nvim
+    set -gx SUDO_EDITOR nvim
 end
 
 for file in ~/.config/fish/conf.d/*.fish
@@ -53,5 +54,3 @@ end
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
 end
-
-
