@@ -10,14 +10,8 @@ abbr -a gp git push
 abbr -a gco git checkout
 abbr -a gl git pull
 
-if test (uname) = "Darwin"
-    alias ls="gls -hF --color=auto"
-else
-    alias ls="command ls -hF --color=auto"
-end
-
-alias ll="ls -l --time-style=+%Y-%m-%d\ %H:%M"
-alias la="ls -la --time-style=+%Y-%m-%d\ %H:%M"
+alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
+alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias du="du -h"
 alias df="df -h"
 alias mkdir="mkdir -p"
@@ -26,7 +20,8 @@ alias agg="ag -f -g"
 alias ag="ag -f"
 alias lmk="latexmk -pdf"
 alias depclean="sudo pacman -Rns (pacman -Qtdq)"
-
+alias ...="cd ../../"
+alias ....="cd ../../../"
 
 function my_vi_key_bindings
     # Workaround for https://github.com/fish-shell/fish-shell/issues/2254
@@ -41,11 +36,9 @@ function my_vi_key_bindings
 end
 set -g fish_key_bindings my_vi_key_bindings
 
-if status --is-login
-    set -gx PATH ~/.R/library/rt/bin $PATH
-    set -gx EDITOR nvim
-    set -gx SUDO_EDITOR nvim
-end
+set -gx EDITOR nvim
+set -gx SUDO_EDITOR nvim
+set -U fish_user_paths ~/.R/library/rt/bin
 
 for file in ~/.config/fish/conf.d/*.fish
     source $file
