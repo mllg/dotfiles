@@ -44,6 +44,11 @@ for file in ~/.config/fish/conf.d/*.fish
     source $file
 end
 
+function set_secrets
+    set -xU OPENML_API_KEY (pass show openml.api.key)
+    set -xU GITHUB_TOKEN (pass show github.token)
+end
+
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
 end
