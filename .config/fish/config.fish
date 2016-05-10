@@ -39,14 +39,18 @@ set -g fish_key_bindings my_vi_key_bindings
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx PATH ~/.R/library/rt/bin $PATH
-
-for file in ~/.config/fish/conf.d/*.fish
-    source $file
-end
+set -gx OPENBLAS_NUM_THREADS 1
+set -gx WEKA_HOME $HOME/.wekafiles
+set -gx COLORTERM 1
 
 function set_secrets
     set -xU OPENMLAPIKEY (pass show openml.api.key)
     set -xU GITHUB_TOKEN (pass show github.token)
+end
+
+
+for file in ~/.config/fish/conf.d/*.fish
+    source $file
 end
 
 if test -r ~/.config/fish/local.fish

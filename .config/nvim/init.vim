@@ -325,6 +325,7 @@ nnoremap <silent> <Down> :resize -1<CR>
 
 command W w !sudo tee % > /dev/null
 command! Nup :execute ":Unite -tab neobundle/update"
+nmap <leader>d :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 
 " ======================================================================================================================
 " 4.0 Plugin Config
@@ -364,6 +365,7 @@ endif
 if neobundle#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
+    let g:deoplete#disable_auto_complete = 0
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
                 \ "\<Plug>(neosnippet_expand_or_jump)"
                 \: pumvisible() ? "\<C-n>" : "\<TAB>"
