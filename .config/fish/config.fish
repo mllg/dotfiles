@@ -1,14 +1,14 @@
 set fish_greeting ""
 
 abbr -a vim nvim
-abbr -a gc git commit
-abbr -a gd git diff
-abbr -a ga git add
-abbr -a gs git status -sb
-abbr -a gst git status -sb
-abbr -a gp git push
-abbr -a gco git checkout
-abbr -a gl git pull
+abbr -a gc "git commit"
+abbr -a gd "git diff"
+abbr -a ga "git add"
+abbr -a gs "git status -sb"
+abbr -a gst "git status -sb"
+abbr -a gp "git push"
+abbr -a gco "git checkout"
+abbr -a gl "git pull"
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
