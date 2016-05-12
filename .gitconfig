@@ -19,9 +19,6 @@
     ignorecase = false
 [clean]
     requireForce = false
-[branch]
-    autosetuprebase = always
-    autosetupmerge = always
 [diff]
     tool = nvimdiff
 [difftool]
