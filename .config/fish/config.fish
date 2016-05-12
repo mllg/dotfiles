@@ -38,6 +38,9 @@ set -g fish_key_bindings my_vi_key_bindings
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
+if test (uname) = "Darwin"
+    set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+end
 set -gx PATH ~/.R/library/rt/bin $PATH
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
