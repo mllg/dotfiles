@@ -145,6 +145,7 @@ set shortmess=aIT
 set mouse=a
 set clipboard=unnamedplus
 set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
+let g:terminal_scrollback_buffer=100000
 
 "--------------------------------------------------------------------------------------------------
 " Timeout
