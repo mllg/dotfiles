@@ -15,39 +15,34 @@ rpart
 spatial
 survival
 
-# eigene
+# in development
 checkmate
-BBmisc
 BatchJobs
 BatchExperiments
 mlr
-fail
 parallelMap
 
 # devel
+devtools
 roxygen2
 testthat
-devtools
 inline
 rdatsci/rt
 hadley/staticdocs
 covr
 
+# frequently used
+setwidth
 data.table
-reshape2
+knitr
 ggplot2
-RColorBrewer
 gridExtra
-survMisc
+RColorBrewer
 tikzDevice
 pander
-knitr
-setwidth
 xtable
 microbenchmark
 Rcpp
 RcppEigen
 gaborcsardi/progress
 rmarkdown
-optparse
-glmnet

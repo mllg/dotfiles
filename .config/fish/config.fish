@@ -4,8 +4,6 @@ abbr -a vim nvim
 abbr -a gc "git commit"
 abbr -a gd "git diff"
 abbr -a ga "git add"
-abbr -a gs "git status -sb"
-abbr -a gst "git status -sb"
 abbr -a gp "git push"
 abbr -a gco "git checkout"
 abbr -a gl "git pull"
@@ -15,6 +13,7 @@ alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias du="du -h"
 alias df="df -h"
 alias mkdir="mkdir -p"
+alias gst="git status -sb"
 alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
 alias agg="ag -f -g"
 alias ag="ag -f"
@@ -38,6 +37,8 @@ set -g fish_key_bindings my_vi_key_bindings
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
+set -gx PAGER "nvim -c PAGER -"
+set -gx MANPAGER "/bin/sh -c 'col -b | nvim -c MANPAGER -'"
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 end
@@ -51,6 +52,48 @@ function set_secrets
     set -xU GITHUB_TOKEN (pass show github.token)
 end
 
+function update
+    function info
+        set_color red
+        echo "--- $argv"
+        set_color normal
+    end
+
+    if not test -f "~/.config/fish/functions/fisher.fish"
+        info "Installing fisherman"
+        curl -Lo "~/.config/fish/functions/fisher.fish" --create-dirs git.io/fisherman
+        fisher
+    else
+        info "Updating fisherman plugins"
+        fisher up
+    end
+
+    if not test -d "~/.tmux/plugins/tpm"
+        info "Installing TPM"
+        git clone --depth=1 https://github.com/tmux-plugins/tpm "~/.tmux/plugins/tpm"
+        ~/.tmux/plugins/tpm/bin/install_plugins
+    else
+        info "Updating TPM plugins"
+        ~/.tmux/plugins/tpm/bin/install_plugins
+        ~/.tmux/plugins/tpm/bin/clean_plugins
+        ~/.tmux/plugins/tpm/bin/update_plugins all
+    end
+
+    if not test -d "~/.config/nvim/bundle/neobundle.vim"
+        info "Installing TPM"
+        git clone --depth=1 https://github.com/Shougo/neobundle.vim "~/.config/nvim/bundle/neobundle.vim"
+    end
+
+    if not test -d "~/.R/library"
+        info "Setting up R library and installing rt"
+        mkdir -p "~/.R/library"
+        Rscript -e 'install.packages("devtools", repos = "http://cloud.r-project.org/")'
+        Rscript -e 'devtools::install_github("rdatsci/rt")'
+    else
+        info "Updating R packages"
+        rupdate
+    end
+end
 
 for file in ~/.config/fish/conf.d/*.fish
     source $file

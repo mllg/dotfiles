@@ -88,7 +88,8 @@ NeoBundle 'git@github.com:mllg/vim-devtools-plugin.git'
 NeoBundle 'keith/tmux.vim'
 NeoBundle 'honza/dockerfile.vim'
 NeoBundle 'dag/vim-fish'
-NeoBundle 'jez/vim-superman'
+NeoBundleLazy 'lambdalisue/vim-manpager', {'autoload': {'commands': 'MANPAGER'}}
+NeoBundleLazy 'lambdalisue/vim-pager', {'autoload': {'commands': 'PAGER'}}
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Auto Completion

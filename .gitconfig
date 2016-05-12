@@ -11,12 +11,13 @@
     undo-commit = reset --soft HEAD^
 [color]
     branch = auto
-    diff = auto
+    diff = no
     interactive = auto
     status = auto
 [core]
     autocrlf = input
     ignorecase = false
+	pager = "nvim -c PAGER -"
 [clean]
     requireForce = false
 [diff]
@@ -24,10 +25,10 @@
 [difftool]
     prompt = false
 [difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+    cmd = "nvim -d '$LOCAL' '$REMOTE'"
 [merge]
     tool = vimdiff
 [mergetool]
     prompt = false
 [mergetool "vimdiff"]
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    cmd = "nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'"
