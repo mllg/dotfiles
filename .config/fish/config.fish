@@ -59,18 +59,18 @@ function update
         set_color normal
     end
 
-    if not test -f "~/.config/fish/functions/fisher.fish"
+    if not test -f $HOME/.config/fish/functions/fisher.fish
         info "Installing fisherman"
-        curl -Lo "~/.config/fish/functions/fisher.fish" --create-dirs git.io/fisherman
+        curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
         fisher
     else
         info "Updating fisherman plugins"
         fisher up
     end
 
-    if not test -d "~/.tmux/plugins/tpm"
+    if not test -d $HOME/.tmux/plugins/tpm
         info "Installing TPM"
-        git clone --depth=1 https://github.com/tmux-plugins/tpm "~/.tmux/plugins/tpm"
+        git clone --depth=1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
         ~/.tmux/plugins/tpm/bin/install_plugins
     else
         info "Updating TPM plugins"
@@ -79,14 +79,14 @@ function update
         ~/.tmux/plugins/tpm/bin/update_plugins all
     end
 
-    if not test -d "~/.config/nvim/bundle/neobundle.vim"
+    if not test -d $HOME/.config/nvim/bundle/neobundle.vim
         info "Installing TPM"
-        git clone --depth=1 https://github.com/Shougo/neobundle.vim "~/.config/nvim/bundle/neobundle.vim"
+        git clone --depth=1 https://github.com/Shougo/neobundle.vim "$HOME/.config/nvim/bundle/neobundle.vim"
     end
 
-    if not test -d "~/.R/library"
+    if not test -d $HOME/.R/library
         info "Setting up R library and installing rt"
-        mkdir -p "~/.R/library"
+        mkdir -p $HOME/.R/library
         Rscript -e 'install.packages("devtools", repos = "http://cloud.r-project.org/")'
         Rscript -e 'devtools::install_github("rdatsci/rt")'
     else
