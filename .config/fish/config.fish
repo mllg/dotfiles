@@ -1,19 +1,20 @@
 set fish_greeting ""
 
-abbr -a vim nvim
-abbr -a gc "git commit"
-abbr -a gd "git diff"
-abbr -a ga "git add"
-abbr -a gp "git push"
-abbr -a gco "git checkout"
-abbr -a gl "git pull"
+set -U fish_user_abbreviations \
+    'vim=nvim' \
+    'gc=git commit' \
+    'gd=git diff' \
+    'ga=git add' \
+    'gp=git push' \
+    'gco=git clone' \
+    'gl=git pull' \
+    'gst=git status -sb'
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias du="du -h"
 alias df="df -h"
 alias mkdir="mkdir -p"
-alias gst="git status -sb"
 alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
 alias agg="ag -f -g"
 alias ag="ag -f"
