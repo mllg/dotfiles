@@ -38,7 +38,7 @@ set -g fish_key_bindings my_vi_key_bindings
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
-set -gx PAGER "nvim -c PAGER -"
+# set -gx PAGER "nvim -c PAGER -"
 set -gx MANPAGER "/bin/sh -c 'col -b | nvim -c MANPAGER -'"
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
