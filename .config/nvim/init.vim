@@ -62,6 +62,8 @@ NeoBundle 'AndrewRadev/switch.vim' " Switch values like true/false with gs
 NeoBundle 'triglav/vim-visual-increment' " Increment numbers in visual mode
 NeoBundle 'machakann/vim-swap' " swap arguments with g< and g>
 NeoBundle 'tommcdo/vim-exchange' " exchange objects using cx[motion]
+NeoBundle 'christoomey/vim-sort-motion' " sort lines with gs
+NeoBundle 'ReplaceWithRegister' " replace motion with register using gr<motion>
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Unite
@@ -125,6 +127,7 @@ NeoBundleCheck
 set shell=zsh
 set cursorline
 set number
+set relativenumber
 set showmode
 set textwidth=999
 " set autochdir
@@ -264,8 +267,8 @@ augroup help_vsplit
 let mapleader = ','
 let maplocalleader = 'ß'
 
-nnoremap <silent> j gj
-nnoremap <silent> k gk
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 nmap K <nop>
 map <c-h> :bp<cr>
