@@ -6,7 +6,8 @@ set -U fish_user_abbreviations \
     'gd=git diff' \
     'ga=git add' \
     'gp=git push' \
-    'gco=git clone' \
+    'gco=git checkout' \
+    'gcl=git clone' \
     'gl=git pull' \
     'gst=git status -sb'
 
