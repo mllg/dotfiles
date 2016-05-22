@@ -11,7 +11,7 @@
     undo-commit = reset --soft HEAD^
 [color]
     branch = auto
-    diff = no
+    diff = auto
     interactive = auto
     status = auto
     ui = auto
@@ -19,7 +19,6 @@
 [core]
     autocrlf = input
     ignorecase = false
-	pager = "nvim -c PAGER -"
 [clean]
     requireForce = false
 [diff]
