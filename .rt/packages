@@ -17,8 +17,6 @@ survival
 
 # in development
 checkmate
-BatchJobs
-BatchExperiments
 mlr
 parallelMap
 
