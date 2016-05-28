@@ -1,136 +1,76 @@
 " ======================================================================================================================
-" 1.0 Plugin manager (Plug) settings
+" Plugins
 " ======================================================================================================================
-if has('vim_starting')
-    set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
+set runtimepath^=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim
+
+let g:dein#types#git#clone_depth=1
+call dein#begin(expand('~/.config/nvim/bundle'))
+
+call dein#add('Shougo/dein.vim')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-abolish') " Case insensitive replace
+call dein#add('tpope/vim-eunuch') " Commands like :Remove
+call dein#add('tpope/vim-sensible') " Better defaults
+call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
+call dein#add('visualrepeat')
+call dein#add('chriskempson/vim-tomorrow-theme')
+call dein#add('christoomey/vim-titlecase') " switch titlecase with gt+movement
+call dein#add('dietsche/vim-lastplace') " restore cursor position at start
+call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
+call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+call dein#add('vim-airline/vim-airline', {'hook_source' : 'source ~/.config/nvim/plugins/airline.vim'})
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('tpope/vim-fugitive') " Git support
+call dein#add('mhinz/vim-signify') " Highlight changed lines
+call dein#add('gregsexton/gitv', { 'on_cmd' : 'Gitv' }) " git browser
+call dein#add('Shougo/deoplete.nvim', {'hook_source' : 'source ~/.config/nvim/plugins/deoplete.vim'})
+call dein#add('tpope/vim-commentary') " Comment with gc
+call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
+call dein#add('tpope/vim-surround') " Delete, add and change surroundings
+call dein#add('wellle/targets.vim') " More text objects
+call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
+call dein#add('junegunn/vim-easy-align', {'on_cmd' : '<Plug>(EasyAlign)'}) " Align on operators
+call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
+call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
+call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
+call dein#add('machakann/vim-swap') " swap arguments with g< and g>
+call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
+call dein#add('christoomey/vim-sort-motion') " sort lines with gs
+call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
+call dein#add('matze/vim-move', {'hook_source' : 'source ~/.config/nvim/plugins/vim-move.vim'}) " Move lines with <c-h> etc
+call dein#add('Shougo/unite.vim', {'hook_source' : 'source ~/.config/nvim/plugins/unite.vim'})
+call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/neoyank.vim')
+call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown'], 'hook_source' : 'source ~/.config/nvim/plugins/latex-box.vim'})
+call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE'], 'hook_source' : 'source ~/.config/nvim/plugins/nvim-r.vim'})
+call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+call dein#add('keith/tmux.vim')
+call dein#add('honza/dockerfile.vim')
+call dein#add('dag/vim-fish')
+call dein#add('lambdalisue/vim-manpager') " , {'autoload': {'commands': 'MANPAGER'}}
+call dein#add('lambdalisue/vim-pager') ", {'autoload': {'commands': 'PAGER'}}
+call dein#add('ujihisa/neco-look')
+call dein#add('Shougo/neosnippet.vim', {'hook_source' : 'source ~/.config/nvim/plugins/neosnippet.vim'})
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
+call dein#end()
+call dein#call_hook('source')
+
+if dein#check_install()
+    call dein#install()
 endif
 
-call neobundle#begin(expand('~/.config/nvim/bundle/'))
-let g:neobundle#types#git#clone_depth = 1
-
-" ======================================================================================================================
-" 1.1 Plugin List
-" ======================================================================================================================
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Language Agnostic Plugins
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'Shougo/vimproc.vim', {'build' : { 'mac' : 'make -f make_mac.mak', 'linux' : 'make' }}
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'visualrepeat'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'neomake/neomake'
-NeoBundle 'nelstrom/vim-visual-star-search'
-NeoBundle 'tpope/vim-abolish' " Case insensitive replace
-NeoBundle 'tpope/vim-eunuch' " Commands like :Remove
-NeoBundle 'tpope/vim-sensible' " Better defaults
-NeoBundle 'tpope/vim-endwise' " Some completions for viml/zsh/...
-NeoBundleLazy 'schickling/vim-bufonly', {'autoload' : { 'commands' : 'BufOnly' }}
-NeoBundle 'christoomey/vim-titlecase' " switch titlecase with gt+movement
-NeoBundle 'dietsche/vim-lastplace'
-NeoBundle 'justinmk/vim-dirvish' " Quick and easy file browser
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Color Schemes And Apperance
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'frankier/neovim-colors-solarized-truecolor-only'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-" NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'sheerun/vim-wombat-scheme'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-
-" ---------------------------------------------------------------------------------------------------------------------
-" External Tool Support
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'tpope/vim-fugitive' " Git support
-NeoBundle 'mhinz/vim-signify' " Highlight changed lines
-NeoBundleLazy 'gregsexton/gitv', {'autoload' : {'commands' : 'Gitv'}}
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Text Editing Tools
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'tpope/vim-commentary' " Comment with gc
-NeoBundle 'editorconfig/editorconfig-vim' " Support for editorconfig
-NeoBundle 'tpope/vim-surround' " Delete, add and change surroundings
-NeoBundle 'wellle/targets.vim' " More text objects
-NeoBundle 'michaeljsmith/vim-indent-object' " Indentation objects for targets
-NeoBundleLazy 'junegunn/vim-easy-align', {'autoload' : {'mappings' : '<Plug>(EasyAlign)'}} " Align on operators
-NeoBundleLazy 'itspriddle/vim-stripper', {'autoload' : {'commands' : 'Stripper'}} " Remove trailing whitespace
-NeoBundle 'AndrewRadev/switch.vim' " Switch values like true/false with gs
-NeoBundle 'triglav/vim-visual-increment' " Increment numbers in visual mode
-NeoBundle 'machakann/vim-swap' " swap arguments with g< and g>
-NeoBundle 'tommcdo/vim-exchange' " exchange objects using cx[motion]
-NeoBundle 'christoomey/vim-sort-motion' " sort lines with gs
-NeoBundle 'ReplaceWithRegister' " replace motion with register using gr<motion>
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Unite
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neoyank.vim'
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Latex
-" ---------------------------------------------------------------------------------------------------------------------
-" NeoBundle 'lervag/vimtex'
-NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload' : {'filetypes' : ['tex', 'rnoweb', 'rmarkdown']}}
-
-" ---------------------------------------------------------------------------------------------------------------------
-" R
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundleLazy 'jalvesaq/Nvim-R', {'autoload' : {'filetypes' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'filename_patterns': ['DESCRIPTION', 'NAMEPSAPCE']}}
-NeoBundle 'git@github.com:mllg/vim-devtools-plugin.git'
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Syntax Highlighting
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'keith/tmux.vim'
-NeoBundle 'honza/dockerfile.vim'
-NeoBundle 'dag/vim-fish'
-NeoBundleLazy 'lambdalisue/vim-manpager', {'autoload': {'commands': 'MANPAGER'}}
-NeoBundleLazy 'lambdalisue/vim-pager', {'autoload': {'commands': 'PAGER'}}
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Auto Completion
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'ujihisa/neco-look'
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Snippets
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundleLazy 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Misc
-" ---------------------------------------------------------------------------------------------------------------------
-NeoBundle 'matze/vim-move' " Move lines with <c-h> etc
-NeoBundle 'easymotion/vim-easymotion' " Move quickly
-NeoBundleLazy 'mhinz/vim-sayonara', {'autoload' : { 'commands' : 'Sayonara' }}
-
-" ======================================================================================================================
-" 1.2 End of plugin declaration
-" ======================================================================================================================
-call neobundle#end()
 filetype plugin indent on
 syntax on
-NeoBundleCheck
-
 
 " ======================================================================================================================
-" 2.0 Basic settings
+" Settings
 " ======================================================================================================================
-set shell=zsh
 set cursorline
 set number
 set relativenumber
 set showmode
 set textwidth=999
-" set autochdir
 set hidden
 set autowriteall
 set lazyredraw
@@ -150,6 +90,7 @@ set mouse=a
 set clipboard=unnamedplus
 set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
 let g:terminal_scrollback_buffer=100000
+set conceallevel=2 concealcursor=i
 
 "--------------------------------------------------------------------------------------------------
 " Timeout
@@ -209,12 +150,6 @@ set spellsuggest=fast,20
 "--------------------------------------------------------------------------------------------------
 " functions
 "--------------------------------------------------------------------------------------------------
-function! UniteFromSearch()
-    let l:search = getreg('/')
-    let l:search = substitute(l:search, '\(^\\<\|\\>$\)','','g')
-    execute ":Unite grep:.::" . l:search
-endfunction
-
 function! MoveHelpRight()
     if !exists('w:help_is_moved') || w:help_is_moved != 'right'
         wincmd L
@@ -227,6 +162,7 @@ function! EnsureExists(path)
         call mkdir(expand(a:path), 'p')
     endif
 endfunction
+
 
 "--------------------------------------------------------------------------------------------------
 " autocommands
@@ -259,10 +195,8 @@ augroup comment_string
     autocmd FileType r setlocal commentstring=#\ %s
 augroup END
 
-augroup help_vsplit
-
 " ======================================================================================================================
-" 3.0 Mappings
+" Mappings
 " ======================================================================================================================
 let mapleader = ','
 let maplocalleader = 'ß'
@@ -305,20 +239,6 @@ nnoremap <silent> <leader>gp :Git push<cr>
 nnoremap <silent> <leader>gw :Gwrite<cr>
 nnoremap <silent> <leader>gr :Gremove<cr>
 
-nmap <c-t> :UniteWithProjectDir -start-insert file_rec/async<cr>
-" nmap <c-t> :UniteWithProjectDir -start-insert -sync file_rec/neovim<cr>
-nmap <c-g> :Unite grep:.<cr>
-" command! -nargs=1 Ug :Unite grep:.::<args>
-nmap <leader>d :Unite -start-insert file<cr>
-nmap <leader>b :Unite buffer<cr>
-nmap <leader>v :Unite history/yank<cr>
-nmap <leader>m :Unite file_mru<cr>
-nmap <leader>n :UniteNext<cr>
-nmap <leader>p :UnitePrev<cr>
-nmap <leader>u :UniteResume<cr>
-nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
-nmap <leader>ff :call UniteFromSearch()<cr>
-
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 noremap <cr> i<Enter><esc>
 
@@ -328,139 +248,10 @@ nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
 
-command W w !sudo tee % > /dev/null
-command! Nup :execute ":Unite -tab neobundle/update"
-nmap <leader>d :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
+" command W w !sudo tee % > /dev/null
 
 " ======================================================================================================================
-" 4.0 Plugin Config
-" ======================================================================================================================
-if neobundle#tap('unite.vim')
-    let g:unite_prompt='» '
-    if executable('ag')
-        " let g:unite_source_rec_async_command =['ag', '--follow', '--nocolor', '--nogroup','--hidden', '-g', '']
-        let g:unite_source_rec_async_command =['ag', '--vimgrep', '-g', '']
-        let g:unite_source_rec_max_cache_files = 0
-        call unite#custom#source('file_rec,file_rec/async,file_rec/neovim', 'max_candidates', 0)
-
-        let g:unite_source_grep_command = 'ag'
-        let g:unite_source_grep_default_opts ='-i --vimgrep --hidden'
-        let g:unite_source_grep_recursive_opt = ''
-    endif
-
-    call neobundle#untap()
-endif
-
-if neobundle#tap('vim-move')
-    let g:move_key_modifier = 'C'
-    call neobundle#untap()
-endif
-
-if neobundle#tap('vim-airline')
-    let g:airline_powerline_fonts=1
-    let g:airline#extensions#tabline#enabled = 1
-    call neobundle#untap()
-endif
-
-if neobundle#tap('vim-stripper')
-    let g:StripperNoStripOnSave = 0
-    call neobundle#untap()
-endif
-
-if neobundle#tap('deoplete.nvim')
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#disable_auto_complete = 0
-    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                \ "\<Plug>(neosnippet_expand_or_jump)"
-                \: pumvisible() ? "\<C-n>" : "\<TAB>"
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                \ "\<Plug>(neosnippet_expand_or_jump)"
-                \: "\<TAB>"
-    let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni#input_patterns.r = ['\w+']
-    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
-    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
-    let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
-    call neobundle#untap()
-endif
-
-if neobundle#tap('vim-easy-align')
-    vmap <Enter> <Plug>(EasyAlign)
-    call neobundle#untap()
-endif
-
-if neobundle#tap('switch.vim')
-    function! neobundle#hooks.on_post_source(bundle)
-        let g:switch_custom_definitions = [['TRUE', 'FALSE']]
-        let g:switch_mapping = ""
-        nmap <silent> + :Switch<cr>
-    endfunction
-    call neobundle#untap()
-endif
-
-if neobundle#tap('vim-easymotion')
-    let g:EasyMotion_smartcase = 1
-    call neobundle#untap()
-endif
-
-if neobundle#tap('neosnippet.vim')
-    let g:neosnippet#snippets_directory = expand('~/.config/nvim/neosnippets')
-    if has('conceal')
-        set conceallevel=2 concealcursor=i
-    endif
-    if !exists('g:neosnippet#scope_aliases')
-        let g:neosnippet#scope_aliases = {}
-    endif
-    let g:neosnippet#scope_aliases['rnoweb'] = 'rnoweb,tex'
-    let g:neosnippet#scope_aliases['rmd'] = 'rmd,markdown'
-    call neobundle#untap()
-endif
-
-if neobundle#tap('Nvim-R')
-    function! neobundle#hooks.on_source(bundle)
-        let g:R_in_buffer = 1
-        let g:R_assign = 0
-        let g:R_applescript = 0
-        let g:R_tmux_split = 0
-        let g:R_nvimpager = "vertical"
-        let g:R_close_term = 1
-        " let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
-        let g:R_openpdf = 0
-        if !has("mac")
-            let g:R_pdfviewer = 'okular'
-        endif
-        let g:Rout_more_colors = 1
-        let g:R_tmux_title = "automatic"
-        let g:r_indent_align_args = 0
-        " let g:R_show_args = 1
-        " let R_args_in_stline = 1
-        vmap <Space> <Plug>RDSendSelection
-        nmap <Space> <Plug>RDSendLine
-        let g:tex_conceal = ""
-    endfunction
-    call neobundle#untap()
-endif
-
-if neobundle#tap('LaTeX-Box')
-    function! neobundle#hooks.on_source(bundle)
-        let g:LatexBox_quickfix=2
-        let g:LatexBox_ignore_warnings = ['Overfull', 'Underfull', 'Font shape', 'Some font shapes', 'Size substitutions']
-        let g:tex_conceal = ""
-        if has("mac")
-            let g:LatexBox_viewer = "open -a Skim"
-        endif
-    endfunction
-    function! neobundle#hooks.on_post_source(bundle)
-        nmap <buffer> <f5> :LatexTOCToggle<cr>
-        nmap <buffer> <leader>ce   <Plug>LatexChangeEnv
-    endfunction
-    call neobundle#untap()
-endif
-
-
-" ======================================================================================================================
-" 5.0 Color and Highlight
+" Color and Highlight
 " ======================================================================================================================
 set t_Co=256
 set background=dark

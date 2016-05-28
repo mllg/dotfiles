@@ -69,9 +69,9 @@ function update
         ~/.tmux/plugins/tpm/bin/update_plugins all
     end
 
-    if not test -d $HOME/.config/nvim/bundle/neobundle.vim
-        info "Installing TPM"
-        git clone --depth=1 https://github.com/Shougo/neobundle.vim "$HOME/.config/nvim/bundle/neobundle.vim"
+    if not test -d $HOME/.config/nvim/bundle
+        info "Installing dein.vim"
+        git clone --depth=1 'https://github.com/Shougo/dein.vim' "$HOME/.config/nvim/bundle/repos/github.com/Shougo/dein.vim"
     end
 
     if not test -d $HOME/.R/library
