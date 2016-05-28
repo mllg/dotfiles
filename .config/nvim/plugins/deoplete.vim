@@ -13,4 +13,4 @@ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
     \: "\<TAB>"
-nmap <leader>d :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
+" nmap <leader>d :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>

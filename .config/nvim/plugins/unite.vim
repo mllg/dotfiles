@@ -13,7 +13,7 @@ function! UniteFromSearch()
     execute ":Unite grep:.::" . l:search
 endfunction
 
-nmap <c-t> :UniteWithProjectDir -start-insert file_rec/async<cr>
+nmap <c-t> :UniteWithProjectDir -start-insert file_rec/neovim<cr>
 " nmap <c-t> :UniteWithProjectDir -start-insert -sync file_rec/neovim<cr>
 nmap <c-g> :Unite grep:.<cr>
 " command! -nargs=1 Ug :Unite grep:.::<args>
