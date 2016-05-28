@@ -31,7 +31,9 @@ set -gx MANPAGER "/bin/sh -c 'col -b | nvim -c MANPAGER -'"
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 end
-set -gx PATH ~/.R/library/rt/bin $PATH
+if test -d ~/.R/library/rt
+    set -gx PATH ~/.R/library/rt/bin $PATH
+end
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
