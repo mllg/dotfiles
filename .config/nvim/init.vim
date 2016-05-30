@@ -51,6 +51,7 @@ call dein#add('gregsexton/gitv', {'on_cmd' : 'Gitv'}) " git browser
 " File system navigation
 call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
 call dein#add('Shougo/unite.vim', {'hook_source' : 'source ~/.config/nvim/plugins/unite.vim'})
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neoyank.vim')
 
@@ -229,6 +230,21 @@ nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
 " command W w !sudo tee % > /dev/null
+
+
+
+nmap <c-t> :UniteWithProjectDir -start-insert file_rec/async<cr>
+" nmap <c-t> :UniteWithProjectDir -start-insert -sync file_rec/neovim<cr>
+nmap <c-g> :Unite grep:.<cr>
+nmap <leader>d :Unite -start-insert file<cr>
+nmap <leader>b :Unite buffer<cr>
+nmap <leader>v :Unite history/yank<cr>
+nmap <leader>m :Unite file_mru<cr>
+nmap <leader>n :UniteNext<cr>
+nmap <leader>p :UnitePrev<cr>
+nmap <leader>u :UniteResume<cr>
+nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
+nmap <leader>ff :call UniteFromSearch()<cr>
 
 " ======================================================================================================================
 " Colorscheme
