@@ -304,15 +304,15 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
-    let g:R_in_buffer = 1
-    let g:R_assign = 0
     let g:R_applescript = 0
-    let g:R_tmux_split = 0
-    let g:R_nvimpager = "vertical"
+    let g:R_assign = 0
     let g:R_close_term = 1
+    let g:R_in_buffer = 1
+    let g:R_nvimpager = "vertical"
     let g:R_openpdf = 0
-    let g:Rout_more_colors = 1
+    let g:R_tmux_split = 0
     let g:R_tmux_title = "automatic"
+    let g:Rout_more_colors = 1
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     " let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
@@ -335,6 +335,10 @@ endif
 
 if dein#tap('vim-move')
     let g:move_key_modifier = 'C'
+endif
+
+if dein#tap('vim-sort-motion')
+	let g:sort_motion = '<leader>s'
 endif
 
 " ======================================================================================================================
