@@ -2,7 +2,7 @@
 tmp = list()
 tmp$lc_messages = Sys.setlocale("LC_MESSAGES", "en_US.UTF-8")
 tmp$lc_ctype = Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
-tmp$cores = as.integer(Sys.getenv("NCPUS", 1L))
+tmp$cores = as.integer(Sys.getenv("NCPUS", parallel::detectCores()))
 
 options(
   menu.graphics = FALSE,
