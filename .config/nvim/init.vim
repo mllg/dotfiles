@@ -12,8 +12,9 @@ call dein#add('visualrepeat') " Repeat in visual
 call dein#add('tpope/vim-abolish') " Case insensitive replace
 call dein#add('tpope/vim-eunuch') " Commands like :Remove
 call dein#add('tpope/vim-sensible') " Better defaults
-call dein#add('tpope/vim-endwise', {'on_i' : 1}) " Some completions for viml/zsh/...
+call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
 call dein#add('dietsche/vim-lastplace') " restore cursor position at start
+call dein#add('ninrod/ninscratch-vim') " Scratch Buffer
 
 " Appearance
 call dein#add('chriskempson/vim-tomorrow-theme')
@@ -42,6 +43,7 @@ call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
 call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
 call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
 call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
+call dein#add('kshenoy/vim-signature') " Show marks
 
 " Git/version control support
 call dein#add('tpope/vim-fugitive')
@@ -50,10 +52,8 @@ call dein#add('gregsexton/gitv', {'on_cmd' : 'Gitv'}) " git browser
 
 " File system navigation
 call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/neoyank.vim')
+call dein#add('junegunn/fzf', {'build': './install --bin' })
+call dein#add('junegunn/fzf.vim')
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -66,6 +66,7 @@ call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnowe
 call dein#add('keith/tmux.vim')
 call dein#add('honza/dockerfile.vim')
 call dein#add('dag/vim-fish')
+call dein#add('nhooyr/neoman.vim')
 
 call dein#end()
 if dein#check_install()
@@ -256,33 +257,22 @@ if dein#tap('deoplete.nvim')
     nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
+if dein#tap('fzf.vim')
+    nmap <c-t> :Files<cr>
+    nmap <c-p> :GitFiles<cr>
+    nmap <c-g> :Ag<cr>
+    nmap <leader>b :Buffers<cr>
+    nmap <leader>m :Marks<cr>
+    nmap <leader>t :Tags<cr>
 
-if dein#tap('unite.vim')
-    let g:unite_prompt='» '
-    if executable('ag')
-        " let g:unite_source_rec_async_command =['ag', '--follow', '--nocolor', '--nogroup','--hidden', '-g', '']
-        let g:unite_source_rec_async_command =['ag', '--vimgrep', '-g', '']
-        let g:unite_source_grep_command = 'ag'
-        let g:unite_source_grep_default_opts ='-i --vimgrep --hidden'
-        let g:unite_source_grep_recursive_opt = ''
-    endif
+    " Mapping selecting mappings
+    nmap <leader><tab> <plug>(fzf-maps-n)
+    xmap <leader><tab> <plug>(fzf-maps-x)
+    omap <leader><tab> <plug>(fzf-maps-o)
 
-    function! UniteFromSearch()
-        let l:search = getreg('/')
-        let l:search = substitute(l:search, '\(^\\<\|\\>$\)','','g')
-        execute ":Unite grep:.::" . l:search
-    endfunction
-    nmap <c-t> :UniteWithProjectDir -start-insert file_rec/async<cr>
-    nmap <c-g> :Unite grep:.<cr>
-    nmap <leader>d :Unite -start-insert file<cr>
-    nmap <leader>b :Unite buffer<cr>
-    nmap <leader>v :Unite history/yank<cr>
-    nmap <leader>m :Unite file_mru<cr>
-    nmap <leader>n :UniteNext<cr>
-    nmap <leader>p :UnitePrev<cr>
-    nmap <leader>u :UniteResume<cr>
-    nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
-    nmap <leader>ff :call UniteFromSearch()<cr>
+    " Insert mode completion
+    imap <c-x><c-f> <plug>(fzf-complete-path)
+    imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 endif
 
 if dein#tap('LaTeX-Box')
@@ -341,6 +331,11 @@ if dein#tap('vim-sort-motion')
 	let g:sort_motion = '<leader>s'
 endif
 
+
+if dein#tap('vim-sort-motion')
+    nnoremap gs :NinScratch<cr>
+endif
+
 " ======================================================================================================================
 " Colorscheme
 " ======================================================================================================================
@@ -348,6 +343,7 @@ set t_Co=256
 set background=dark
 if $NVIM_TUI_ENABLE_TRUE_COLOR && dein#tap('neovim-colors-solarized-truecolor-only')
     colorscheme solarized
+    let g:solarized_bold=1
 elseif dein#tap('vim-tomorrow-theme')
     colorscheme Tomorrow-Night
     hi clear SpellBad

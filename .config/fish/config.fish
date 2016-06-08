@@ -90,3 +90,6 @@ end
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
 end
+if test -r ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/neovim.fish
+    source ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/neovim.fish
+end
