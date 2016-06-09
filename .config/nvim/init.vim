@@ -265,6 +265,8 @@ if dein#tap('fzf.vim')
     nmap <leader>m :Marks<cr>
     nmap <leader>t :Tags<cr>
 
+    nmap <leader>n :cn<cr>
+    nmap <leader>p :cp<cr>
     " Mapping selecting mappings
     nmap <leader><tab> <plug>(fzf-maps-n)
     xmap <leader><tab> <plug>(fzf-maps-x)
