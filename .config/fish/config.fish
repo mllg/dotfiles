@@ -30,7 +30,6 @@ alias ....="cd ../../../"
 fish_vi_key_bindings
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
-set -gx MANPAGER "/bin/sh -c 'col -b | nvim -c MANPAGER -'"
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 end
