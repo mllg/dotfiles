@@ -11,6 +11,9 @@ set -U fish_user_abbreviations \
     'gl=git pull' \
     'gst=git status -sb'
 
+set -g theme_nerd_fonts yes
+set -g theme_color_scheme terminal-dark
+
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias du="du -h"
