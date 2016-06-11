@@ -59,6 +59,7 @@ function update
         fisher
     else
         info "Updating fisherman plugins"
+        fisher
         fisher up
     end
 
