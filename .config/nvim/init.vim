@@ -229,6 +229,7 @@ nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
 " command W w !sudo tee % > /dev/null
+command Update call dein#update()
 
 " ======================================================================================================================
 " Plugin Config
@@ -332,7 +333,6 @@ endif
 if dein#tap('vim-sort-motion')
 	let g:sort_motion = '<leader>s'
 endif
-
 
 if dein#tap('vim-sort-motion')
     nnoremap gs :NinScratch<cr>
