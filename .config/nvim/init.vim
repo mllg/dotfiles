@@ -21,6 +21,7 @@ call dein#add('chriskempson/vim-tomorrow-theme')
 call dein#add('frankier/neovim-colors-solarized-truecolor-only')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('equalsraf/neovim-gui-shim')
 
 " Edit helpers
 call dein#add('Shougo/deoplete.nvim') " Completion
@@ -341,14 +342,15 @@ endif
 " ======================================================================================================================
 " Colorscheme
 " ======================================================================================================================
-set t_Co=256
 set background=dark
 if $NVIM_TUI_ENABLE_TRUE_COLOR && dein#tap('neovim-colors-solarized-truecolor-only')
     colorscheme solarized
     let g:solarized_bold=1
 elseif dein#tap('vim-tomorrow-theme')
+    set t_Co=256
     colorscheme Tomorrow-Night
     hi clear SpellBad
     hi SpellBad cterm=undercurl
 endif
+
 set colorcolumn=
