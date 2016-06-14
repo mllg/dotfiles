@@ -53,8 +53,8 @@ call dein#add('gregsexton/gitv', {'on_cmd' : 'Gitv'}) " git browser
 call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
 call dein#add('junegunn/fzf', {'build': './install --bin' })
 call dein#add('junegunn/fzf.vim')
-" call dein#add('Shougo/unite.vim')
-" call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 " call dein#add('Shougo/neomru.vim')
 " call dein#add('Shougo/neoyank.vim')
 
@@ -296,8 +296,8 @@ if dein#tap('unite.vim')
     nmap <c-g> :Unite grep:.<cr>
     nmap <leader>d :Unite -start-insert file<cr>
     nmap <leader>b :Unite buffer<cr>
-    nmap <leader>v :Unite history/yank<cr>
-    nmap <leader>m :Unite file_mru<cr>
+    " nmap <leader>v :Unite history/yank<cr>
+    " nmap <leader>m :Unite file_mru<cr>
     nmap <leader>n :UniteNext<cr>
     nmap <leader>p :UnitePrev<cr>
     nmap <leader>u :UniteResume<cr>
