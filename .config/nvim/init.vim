@@ -53,6 +53,10 @@ call dein#add('gregsexton/gitv', {'on_cmd' : 'Gitv'}) " git browser
 call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
 call dein#add('junegunn/fzf', {'build': './install --bin' })
 call dein#add('junegunn/fzf.vim')
+" call dein#add('Shougo/unite.vim')
+" call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+" call dein#add('Shougo/neomru.vim')
+" call dein#add('Shougo/neoyank.vim')
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -261,20 +265,43 @@ if dein#tap('fzf.vim')
     nmap <c-t> :Files<cr>
     nmap <c-p> :GitFiles<cr>
     nmap <c-g> :Ag<cr>
+    nmap <silent> <leader>fw :Ag <C-R><C-W><CR>
     nmap <leader>b :Buffers<cr>
     nmap <leader>m :Marks<cr>
     nmap <leader>t :Tags<cr>
-
     nmap <leader>n :cn<cr>
     nmap <leader>p :cp<cr>
+
     " Mapping selecting mappings
-    nmap <leader><tab> <plug>(fzf-maps-n)
-    xmap <leader><tab> <plug>(fzf-maps-x)
-    omap <leader><tab> <plug>(fzf-maps-o)
+    " nmap <leader><tab> <plug>(fzf-maps-n)
+    " xmap <leader><tab> <plug>(fzf-maps-x)
+    " omap <leader><tab> <plug>(fzf-maps-o)
 
     " Insert mode completion
     imap <c-x><c-f> <plug>(fzf-complete-path)
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+endif
+
+if dein#tap('unite.vim')
+    let g:unite_prompt='» '
+    if executable('ag')
+        let g:unite_source_rec_async_command =['ag', '--vimgrep', '-g', '']
+        let g:unite_source_grep_command = 'ag'
+        let g:unite_source_grep_default_opts ='-i --vimgrep --hidden'
+        let g:unite_source_grep_recursive_opt = ''
+    endif
+
+    nmap <c-t> :Unite -start-insert file_rec/async<cr>
+    nmap <c-p> :Unite -start-insert file_rec/git<cr>
+    nmap <c-g> :Unite grep:.<cr>
+    nmap <leader>d :Unite -start-insert file<cr>
+    nmap <leader>b :Unite buffer<cr>
+    nmap <leader>v :Unite history/yank<cr>
+    nmap <leader>m :Unite file_mru<cr>
+    nmap <leader>n :UniteNext<cr>
+    nmap <leader>p :UnitePrev<cr>
+    nmap <leader>u :UniteResume<cr>
+    nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
 endif
 
 if dein#tap('LaTeX-Box')
