@@ -14,7 +14,6 @@ call dein#add('tpope/vim-eunuch') " Commands like :Remove
 call dein#add('tpope/vim-sensible') " Better defaults
 call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
 call dein#add('dietsche/vim-lastplace') " restore cursor position at start
-call dein#add('ninrod/ninscratch-vim') " Scratch Buffer
 
 " Appearance
 call dein#add('chriskempson/vim-tomorrow-theme')
@@ -36,7 +35,6 @@ call dein#add('junegunn/vim-easy-align', {'on_cmd' : '<Plug>(EasyAlign)'}) " Ali
 call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
 call dein#add('machakann/vim-swap') " swap arguments with g< and g>
 call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
-call dein#add('christoomey/vim-sort-motion') " sort lines with gs
 call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
 call dein#add('matze/vim-move') " Move lines with <c-h> etc
 call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
@@ -329,14 +327,6 @@ endif
 
 if dein#tap('vim-move')
     let g:move_key_modifier = 'C'
-endif
-
-if dein#tap('vim-sort-motion')
-	let g:sort_motion = '<leader>s'
-endif
-
-if dein#tap('vim-sort-motion')
-    nnoremap gs :NinScratch<cr>
 endif
 
 " ======================================================================================================================
