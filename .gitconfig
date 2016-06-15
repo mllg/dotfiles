@@ -31,3 +31,5 @@
     tool = vimdiff
 [mergetool]
 	path = nvim
+[hub]
+	protocol = git
