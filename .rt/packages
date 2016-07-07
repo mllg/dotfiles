@@ -28,6 +28,7 @@ inline
 rdatsci/rt
 hadley/staticdocs
 covr
+profvis
 
 # frequently used
 setwidth
