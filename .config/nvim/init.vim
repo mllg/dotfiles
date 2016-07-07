@@ -33,7 +33,7 @@ call dein#add('wellle/targets.vim') " More text objects
 call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
 call dein#add('junegunn/vim-easy-align', {'on_cmd' : '<Plug>(EasyAlign)'}) " Align on operators
 call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
-call dein#add('machakann/vim-swap') " swap arguments with g< and g>
+call dein#add('machakann/vim-swap') " swap mrguments with g< and g>
 call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
 call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
 call dein#add('matze/vim-move') " Move lines with <c-h> etc
@@ -297,7 +297,7 @@ if dein#tap('unite.vim')
     nmap <c-g> :Unite grep:.<cr>
     nmap <leader>d :Unite -start-insert file<cr>
     nmap <leader>b :Unite buffer<cr>
-    nmap <leader>t :Unite -start-insert tag<cr>
+    nmap <leader>t :Unite tag<cr>
     nmap <leader>m :Unite -start-insert file_mru<cr>
     " nmap <leader>v :Unite history/yank<cr>
     nmap <leader>n :UniteNext<cr>
