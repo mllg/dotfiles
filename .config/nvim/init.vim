@@ -292,8 +292,8 @@ if dein#tap('unite.vim')
         let g:unite_source_grep_recursive_opt = ''
     endif
 
-    nmap <c-t> :Unite -start-insert file_rec/neovim<cr>
-    nmap <c-o> :UniteWithProjectDir -start-insert file_rec/neovim<cr>
+    nmap <c-t> :Unite -start-insert file_rec/async<cr>
+    nmap <c-o> :UniteWithProjectDir -start-insert file_rec/async<cr>
     nmap <c-g> :Unite grep:.<cr>
     nmap <leader>d :Unite -start-insert file<cr>
     nmap <leader>b :Unite buffer<cr>
