@@ -43,6 +43,7 @@ call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
 call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
 call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
 call dein#add('kshenoy/vim-signature') " Show marks
+call dein#add('wellle/tmux-complete.vim')
 
 " Git/version control support
 call dein#add('tpope/vim-fugitive')
