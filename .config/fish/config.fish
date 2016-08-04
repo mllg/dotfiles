@@ -40,6 +40,10 @@ set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 
+if test -z "$LANG"
+    set -gx LANG en_US.UTF-8
+end
+
 function set_secrets
     set -xU OPENMLAPIKEY (pass show openml.api.key)
     set -xU GITHUB_TOKEN (pass show github.token)
