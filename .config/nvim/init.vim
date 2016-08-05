@@ -191,6 +191,15 @@ augroup comment_string
     autocmd FileType r setlocal commentstring=#\ %s
 augroup END
 
+augroup unite_split
+    autocmd FileType unite call s:unite_my_settings()
+    function! s:unite_my_settings()
+        " Overwrite settings.
+        imap <silent><buffer><expr> <C-s> unite#do_action('split')
+        imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+    endfunction
+augroup END
+
 " ======================================================================================================================
 " Mappings
 " ======================================================================================================================
