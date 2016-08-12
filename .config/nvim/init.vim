@@ -43,7 +43,7 @@ call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
 call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
 call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
 call dein#add('kshenoy/vim-signature') " Show marks
-call dein#add('wellle/tmux-complete.vim')
+" call dein#add('wellle/tmux-complete.vim')
 
 " Git/version control support
 call dein#add('tpope/vim-fugitive')
@@ -343,7 +343,8 @@ if dein#tap('Nvim-R')
     let g:R_openpdf = 0
     let g:R_tmux_split = 0
     let g:R_tmux_title = "automatic"
-    let g:Rout_more_colors = 1
+    let R_hl_term = 1
+    let g:Rout_more_colors = 0
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     " let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
