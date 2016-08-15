@@ -303,7 +303,7 @@ if dein#tap('unite.vim')
     endif
 
     nmap <c-t> :Unite -start-insert file_rec/async<cr>
-    nmap <c-o> :UniteWithProjectDir -start-insert file_rec/git<cr>
+    nmap <c-o> :UniteWithProjectDir -start-insert file_rec/async<cr>
     nmap <c-g> :Unite grep:.<cr>
     nmap <leader>d :Unite -start-insert file<cr>
     nmap <leader>b :Unite buffer<cr>
