@@ -6,7 +6,7 @@ tmp$cores = as.integer(Sys.getenv("NCPUS", parallel::detectCores()))
 
 options(
   menu.graphics = FALSE,
-  repos = c(CRAN = "http://cloud.r-project.org/"),
+  repos = c(CRAN = "http://cran.uni-muenster.de/"),
   BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
   browserNLdisabled = TRUE,
   rt.maintainer = "Michel Lang <michellang@gmail.com>",
