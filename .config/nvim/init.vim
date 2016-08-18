@@ -48,7 +48,7 @@ call dein#add('kshenoy/vim-signature') " Show marks
 " Git/version control support
 call dein#add('tpope/vim-fugitive')
 call dein#add('mhinz/vim-signify') " Highlight changed lines
-call dein#add('gregsexton/gitv', {'on_cmd' : 'Gitv'}) " git browser
+call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
 call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
@@ -58,7 +58,8 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
-" call dein#add('Shougo/neoyank.vim')
+call dein#add('Shougo/neoyank.vim')
+call dein#add('pelodelfuego/vim-swoop')
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -68,10 +69,7 @@ call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_
 call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 
 " Syntax highlighting
-call dein#add('keith/tmux.vim')
-call dein#add('honza/dockerfile.vim')
-call dein#add('dag/vim-fish')
-call dein#add('nhooyr/neoman.vim')
+call dein#add('sheerun/vim-polyglot')
 
 call dein#end()
 if dein#check_install()
@@ -244,6 +242,7 @@ nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
 " command W w !sudo tee % > /dev/null
 command Update call dein#update()
+command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
 
 " ======================================================================================================================
 " Plugin Config
@@ -367,6 +366,10 @@ endif
 
 if dein#tap('vim-move')
     let g:move_key_modifier = 'C'
+endif
+
+if dein#tap('vim-polyglot')
+    let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'latex', 'tex']
 endif
 
 " ======================================================================================================================
