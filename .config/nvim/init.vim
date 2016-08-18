@@ -51,15 +51,15 @@ call dein#add('mhinz/vim-signify') " Highlight changed lines
 call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
-call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
 " call dein#add('junegunn/fzf', {'build': './install --bin' })
 " call dein#add('junegunn/fzf.vim')
+call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('Shougo/neoyank.vim')
-call dein#add('pelodelfuego/vim-swoop')
+" call dein#add('pelodelfuego/vim-swoop')
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -308,7 +308,7 @@ if dein#tap('unite.vim')
     nmap <leader>b :Unite buffer<cr>
     nmap <leader>t :Unite tag<cr>
     nmap <leader>m :Unite -start-insert file_mru<cr>
-    " nmap <leader>v :Unite history/yank<cr>
+    nmap <leader>v :Unite history/yank<cr>
     nmap <leader>n :UniteNext<cr>
     nmap <leader>p :UnitePrev<cr>
     nmap <leader>u :UniteResume<cr>
