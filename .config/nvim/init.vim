@@ -379,7 +379,9 @@ set background=dark
 if $NVIM_TUI_ENABLE_TRUE_COLOR && dein#tap('neovim-colors-solarized-truecolor-only')
     colorscheme solarized
     let g:solarized_bold=1
-    set termguicolors
+    if has("termguicolors")
+        set termguicolors
+    endif
 elseif dein#tap('vim-tomorrow-theme')
     set t_Co=256
     colorscheme Tomorrow-Night
