@@ -59,7 +59,6 @@ call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('Shougo/neoyank.vim')
-" call dein#add('pelodelfuego/vim-swoop')
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -68,8 +67,9 @@ call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdow
 call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 
-" Syntax highlighting
+" Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot')
+call dein#add('neomake/neomake')
 
 call dein#end()
 if dein#check_install()
@@ -187,6 +187,7 @@ augroup END
 augroup comment_string
     autocmd!
     autocmd FileType r setlocal commentstring=#\ %s
+    autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
 
 augroup unite_split
