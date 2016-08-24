@@ -31,7 +31,7 @@ call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
 call dein#add('tpope/vim-surround') " Delete, add and change surroundings
 call dein#add('wellle/targets.vim') " More text objects
 call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
-call dein#add('junegunn/vim-easy-align', {'on_cmd' : '<Plug>(EasyAlign)'}) " Align on operators
+call dein#add('junegunn/vim-easy-align') " Align on operators
 call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
 call dein#add('machakann/vim-swap') " swap mrguments with g< and g>
 call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
