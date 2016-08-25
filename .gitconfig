@@ -22,14 +22,16 @@
 [clean]
     requireForce = false
 [diff]
-    tool = nvimdiff
+    tool = vimdiff
 [difftool]
     prompt = false
-[difftool "nvimdiff"]
+[difftool "vimdiff"]
     cmd = "nvim -d '$LOCAL' '$REMOTE'"
 [merge]
     tool = vimdiff
 [mergetool]
-	path = nvim
+    prompt = true
+[mergetool "vimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [hub]
 	protocol = git
