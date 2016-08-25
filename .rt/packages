@@ -24,7 +24,7 @@ rdatsci/rt
 hadley/staticdocs
 covr
 profvis
-RevolutionAnalytics/quickcheck
+RevolutionAnalytics/quickcheck/pkg
 
 # frequently used
 setwidth
