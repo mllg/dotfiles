@@ -368,6 +368,7 @@ endif
 
 if dein#tap('vim-polyglot')
     let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'latex', 'tex']
+    let g:vim_markdown_conceal = 0
 endif
 
 if dein#tap('neomake')
