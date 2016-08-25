@@ -25,8 +25,9 @@ if (tmp$lib != "") {
 }
 
 if(interactive()) {
-  requireNamespace("utils")
+  library(microbenchmark)
   library("setwidth")
+  requireNamespace("utils")
 
   utils::rc.settings(ipck = TRUE)
   message("R history enabled")

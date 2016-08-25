@@ -15,11 +15,6 @@ rpart
 spatial
 survival
 
-# in development
-checkmate
-mlr
-parallelMap
-
 # devel
 devtools
 roxygen2
@@ -29,6 +24,7 @@ rdatsci/rt
 hadley/staticdocs
 covr
 profvis
+RevolutionAnalytics/quickcheck
 
 # frequently used
 setwidth
@@ -45,3 +41,4 @@ Rcpp
 RcppEigen
 gaborcsardi/progress
 rmarkdown
+mlr
