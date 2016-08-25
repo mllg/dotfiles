@@ -14,7 +14,7 @@ call dein#add('tpope/vim-eunuch') " Commands like :Remove
 call dein#add('tpope/vim-sensible') " Better defaults
 call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
 call dein#add('dietsche/vim-lastplace') " restore cursor position at start
-
+call dein#add('tpope/vim-unimpaired') " complementary pairs of mappings
 " Appearance
 call dein#add('chriskempson/vim-tomorrow-theme')
 call dein#add('frankier/neovim-colors-solarized-truecolor-only')
@@ -22,6 +22,8 @@ call dein#add('NLKNguyen/papercolor-theme')
 call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('Yggdroot/indentLine')
+call dein#add('mhinz/vim-startify')
 
 " Edit helpers
 call dein#add('Shougo/deoplete.nvim') " Completion
@@ -69,8 +71,8 @@ call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_
 call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 
 " Syntax highlighting and language support
-call dein#add('sheerun/vim-polyglot')
-call dein#add('neomake/neomake')
+call dein#add('sheerun/vim-polyglot') " Many many languages
+call dein#add('neomake/neomake') " Linter
 
 call dein#end()
 if dein#check_install()
@@ -235,7 +237,6 @@ nnoremap p p`]
 nmap <silent> <leader>c :hardcopy >~/.cache/lastprint.ps<cr>
             \ :execute '!' 'xgd-open ~/.cache/lastprint.ps &'<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
-noremap <cr> i<Enter><esc>
 
 " Windows resizing using arrow keys
 nnoremap <silent> <Left> :vertical resize -1<CR>
@@ -283,11 +284,6 @@ if dein#tap('fzf.vim')
     nmap <leader>t :Tags<cr>
     nmap <leader>n :cn<cr>
     nmap <leader>p :cp<cr>
-
-    " Mapping selecting mappings
-    " nmap <leader><tab> <plug>(fzf-maps-n)
-    " xmap <leader><tab> <plug>(fzf-maps-x)
-    " omap <leader><tab> <plug>(fzf-maps-o)
 
     " Insert mode completion
     imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -374,23 +370,26 @@ if dein#tap('vim-polyglot')
     let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'latex', 'tex']
 endif
 
+if dein#tap('neomake')
+    nmap <F2> :Neomake<cr>
+endif
+
+if dein#tap('vim-unimpaired')
+    nmap < [
+    nmap > ]
+    omap < [
+    omap > ]
+    xmap < [
+    xmap > ]
+endif
+
 " ======================================================================================================================
 " Colorscheme
 " ======================================================================================================================
-if $NVIM_TUI_ENABLE_TRUE_COLOR && dein#tap('neovim-colors-solarized-truecolor-only')
-    " let g:solarized_bold=1
-    " colorscheme solarized
-    set background=light
-    colorscheme PaperColor
-    if has("termguicolors")
-        set termguicolors
-    endif
-elseif dein#tap('vim-tomorrow-theme')
-    set background=dark
-    set t_Co=256
-    colorscheme Tomorrow-Night
-    hi clear SpellBad
-    hi SpellBad cterm=undercurl
+set background=dark
+set t_Co=256
+if $NVIM_TUI_ENABLE_TRUE_COLOR && has("termguicolors")
+    set termguicolors
 endif
-
-set colorcolumn=
+colorscheme gruvbox
+" set colorcolumn=
