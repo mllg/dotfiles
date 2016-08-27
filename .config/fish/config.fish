@@ -12,7 +12,8 @@ set -U fish_user_abbreviations \
     'gst=git status -sb'
 
 set -g theme_nerd_fonts yes
-set -g theme_color_scheme terminal-dark
+set -g theme_display_vi yes
+set -g theme_color_scheme gruvbox
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
