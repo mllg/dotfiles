@@ -295,7 +295,7 @@ if dein#tap('unite.vim')
     if executable('ag')
         let g:unite_source_rec_async_command =['ag', '--vimgrep', '-g', '']
         let g:unite_source_grep_command = 'ag'
-        let g:unite_source_grep_default_opts ='-s --vimgrep --hidden'
+        let g:unite_source_grep_default_opts ='-S --vimgrep --hidden'
         let g:unite_source_grep_recursive_opt = ''
     endif
 
@@ -373,15 +373,6 @@ endif
 
 if dein#tap('neomake')
     nmap <F2> :Neomake<cr>
-endif
-
-if dein#tap('vim-unimpaired')
-    nmap < [
-    nmap > ]
-    omap < [
-    omap > ]
-    xmap < [
-    xmap > ]
 endif
 
 " ======================================================================================================================
