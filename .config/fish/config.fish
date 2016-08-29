@@ -11,9 +11,10 @@ set -U fish_user_abbreviations \
     'gl=git pull' \
     'gst=git status -sb'
 
-set -g theme_nerd_fonts yes
 set -g theme_display_vi yes
+set -g theme_display_user yes
 set -g theme_color_scheme gruvbox
+set -g theme_title_display_process yes
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"

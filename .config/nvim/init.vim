@@ -15,6 +15,7 @@ call dein#add('tpope/vim-sensible') " Better defaults
 call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
 call dein#add('dietsche/vim-lastplace') " restore cursor position at start
 call dein#add('tpope/vim-unimpaired') " complementary pairs of mappings
+
 " Appearance
 call dein#add('chriskempson/vim-tomorrow-theme')
 call dein#add('frankier/neovim-colors-solarized-truecolor-only')
@@ -54,11 +55,9 @@ call dein#add('mhinz/vim-signify') " Highlight changed lines
 call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
-" call dein#add('junegunn/fzf', {'build': './install --bin' })
-" call dein#add('junegunn/fzf.vim')
-call dein#add('justinmk/vim-dirvish') " Quick and easy file browser
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('Shougo/neoyank.vim')
@@ -261,8 +260,8 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#disable_auto_complete = 0
     let g:deoplete#omni#input_patterns = {}
     let g:deoplete#omni#input_patterns.r = ['\w+']
-    let g:deoplete#omni#input_patterns.rmd = ['\w+']
-    let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
+    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
+    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
     let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -304,7 +303,7 @@ if dein#tap('unite.vim')
     nmap <c-g> :Unite grep:.<cr>
     nmap <leader>d :Unite -start-insert file<cr>
     nmap <leader>b :Unite buffer<cr>
-    nmap <leader>t :Unite tag<cr>
+    nmap <leader>t :Unite -start-insert tag<cr>
     nmap <leader>m :Unite -start-insert file_mru<cr>
     nmap <leader>v :Unite history/yank<cr>
     nmap <leader>n :UniteNext<cr>
@@ -373,6 +372,11 @@ endif
 
 if dein#tap('neomake')
     nmap <F2> :Neomake<cr>
+endif
+
+if dein#tap('vimfiler.vim')
+    let g:vimfiler_as_default_explorer = 1
+    nmap <F1> :VimFilerExplorer<cr>
 endif
 
 " ======================================================================================================================
