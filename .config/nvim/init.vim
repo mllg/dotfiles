@@ -366,7 +366,7 @@ if dein#tap('vim-move')
 endif
 
 if dein#tap('vim-polyglot')
-    let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'latex', 'tex']
+    let g:polyglot_disabled = ['r-lang', 'rnoweb', 'rhelp', 'latex', 'tex']
     let g:vim_markdown_conceal = 0
 endif
 
