@@ -14,7 +14,6 @@ call dein#add('tpope/vim-eunuch') " Commands like :Remove
 call dein#add('tpope/vim-sensible') " Better defaults
 call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
 call dein#add('dietsche/vim-lastplace') " restore cursor position at start
-call dein#add('tpope/vim-unimpaired') " complementary pairs of mappings
 
 " Appearance
 call dein#add('chriskempson/vim-tomorrow-theme')
@@ -68,6 +67,7 @@ call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdow
 " R
 call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+" call dein#local('~/Projekte/', {}, ['vim-devtools-plugin'])
 
 " Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot') " Many many languages
@@ -133,6 +133,7 @@ set smartindent
 set wrap
 set breakindent
 inoremap # X<c-h>#
+nnoremap <leader>v p`[v`]=
 
 " Search
 set incsearch
@@ -294,7 +295,7 @@ if dein#tap('unite.vim')
     if executable('ag')
         let g:unite_source_rec_async_command =['ag', '--vimgrep', '-g', '']
         let g:unite_source_grep_command = 'ag'
-        let g:unite_source_grep_default_opts ='-S --vimgrep --hidden'
+        let g:unite_source_grep_default_opts ='--vimgrep --hidden'
         let g:unite_source_grep_recursive_opt = ''
     endif
 
@@ -305,7 +306,7 @@ if dein#tap('unite.vim')
     nmap <leader>b :Unite buffer<cr>
     nmap <leader>t :Unite -start-insert tag<cr>
     nmap <leader>m :Unite -start-insert file_mru<cr>
-    nmap <leader>v :Unite history/yank<cr>
+    nmap <leader>y :Unite history/yank<cr>
     nmap <leader>n :UniteNext<cr>
     nmap <leader>p :UnitePrev<cr>
     nmap <leader>u :UniteResume<cr>
@@ -335,12 +336,13 @@ if dein#tap('Nvim-R')
     let g:R_assign = 0
     let g:R_close_term = 1
     let g:R_in_buffer = 1
+    let g:R_tmux_split = 0
+    " let g:Rout_more_colors = 1
+    let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "vertical"
     let g:R_openpdf = 0
-    let g:R_tmux_split = 0
     let g:R_tmux_title = "automatic"
     let R_hl_term = 1
-    let g:Rout_more_colors = 0
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     " let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
@@ -379,6 +381,11 @@ if dein#tap('vimfiler.vim')
     nmap <F1> :VimFilerExplorer<cr>
 endif
 
+if dein#tap('vim-surround')
+    " yank command surrounding, useful for tex and Rd
+    let g:surround_99 = "\\\1cmd\1{\r}"
+endif
+
 " ======================================================================================================================
 " Colorscheme
 " ======================================================================================================================
@@ -392,5 +399,6 @@ hi! link rPreProc GruvboxBlue
 hi! link rFunction GruvboxAqua
 hi! link rCommentTodo GruvboxOrange
 hi! link rOperator GruvboxRed
-" hi! link rLstElmt GruvboxPurple
-" set colorcolumn=
+hi! link rLstElmt GruvboxPurple
+hi! link rOperator GruvBoxBlue
+hi! link rDelimiter GruvboxFg3

@@ -25,8 +25,8 @@ if (tmp$lib != "") {
 }
 
 if(interactive()) {
-  library(microbenchmark)
   library("setwidth")
+  library("microbenchmark")
   requireNamespace("utils")
 
   utils::rc.settings(ipck = TRUE)
