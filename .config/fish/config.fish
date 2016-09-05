@@ -15,6 +15,8 @@ set -g theme_display_vi yes
 set -g theme_display_user yes
 set -g theme_color_scheme gruvbox
 set -g theme_title_display_process yes
+set fish_color_command brgreen
+set fish_color_param brbrown
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
@@ -33,10 +35,10 @@ fish_vi_key_bindings
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 if test (uname) = "Darwin"
-    set --universal fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
+    set fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
 end
 if test -d ~/.R/library/rt
-    set --universal fish_user_paths ~/.R/library/rt/bin $fish_user_paths
+    set fish_user_paths $HOME/.R/library/rt/bin $fish_user_paths
 end
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
