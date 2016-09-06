@@ -60,6 +60,7 @@ call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/vimfiler.vim')
+call dein#add('t9md/vim-choosewin')
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('osyo-manga/unite-quickfix')
@@ -399,6 +400,10 @@ endif
 
 if dein#tap('vim-operator-replace')
     map _  <Plug>(operator-replace)
+endif
+
+if dein#tap('vim-choosewin')
+    nmap  -  <Plug>(choosewin)
 endif
 
 " ======================================================================================================================
