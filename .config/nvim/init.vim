@@ -62,6 +62,7 @@ call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
+call dein#add('osyo-manga/unite-quickfix')
 call dein#add('Shougo/neoyank.vim')
 call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'})
 
