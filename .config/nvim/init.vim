@@ -60,6 +60,7 @@ call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('Shougo/neoyank.vim')
+call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'})
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -79,43 +80,6 @@ if dein#check_install()
 endif
 filetype plugin indent on
 syntax on
-
-
-" ======================================================================================================================
-" Custom functions
-" ======================================================================================================================
-function! Wipeout()
-  " list of *all* buffer numbers
-  let l:buffers = range(1, bufnr('$'))
-
-  " what tab page are we in?
-  let l:currentTab = tabpagenr()
-  try
-    " go through all tab pages
-    let l:tab = 0
-    while l:tab < tabpagenr('$')
-      let l:tab += 1
-
-      " go through all windows
-      let l:win = 0
-      while l:win < winnr('$')
-        let l:win += 1
-        " whatever buffer is in this window in this tab, remove it from
-        " l:buffers list
-        let l:thisbuf = winbufnr(l:win)
-        call remove(l:buffers, index(l:buffers, l:thisbuf))
-      endwhile
-    endwhile
-
-    " if there are any buffers left, delete them
-    if len(l:buffers)
-      execute 'bwipeout' join(l:buffers)
-    endif
-  finally
-    " go back to our original tab page
-    execute 'tabnext' l:currentTab
-  endtry
-endfunction
 
 
 " ======================================================================================================================
@@ -284,7 +248,6 @@ nnoremap <silent> <Down> :resize -1<CR>
 " command W w !sudo tee % > /dev/null
 command Update call dein#update()
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
-command WO call Wipeout()
 
 " ======================================================================================================================
 " Plugin Config
