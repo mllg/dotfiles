@@ -36,7 +36,7 @@ call dein#add('wellle/targets.vim') " More text objects
 call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
 call dein#add('junegunn/vim-easy-align') " Align on operators
 call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
-call dein#add('machakann/vim-swap') " swap mrguments with g< and g>
+call dein#add('machakann/vim-swap') " swap arguments with g< and g>
 call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
 call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
 call dein#add('matze/vim-move') " Move lines with <c-h> etc
@@ -46,7 +46,10 @@ call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
 call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
 call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
 call dein#add('kshenoy/vim-signature') " Show marks
+call dein#add('kana/vim-operator-user') " requirement for operator replace
+call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
 " call dein#add('wellle/tmux-complete.vim')
+
 
 " Git/version control support
 call dein#add('tpope/vim-fugitive')
@@ -391,6 +394,10 @@ endif
 if dein#tap('vim-surround')
     " yank command surrounding, useful for tex and Rd
     let g:surround_99 = "\\\1cmd\1{\r}"
+endif
+
+if dein#tap('vim-operator-replace')
+    map _  <Plug>(operator-replace)
 endif
 
 " ======================================================================================================================
