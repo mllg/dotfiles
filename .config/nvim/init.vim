@@ -380,7 +380,7 @@ if dein#tap('vim-polyglot')
 endif
 
 if dein#tap('vim-startify')
-    nmap <F1> :Startify<cr>
+    nmap <F2> :Startify<cr>
     let g:startify_bookmarks = [ {'n': '~/.config/nvim/init.vim'}, {'f': '~/.config/fish/config.fish'} ]
 endif
 
@@ -390,7 +390,7 @@ endif
 
 if dein#tap('vimfiler.vim')
     let g:vimfiler_as_default_explorer = 1
-    nmap <F2> :VimFilerExplorer<cr>
+    nmap <F1> :VimFilerExplorer<cr>
 endif
 
 if dein#tap('vim-surround')
