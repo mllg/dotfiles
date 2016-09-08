@@ -347,7 +347,7 @@ if dein#tap('Nvim-R')
     " let g:Rout_more_colors = 1
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "vertical"
-    let g:R_openpdf = 0
+    let g:R_openpdf = 1
     let g:R_tmux_title = "automatic"
     let R_hl_term = 1
     let g:r_indent_align_args = 0

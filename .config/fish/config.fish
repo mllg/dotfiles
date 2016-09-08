@@ -1,6 +1,7 @@
 set fish_greeting ""
 
 set -U fish_user_abbreviations \
+    'vi=nvim' \
     'vim=nvim' \
     'gc=git commit' \
     'gd=git diff' \
@@ -9,7 +10,9 @@ set -U fish_user_abbreviations \
     'gco=git checkout' \
     'gcl=git clone' \
     'gl=git pull' \
-    'gst=git status -sb'
+    'gs=git status -sb' \
+    'gst=git status -sb' \
+    'rtf=rtest --filter'
 
 set -g theme_display_vi yes
 set -g theme_display_user yes
