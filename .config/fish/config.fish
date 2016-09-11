@@ -10,9 +10,14 @@ set -U fish_user_abbreviations \
     'gco=git checkout' \
     'gcl=git clone' \
     'gl=git pull' \
-    'gs=git status -sb' \
-    'gst=git status -sb' \
+    'gs=git status' \
+    'gst=git status' \
     'rtf=rtest --filter'
+    'ag=ag -f' \
+    'agg=ag -f -g' \
+    'lmk=latexmk -pdf' \
+    'du=du -h' \
+    'df=df -h'
 
 set -g theme_display_vi yes
 set -g theme_display_user yes
@@ -23,13 +28,9 @@ set fish_color_param brbrown
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
-alias du="du -h"
-alias df="df -h"
 alias mkdir="mkdir -p"
 alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
-alias agg="ag -f -g"
-alias ag="ag -f"
-alias lmk="latexmk -pdf"
+alias glog='nvim -c "GV" -c "1bd"'
 alias depclean="sudo pacman -Rns (pacman -Qtdq)"
 alias ...="cd ../../"
 alias ....="cd ../../../"
