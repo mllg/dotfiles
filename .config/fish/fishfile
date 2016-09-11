@@ -3,5 +3,6 @@ oh-my-fish/theme-bobthefish
 fisherman/fzf
 fisherman/get
 fisherman/getopts
+oh-my-fish/plugin-gi
 fisherman/last_job_id
 fisherman/z

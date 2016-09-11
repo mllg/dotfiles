@@ -12,7 +12,7 @@ set -U fish_user_abbreviations \
     'gl=git pull' \
     'gs=git status' \
     'gst=git status' \
-    'rtf=rtest --filter'
+    'rtf=rtest --filter' \
     'ag=ag -f' \
     'agg=ag -f -g' \
     'lmk=latexmk -pdf' \
