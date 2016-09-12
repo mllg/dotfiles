@@ -5,4 +5,5 @@ fisherman/get
 fisherman/getopts
 oh-my-fish/plugin-gi
 fisherman/last_job_id
+oh-my-fish/plugin-wttr
 fisherman/z
