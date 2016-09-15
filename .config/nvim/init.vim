@@ -171,6 +171,11 @@ function! MoveHelpRight()
     endif
 endfunction
 
+augroup terminal_fixes
+    autocmd TermOpen * set nobuflisted
+    autocmd BufWinEnter,WinEnter term://* startinsert
+augroup END
+
 augroup help_pages
     autocmd!
     autocmd FileType help nested call MoveHelpRight()
