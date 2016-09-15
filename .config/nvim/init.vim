@@ -16,18 +16,18 @@ call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
 call dein#add('dietsche/vim-lastplace') " restore cursor position at start
 
 " Appearance
-call dein#add('chriskempson/vim-tomorrow-theme')
-call dein#add('frankier/neovim-colors-solarized-truecolor-only')
-call dein#add('NLKNguyen/papercolor-theme')
 call dein#add('morhetz/gruvbox')
+call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+call dein#add('chriskempson/vim-tomorrow-theme')
+call dein#add('NLKNguyen/papercolor-theme')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Yggdroot/indentLine')
-call dein#add('mhinz/vim-startify')
+call dein#add('Yggdroot/indentLine') " visual markers for indent
+call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
 
 " Edit helpers
 call dein#add('Shougo/deoplete.nvim') " Completion
-call dein#add('ujihisa/neco-look')
+call dein#add('ujihisa/neco-look') " dict lookup
 call dein#add('christoomey/vim-titlecase') " switch titlecase with gt+movement
 call dein#add('tpope/vim-commentary') " Comment with gc
 call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -52,20 +52,20 @@ call dein#add('kana/vim-operator-replace') " replace motion with register (mappe
 
 
 " Git/version control support
-call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-fugitive') " git support
 call dein#add('mhinz/vim-signify') " Highlight changed lines
 call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Shougo/vimfiler.vim')
-call dein#add('t9md/vim-choosewin')
-call dein#add('Shougo/neomru.vim')
-call dein#add('tsukkee/unite-tag')
-call dein#add('osyo-manga/unite-quickfix')
-call dein#add('Shougo/neoyank.vim')
-call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'})
+call dein#add('Shougo/neomru.vim') " mru source for unite
+call dein#add('tsukkee/unite-tag') " tag support for unite
+call dein#add('osyo-manga/unite-quickfix') " move stuff from quickfix to unite
+call dein#add('Shougo/neoyank.vim') " clipboard support for unite
+call dein#add('Shougo/vimfiler.vim') " file browser
+call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
+call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -73,7 +73,6 @@ call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdow
 " R
 call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-" call dein#local('~/Projekte/', {}, ['vim-devtools-plugin'])
 
 " Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot') " Many many languages
@@ -173,7 +172,6 @@ endfunction
 
 augroup terminal_fixes
     autocmd TermOpen * set nobuflisted
-    autocmd BufWinEnter,WinEnter term://* startinsert
 augroup END
 
 augroup help_pages
