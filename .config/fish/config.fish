@@ -1,5 +1,3 @@
-set fish_greeting ""
-
 set -U fish_user_abbreviations \
     'vi=nvim' \
     'vim=nvim' \
@@ -18,13 +16,6 @@ set -U fish_user_abbreviations \
     'lmk=latexmk -pdf' \
     'du=du -h' \
     'df=df -h'
-
-set -g theme_display_vi yes
-set -g theme_display_user yes
-set -g theme_color_scheme gruvbox
-set -g theme_title_display_process yes
-set fish_color_command brgreen
-set fish_color_param brbrown
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
@@ -52,55 +43,12 @@ if test -z "$LANG"
     set -gx LANG en_US.UTF-8
 end
 
-function set_secrets
-    set -xU OPENMLAPIKEY (pass show openml.api.key)
-    set -xU GITHUB_TOKEN (pass show github.token)
-    set -xU HOMEBREW_GITHUB_API_TOKEN (pass show github.token)
-end
-
-function update
-    function info
-        set_color red
-        echo "--- $argv"
-        set_color normal
-    end
-
-    if not test -f $HOME/.config/fish/functions/fisher.fish
-        info "Installing fisherman"
-        curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
-        fisher
-    else
-        info "Updating fisherman plugins"
-        fisher
-        fisher up
-    end
-
-    if not test -d $HOME/.tmux/plugins/tpm
-        info "Installing TPM"
-        git clone --depth=1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-        ~/.tmux/plugins/tpm/bin/install_plugins
-    else
-        info "Updating TPM plugins"
-        ~/.tmux/plugins/tpm/bin/install_plugins
-        ~/.tmux/plugins/tpm/bin/clean_plugins
-        ~/.tmux/plugins/tpm/bin/update_plugins all
-    end
-
-    if not test -d $HOME/.config/nvim/bundle
-        info "Installing dein.vim"
-        git clone --depth=1 'https://github.com/Shougo/dein.vim' "$HOME/.config/nvim/bundle/repos/github.com/Shougo/dein.vim"
-    end
-
-    if not test -d $HOME/.R/library
-        info "Setting up R library and installing rt"
-        mkdir -p $HOME/.R/library
-        Rscript -e 'install.packages("devtools", repos = "http://cloud.r-project.org/")'
-        Rscript -e 'devtools::install_github("rdatsci/rt")'
-    else
-        info "Updating R packages"
-        rupdate
-    end
-end
+set -g theme_color_scheme gruvbox
+set -g theme_display_vi yes
+set -g theme_display_user yes
+set -g theme_title_display_process yes
+set fish_color_command brgreen
+set fish_color_param brbrown
 
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
