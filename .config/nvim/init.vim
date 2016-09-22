@@ -406,7 +406,7 @@ if dein#tap('vim-operator-replace')
 endif
 
 if dein#tap('vim-choosewin')
-    nmap  -  <Plug>(choosewin)
+    " nmap - <Plug>(choosewin)
 endif
 
 " ======================================================================================================================
