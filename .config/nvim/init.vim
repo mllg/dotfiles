@@ -232,6 +232,7 @@ nnoremap Y y$
 nnoremap Q @q
 nnoremap <backspace> :Sayonara!<cr>
 nnoremap <Del> :Sayonara<cr>
+vnoremap . :normal .<cr>
 
 " Keep search matches in the middle of the screen.
 nnoremap n nzz
@@ -252,6 +253,7 @@ nnoremap <silent> <Left> :vertical resize -1<CR>
 nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
+"
 " command W w !sudo tee % > /dev/null
 command Update call dein#update()
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
