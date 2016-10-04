@@ -8,7 +8,6 @@ call dein#add('Shougo/dein.vim')
 
 " Essentials
 call dein#add('tpope/vim-repeat') " Repeat more
-call dein#add('visualrepeat') " Repeat in visual
 call dein#add('tpope/vim-abolish') " Case insensitive replace
 call dein#add('tpope/vim-eunuch') " Commands like :Remove
 call dein#add('tpope/vim-sensible') " Better defaults
