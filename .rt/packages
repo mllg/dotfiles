@@ -21,7 +21,7 @@ roxygen2
 testthat
 inline
 rdatsci/rt
-hadley/staticdocs
+hadley/pkgdown
 covr
 profvis
 RevolutionAnalytics/quickcheck/pkg
