@@ -29,6 +29,8 @@ alias ....="cd ../../../"
 fish_vi_key_bindings
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
+# set -gx MANPAGER "nvim -c 'set ft=man' -"
+
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 end
@@ -52,8 +54,4 @@ set fish_color_param brbrown
 
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
-end
-
-if test -r ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/nman.fish
-    source ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/nman.fish
 end

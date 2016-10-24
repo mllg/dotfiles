@@ -74,7 +74,6 @@ call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnowe
 " Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot') " Many many languages
 call dein#add('neomake/neomake') " Linter
-call dein#add('nhooyr/neoman.vim') " Man pages
 
 
 call dein#end()
