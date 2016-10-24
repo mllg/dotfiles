@@ -53,6 +53,7 @@ set fish_color_param brbrown
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
 end
-if test -r ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/neovim.fish
-    source ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/neovim.fish
+
+if test -r ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/nman.fish
+    source ~/.config/nvim/bundle/repos/github.com/nhooyr/neoman.vim/scripts/nman.fish
 end

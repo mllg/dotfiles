@@ -47,8 +47,6 @@ call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
 call dein#add('kshenoy/vim-signature') " Show marks
 call dein#add('kana/vim-operator-user') " requirement for operator replace
 call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
-" call dein#add('wellle/tmux-complete.vim')
-
 
 " Git/version control support
 call dein#add('tpope/vim-fugitive') " git support
@@ -76,6 +74,8 @@ call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnowe
 " Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot') " Many many languages
 call dein#add('neomake/neomake') " Linter
+call dein#add('nhooyr/neoman.vim') " Man pages
+
 
 call dein#end()
 if dein#check_install()
