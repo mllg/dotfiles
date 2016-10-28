@@ -41,4 +41,8 @@ function update
         rupdate
     end
 
+    if test -d $HOME/.config/fish/fish_history
+        info "Removing obsolete history file"
+        rm $HOME/.config/fish/fish_history
+    end
 end
