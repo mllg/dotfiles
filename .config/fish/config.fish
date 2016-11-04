@@ -29,7 +29,7 @@ alias ....="cd ../../../"
 fish_vi_key_bindings
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
-# set -gx MANPAGER "nvim -c 'set ft=man' -"
+set -gx MANPAGER "nvim -c 'set ft=man' -"
 
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
