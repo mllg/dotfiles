@@ -34,16 +34,14 @@ set -gx MANPAGER "nvim -c 'set ft=man' -"
 if test (uname) = "Darwin"
     set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 end
+
 if test -d ~/.R/library/rt
     set -gx PATH $HOME/.R/library/rt/bin $PATH
 end
+
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
-
-if test -z "$LANG"
-    set -gx LANG en_US.UTF-8
-end
 
 set -g theme_color_scheme gruvbox
 set -g theme_display_vi yes
