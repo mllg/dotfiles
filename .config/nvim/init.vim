@@ -1,7 +1,7 @@
 " ======================================================================================================================
 " Plugin Manager
 " ======================================================================================================================
-set runtimepath^=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim
 let g:dein#types#git#clone_depth=1
 call dein#begin(expand('~/.config/nvim/bundle'))
 call dein#add('Shougo/dein.vim')
