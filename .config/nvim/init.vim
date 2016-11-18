@@ -417,11 +417,14 @@ set t_Co=256
 if $NVIM_TUI_ENABLE_TRUE_COLOR && has("termguicolors")
     set termguicolors
 endif
-colorscheme gruvbox
-hi! link rPreProc GruvboxBlue
-hi! link rFunction GruvboxAqua
-hi! link rCommentTodo GruvboxOrange
-hi! link rOperator GruvboxRed
-hi! link rLstElmt GruvboxPurple
-hi! link rOperator GruvBoxBlue
-hi! link rDelimiter GruvboxFg3
+
+if dein#tap('gruvbox')
+    colorscheme gruvbox
+    hi! link rPreProc GruvboxBlue
+    hi! link rFunction GruvboxAqua
+    hi! link rCommentTodo GruvboxOrange
+    hi! link rOperator GruvboxRed
+    hi! link rLstElmt GruvboxPurple
+    hi! link rOperator GruvBoxBlue
+    hi! link rDelimiter GruvboxFg3
+endif
