@@ -55,6 +55,7 @@ call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
 call dein#add('Shougo/unite.vim')
+" call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neomru.vim') " mru source for unite
 call dein#add('tsukkee/unite-tag') " tag support for unite
@@ -156,7 +157,6 @@ set previewheight=25
 " Spelling
 set spelllang=en,de
 set spellsuggest=fast,20
-
 
 " ======================================================================================================================
 " Autocommands
