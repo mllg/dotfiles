@@ -50,8 +50,8 @@ call dein#add('kana/vim-operator-replace') " replace motion with register (mappe
 
 " Git/version control support
 call dein#add('tpope/vim-fugitive') " git support
-call dein#add('mhinz/vim-signify') " Highlight changed lines
-call dein#add('junegunn/gv.vim.git', {'on_cmd' : 'GV'}) " git browser
+call dein#add('airblade/vim-gitgutter') " Highlight changed lines
+call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
 call dein#add('Shougo/unite.vim')
@@ -74,7 +74,7 @@ call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnowe
 
 " Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot') " Many many languages
-call dein#add('neomake/neomake') " Linter
+call dein#add('w0rp/ale')
 
 
 call dein#end()
@@ -387,10 +387,6 @@ if dein#tap('vim-startify')
     let g:startify_bookmarks = [ {'n': '~/.config/nvim/init.vim'}, {'f': '~/.config/fish/config.fish'} ]
 endif
 
-if dein#tap('neomake')
-    nmap <F3> :Neomake<cr>
-endif
-
 if dein#tap('vimfiler.vim')
     let g:vimfiler_as_default_explorer = 1
     nmap <F1> :VimFilerExplorer<cr>
@@ -399,14 +395,6 @@ endif
 if dein#tap('vim-surround')
     " yank command surrounding, useful for tex and Rd
     let g:surround_99 = "\\\1cmd\1{\r}"
-endif
-
-if dein#tap('vim-operator-replace')
-    map _  <Plug>(operator-replace)
-endif
-
-if dein#tap('vim-choosewin')
-    " nmap - <Plug>(choosewin)
 endif
 
 " ======================================================================================================================
