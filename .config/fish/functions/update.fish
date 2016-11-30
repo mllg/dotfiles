@@ -15,6 +15,12 @@ function update
         fisher up
     end
 
+    if test -d $HOME/.fzf
+        info "Updating fzf"
+        git -C "$HOME/.fzf" pull
+        eval $HOME/.fzf/install --bin
+    end
+
     if not test -d $HOME/.tmux/plugins/tpm
         info "Installing TPM"
         git clone --depth=1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm

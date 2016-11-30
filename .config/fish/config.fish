@@ -47,6 +47,7 @@ set -g theme_color_scheme gruvbox
 set -g theme_display_vi yes
 set -g theme_display_user yes
 set -g theme_title_display_process yes
+set -gx FZF_TMUX 1
 set fish_color_command brgreen
 set fish_color_param brbrown
 
