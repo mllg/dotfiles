@@ -64,6 +64,8 @@ call dein#add('Shougo/neoyank.vim') " clipboard support for unite
 call dein#add('Shougo/vimfiler.vim') " file browser
 call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
 call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
+" call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+" call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
 " Latex
 call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
