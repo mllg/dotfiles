@@ -1,5 +1,3 @@
-
-fzf_key_bindings
 function fish_user_key_bindings
     bind \co '__fzf_ctrl_o'
     if bind -M insert >/dev/null ^/dev/null
