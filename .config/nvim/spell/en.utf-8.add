@@ -4,3 +4,4 @@ workflow
 resampled
 hyperparameter
 resampling
+kriging

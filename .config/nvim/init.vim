@@ -68,7 +68,8 @@ call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers e
 " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
 " Latex
-call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+" call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
 
 " R
 call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
@@ -76,7 +77,7 @@ call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnowe
 
 " Syntax highlighting and language support
 call dein#add('sheerun/vim-polyglot') " Many many languages
-call dein#add('w0rp/ale')
+" call dein#add('w0rp/ale')
 
 
 call dein#end()
@@ -380,7 +381,7 @@ if dein#tap('vim-move')
 endif
 
 if dein#tap('vim-polyglot')
-    let g:polyglot_disabled = ['r-lang', 'rnoweb', 'rhelp', 'latex', 'tex']
+    let g:polyglot_disabled = ['r-lang', 'rnoweb', 'rhelp', 'latex', 'tex', 'rmarkdown']
     let g:vim_markdown_conceal = 0
 endif
 
