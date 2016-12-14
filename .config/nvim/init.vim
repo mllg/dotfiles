@@ -68,8 +68,8 @@ call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers e
 " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
 " Latex
-" call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
-call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+" call dein#add('lervag/vimtex')
 
 " R
 call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
@@ -358,7 +358,7 @@ if dein#tap('Nvim-R')
     let R_hl_term = 1
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
-    " let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
+    let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
     if !has("mac")
         let g:R_pdfviewer = 'okular'
     endif
@@ -381,7 +381,7 @@ if dein#tap('vim-move')
 endif
 
 if dein#tap('vim-polyglot')
-    let g:polyglot_disabled = ['r-lang', 'rnoweb', 'rhelp', 'latex', 'tex', 'rmarkdown']
+    let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'latex', 'tex', 'rmarkdown']
     let g:vim_markdown_conceal = 0
 endif
 
