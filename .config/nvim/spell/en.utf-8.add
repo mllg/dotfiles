@@ -1,9 +1,7 @@
-workflows
-hyperparameters
-workflow
-resampled
-hyperparameter
-resampling
-kriging
 Kriging
-rastrigin
+hyperparameter
+hyperparameters
+resampled
+resampling
+workflow
+workflows
