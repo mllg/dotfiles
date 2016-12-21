@@ -54,9 +54,9 @@ call dein#add('airblade/vim-gitgutter') " Highlight changed lines
 call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/unite.vim')
 " call dein#add('Shougo/denite.nvim')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neomru.vim') " mru source for unite
 call dein#add('tsukkee/unite-tag') " tag support for unite
 call dein#add('osyo-manga/unite-quickfix') " move stuff from quickfix to unite
@@ -324,6 +324,23 @@ if dein#tap('unite.vim')
     nmap <leader>p :UnitePrev<cr>
     nmap <leader>u :UniteResume<cr>
     nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
+endif
+
+if dein#tap('denite.nvim')
+    nmap <c-t> :Denite file_rec<cr>
+    nmap <c-o> :DeniteProjectDir file_rec<cr>
+    nmap <c-g> :Denite grep<cr>
+    nmap <leader>b :Denite buffer<cr>
+    nmap <leader>y :Denite neoyank<cr>
+    nmap <leader>n :Denite -resume -select=+1 -immediately<cr>
+    nmap <leader>p :Denite -resume -select=-1 -immediately<cr>
+    nmap <leader>u :Denite -resume<cr>
+    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+	call denite#custom#var('grep', 'command', ['ag'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'final_opts', [])
+	call denite#custom#var('grep', 'separator', [])
+	call denite#custom#var('grep', 'default_opts', ['--vimgrep'])
 endif
 
 if dein#tap('LaTeX-Box')
