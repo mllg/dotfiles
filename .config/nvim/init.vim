@@ -269,8 +269,8 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#disable_auto_complete = 0
     let g:deoplete#omni#input_patterns = {}
     let g:deoplete#omni#input_patterns.r = ['\w+']
-    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
-    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
+    let g:deoplete#omni#input_patterns.rmd = ['\w+']
+    let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
     let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -379,7 +379,7 @@ if dein#tap('vim-move')
 endif
 
 if dein#tap('vim-polyglot')
-    let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'latex', 'tex', 'rmarkdown']
+    let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'tex', 'rmarkdown']
     let g:vim_markdown_conceal = 0
 endif
 
