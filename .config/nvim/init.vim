@@ -54,22 +54,18 @@ call dein#add('airblade/vim-gitgutter') " Highlight changed lines
 call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
 " File system navigation
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Shougo/unite.vim')
-" call dein#add('Shougo/denite.nvim')
+" call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+" call dein#add('Shougo/unite.vim')
+" call dein#add('tsukkee/unite-tag') " tag support for unite
+call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim') " mru source for unite
-call dein#add('tsukkee/unite-tag') " tag support for unite
-call dein#add('osyo-manga/unite-quickfix') " move stuff from quickfix to unite
 call dein#add('Shougo/neoyank.vim') " clipboard support for unite
 call dein#add('Shougo/vimfiler.vim') " file browser
 call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
 call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
-" call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
-" call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
 " Latex
-" call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
-call dein#add('lervag/vimtex')
+call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
 
 " R
 call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
@@ -246,8 +242,6 @@ vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
 
-nmap <silent> <leader>c :hardcopy >~/.cache/lastprint.ps<cr>
-            \ :execute '!' 'xgd-open ~/.cache/lastprint.ps &'<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Windows resizing using arrow keys
@@ -259,6 +253,7 @@ nnoremap <silent> <Down> :resize -1<CR>
 " command W w !sudo tee % > /dev/null
 command Update call dein#update()
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
+command Print exec ':hardcopy >~/vimprint.ps'
 
 " ======================================================================================================================
 " Plugin Config
@@ -284,23 +279,7 @@ if dein#tap('deoplete.nvim')
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
-    nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
-endif
-
-if dein#tap('fzf.vim')
-    nmap <c-t> :Files<cr>
-    nmap <c-p> :GitFiles<cr>
-    nmap <c-g> :Ag<cr>
-    nmap <silent> <leader>fw :Ag <C-R><C-W><CR>
-    nmap <leader>b :Buffers<cr>
-    nmap <leader>m :Marks<cr>
-    nmap <leader>t :Tags<cr>
-    nmap <leader>n :cn<cr>
-    nmap <leader>p :cp<cr>
-
-    " Insert mode completion
-    imap <c-x><c-f> <plug>(fzf-complete-path)
-    imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+    " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('unite.vim')
@@ -335,6 +314,8 @@ if dein#tap('denite.nvim')
     nmap <leader>n :Denite -resume -select=+1 -immediately<cr>
     nmap <leader>p :Denite -resume -select=-1 -immediately<cr>
     nmap <leader>u :Denite -resume<cr>
+    nmap <leader>m :Denite -start-insert file_mru<cr>
+    nmap <leader>y :Denite history/yank<cr>
     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 	call denite#custom#var('grep', 'command', ['ag'])
 	call denite#custom#var('grep', 'recursive_opts', [])
