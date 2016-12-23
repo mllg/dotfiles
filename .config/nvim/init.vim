@@ -264,10 +264,10 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
     let g:deoplete#disable_auto_complete = 0
-    let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni#input_patterns.r = ['\w+']
-    let g:deoplete#omni#input_patterns.rmd = ['\w+']
-    let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
+    " let g:deoplete#omni#input_patterns = {}
+    " let g:deoplete#omni#input_patterns.r = ['\w+']
+    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
+    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
     let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -315,10 +315,11 @@ if dein#tap('denite.nvim')
     nmap <leader>y :Denite history/yank<cr>
     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 	call denite#custom#var('grep', 'command', ['ag'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'final_opts', [])
-	call denite#custom#var('grep', 'separator', [])
 	call denite#custom#var('grep', 'default_opts', ['--vimgrep'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
 endif
 
 if dein#tap('LaTeX-Box')
