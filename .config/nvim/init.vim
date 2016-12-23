@@ -200,13 +200,10 @@ augroup comment_string
     autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
 
-augroup unite_split
-    autocmd FileType unite call s:unite_my_settings()
-    function! s:unite_my_settings()
-        " Overwrite settings.
-        imap <silent><buffer><expr> <C-s> unite#do_action('split')
-        imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-    endfunction
+augroup latex_unresponsive
+    autocmd!
+    autocmd FileType tex :NoMatchParen
+    " autocmd FileType tex setlocal nocursorline
 augroup END
 
 " ======================================================================================================================
