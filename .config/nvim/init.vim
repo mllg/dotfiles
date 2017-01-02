@@ -48,6 +48,7 @@ call dein#add('kshenoy/vim-signature') " Show marks
 call dein#add('kana/vim-operator-user') " requirement for operator replace
 call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
 
+
 " Git/version control support
 call dein#add('tpope/vim-fugitive') " git support
 call dein#add('airblade/vim-gitgutter') " Highlight changed lines
@@ -57,11 +58,12 @@ call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 " call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 " call dein#add('Shougo/unite.vim')
 " call dein#add('tsukkee/unite-tag') " tag support for unite
+" call dein#add('Shougo/vimfiler.vim') " file browser
+" call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
 call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim') " mru source for unite
 call dein#add('Shougo/neoyank.vim') " clipboard support for unite
-call dein#add('Shougo/vimfiler.vim') " file browser
-call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
+call dein#add('scrooloose/nerdtree')
 call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
 
 " Latex
@@ -390,6 +392,11 @@ if dein#tap('vimfiler.vim')
     let g:vimfiler_as_default_explorer = 1
     nmap <F1> :VimFilerExplorer<cr>
 endif
+
+if dein#tap('nerdtree')
+    nmap <F1> :NERDTreeToggle<cr>
+endif
+
 
 if dein#tap('vim-surround')
     " yank command surrounding, useful for tex and Rd
