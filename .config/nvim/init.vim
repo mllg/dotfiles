@@ -1,90 +1,88 @@
 " ======================================================================================================================
 " Plugin Manager
 " ======================================================================================================================
-set runtimepath+=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
 let g:dein#types#git#clone_depth=1
-call dein#begin(expand('~/.config/nvim/bundle'))
-call dein#add('Shougo/dein.vim')
+if dein#load_state(expand('~/.cache/dein'))
+    call dein#begin(expand('~/.cache/dein'))
+    call dein#add('Shougo/dein.vim')
 
-" Essentials
-call dein#add('tpope/vim-repeat') " Repeat more
-call dein#add('tpope/vim-abolish') " Case insensitive replace
-call dein#add('tpope/vim-eunuch') " Commands like :Remove
-call dein#add('tpope/vim-sensible') " Better defaults
-call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
-call dein#add('dietsche/vim-lastplace') " restore cursor position at start
+    " Essentials
+    call dein#add('tpope/vim-repeat') " Repeat more
+    call dein#add('tpope/vim-abolish') " Case insensitive replace
+    call dein#add('tpope/vim-eunuch') " Commands like :Remove
+    call dein#add('tpope/vim-sensible') " Better defaults
+    call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
+    call dein#add('dietsche/vim-lastplace') " restore cursor position at start
 
-" Appearance
-call dein#add('morhetz/gruvbox')
-call dein#add('frankier/neovim-colors-solarized-truecolor-only')
-call dein#add('chriskempson/vim-tomorrow-theme')
-call dein#add('NLKNguyen/papercolor-theme')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Yggdroot/indentLine') " visual markers for indent
-call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
+    " Appearance
+    call dein#add('morhetz/gruvbox')
+    call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+    call dein#add('chriskempson/vim-tomorrow-theme')
+    call dein#add('NLKNguyen/papercolor-theme')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('Yggdroot/indentLine') " visual markers for indent
+    call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
 
-" Edit helpers
-call dein#add('Shougo/deoplete.nvim') " Completion
-call dein#add('ujihisa/neco-look') " dict lookup
-call dein#add('christoomey/vim-titlecase') " switch titlecase with gt+movement
-call dein#add('tpope/vim-commentary') " Comment with gc
-call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
-call dein#add('tpope/vim-surround') " Delete, add and change surroundings
-call dein#add('wellle/targets.vim') " More text objects
-call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
-call dein#add('junegunn/vim-easy-align') " Align on operators
-call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
-call dein#add('machakann/vim-swap') " swap arguments with g< and g>
-call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
-call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
-call dein#add('matze/vim-move') " Move lines with <c-h> etc
-call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
-call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
-call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
-call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
-call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
-call dein#add('kshenoy/vim-signature') " Show marks
-call dein#add('kana/vim-operator-user') " requirement for operator replace
-call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
+    " Edit helpers
+    call dein#add('Shougo/deoplete.nvim') " Completion
+    call dein#add('ujihisa/neco-look') " dict lookup
+    call dein#add('christoomey/vim-titlecase') " switch titlecase with gt+movement
+    call dein#add('tpope/vim-commentary') " Comment with gc
+    call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
+    call dein#add('tpope/vim-surround') " Delete, add and change surroundings
+    call dein#add('wellle/targets.vim') " More text objects
+    call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
+    call dein#add('junegunn/vim-easy-align') " Align on operators
+    call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
+    call dein#add('machakann/vim-swap') " swap arguments with g< and g>
+    call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
+    call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
+    call dein#add('matze/vim-move') " Move lines with <c-h> etc
+    call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
+    call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
+    call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
+    call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
+    call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
+    call dein#add('kshenoy/vim-signature') " Show marks
+    call dein#add('kana/vim-operator-user') " requirement for operator replace
+    call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
 
+    " Git/version control support
+    call dein#add('tpope/vim-fugitive') " git support
+    call dein#add('airblade/vim-gitgutter') " Highlight changed lines
+    call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
-" Git/version control support
-call dein#add('tpope/vim-fugitive') " git support
-call dein#add('airblade/vim-gitgutter') " Highlight changed lines
-call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
+    " File system navigation
+    " call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+    " call dein#add('Shougo/unite.vim')
+    " call dein#add('tsukkee/unite-tag') " tag support for unite
+    " call dein#add('Shougo/vimfiler.vim') " file browser
+    " call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
+    call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/neomru.vim') " mru source for unite
+    call dein#add('Shougo/neoyank.vim') " clipboard support for unite
+    call dein#add('scrooloose/nerdtree', {'on_cmd' : 'NERDTreeToggle'})
+    call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
 
-" File system navigation
-" call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-" call dein#add('Shougo/unite.vim')
-" call dein#add('tsukkee/unite-tag') " tag support for unite
-" call dein#add('Shougo/vimfiler.vim') " file browser
-" call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
-call dein#add('Shougo/denite.nvim')
-call dein#add('Shougo/neomru.vim') " mru source for unite
-call dein#add('Shougo/neoyank.vim') " clipboard support for unite
-call dein#add('scrooloose/nerdtree')
-call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
+    " Languages
+    call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+    call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('sheerun/vim-polyglot') " Many many languages
 
-" Latex
-call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+    call dein#end()
+    call dein#save_state()
+endif
 
-" R
-call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-
-" Syntax highlighting and language support
-call dein#add('sheerun/vim-polyglot') " Many many languages
-" call dein#add('w0rp/ale')
-
-
-call dein#end()
 if dein#check_install()
     call dein#install()
 endif
+
 filetype plugin indent on
 syntax on
-
 
 " ======================================================================================================================
 " Settings

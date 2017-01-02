@@ -32,9 +32,9 @@ function update
         ~/.tmux/plugins/tpm/bin/update_plugins all
     end
 
-    if not test -d $HOME/.config/nvim/bundle
+    if not test -d $HOME/.cache/dein/repos/github.com/Shougo/dein.vim
         info "Installing dein.vim"
-        git clone --depth=1 'https://github.com/Shougo/dein.vim' "$HOME/.config/nvim/bundle/repos/github.com/Shougo/dein.vim"
+        git clone --depth=1 'https://github.com/Shougo/dein.vim' "$HOME/.cache/dein/repos/github.com/Shougo/dein.vim"
     end
 
     if not test -d $HOME/.R/library
