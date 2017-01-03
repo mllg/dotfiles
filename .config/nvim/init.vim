@@ -56,16 +56,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " File system navigation
-    " call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-    " call dein#add('Shougo/unite.vim')
     " call dein#add('tsukkee/unite-tag') " tag support for unite
-    " call dein#add('Shougo/vimfiler.vim') " file browser
-    " call dein#add('t9md/vim-choosewin') " choose win in a tmux-fashion for vimfiler
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('Shougo/neoyank.vim') " clipboard support for unite
-    call dein#add('scrooloose/nerdtree', {'on_cmd' : 'NERDTreeToggle'})
     call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
+    call dein#add('justinmk/vim-dirvish')
+    call dein#add('justinmk/vim-gtfo')
 
     " Languages
     call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
@@ -167,19 +164,13 @@ function! MoveHelpRight()
     endif
 endfunction
 
-augroup terminal_fixes
-    autocmd TermOpen * set nobuflisted
-augroup END
-
 augroup help_pages
     autocmd!
     autocmd FileType help nested call MoveHelpRight()
 augroup END
 
-augroup cursor_line
-    autocmd!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
+augroup terminal_fixes
+    autocmd TermOpen * set nobuflisted
 augroup END
 
 augroup spellcheck_on
@@ -203,7 +194,7 @@ augroup END
 augroup latex_unresponsive
     autocmd!
     autocmd FileType tex :NoMatchParen
-    " autocmd FileType tex setlocal nocursorline
+    autocmd FileType tex setlocal nocursorline
 augroup END
 
 " ======================================================================================================================
@@ -279,29 +270,6 @@ if dein#tap('deoplete.nvim')
     " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
-if dein#tap('unite.vim')
-    let g:unite_prompt='» '
-    if executable('ag')
-        let g:unite_source_rec_async_command =['ag', '--vimgrep', '-g', '']
-        let g:unite_source_grep_command = 'ag'
-        let g:unite_source_grep_default_opts ='--vimgrep --hidden'
-        let g:unite_source_grep_recursive_opt = ''
-    endif
-
-    nmap <c-t> :Unite -start-insert file_rec/async<cr>
-    nmap <c-o> :UniteWithProjectDir -start-insert file_rec/async<cr>
-    nmap <c-g> :Unite grep:.<cr>
-    nmap <leader>d :Unite -start-insert file<cr>
-    nmap <leader>b :Unite buffer<cr>
-    nmap <leader>t :Unite -start-insert tag<cr>
-    nmap <leader>m :Unite -start-insert file_mru<cr>
-    nmap <leader>y :Unite history/yank<cr>
-    nmap <leader>n :UniteNext<cr>
-    nmap <leader>p :UnitePrev<cr>
-    nmap <leader>u :UniteResume<cr>
-    nmap <leader>fw :UniteWithCursorWord -buffer-name=search grep<cr>
-endif
-
 if dein#tap('denite.nvim')
     nmap <c-t> :Denite file_rec<cr>
     nmap <c-o> :DeniteProjectDir file_rec<cr>
@@ -312,7 +280,6 @@ if dein#tap('denite.nvim')
     nmap <leader>p :Denite -resume -select=-1 -immediately<cr>
     nmap <leader>u :Denite -resume<cr>
     nmap <leader>m :Denite -start-insert file_mru<cr>
-    nmap <leader>y :Denite history/yank<cr>
     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 	call denite#custom#var('grep', 'command', ['ag'])
 	call denite#custom#var('grep', 'default_opts', ['--vimgrep'])
@@ -385,16 +352,6 @@ if dein#tap('vim-startify')
     nmap <F2> :Startify<cr>
     let g:startify_bookmarks = [ {'n': '~/.config/nvim/init.vim'}, {'f': '~/.config/fish/config.fish'} ]
 endif
-
-if dein#tap('vimfiler.vim')
-    let g:vimfiler_as_default_explorer = 1
-    nmap <F1> :VimFilerExplorer<cr>
-endif
-
-if dein#tap('nerdtree')
-    nmap <F1> :NERDTreeToggle<cr>
-endif
-
 
 if dein#tap('vim-surround')
     " yank command surrounding, useful for tex and Rd
