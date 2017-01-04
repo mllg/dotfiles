@@ -114,6 +114,7 @@ set clipboard=unnamedplus
 set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
 let g:terminal_scrollback_buffer=100000
 set conceallevel=2 concealcursor=i
+set autochdir
 
 " Timeout
 set timeout
@@ -355,6 +356,10 @@ endif
 if dein#tap('vim-surround')
     " yank command surrounding, useful for tex and Rd
     let g:surround_99 = "\\\1cmd\1{\r}"
+endif
+
+if dein#tap('vim-gtfo')
+    let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
 endif
 
 " ======================================================================================================================
