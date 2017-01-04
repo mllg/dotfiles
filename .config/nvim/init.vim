@@ -25,6 +25,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('Yggdroot/indentLine') " visual markers for indent
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
+    call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
 
     " Edit helpers
     call dein#add('Shougo/deoplete.nvim') " Completion
@@ -194,11 +195,11 @@ augroup comment_string
     autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
 
-augroup latex_unresponsive
-    autocmd!
-    autocmd FileType tex,rnoweb :NoMatchParen
-    autocmd FileType tex,rnoweb setlocal nocursorline
-augroup END
+" augroup latex_unresponsive
+"     autocmd!
+"     autocmd FileType tex,rnoweb :NoMatchParen
+"     autocmd FileType tex,rnoweb setlocal nocursorline
+" augroup END
 
 " ======================================================================================================================
 " Mappings
