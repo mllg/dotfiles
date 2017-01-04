@@ -51,6 +51,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
 
     " Git/version control support
+    call dein#add('tpope/vim-git')
     call dein#add('tpope/vim-fugitive') " git support
     call dein#add('airblade/vim-gitgutter') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
@@ -65,10 +66,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('justinmk/vim-gtfo')
 
     " Languages
-    call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb', 'rmarkdown']})
+    call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb']})
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    call dein#add('sheerun/vim-polyglot') " Many many languages
+    call dein#add('octol/vim-cpp-enhanced-highlight')
+    call dein#add('keith/tmux.vim')
+    call dein#add('dag/vim-fish')
+    call dein#add('honza/dockerfile.vim')
 
     call dein#end()
     call dein#save_state()
@@ -182,7 +186,6 @@ augroup ftdetect_fixes
     autocmd!
     autocmd BufNewFile,BufReadPost *.Rmd set filetype=rmd
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    autocmd FileType markdown,rmd syntax match Comment /\%^---\_.\{-}---$/
 augroup END
 
 augroup comment_string
@@ -193,8 +196,8 @@ augroup END
 
 augroup latex_unresponsive
     autocmd!
-    autocmd FileType tex :NoMatchParen
-    autocmd FileType tex setlocal nocursorline
+    autocmd FileType tex,rnoweb :NoMatchParen
+    autocmd FileType tex,rnoweb setlocal nocursorline
 augroup END
 
 " ======================================================================================================================
@@ -341,11 +344,6 @@ endif
 
 if dein#tap('vim-move')
     let g:move_key_modifier = 'C'
-endif
-
-if dein#tap('vim-polyglot')
-    let g:polyglot_disabled = ['r', 'rnoweb', 'rhelp', 'tex', 'rmarkdown']
-    let g:vim_markdown_conceal = 0
 endif
 
 if dein#tap('vim-startify')
