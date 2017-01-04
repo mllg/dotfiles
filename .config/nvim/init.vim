@@ -248,6 +248,8 @@ command Update call dein#update()
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
 command Print exec ':hardcopy >~/vimprint.ps'
 
+nmap <F9> :Gstatus<cr>
+
 " ======================================================================================================================
 " Plugin Config
 " ======================================================================================================================
