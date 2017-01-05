@@ -196,11 +196,11 @@ augroup comment_string
     autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
 
-" augroup latex_unresponsive
-"     autocmd!
-"     autocmd FileType tex,rnoweb :NoMatchParen
-"     autocmd FileType tex,rnoweb setlocal nocursorline
-" augroup END
+augroup latex_unresponsive
+    autocmd!
+    autocmd FileType tex,rnoweb :NoMatchParen
+    autocmd FileType tex,rnoweb setlocal nocursorline
+augroup END
 
 " ======================================================================================================================
 " Mappings
