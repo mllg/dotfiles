@@ -274,7 +274,7 @@ if dein#tap('deoplete.nvim')
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
-    " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
+    nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('denite.nvim')
@@ -288,12 +288,12 @@ if dein#tap('denite.nvim')
     nmap <leader>u :Denite -resume<cr>
     nmap <leader>m :Denite -start-insert file_mru<cr>
     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-	call denite#custom#var('grep', 'command', ['ag'])
-	call denite#custom#var('grep', 'default_opts', ['--vimgrep'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', [])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('grep', 'command', ['ag'])
+    call denite#custom#var('grep', 'default_opts', ['--vimgrep'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
 endif
 
 if dein#tap('LaTeX-Box')
@@ -356,7 +356,7 @@ if dein#tap('vim-startify')
 endif
 
 if dein#tap('vim-surround')
-    " yank command surrounding, useful for tex and Rd
+    " yank command surrounding, useful for tex and Rd -> ys[motion]c
     let g:surround_99 = "\\\1cmd\1{\r}"
 endif
 
