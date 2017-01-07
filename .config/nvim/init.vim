@@ -15,6 +15,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-sensible') " Better defaults
     call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
     call dein#add('dietsche/vim-lastplace') " restore cursor position at start
+    call dein#add('thinca/vim-prettyprint', {'on_cmd' : 'PrettyPrint'}) " pretty print vim variables
 
     " Appearance
     call dein#add('morhetz/gruvbox')
@@ -52,13 +53,11 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
 
     " Git/version control support
-    call dein#add('tpope/vim-git')
     call dein#add('tpope/vim-fugitive') " git support
     call dein#add('airblade/vim-gitgutter') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " File system navigation
-    " call dein#add('tsukkee/unite-tag') " tag support for unite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('Shougo/neoyank.vim') " clipboard support for unite
