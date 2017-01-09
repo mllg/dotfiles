@@ -113,7 +113,7 @@ set clipboard=unnamedplus
 set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
 let g:terminal_scrollback_buffer=100000
 set conceallevel=2 concealcursor=i
-set autochdir
+set noautochdir
 
 " Timeout
 set timeout
