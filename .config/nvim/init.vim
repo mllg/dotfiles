@@ -51,7 +51,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
     call dein#add('kana/vim-operator-user') " requirement for operator replace
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
-    call dein#add('christoomey/vim-tmux-navigator')
+    " call dein#add('christoomey/vim-tmux-navigator')
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -233,8 +233,8 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 nmap K <nop>
 map <c-h> :bp<cr>
 map <c-l> :bn<cr>
-inoremap <c-h> <left>
-inoremap <c-l> <right>
+inoremap <m-h> <left>
+inoremap <m-l> <right>
 vnoremap < <gv
 vnoremap > >gv
 
@@ -373,6 +373,10 @@ endif
 if dein#tap('vim-surround')
     " yank command surrounding, useful for tex and Rd -> ys[motion]c
     let g:surround_99 = "\\\1cmd\1{\r}"
+endif
+
+if dein#tap('vim-move')
+    let g:move_key_modifier = 'C'
 endif
 
 if dein#tap('vim-gtfo')
