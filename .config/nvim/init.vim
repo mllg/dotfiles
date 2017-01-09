@@ -37,7 +37,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-surround') " Delete, add and change surroundings
     call dein#add('wellle/targets.vim') " More text objects
     call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
-    call dein#add('junegunn/vim-easy-align') " Align on operators
+    call dein#add('junegunn/vim-easy-align', {'on_cmd' : 'EasyAlign'}) " Align on operators
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
     call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
@@ -51,6 +51,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
     call dein#add('kana/vim-operator-user') " requirement for operator replace
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
+    call dein#add('christoomey/vim-tmux-navigator')
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -64,6 +65,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
+    call dein#add('dbakker/vim-projectroot')
 
     " Languages
     call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb']})
@@ -169,6 +171,15 @@ function! MoveHelpRight()
     endif
 endfunction
 
+function! <SID>AutoProjectRootCD()
+    try
+        if &ft != 'help'
+            ProjectRootCD
+        endif
+    catch
+    endtry
+endfunction
+
 augroup help_pages
     autocmd!
     autocmd FileType help nested call MoveHelpRight()
@@ -200,6 +211,15 @@ augroup latex_unresponsive
     autocmd FileType tex,rnoweb :NoMatchParen
     autocmd FileType tex,rnoweb setlocal nocursorline
 augroup END
+
+
+
+augroup cd_to_project_root
+    autocmd!
+    autocmd BufEnter * call <SID>AutoProjectRootCD()
+augroup END
+
+
 
 " ======================================================================================================================
 " Mappings
@@ -241,8 +261,7 @@ nnoremap <silent> <Left> :vertical resize -1<CR>
 nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
-"
-" command W w !sudo tee % > /dev/null
+
 command Update call dein#update()
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
 command Print exec ':hardcopy >~/vimprint.ps'
@@ -281,6 +300,7 @@ if dein#tap('denite.nvim')
     nmap <c-o> :DeniteProjectDir file_rec<cr>
     nmap <c-g> :Denite grep<cr>
     nmap <leader>b :Denite buffer<cr>
+    nmap <leader>d :Denite directory_rec<cr>
     nmap <leader>y :Denite neoyank<cr>
     nmap <leader>n :Denite -resume -select=+1 -immediately<cr>
     nmap <leader>p :Denite -resume -select=-1 -immediately<cr>
@@ -319,7 +339,6 @@ if dein#tap('Nvim-R')
     let g:R_close_term = 1
     let g:R_in_buffer = 1
     let g:R_tmux_split = 0
-    " let g:Rout_more_colors = 1
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "vertical"
     let g:R_openpdf = 1
@@ -345,13 +364,10 @@ if dein#tap('vim-easy-align')
     vmap <Enter> <Plug>(EasyAlign)
 endif
 
-if dein#tap('vim-move')
-    let g:move_key_modifier = 'C'
-endif
-
 if dein#tap('vim-startify')
     nmap <F2> :Startify<cr>
     let g:startify_bookmarks = [ {'n': '~/.config/nvim/init.vim'}, {'f': '~/.config/fish/config.fish'} ]
+    let g:startify_change_to_dir = 0
 endif
 
 if dein#tap('vim-surround')
