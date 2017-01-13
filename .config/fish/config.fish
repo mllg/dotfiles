@@ -10,9 +10,11 @@ set -U fish_user_abbreviations \
     'gl=git pull' \
     'gs=git status' \
     'gst=git status' \
+    'amend=git commit --amend --no-edit' \
     'rtf=rtest --filter' \
     'ag=ag -f' \
     'agg=ag -f -g' \
+    'rgg=rg --files -uu --glob' \
     'lmk=latexmk -pdf' \
     'du=du -h' \
     'df=df -h' \
