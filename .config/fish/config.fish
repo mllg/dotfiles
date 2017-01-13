@@ -15,7 +15,8 @@ set -U fish_user_abbreviations \
     'agg=ag -f -g' \
     'lmk=latexmk -pdf' \
     'du=du -h' \
-    'df=df -h'
+    'df=df -h' \
+    'pjo=pj open'
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
@@ -48,6 +49,7 @@ set -g theme_display_vi yes
 set -g theme_display_user yes
 set -g theme_title_display_process yes
 set -gx FZF_TMUX 1
+set -gx PROJECT_PATHS ~/Projekte
 set fish_color_command brgreen
 set fish_color_param brbrown
 
