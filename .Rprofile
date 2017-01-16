@@ -31,7 +31,6 @@
 }
 
 if(interactive()) {
-    suppressMessages(require("setwidth"))
     suppressMessages(require("microbenchmark"))
 
     requireNamespace("utils")
