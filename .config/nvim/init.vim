@@ -2,8 +2,9 @@
 " Plugin Manager
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
+let g:dein#types#git#clone_depth = 1
 
-let g:dein#types#git#clone_depth=1
 if dein#load_state(expand('~/.cache/dein'))
     call dein#begin(expand('~/.cache/dein'))
     call dein#add('Shougo/dein.vim')
