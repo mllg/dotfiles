@@ -313,7 +313,7 @@ if dein#tap('denite.nvim')
 	call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
     if executable('rg')
-        call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
+        call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])
         call denite#custom#var('grep', 'command', ['rg'])
         call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
         call denite#custom#var('grep', 'recursive_opts', [])
