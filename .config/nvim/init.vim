@@ -62,8 +62,6 @@ if dein#load_state(expand('~/.cache/dein'))
     " File system navigation
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
-    call dein#add('Shougo/neoyank.vim') " clipboard support for unite
-    call dein#add('artnez/vim-wipeout', {'on_cmd' : 'Wipeout'}) " kill all buffers except current
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
     call dein#add('dbakker/vim-projectroot')
