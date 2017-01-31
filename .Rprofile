@@ -32,6 +32,7 @@
 
 if(interactive()) {
     suppressMessages(require("microbenchmark"))
+    suppressMessages(require("tracer"))
 
     requireNamespace("utils")
     utils::rc.settings(ipck = TRUE)
