@@ -170,15 +170,6 @@ function! MoveHelpRight()
     endif
 endfunction
 
-function! <SID>AutoProjectRootCD()
-    try
-        if &ft != 'help'
-            ProjectRootCD
-        endif
-    catch
-    endtry
-endfunction
-
 augroup help_pages
     autocmd!
     autocmd FileType help nested call MoveHelpRight()
@@ -204,20 +195,6 @@ augroup comment_string
     autocmd FileType r setlocal commentstring=#\ %s
     autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
-
-" augroup latex_unresponsive
-"     autocmd!
-"     autocmd FileType tex,rnoweb :NoMatchParen
-"     autocmd FileType tex,rnoweb setlocal nocursorline
-" augroup END
-
-
-
-augroup cd_to_project_root
-    autocmd!
-    autocmd BufEnter * call <SID>AutoProjectRootCD()
-augroup END
-
 
 
 " ======================================================================================================================
@@ -395,6 +372,10 @@ endif
 
 if dein#tap('vim-gtfo')
     let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
+endif
+
+if dein#tap('vim-projectroot')
+    nnoremap <leader>cp :ProjectRootCD<cr>
 endif
 
 " ======================================================================================================================
