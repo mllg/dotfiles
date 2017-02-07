@@ -52,6 +52,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
     call dein#add('kana/vim-operator-user') " requirement for operator replace
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
+    call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('christoomey/vim-tmux-navigator')
 
     " Git/version control support
