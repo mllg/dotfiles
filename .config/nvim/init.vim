@@ -2,6 +2,7 @@
 " Plugin Manager
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+"set runtimepath+=~/.fzf
 let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
 let g:dein#types#git#clone_depth = 1
 
@@ -52,7 +53,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
     call dein#add('kana/vim-operator-user') " requirement for operator replace
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
-    call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
+    " call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('christoomey/vim-tmux-navigator')
 
     " Git/version control support
@@ -61,11 +62,12 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " File system navigation
+    " call dein#add('junegunn/fzf.vim')
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
-    call dein#add('dbakker/vim-projectroot')
+    call dein#add('airblade/vim-rooter')
 
     " Languages
     call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb']})
@@ -75,6 +77,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
     call dein#add('honza/dockerfile.vim')
+    " call dein#add('vim-pandoc/vim-pandoc')
 
     call dein#end()
     call dein#save_state()
@@ -239,7 +242,12 @@ nnoremap <silent> <Right> :vertical resize +1<CR>
 nnoremap <silent> <Up> :resize +1<CR>
 nnoremap <silent> <Down> :resize -1<CR>
 
-command Update call dein#update()
+function s:UpdatePlugins()
+    call delete(g:dein#install_log_filename)
+    call dein#update()
+endfunction
+command Update call s:UpdatePlugins()
+
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
 command Print exec ':hardcopy >~/vimprint.ps'
 
@@ -284,6 +292,7 @@ if dein#tap('denite.nvim')
     nmap <leader>u :Denite -resume<cr>
     nmap <leader>m :Denite -start-insert file_mru<cr>
     nnoremap <leader>fw :Denite grep<CR><C-R><C-W><CR>
+    " nnoremap <leader>fw :DeniteCursorWord grep<CR><CR><C-W><CR>
 
 	call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 	call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
@@ -305,6 +314,12 @@ if dein#tap('denite.nvim')
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'final_opts', [])
     endif
+endif
+
+if dein#tap('fzf.vim')
+    nmap <c-t> :Files<cr>
+    nmap <c-o> :GFiles<cr>
+    nmap <c-g> :Ag<cr>
 endif
 
 if dein#tap('LaTeX-Box')
@@ -375,8 +390,9 @@ if dein#tap('vim-gtfo')
     let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
 endif
 
-if dein#tap('vim-projectroot')
-    nnoremap <leader>cp :ProjectRootCD<cr>
+if dein#tap('vim-rooter')
+    let g:rooter_silent_chdir = 1
+    let g:rooter_use_lcd = 1
 endif
 
 " ======================================================================================================================
