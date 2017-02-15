@@ -291,8 +291,8 @@ if dein#tap('denite.nvim')
     nmap <leader>p :Denite -resume -select=-1 -immediately<cr>
     nmap <leader>u :Denite -resume<cr>
     nmap <leader>m :Denite -start-insert file_mru<cr>
-    nnoremap <leader>fw :Denite grep<CR><C-R><C-W><CR>
-    " nnoremap <leader>fw :DeniteCursorWord grep<CR><CR><C-W><CR>
+    " nnoremap <leader>fw :Denite grep<CR><C-R><C-W><CR>
+    nnoremap <leader>fw :DeniteCursorWord grep<CR><CR><C-W><CR>
 
 	call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 	call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
