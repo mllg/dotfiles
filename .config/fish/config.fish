@@ -41,6 +41,10 @@ if test -d ~/.R/library/rt
     set -gx PATH $HOME/.R/library/rt/bin $PATH
 end
 
+if test -d ~/.fzf
+    set -gx PATH $HOME/.fzf/bin $PATH
+end
+
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
