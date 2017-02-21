@@ -67,7 +67,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
-    call dein#add('airblade/vim-rooter')
 
     " Languages
     call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb']})
@@ -388,11 +387,6 @@ endif
 
 if dein#tap('vim-gtfo')
     let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
-endif
-
-if dein#tap('vim-rooter')
-    let g:rooter_silent_chdir = 1
-    let g:rooter_use_lcd = 1
 endif
 
 " ======================================================================================================================
