@@ -53,8 +53,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
     call dein#add('kana/vim-operator-user') " requirement for operator replace
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
-    " call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
-    " call dein#add('christoomey/vim-tmux-navigator')
+    call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -67,6 +66,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
+    call dein#add('dbakker/vim-projectroot')
 
     " Languages
     call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb']})
@@ -76,7 +76,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
     call dein#add('honza/dockerfile.vim')
-    " call dein#add('vim-pandoc/vim-pandoc')
 
     call dein#end()
     call dein#save_state()
@@ -216,6 +215,7 @@ inoremap <m-h> <left>
 inoremap <m-l> <right>
 vnoremap < <gv
 vnoremap > >gv
+vmap <Enter> <Plug>(EasyAlign)
 
 nnoremap Y y$
 nnoremap Q @q
@@ -293,8 +293,8 @@ if dein#tap('denite.nvim')
     " nnoremap <leader>fw :Denite grep<CR><C-R><C-W><CR>
     nnoremap <leader>fw :DeniteCursorWord grep<CR><CR><C-W><CR>
 
-	call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-	call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])
@@ -366,9 +366,6 @@ if dein#tap('switch.vim')
     nmap <silent> + :Switch<cr>
 endif
 
-if dein#tap('vim-easy-align')
-    vmap <Enter> <Plug>(EasyAlign)
-endif
 
 if dein#tap('vim-startify')
     nmap <F2> :Startify<cr>
@@ -387,6 +384,15 @@ endif
 
 if dein#tap('vim-gtfo')
     let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
+endif
+
+if dein#tap('vim-projectroot')
+    nnoremap <leader>cp :ProjectRootCD<cr>
+endif
+
+if dein#tap('vim-easy-align')
+    xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
 endif
 
 " ======================================================================================================================
