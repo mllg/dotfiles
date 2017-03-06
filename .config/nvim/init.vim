@@ -173,7 +173,7 @@ endfunction
 
 
 function! MakeSpellFiles()
-    for d in glob(expand('~/.config/nvim/spell/*.add'), 1, 1)
+    for d in glob('~/.config/nvim/spell/*.add', 1, 1)
         if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
             exec 'mkspell! ' . fnameescape(d)
         endif
