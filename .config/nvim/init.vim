@@ -161,6 +161,11 @@ set previewheight=25
 " Spelling
 set spelllang=en,de
 set spellsuggest=fast,20
+for d in glob('~/.config/nvim/spell/*.add', 1, 1)
+    if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
+        exec 'mkspell! ' . fnameescape(d)
+    endif
+endfor
 
 " ======================================================================================================================
 " Autocommands
