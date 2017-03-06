@@ -161,12 +161,6 @@ set previewheight=25
 " Spelling
 set spelllang=en,de
 set spellsuggest=fast,20
-for d in glob(expand('~/.config/nvim/spell/*.add'), 1, 1)
-    if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
-        exec 'mkspell! ' . fnameescape(d)
-    endif
-endfor
-
 " ======================================================================================================================
 " Autocommands
 " ======================================================================================================================
@@ -175,6 +169,15 @@ function! MoveHelpRight()
         wincmd L
         let w:help_is_moved = 'right'
     endif
+endfunction
+
+
+function! MakeSpellFiles()
+    for d in glob(expand('~/.config/nvim/spell/*.add'), 1, 1)
+        if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
+            exec 'mkspell! ' . fnameescape(d)
+        endif
+    endfor
 endfunction
 
 augroup help_pages
@@ -203,6 +206,10 @@ augroup comment_string
     autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
 
+augroup mkspellfiles
+    autocmd!
+    autocmd VimEnter * call MakeSpellFiles()
+augroup END
 
 " ======================================================================================================================
 " Mappings
@@ -398,6 +405,10 @@ endif
 if dein#tap('vim-easy-align')
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
+endif
+
+if dein#tap('editorconfig-vim')
+    let g:EditorConfig_core_mode = 'python_external'
 endif
 
 " ======================================================================================================================
