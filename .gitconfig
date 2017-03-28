@@ -23,15 +23,21 @@
     requireForce = false
 [diff]
     tool = vimdiff
+	guitool = kdiff3
 [difftool]
     prompt = false
 [difftool "vimdiff"]
     cmd = "nvim -d '$LOCAL' '$REMOTE'"
 [merge]
     tool = vimdiff
+	tool = kdiff3
 [mergetool]
     prompt = true
 [mergetool "vimdiff"]
     cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [hub]
 	protocol = git
+[mergetool "kdiff3"]
+	trustExitCode = false
+[difftool "kdiff3"]
+	trustExitCode = false
