@@ -33,17 +33,19 @@ set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
 
+
+function add_path
+    for p in $argv
+        if test -d $p
+            set -gx PATH $p $PATH
+        end
+    end
+end
+
 if test (uname) = "Darwin"
-    set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+    add_path /usr/local/opt/coreutils/libexec/gnubin
 end
-
-if test -d ~/.R/library/rt
-    set -gx PATH $HOME/.R/library/rt/bin $PATH
-end
-
-if test -d ~/.fzf
-    set -gx PATH $HOME/.fzf/bin $PATH
-end
+add_path $HOME/.R/library/rt $HOME/.fzf/bin $HOME/.local/bin
 
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
