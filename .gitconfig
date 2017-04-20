@@ -41,3 +41,5 @@
 	trustExitCode = false
 [difftool "kdiff3"]
 	trustExitCode = false
+[fetch]
+	prune = true
