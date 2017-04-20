@@ -24,6 +24,7 @@ rdatsci/rt
 covr
 profvis
 RevolutionAnalytics/quickcheck/pkg
+hadley/pkgdown
 
 # frequently used
 data.table
@@ -37,10 +38,7 @@ xtable
 microbenchmark
 Rcpp
 RcppEigen
-gaborcsardi/progress
 rmarkdown
 mlr
 jalvesaq/colorout
-MangoTheCat/goodpractice
-MangoTheCat/tracer
-r-hub/rhub
+rhub
