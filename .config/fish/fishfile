@@ -6,5 +6,6 @@ fisherman/getopts
 oh-my-fish/plugin-gi
 fisherman/last_job_id
 oh-my-fish/plugin-pj
+tuvistavie/fish-ssh-agent
 oh-my-fish/plugin-wttr
 fisherman/z
