@@ -43,7 +43,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
     call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
-    call dein#add('ReplaceWithRegister') " replace motion with register using gr<motion>
+    call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
     call dein#add('matze/vim-move') " Move lines with <c-h> etc
     call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
     call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
