@@ -391,10 +391,6 @@ if dein#tap('vim-surround')
     let g:surround_99 = "\\\1cmd\1{\r}"
 endif
 
-if dein#tap('vim-move')
-    let g:move_key_modifier = 'C'
-endif
-
 if dein#tap('vim-gtfo')
     let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
 endif
