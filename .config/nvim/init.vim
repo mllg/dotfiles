@@ -29,6 +29,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Yggdroot/indentLine') " visual markers for indent
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
+    " call dein#add('christoomey/vim-tmux-navigator')
 
     " Edit helpers
     call dein#add('Shougo/deoplete.nvim') " Completion
@@ -402,6 +403,10 @@ endif
 if dein#tap('vim-easy-align')
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
+endif
+
+if dein#tap('vim-move')
+    let g:move_key_modifier = 'C'
 endif
 
 if dein#tap('editorconfig-vim')
