@@ -40,7 +40,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-surround') " Delete, add and change surroundings
     call dein#add('wellle/targets.vim') " More text objects
     call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
-    call dein#add('junegunn/vim-easy-align', {'on_cmd' : 'EasyAlign'}) " Align on operators
+    call dein#add('junegunn/vim-easy-align') " Align on operators
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
     call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
@@ -228,7 +228,6 @@ inoremap <m-h> <left>
 inoremap <m-l> <right>
 vnoremap < <gv
 vnoremap > >gv
-vmap <Enter> <Plug>(EasyAlign)
 
 nnoremap Y y$
 nnoremap Q @q
@@ -401,6 +400,7 @@ if dein#tap('vim-projectroot')
 endif
 
 if dein#tap('vim-easy-align')
+    vmap <Enter> <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
 endif
