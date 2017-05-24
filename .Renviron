@@ -1,2 +1,3 @@
 LANGUAGE=en
 R_LIBS_USER=~/.R/library
+R_HISTFILE=~/.R/history
