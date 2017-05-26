@@ -15,6 +15,8 @@ rpart
 spatial
 survival
 
+mllg/sensible
+
 # devel
 devtools
 roxygen2
