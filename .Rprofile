@@ -9,8 +9,9 @@
     useFancyQuotes = FALSE,
     mc.cores = cores,
     Ncpus = cores,
-    max.print = 100,
+    max.print = 10000,
     repos = repos,
+    datatable.print.class = TRUE,
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
     rt.maintainer = "Michel Lang <michellang@gmail.com>"
   )
@@ -28,14 +29,28 @@
   }
 
   if (interactive()) {
+    pkgs = c("data.table", "microbenchmark")
+    for (pkg in pkgs) {
+      if (suppressPackageStartupMessages(!require("data.table", character.only = TRUE, quietly = TRUE)))
+        message(sprintf("Package '%s' not installed", pkg))
+    }
+
     hist = Sys.getenv("R_HISTFILE", "~/.Rhistory")
     if (!dir.exists(dirname(hist)))
       dir.create(dirname(hist), recursive = TRUE)
     ok = try(utils::loadhistory(hist))
     if (!inherits(ok, "try-error"))
-      .Last = function() try(utils::savehistory(Sys.getenv("R_HISTFILE", "~/.Rhistory")))
+      .Last <- function() try(utils::savehistory(Sys.getenv("R_HISTFILE", "~/.Rhistory")))
 
     utils::rc.settings(ipck = TRUE)
+
+    ee = new.env()
+    if ("data.table" %in% loadedNamespaces()) {
+      ee$print.data.frame = function(x, ...) {
+        data.table:::print.data.table(x)
+      }
+    }
+    attach(ee, warn.conflicts = FALSE)
   }
 
   fns = c("~/.R/local", "~/.Rprofile.local")

@@ -3,8 +3,6 @@
     email = michellang@gmail.com
 [github]
     user = mllg
-[push]
-    default = current
 [rebase]
     stat = true
 [alias]
