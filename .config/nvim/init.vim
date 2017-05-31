@@ -187,6 +187,10 @@ augroup help_pages
     autocmd FileType help nested call MoveHelpRight()
 augroup END
 
+augroup terminal_fixes
+    autocmd TermOpen * set nobuflisted
+augroup END
+
 augroup spellcheck_on
     autocmd!
     autocmd FileType gitcommit,tex,rmd,markdown,rnoweb setlocal spell
