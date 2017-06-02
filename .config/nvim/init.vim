@@ -24,8 +24,8 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('frankier/neovim-colors-solarized-truecolor-only')
     call dein#add('chriskempson/vim-tomorrow-theme')
     call dein#add('NLKNguyen/papercolor-theme')
-    " call dein#add('vim-airline/vim-airline')
-    " call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
     call dein#add('Yggdroot/indentLine') " visual markers for indent
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
@@ -285,6 +285,7 @@ nmap <F9> :Gstatus<cr>
 " ======================================================================================================================
 if dein#tap('vim-airline')
     let g:airline_powerline_fonts=1
+    let g:airline_extensions = ['branch', 'tabline', 'quickfix', 'whitespace', 'wordcount']
     let g:airline#extensions#tabline#enabled = 1
 endif
 
@@ -327,7 +328,7 @@ if dein#tap('denite.nvim')
     call denite#custom#option('default', 'statusline', 0)
 
     if executable('rg')
-        call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])
+        call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
         call denite#custom#var('grep', 'command', ['rg'])
         call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
         call denite#custom#var('grep', 'recursive_opts', [])
