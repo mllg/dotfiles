@@ -24,8 +24,8 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('frankier/neovim-colors-solarized-truecolor-only')
     call dein#add('chriskempson/vim-tomorrow-theme')
     call dein#add('NLKNguyen/papercolor-theme')
-    call dein#add('vim-airline/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
+    " call dein#add('vim-airline/vim-airline')
+    " call dein#add('vim-airline/vim-airline-themes')
     call dein#add('Yggdroot/indentLine') " visual markers for indent
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
@@ -182,6 +182,21 @@ function! MakeSpellFiles()
     endfor
 endfunction
 
+function! <SID>AutoProjectRootCD()
+    try
+        if &ft != 'help'
+            ProjectRootCD
+        endif
+    catch
+        " Silently ignore invalid buffers
+    endtry
+endfunction
+
+augroup projectroot
+    autocmd!
+    autocmd BufEnter * call <SID>AutoProjectRootCD()
+augroup END
+
 augroup help_pages
     autocmd!
     autocmd FileType help nested call MoveHelpRight()
@@ -309,6 +324,7 @@ if dein#tap('denite.nvim')
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#option('default', 'statusline', 0)
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])

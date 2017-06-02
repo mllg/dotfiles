@@ -23,8 +23,7 @@ inline
 rdatsci/rt
 covr
 profvis
-RevolutionAnalytics/quickcheck/pkg
-hadley/pkgdown
+# hadley/pkgdown
 
 # frequently used
 data.table
@@ -40,5 +39,4 @@ Rcpp
 RcppEigen
 rmarkdown
 mlr
-jalvesaq/colorout
 r-hub/rhub

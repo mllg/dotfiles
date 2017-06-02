@@ -9,7 +9,7 @@
     useFancyQuotes = FALSE,
     mc.cores = cores,
     Ncpus = cores,
-    max.print = 10000,
+    # max.print = 10000,
     repos = repos,
     datatable.print.class = TRUE,
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
@@ -44,13 +44,13 @@
 
     utils::rc.settings(ipck = TRUE)
 
-    ee = new.env()
-    if ("data.table" %in% loadedNamespaces()) {
-      ee$print.data.frame = function(x, ...) {
-        data.table:::print.data.table(x)
-      }
-    }
-    attach(ee, warn.conflicts = FALSE)
+    # ee = new.env()
+    # if ("data.table" %in% loadedNamespaces()) {
+    #   ee$print.data.frame = function(x, ...) {
+    #     data.table:::print.data.table(x)
+    #   }
+    # }
+    # attach(ee, warn.conflicts = FALSE)
   }
 
   fns = c("~/.R/local", "~/.Rprofile.local")
