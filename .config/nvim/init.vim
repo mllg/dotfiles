@@ -2,7 +2,6 @@
 " Plugin Manager
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-" set runtimepath+=~/.fzf
 let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
 let g:dein#types#git#clone_depth = 1
 
@@ -63,7 +62,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " File system navigation
-    call dein#add('junegunn/fzf.vim')
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('justinmk/vim-dirvish')
@@ -345,12 +343,6 @@ if dein#tap('denite.nvim')
         call denite#custom#var('grep', 'final_opts', [])
     endif
 endif
-
-" if dein#tap('fzf.vim')
-    " nmap <c-t> :Files<cr>
-    " nmap <c-o> :GFiles<cr>
-    " nmap <c-g> :Ag<cr>
-" endif
 
 if dein#tap('LaTeX-Box')
     let g:LatexBox_quickfix=2
