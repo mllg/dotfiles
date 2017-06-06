@@ -2,7 +2,7 @@
 " Plugin Manager
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-"set runtimepath+=~/.fzf
+" set runtimepath+=~/.fzf
 let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
 let g:dein#types#git#clone_depth = 1
 
@@ -55,6 +55,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kana/vim-operator-user') " requirement for operator replace
     call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
+    call dein#add('w0rp/ale')
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -62,7 +63,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " File system navigation
-    " call dein#add('junegunn/fzf.vim')
+    call dein#add('junegunn/fzf.vim')
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('justinmk/vim-dirvish')
@@ -310,18 +311,17 @@ if dein#tap('deoplete.nvim')
 endif
 
 if dein#tap('denite.nvim')
-    nmap <c-t> :Denite file_rec<cr>
-    nmap <c-o> :DeniteProjectDir file_rec<cr>
-    nmap <c-g> :Denite grep<cr>
-    nmap <leader>b :Denite buffer<cr>
-    nmap <leader>d :Denite directory_rec<cr>
-    nmap <leader>y :Denite neoyank<cr>
-    nmap <leader>n :Denite -resume -select=+1 -immediately<cr>
-    nmap <leader>p :Denite -resume -select=-1 -immediately<cr>
-    nmap <leader>u :Denite -resume<cr>
-    nmap <leader>m :Denite -start-insert file_mru<cr>
-    " nnoremap <leader>fw :Denite grep<CR><C-R><C-W><CR>
-    nnoremap <leader>fw :DeniteCursorWord grep<CR><CR><C-W><CR>
+    nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
+    nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
+    nmap <silent> <c-g> :<C-u>Denite grep<cr>
+    nmap <silent> <leader>b :<C-u>Denite buffer<cr>
+    nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
+    nmap <silent> <leader>y :<C-u>Denite neoyank<cr>
+    nmap <silent> <leader>u :<C-u>Denite -resume<cr>
+    nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
+    nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
+    nmap <silent> <leader>m :<C-u>Denite -start-insert file_mru<cr>
+    nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
@@ -346,11 +346,11 @@ if dein#tap('denite.nvim')
     endif
 endif
 
-if dein#tap('fzf.vim')
-    nmap <c-t> :Files<cr>
-    nmap <c-o> :GFiles<cr>
-    nmap <c-g> :Ag<cr>
-endif
+" if dein#tap('fzf.vim')
+    " nmap <c-t> :Files<cr>
+    " nmap <c-o> :GFiles<cr>
+    " nmap <c-g> :Ag<cr>
+" endif
 
 if dein#tap('LaTeX-Box')
     let g:LatexBox_quickfix=2
