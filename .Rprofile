@@ -29,7 +29,7 @@
   }
 
   if (interactive()) {
-    pkgs = c("data.table", "microbenchmark")
+    pkgs = "data.table"
     for (pkg in pkgs) {
       if (suppressPackageStartupMessages(!require("data.table", character.only = TRUE, quietly = TRUE)))
         message(sprintf("Package '%s' not installed", pkg))
@@ -44,13 +44,13 @@
 
     utils::rc.settings(ipck = TRUE)
 
-    # ee = new.env()
-    # if ("data.table" %in% loadedNamespaces()) {
-    #   ee$print.data.frame = function(x, ...) {
-    #     data.table:::print.data.table(x)
-    #   }
-    # }
-    # attach(ee, warn.conflicts = FALSE)
+    ee = new.env()
+    if ("data.table" %in% loadedNamespaces()) {
+      ee$print.data.frame = function(x, ...) {
+        data.table:::print.data.table(x)
+      }
+    }
+    attach(ee, warn.conflicts = FALSE)
   }
 
   fns = c("~/.R/local", "~/.Rprofile.local")
