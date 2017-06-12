@@ -23,7 +23,8 @@ inline
 rdatsci/rt
 covr
 profvis
-# hadley/pkgdown
+hadley/pkgdown
+jimhester/lookup
 
 # frequently used
 data.table
