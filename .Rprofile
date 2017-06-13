@@ -29,9 +29,9 @@
   }
 
   if (interactive()) {
-    pkgs = "data.table"
+    pkgs = c("data.table", "devtools")
     for (pkg in pkgs) {
-      if (suppressPackageStartupMessages(!require("data.table", character.only = TRUE, quietly = TRUE)))
+      if (suppressPackageStartupMessages(!require(pkg, character.only = TRUE, quietly = TRUE)))
         message(sprintf("Package '%s' not installed", pkg))
     }
 
