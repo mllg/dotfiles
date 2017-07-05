@@ -94,7 +94,7 @@ syntax on
 " ======================================================================================================================
 set cursorline
 set number
-set relativenumber
+set norelativenumber
 set showmode
 set textwidth=999
 set hidden
