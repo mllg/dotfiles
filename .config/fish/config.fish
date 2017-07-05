@@ -33,7 +33,6 @@ set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
 
-
 function add_path
     for p in $argv
         if test -d $p
@@ -48,6 +47,7 @@ end
 add_path $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
 
 set -gx OPENBLAS_NUM_THREADS 1
+set -gx R_EXPENSIVE_EXAMPLE_OK 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 

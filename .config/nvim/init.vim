@@ -147,6 +147,7 @@ nnoremap <leader>v p`[v`]=
 
 " Search
 set incsearch
+set inccommand=nosplit
 set hlsearch
 set smartcase
 set ignorecase
@@ -162,6 +163,7 @@ set previewheight=25
 " Spelling
 set spelllang=en,de
 set spellsuggest=fast,20
+
 " ======================================================================================================================
 " Autocommands
 " ======================================================================================================================
@@ -421,6 +423,11 @@ endif
 
 if dein#tap('editorconfig-vim')
     let g:EditorConfig_core_mode = 'python_external'
+endif
+
+if dein#tap('ale')
+    let g:ale_enabled = 0
+    set shell=/bin/bash
 endif
 
 " ======================================================================================================================
