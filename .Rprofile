@@ -1,6 +1,6 @@
 .First = function() {
   repos = getOption("repos")
-  repos[["CRAN"]] = "http://bioconductor.statistik.tu-dortmund.de/cran/"
+  repos[["CRAN"]] = "https://bioconductor.statistik.tu-dortmund.de/cran/"
   cores = Sys.getenv("NCPUS", parallel::detectCores())
   user.lib = Sys.getenv("R_LIBS_USER")
 
@@ -35,12 +35,17 @@
         message(sprintf("Package '%s' not installed", pkg))
     }
 
-    hist = Sys.getenv("R_HISTFILE", "~/.Rhistory")
+    hist = normalizePath(Sys.getenv("R_HISTFILE", "~/.Rhistory"), mustWork = FALSE)
     if (!dir.exists(dirname(hist)))
       dir.create(dirname(hist), recursive = TRUE)
+
     ok = try(utils::loadhistory(hist))
-    if (!inherits(ok, "try-error"))
-      .Last <- function() try(utils::savehistory(Sys.getenv("R_HISTFILE", "~/.Rhistory")))
+    if (inherits(ok, "try-error")) {
+      message("History could not be loaded: ", hist)
+    } else {
+      message("Loaded history: ", hist)
+      .Last <<- function() try(utils::savehistory(hist))
+    }
 
     utils::rc.settings(ipck = TRUE)
 
