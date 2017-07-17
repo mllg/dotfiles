@@ -294,12 +294,12 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
     let g:deoplete#disable_auto_complete = 0
-    let g:deoplete#auto_complete_delay = 50 " see https://github.com/Shougo/deoplete.nvim/issues/440; can be removed in the future
+    " let g:deoplete#auto_complete_delay = 50 " see https://github.com/Shougo/deoplete.nvim/issues/440; can be removed in the future
     " let g:deoplete#omni#input_patterns = {}
     " let g:deoplete#omni#input_patterns.r = ['\w+']
     " let g:deoplete#omni#input_patterns.rmd = ['\w+']
     " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
-    let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
+    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
