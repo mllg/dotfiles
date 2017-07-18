@@ -5,5 +5,5 @@ set noerrorbells visualbell t_vb=
 if has("mac")
     Guifont Inconsolata for Powerline:h16
 else
-    Guifont Terminess Powerline:h11
+    Guifont xos4 Terminess Powerline:h11
 endif

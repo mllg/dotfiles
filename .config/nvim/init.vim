@@ -69,10 +69,10 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('dbakker/vim-projectroot')
 
     " Languages
-    call dein#add('LaTeX-Box-Team/LaTeX-Box', {'on_ft' : ['tex', 'rnoweb']})
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
-    call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('/home/lang/Projekte/vim-devtools-plugin')
+    " call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('lervag/vimtex')
     call dein#add('octol/vim-cpp-enhanced-highlight')
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
@@ -86,8 +86,10 @@ if dein#check_install()
     call dein#install()
 endif
 
+
 filetype plugin indent on
 syntax on
+
 
 " ======================================================================================================================
 " Settings
@@ -377,7 +379,7 @@ if dein#tap('Nvim-R')
     let R_hl_term = 1
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
-    " let g:R_latexcmd = 'latexmk -pdf -pdflatex="xelatex %O -synctex=2 %S"'
+    let R_synctex = 0
     if !has("mac")
         let g:R_pdfviewer = 'okular'
     endif
@@ -428,6 +430,12 @@ endif
 if dein#tap('ale')
     let g:ale_enabled = 0
     set shell=/bin/bash
+endif
+
+if dein#tap('vimtex')
+    if filereadable(expand('~/.local/bin/nvr'))
+        let g:vimtex_compiler_progname = '/home/lang/.local/bin/nvr'
+    endif
 endif
 
 " ======================================================================================================================
