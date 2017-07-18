@@ -70,8 +70,8 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    call dein#add('/home/lang/Projekte/vim-devtools-plugin')
-    " call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
+    call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex')
     call dein#add('octol/vim-cpp-enhanced-highlight')
     call dein#add('keith/tmux.vim')
