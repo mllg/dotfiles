@@ -50,11 +50,14 @@
     utils::rc.settings(ipck = TRUE)
 
     ee = new.env()
+    ee$os = function(x) pryr::object_size(x)
+
     if ("data.table" %in% loadedNamespaces()) {
       ee$print.data.frame = function(x, ...) {
         data.table:::print.data.table(x)
       }
     }
+
     attach(ee, warn.conflicts = FALSE)
   }
 
