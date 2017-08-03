@@ -72,7 +72,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    call dein#add('lervag/vimtex')
+    " call dein#add('lervag/vimtex')
     call dein#add('octol/vim-cpp-enhanced-highlight')
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
@@ -94,7 +94,8 @@ syntax on
 " ======================================================================================================================
 " Settings
 " ======================================================================================================================
-set cursorline
+set nocursorline
+set synmaxcol=1024
 set number
 set norelativenumber
 set showmode
@@ -118,7 +119,7 @@ set mouse=a
 set clipboard=unnamedplus
 set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
 let g:terminal_scrollback_buffer=100000
-set conceallevel=2 concealcursor=i
+set conceallevel=0
 set noautochdir
 
 " Timeout
