@@ -25,7 +25,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('NLKNguyen/papercolor-theme')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
-    call dein#add('Yggdroot/indentLine') " visual markers for indent
+    " call dein#add('Yggdroot/indentLine') " visual markers for indent
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
     " call dein#add('christoomey/vim-tmux-navigator')
