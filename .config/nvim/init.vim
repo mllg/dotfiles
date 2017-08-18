@@ -25,14 +25,18 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('NLKNguyen/papercolor-theme')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
-    " call dein#add('Yggdroot/indentLine') " visual markers for indent
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
     " call dein#add('christoomey/vim-tmux-navigator')
+    call dein#add('kshenoy/vim-signature') " Show marks
+
+    " Completion
+    call dein#add('Shougo/deoplete.nvim') " Completion
+    call dein#add('Shougo/neco-vim') " vim completion
+    call dein#add('ujihisa/neco-look') " dict lookup
+    call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
 
     " Edit helpers
-    call dein#add('Shougo/deoplete.nvim') " Completion
-    call dein#add('ujihisa/neco-look') " dict lookup
     call dein#add('christoomey/vim-titlecase') " switch titlecase with gt+movement
     call dein#add('tpope/vim-commentary') " Comment with gc
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -50,11 +54,8 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
-    call dein#add('kshenoy/vim-signature') " Show marks
-    call dein#add('kana/vim-operator-user') " requirement for operator replace
-    call dein#add('kana/vim-operator-replace') " replace motion with register (mapped to _)
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
-    call dein#add('w0rp/ale')
+    call dein#add('w0rp/ale') " Linting
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -177,7 +178,6 @@ function! MoveHelpRight()
     endif
 endfunction
 
-
 function! MakeSpellFiles()
     for d in glob('~/.config/nvim/spell/*.add', 1, 1)
         if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
@@ -281,8 +281,8 @@ command Update call s:UpdatePlugins()
 
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
 command Print exec ':hardcopy >~/vimprint.ps'
-
 nmap <F9> :Gstatus<cr>
+
 
 " ======================================================================================================================
 " Plugin Config
@@ -296,8 +296,6 @@ endif
 if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
-    let g:deoplete#disable_auto_complete = 0
-    " let g:deoplete#auto_complete_delay = 50 " see https://github.com/Shougo/deoplete.nvim/issues/440; can be removed in the future
     " let g:deoplete#omni#input_patterns = {}
     " let g:deoplete#omni#input_patterns.r = ['\w+']
     " let g:deoplete#omni#input_patterns.rmd = ['\w+']
@@ -346,15 +344,6 @@ if dein#tap('denite.nvim')
         call denite#custom#var('grep', 'pattern_opt', [])
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'final_opts', [])
-    endif
-endif
-
-if dein#tap('LaTeX-Box')
-    let g:LatexBox_quickfix=2
-    let g:LatexBox_ignore_warnings = ['Overfull', 'Underfull', 'Font shape', 'Some font shapes', 'Size substitutions']
-    let g:tex_conceal = ""
-    if has("mac")
-        let g:LatexBox_viewer = "open -a Skim"
     endif
 endif
 
