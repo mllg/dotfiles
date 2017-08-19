@@ -41,10 +41,7 @@ function add_path
     end
 end
 
-if test (uname) = "Darwin"
-    add_path /usr/local/opt/coreutils/libexec/gnubin
-end
-add_path $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
+add_path /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
 
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx R_EXPENSIVE_EXAMPLE_OK 1
