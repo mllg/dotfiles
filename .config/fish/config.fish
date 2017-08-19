@@ -34,14 +34,15 @@ set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
 
 function add_path
-    for p in $argv
-        if test -d $p
-            set -gx PATH $p $PATH
-        end
+    if test -d $p
+        set fish_user_paths $p $fish_user_paths
     end
 end
 
-add_path /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
+add_path /usr/local/opt/coreutils/libexec/gnubin
+add_path $HOME/.R/library/rt/bin
+add_path $HOME/.fzf/bin
+add_path $HOME/.local/bin
 
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx R_EXPENSIVE_EXAMPLE_OK 1
