@@ -28,36 +28,30 @@ alias depclean="sudo pacman -Rns (pacman -Qtdq)"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
-# fish_vi_key_bindings
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
-
-function add_path
-    if test -d $p
-        set fish_user_paths $p $fish_user_paths
-    end
-end
-
-add_path /usr/local/opt/coreutils/libexec/gnubin
-add_path $HOME/.R/library/rt/bin
-add_path $HOME/.fzf/bin
-add_path $HOME/.local/bin
 
 set -gx OPENBLAS_NUM_THREADS 1
 set -gx R_EXPENSIVE_EXAMPLE_OK 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
+set -gx FZF_TMUX 1
+set -gx PROJECT_PATHS ~/Projekte
 
 set -g theme_color_scheme gruvbox
 set -g theme_display_vi yes
 set -g theme_display_user yes
 set -g theme_title_display_process yes
-set -gx FZF_TMUX 1
-set -gx PROJECT_PATHS ~/Projekte
 set fish_color_command brgreen
 set fish_color_param brbrown
 
-if test -r ~/.config/fish/local.fish
-  source ~/.config/fish/local.fish
+for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
+    if test -d "$p"
+        set -g fish_user_paths $p $fish_user_paths
+    end
+end
+
+if test -r "~/.config/fish/local.fish"
+  source "~/.config/fish/local.fish"
 end
