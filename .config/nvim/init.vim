@@ -114,11 +114,9 @@ set showmatch
 set nojoinspaces
 set virtualedit=block
 set nostartofline
-set scrolloff=5
 set shortmess=aIT
 set mouse=a
 set clipboard=unnamedplus
-set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
 let g:terminal_scrollback_buffer=100000
 set conceallevel=0
 set noautochdir
@@ -126,8 +124,6 @@ set noautochdir
 " Timeout
 set timeout
 set timeoutlen=750
-set ttimeout
-set ttimeoutlen=0
 
 " Completion
 set completeopt=longest,menuone
@@ -142,14 +138,12 @@ set tabstop=4
 set shiftwidth=0
 set softtabstop=-1
 set shiftround
-set autoindent
 set smartindent
 set wrap
 set breakindent
 inoremap # X<c-h>#
 
 " Search
-set incsearch
 set inccommand=nosplit
 set hlsearch
 set smartcase
