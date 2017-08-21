@@ -31,7 +31,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
-    call dein#add('Shougo/deoplete.nvim') " Completion
+    call dein#add('Shougo/deoplete.nvim', {'on_i': 1}) " Completion
     call dein#add('Shougo/neco-vim') " vim completion
     call dein#add('ujihisa/neco-look') " dict lookup
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
@@ -147,7 +147,6 @@ set smartindent
 set wrap
 set breakindent
 inoremap # X<c-h>#
-nnoremap <leader>v p`[v`]=
 
 " Search
 set incsearch
@@ -411,10 +410,6 @@ endif
 
 if dein#tap('vim-move')
     let g:move_key_modifier = 'C'
-endif
-
-if dein#tap('editorconfig-vim')
-    let g:EditorConfig_core_mode = 'python_external'
 endif
 
 if dein#tap('ale')
