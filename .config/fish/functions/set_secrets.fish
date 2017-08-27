@@ -1,6 +1,8 @@
 function set_secrets
     set -xU OPENMLAPIKEY (pass show openml.api.key)
-    set -xU GITHUB_TOKEN (pass show github.token)
-    set -xU GITHUB_PAT (pass show github.token)
-    set -xU HOMEBREW_GITHUB_API_TOKEN (pass show github.token)
+    set -l gh (pass show github.token)
+    set -xU GITHUB_TOKEN $gh
+    set -xU GITHUB_PAT $gh
+    set -xU HOMEBREW_GITHUB_API_TOKEN $gh
+    echo "machine api.github.com login mllg password $gh" > ~/.netrc
 end
