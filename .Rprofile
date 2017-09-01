@@ -65,10 +65,4 @@
   lapply(fns[file.exists(fns)], sys.source, envir = .GlobalEnv)
 }
 
-if (interactive()) {
-  objsize = function(x) {
-    pryr::object_size(x)
-  }
-}
-
 # vim: ft=r
