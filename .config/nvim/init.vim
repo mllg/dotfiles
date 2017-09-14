@@ -37,25 +37,26 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
 
     " Edit helpers
+    call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
+    call dein#add('matze/vim-move') " Move lines with <c-h> etc
+    call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
     call dein#add('christoomey/vim-titlecase') " switch titlecase with gt+movement
     call dein#add('tpope/vim-commentary') " Comment with gc
-    call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
     call dein#add('tpope/vim-surround') " Delete, add and change surroundings
     call dein#add('wellle/targets.vim') " More text objects
     call dein#add('michaeljsmith/vim-indent-object') " Indentation objects for targets
     call dein#add('junegunn/vim-easy-align') " Align on operators
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
-    call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
+    "call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
-    call dein#add('matze/vim-move') " Move lines with <c-h> etc
-    call dein#add('itspriddle/vim-stripper', {'on_cmd' : 'Stripper'}) " Remove trailing whitespace
     call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
     call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     call dein#add('w0rp/ale') " Linting
+    call dein#add('Shougo/neoyank.vim') " denite source for yank
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
