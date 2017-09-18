@@ -25,6 +25,8 @@ covr
 profvis
 hadley/pkgdown
 jimhester/lookup
+pryr
+crayon
 
 # frequently used
 data.table
