@@ -56,10 +56,20 @@
       header = crayon::combine_styles(crayon::bold, crayon::green)
       cat(header("Internal:"), "\n", sep = "")
       .Internal(inspect(x))
-      cat("\n", header("Size:"), "\n", sep = "")
-      print(pryr::object_size(x))
+      if (!is.function(x)) {
+        m = methods(class = class(x))
+        tab = attr(m, "info")
+        if (nrow(tab) > 0L) {
+          cat("\n", header(paste0("Generics for `", class(x), "`:")), "\n", sep = "")
+          cat(paste(tab$generic, collapse = ", "), "\n")
+        }
+      }
       cat("\n", header("Structure:"), "\n", sep = "")
       str(x)
+      cat("\n", header("Size:"), "\n", sep = "")
+      print(pryr::object_size(x))
+
+
       invisible(x)
     }
 
