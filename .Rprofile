@@ -50,7 +50,18 @@
     utils::rc.settings(ipck = TRUE)
 
     ee = new.env()
-    ee$os = function(x) pryr::object_size(x)
+    ee$info = function(x) {
+      requireNamespace("crayon", quietly = TRUE)
+      requireNamespace("pryr", quietly = TRUE)
+      header = crayon::combine_styles(crayon::bold, crayon::green)
+      cat(header("Internal:"), "\n", sep = "")
+      .Internal(inspect(x))
+      cat("\n", header("Size:"), "\n", sep = "")
+      print(pryr::object_size(x))
+      cat("\n", header("Structure:"), "\n", sep = "")
+      str(x)
+      invisible(x)
+    }
 
     if ("data.table" %in% loadedNamespaces()) {
       ee$print.data.frame = function(x, ...) {
