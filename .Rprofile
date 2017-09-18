@@ -52,7 +52,6 @@
     ee = new.env()
     ee$info = function(x) {
       requireNamespace("crayon", quietly = TRUE)
-      requireNamespace("pryr", quietly = TRUE)
       header = crayon::combine_styles(crayon::bold, crayon::green)
       cat(header("Internal:"), "\n", sep = "")
       .Internal(inspect(x))
@@ -66,9 +65,9 @@
       }
       cat("\n", header("Structure:"), "\n", sep = "")
       str(x)
-      cat("\n", header("Size:"), "\n", sep = "")
-      print(pryr::object_size(x))
 
+      cat("\n", header("Size:"), "\n", sep = "")
+      print(object.size(x), units = "auto")
 
       invisible(x)
     }
