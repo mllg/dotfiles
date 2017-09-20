@@ -72,6 +72,18 @@
       invisible(x)
     }
 
+    ee$mb = function(...) {
+      requireNamespace("microbenchmark")
+      microbenchmark::microbenchmark(...)
+    }
+
+    ee$private = function(x) {
+      requireNamespace("R6")
+      if (!R6::is.R6(x))
+        stop(paste(deparse(substitute(x)), "is not an R6 class"))
+      x$.__enclos_env__[["private"]]
+    }
+
     if ("data.table" %in% loadedNamespaces()) {
       ee$print.data.frame = function(x, ...) {
         data.table:::print.data.table(x)
