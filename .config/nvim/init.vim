@@ -20,7 +20,7 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Appearance
     call dein#add('morhetz/gruvbox')
-    call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+    call dein#add('icymind/NeoSolarized')
     call dein#add('chriskempson/vim-tomorrow-theme')
     call dein#add('NLKNguyen/papercolor-theme')
     call dein#add('vim-airline/vim-airline')
@@ -425,7 +425,7 @@ endif
 " ======================================================================================================================
 set background=dark
 set t_Co=256
-if $NVIM_TUI_ENABLE_TRUE_COLOR && has("termguicolors")
+if has("termguicolors")
     set termguicolors
 endif
 
