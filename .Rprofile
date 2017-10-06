@@ -9,6 +9,7 @@
     useFancyQuotes = FALSE,
     mc.cores = cores,
     Ncpus = cores,
+    mlrng.debug = TRUE,
     # max.print = 10000,
     repos = repos,
     datatable.print.class = TRUE,
