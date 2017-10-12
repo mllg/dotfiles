@@ -119,7 +119,6 @@ set nostartofline
 set shortmess=aIT
 set mouse=a
 set clipboard=unnamedplus
-let g:terminal_scrollback_buffer=100000
 set conceallevel=0
 set noautochdir
 
@@ -203,6 +202,7 @@ augroup END
 
 augroup terminal_fixes
     autocmd TermOpen * set nobuflisted
+    autocmd TermOpen * setlocal scrollback=100000
 augroup END
 
 augroup spellcheck_on
