@@ -33,6 +33,7 @@ set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
 
 set -gx OPENBLAS_NUM_THREADS 1
+set -gx _R_CHECK_TESTS_NLINES_ 999
 set -gx R_EXPENSIVE_EXAMPLE_OK 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
