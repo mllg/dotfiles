@@ -263,10 +263,10 @@ nnoremap p p`]
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Windows resizing using arrow keys
-nnoremap <silent> <Left> :vertical resize -1<CR>
-nnoremap <silent> <Right> :vertical resize +1<CR>
-nnoremap <silent> <Up> :resize +1<CR>
-nnoremap <silent> <Down> :resize -1<CR>
+nnoremap <silent> <M-Left> :vertical resize -1<CR>
+nnoremap <silent> <M-Right> :vertical resize +1<CR>
+nnoremap <silent> <M-Up> :resize +1<CR>
+nnoremap <silent> <M-Down> :resize -1<CR>
 
 function s:UpdatePlugins()
     call delete(g:dein#install_log_filename)
