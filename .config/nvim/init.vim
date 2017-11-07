@@ -140,6 +140,7 @@ set shiftwidth=0
 set softtabstop=-1
 set shiftround
 set smartindent
+set cinkeys=0{,0},0),:,!^F,o,O,e
 set wrap
 set breakindent
 inoremap # X<c-h>#
