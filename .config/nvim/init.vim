@@ -48,7 +48,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/vim-easy-align') " Align on operators
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
-    "call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
     call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
     call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
