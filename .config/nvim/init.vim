@@ -200,9 +200,14 @@ augroup help_pages
     autocmd FileType help nested call MoveHelpRight()
 augroup END
 
+function! SetTermOptions()
+    set nobuflisted
+    setlocal scrollback=100000
+    setlocal nonumber
+endfunction
+
 augroup terminal_fixes
-    autocmd TermOpen * set nobuflisted
-    autocmd TermOpen * setlocal scrollback=100000
+    autocmd TermOpen * call SetTermOptions()
 augroup END
 
 augroup spellcheck_on
