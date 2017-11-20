@@ -297,10 +297,9 @@ endif
 if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
-    let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni#input_patterns.r = '\w+'
-    " let g:deoplete#omni#input_patterns.rmd =
-    " let g:deoplete#omni#input_patterns.rnoweb =
+    " let g:deoplete#omni#input_patterns = {}
+    " let g:deoplete#omni#input_patterns.r = '\w+'
+    " let g:deoplete#omni#input_patterns.r = '[^. *\t]\.\w*'
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
