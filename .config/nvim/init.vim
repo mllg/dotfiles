@@ -425,12 +425,16 @@ if dein#tap('vimtex')
 endif
 
 " ======================================================================================================================
-" Colorscheme
+" Colorscheme / Terminal
 " ======================================================================================================================
 set background=dark
 set t_Co=256
 if has("termguicolors")
     set termguicolors
+endif
+
+if !empty($KONSOLE_PROFILE_NAME)
+    set guicursor=
 endif
 
 if dein#tap('gruvbox')
