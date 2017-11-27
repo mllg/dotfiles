@@ -27,6 +27,7 @@ alias glog='nvim -c "GV" -c "1bd"'
 alias depclean="sudo pacman -Rns (pacman -Qtdq)"
 alias ...="cd ../../"
 alias ....="cd ../../../"
+fish_vi_key_bindings
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
