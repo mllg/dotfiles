@@ -24,7 +24,6 @@ rdatsci/rt
 covr
 profvis
 hadley/pkgdown
-jimhester/lookup
 pryr
 crayon
 
@@ -42,4 +41,3 @@ Rcpp
 RcppEigen
 rmarkdown
 mlr
-r-hub/rhub
