@@ -1,6 +1,7 @@
 .First = function() {
   repos = getOption("repos")
   repos[["CRAN"]] = "https://bioconductor.statistik.tu-dortmund.de/cran/"
+  Sys.setenv(TZ = "Europe/Berlin")
   cores = Sys.getenv("NCPUS", parallel::detectCores())
   user.lib = Sys.getenv("R_LIBS_USER")
 
