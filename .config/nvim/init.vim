@@ -297,10 +297,6 @@ endif
 if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
-    " let g:deoplete#omni#input_patterns = {}
-    " let g:deoplete#omni#input_patterns.r = '\w+'
-    " let g:deoplete#omni#input_patterns.r = '[^. *\t]\.\w*'
-    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -357,6 +353,7 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
+    let g:R_complete = 2
     let g:R_applescript = 0
     let g:R_assign = 0
     let g:R_close_term = 1
