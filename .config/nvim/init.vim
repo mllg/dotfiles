@@ -353,6 +353,8 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
+
+    let g:R_args_in_stline = 1
     let g:R_complete = 2
     let g:R_applescript = 0
     let g:R_assign = 0
