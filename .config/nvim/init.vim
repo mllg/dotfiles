@@ -35,6 +35,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neco-vim') " vim completion
     call dein#add('ujihisa/neco-look') " dict lookup
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
+    " call dein#add('roxma/nvim-completion-manager')
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -72,6 +73,7 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    " call dein#add('gaalcaras/ncm-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
@@ -304,25 +306,26 @@ if dein#tap('deoplete.nvim')
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
-    nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
+    " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('denite.nvim')
     nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
     nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
-    nmap <silent> <c-g> :<C-u>Denite grep<cr>
+    nmap <silent> <c-g> :<C-u>Denite -sorters= grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
     nmap <silent> <leader>y :<C-u>Denite neoyank<cr>
+    nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
     nmap <silent> <leader>u :<C-u>Denite -resume<cr>
     nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
     nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
-    nmap <silent> <leader>m :<C-u>Denite -start-insert file_mru<cr>
     nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#option('default', 'statusline', 0)
+	call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -353,7 +356,6 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
-
     let g:R_args_in_stline = 1
     let g:R_complete = 2
     let g:R_applescript = 0
