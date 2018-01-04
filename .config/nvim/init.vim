@@ -56,7 +56,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     call dein#add('w0rp/ale') " Linting
-    call dein#add('Shougo/neoyank.vim') " denite source for yank
+    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -315,7 +315,7 @@ if dein#tap('denite.nvim')
     nmap <silent> <c-g> :<C-u>Denite -sorters= grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
-    nmap <silent> <leader>y :<C-u>Denite neoyank<cr>
+    nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
     nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
     nmap <silent> <leader>u :<C-u>Denite -resume<cr>
     nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
@@ -424,6 +424,15 @@ if dein#tap('vimtex')
         let g:vimtex_compiler_progname = '/home/lang/.local/bin/nvr'
     endif
 endif
+
+if dein#tap('nvim-miniyank')
+    map p <Plug>(miniyank-autoput)
+    map P <Plug>(miniyank-autoPut)
+    " map <leader>p <Plug>(miniyank-startput)
+    " map <leader>P <Plug>(miniyank-startPut)
+    nmap <c-n> <Plug>(miniyank-cycle)
+endif
+
 
 " ======================================================================================================================
 " Colorscheme / Terminal
