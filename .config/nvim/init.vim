@@ -31,11 +31,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
-    call dein#add('Shougo/deoplete.nvim', {'on_i': 1}) " Completion
+    " call dein#add('Shougo/deoplete.nvim', {'on_i': 1}) " Completion
+    " call dein#add('ujihisa/neco-look') " dict lookup
+    " call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
+    call dein#add('roxma/nvim-completion-manager')
+    call dein#add('roxma/ncm-clang')
+    call dein#add('Shougo/neoinclude.vim')
     call dein#add('Shougo/neco-vim') " vim completion
-    call dein#add('ujihisa/neco-look') " dict lookup
-    call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
-    " call dein#add('roxma/nvim-completion-manager')
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -51,7 +53,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
     call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
-    call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
+    call dein#add('Shougo/neosnippet.vim') " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
@@ -73,7 +75,7 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    " call dein#add('gaalcaras/ncm-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('gaalcaras/ncm-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
@@ -307,6 +309,15 @@ if dein#tap('deoplete.nvim')
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
     " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
+endif
+
+if dein#tap('nvim-completion-manager')
+    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: "\<TAB>"
 endif
 
 if dein#tap('denite.nvim')
