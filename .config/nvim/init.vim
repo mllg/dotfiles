@@ -382,6 +382,7 @@ if dein#tap('Nvim-R')
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     let R_synctex = 0
+    let R_latexcmd = ['pdflatex']
     if !has("mac")
         let g:R_pdfviewer = 'okular'
     endif
