@@ -31,9 +31,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
-    " call dein#add('Shougo/deoplete.nvim', {'on_i': 1}) " Completion
-    " call dein#add('ujihisa/neco-look') " dict lookup
-    " call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('roxma/nvim-completion-manager')
     call dein#add('roxma/ncm-clang')
     call dein#add('Shougo/neoinclude.vim')
@@ -58,7 +55,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     call dein#add('w0rp/ale') " Linting
-    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -66,12 +62,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('airblade/vim-gitgutter') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
-    " File system navigation
+    " Denite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
     call dein#add('dbakker/vim-projectroot')
+    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
@@ -296,19 +293,6 @@ if dein#tap('vim-airline')
     let g:airline_extensions = ['branch', 'tabline', 'quickfix', 'whitespace', 'wordcount']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_highlighting_cache = 1
-endif
-
-if dein#tap('deoplete.nvim')
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
-
-    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: pumvisible() ? "\<C-n>" : "\<TAB>"
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: "\<TAB>"
-    " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('nvim-completion-manager')
