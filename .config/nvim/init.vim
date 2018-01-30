@@ -307,7 +307,7 @@ endif
 if dein#tap('denite.nvim')
     nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
     nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
-    nmap <silent> <c-g> :<C-u>Denite -sorters= grep<cr>
+    nmap <silent> <c-g> :<C-u>Denite grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
     nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
@@ -321,6 +321,7 @@ if dein#tap('denite.nvim')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#option('default', 'statusline', 0)
 	call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
+	call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
