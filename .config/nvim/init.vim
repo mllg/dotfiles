@@ -429,6 +429,10 @@ if dein#tap('nvim-miniyank')
     nmap <c-n> <Plug>(miniyank-cycle)
 endif
 
+if dein#tap('far.vim')
+    let g:far#window_layout = 'tab'
+endif
+
 
 " ======================================================================================================================
 " Colorscheme / Terminal
