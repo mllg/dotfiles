@@ -3,7 +3,7 @@
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
-let g:dein#types#git#clone_depth = 1
+"let g:dein#types#git#clone_depth = 1
 
 if dein#load_state(expand('~/.cache/dein'))
     call dein#begin(expand('~/.cache/dein'))
@@ -65,10 +65,11 @@ if dein#load_state(expand('~/.cache/dein'))
     " Denite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
+    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
+
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
     call dein#add('dbakker/vim-projectroot')
-    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
@@ -203,7 +204,7 @@ augroup END
 
 function! SetTermOptions()
     set nobuflisted
-    setlocal scrollback=100000
+    setlocal scrollback=10000
     setlocal nonumber
 endfunction
 
@@ -361,7 +362,8 @@ if dein#tap('Nvim-R')
     let g:R_tmux_split = 0
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "horizontal"
-    let g:R_openpdf = 1
+    let g:R_openpdf = 0
+    let g:R_openhtml = 0
     let g:R_tmux_title = "automatic"
     let R_hl_term = 1
     let g:r_indent_align_args = 0
