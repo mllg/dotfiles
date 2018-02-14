@@ -3,6 +3,7 @@
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
+let g:dein#types#git#default_protocol = 'ssh'
 "let g:dein#types#git#clone_depth = 1
 
 if dein#load_state(expand('~/.cache/dein'))
