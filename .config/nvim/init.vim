@@ -60,7 +60,8 @@ if dein#load_state(expand('~/.cache/dein'))
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
     call dein#add('tpope/vim-rhubarb')  " github support
-    call dein#add('airblade/vim-gitgutter') " Highlight changed lines
+    " call dein#add('airblade/vim-gitgutter') " Highlight changed lines
+    call dein#add('mhinz/vim-signify') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " Denite
