@@ -403,7 +403,7 @@ endif
 
 if dein#tap('vim-projectroot')
     nnoremap <leader>cp :ProjectRootCD<cr>
-    let g:rootmarkers = ['.projectroot','.git','.hg','.svn','.bzr','_darcs','build.xml','DESCRIPTION']
+    let g:rootmarkers = ['.projectroot','.hg','.svn','.bzr','DESCRIPTION','.git']
 endif
 
 if dein#tap('vim-easy-align')
