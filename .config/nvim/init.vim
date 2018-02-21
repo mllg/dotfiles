@@ -17,7 +17,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-sensible') " Better defaults
     call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
     call dein#add('dietsche/vim-lastplace') " restore cursor position at start
-    call dein#add('thinca/vim-prettyprint', {'on_cmd' : 'PrettyPrint'}) " pretty print vim variables
 
     " Appearance
     call dein#add('morhetz/gruvbox')
@@ -50,7 +49,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
-    call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
     call dein#add('Shougo/neosnippet.vim') " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
@@ -60,7 +58,6 @@ if dein#load_state(expand('~/.cache/dein'))
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
     call dein#add('tpope/vim-rhubarb')  " github support
-    " call dein#add('airblade/vim-gitgutter') " Highlight changed lines
     call dein#add('mhinz/vim-signify') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
@@ -69,6 +66,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
+    " FS navigation
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
     call dein#add('dbakker/vim-projectroot')
@@ -323,8 +321,8 @@ if dein#tap('denite.nvim')
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#option('default', 'statusline', 0)
-	call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
-	call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
+    call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
+    call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -403,7 +401,7 @@ endif
 
 if dein#tap('vim-projectroot')
     nnoremap <leader>cp :ProjectRootCD<cr>
-    let g:rootmarkers = ['.projectroot','.hg','.svn','.bzr','DESCRIPTION','.git']
+    let g:rootmarkers = ['DESCRIPTION','.svn','.hg','.git']
 endif
 
 if dein#tap('vim-easy-align')
