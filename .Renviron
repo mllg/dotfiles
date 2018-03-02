@@ -1,3 +1,4 @@
 LANGUAGE=en
+R_MAX_NUM_DLLS=999
 R_LIBS_USER=~/.R/library
 R_HISTFILE=~/.R/history
