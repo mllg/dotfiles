@@ -11,7 +11,6 @@ if [ -d ~/.R/library/rt/bin ]; then
     PATH=~/.R/library/rt/bin:$PATH
 fi
 
-
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias la="ls -alh"
