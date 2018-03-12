@@ -26,6 +26,7 @@ profvis
 hadley/pkgdown
 pryr
 crayon
+r-lib/debugme
 
 # frequently used
 data.table
