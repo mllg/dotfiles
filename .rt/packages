@@ -41,4 +41,5 @@ microbenchmark
 Rcpp
 RcppEigen
 rmarkdown
+tinytex
 mlr
