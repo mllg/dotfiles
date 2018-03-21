@@ -22,6 +22,12 @@
   Sys.setenv(LANGUAGE = "en")
   Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
+  if (Sys.info()[["sysname"]] == "Darwin") {
+    # Fix for wrong DPI if second monitor is connected
+    setHook(packageEvent("grDevices", "onLoad"),
+      function(...) grDevices::quartz.options(dpi = 96))
+  }
+
   if (nzchar(user.lib)) {
     user.lib = normalizePath(user.lib, mustWork = FALSE)
     if (!dir.exists(user.lib)) {
