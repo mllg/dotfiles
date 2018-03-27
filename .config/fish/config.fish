@@ -34,8 +34,6 @@ set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
 
 set -gx OPENBLAS_NUM_THREADS 1
-set -gx _R_CHECK_TESTS_NLINES_ 999
-set -gx R_EXPENSIVE_EXAMPLE_OK 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 set -gx FZF_TMUX 1
@@ -48,7 +46,7 @@ set -g theme_title_display_process yes
 set fish_color_command brgreen
 set fish_color_param brbrown
 
-for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
+for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/*/rt/bin $HOME/.fzf/bin $HOME/.local/bin
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end

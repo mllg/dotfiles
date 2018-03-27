@@ -3,7 +3,6 @@
   repos[["CRAN"]] = "https://bioconductor.statistik.tu-dortmund.de/cran/"
   Sys.setenv(TZ = "Europe/Berlin")
   cores = Sys.getenv("NCPUS", parallel::detectCores())
-  user.lib = Sys.getenv("R_LIBS_USER")
 
   options(
     menu.graphics = FALSE,
@@ -28,14 +27,13 @@
       function(...) grDevices::quartz.options(dpi = 96))
   }
 
-  if (nzchar(user.lib)) {
-    user.lib = normalizePath(user.lib, mustWork = FALSE)
-    if (!dir.exists(user.lib)) {
-      message("Creating empty user library ", user.lib)
-      dir.create(user.lib, recursive = TRUE)
-      .libPaths(user.lib)
-    }
+  v = paste(getRversion()[1L, 1:2], collapse = ".")
+  user.lib = normalizePath(file.path("~", ".R", "library", v), mustWork = FALSE)
+  if (!dir.exists(user.lib)) {
+    message("Creating empty user library ", user.lib)
+    dir.create(user.lib, recursive = TRUE)
   }
+  .libPaths(user.lib)
 
   if (interactive()) {
     pkgs = c("data.table", "devtools")

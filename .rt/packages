@@ -43,3 +43,4 @@ RcppEigen
 rmarkdown
 tinytex
 mlr
+batchtools
