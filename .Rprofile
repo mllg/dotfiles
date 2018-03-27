@@ -1,8 +1,8 @@
 .First = function() {
   repos = getOption("repos")
   repos[["CRAN"]] = "https://bioconductor.statistik.tu-dortmund.de/cran/"
+  Sys.setenv(TZ = "Europe/Berlin")
   cores = Sys.getenv("NCPUS", parallel::detectCores())
-  user.lib = Sys.getenv("R_LIBS_USER")
 
   options(
     menu.graphics = FALSE,
@@ -10,7 +10,8 @@
     mc.cores = cores,
     Ncpus = cores,
     mlrng.debug = TRUE,
-    # max.print = 10000,
+    setWidthOnResize = TRUE,
+    max.print = 10000,
     repos = repos,
     datatable.print.class = TRUE,
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
@@ -20,14 +21,19 @@
   Sys.setenv(LANGUAGE = "en")
   Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
-  if (nzchar(user.lib)) {
-    user.lib = normalizePath(user.lib, mustWork = FALSE)
-    if (!dir.exists(user.lib)) {
-      message("Creating empty user library ", user.lib)
-      dir.create(user.lib, recursive = TRUE)
-      .libPaths(user.lib)
-    }
+  if (Sys.info()[["sysname"]] == "Darwin") {
+    # Fix for wrong DPI if second monitor is connected
+    setHook(packageEvent("grDevices", "onLoad"),
+      function(...) grDevices::quartz.options(dpi = 96))
   }
+
+  v = paste(getRversion()[1L, 1:2], collapse = ".")
+  user.lib = normalizePath(file.path("~", ".R", "library", v), mustWork = FALSE)
+  if (!dir.exists(user.lib)) {
+    message("Creating empty user library ", user.lib)
+    dir.create(user.lib, recursive = TRUE)
+  }
+  .libPaths(user.lib)
 
   if (interactive()) {
     pkgs = c("data.table", "devtools")

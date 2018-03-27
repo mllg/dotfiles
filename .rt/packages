@@ -24,9 +24,9 @@ rdatsci/rt
 covr
 profvis
 hadley/pkgdown
-jimhester/lookup
 pryr
 crayon
+r-lib/debugme
 
 # frequently used
 data.table
@@ -41,5 +41,6 @@ microbenchmark
 Rcpp
 RcppEigen
 rmarkdown
+tinytex
 mlr
-r-hub/rhub
+batchtools

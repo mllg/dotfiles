@@ -3,7 +3,8 @@
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 let g:dein#install_log_filename = expand('~/.cache/dein-last.log')
-let g:dein#types#git#clone_depth = 1
+let g:dein#types#git#default_protocol = 'ssh'
+"let g:dein#types#git#clone_depth = 1
 
 if dein#load_state(expand('~/.cache/dein'))
     call dein#begin(expand('~/.cache/dein'))
@@ -16,7 +17,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-sensible') " Better defaults
     call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
     call dein#add('dietsche/vim-lastplace') " restore cursor position at start
-    call dein#add('thinca/vim-prettyprint', {'on_cmd' : 'PrettyPrint'}) " pretty print vim variables
 
     " Appearance
     call dein#add('morhetz/gruvbox')
@@ -31,10 +31,10 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
-    call dein#add('Shougo/deoplete.nvim', {'on_i': 1}) " Completion
+    call dein#add('roxma/nvim-completion-manager')
+    call dein#add('roxma/ncm-clang')
+    call dein#add('Shougo/neoinclude.vim')
     call dein#add('Shougo/neco-vim') " vim completion
-    call dein#add('ujihisa/neco-look') " dict lookup
-    call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -48,31 +48,32 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/vim-easy-align') " Align on operators
     call dein#add('AndrewRadev/switch.vim') " Switch values like true/false with gs
     call dein#add('machakann/vim-swap') " swap arguments with g< and g>
-    "call dein#add('tommcdo/vim-exchange') " exchange objects using cx[motion]
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
-    call dein#add('triglav/vim-visual-increment') " Increment numbers in visual mode
-    call dein#add('Shougo/neosnippet.vim', {'on_i' : 1}) " Snippet engine
+    call dein#add('Shougo/neosnippet.vim') " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     call dein#add('w0rp/ale') " Linting
-    call dein#add('Shougo/neoyank.vim') " denite source for yank
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
     call dein#add('tpope/vim-rhubarb')  " github support
-    call dein#add('airblade/vim-gitgutter') " Highlight changed lines
+    call dein#add('mhinz/vim-signify') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
-    " File system navigation
+    " Denite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
+    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
+
+    " FS navigation
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
     call dein#add('dbakker/vim-projectroot')
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('gaalcaras/ncm-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
@@ -140,6 +141,7 @@ set shiftwidth=0
 set softtabstop=-1
 set shiftround
 set smartindent
+set cinkeys=0{,0},0),:,!^F,o,O,e
 set wrap
 set breakindent
 inoremap # X<c-h>#
@@ -200,9 +202,14 @@ augroup help_pages
     autocmd FileType help nested call MoveHelpRight()
 augroup END
 
+function! SetTermOptions()
+    set nobuflisted
+    setlocal scrollback=10000
+    setlocal nonumber
+endfunction
+
 augroup terminal_fixes
-    autocmd TermOpen * set nobuflisted
-    autocmd TermOpen * setlocal scrollback=100000
+    autocmd TermOpen * call SetTermOptions()
 augroup END
 
 augroup spellcheck_on
@@ -263,10 +270,10 @@ nnoremap p p`]
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Windows resizing using arrow keys
-nnoremap <silent> <Left> :vertical resize -1<CR>
-nnoremap <silent> <Right> :vertical resize +1<CR>
-nnoremap <silent> <Up> :resize +1<CR>
-nnoremap <silent> <Down> :resize -1<CR>
+nnoremap <silent> <M-Left> :vertical resize -1<CR>
+nnoremap <silent> <M-Right> :vertical resize +1<CR>
+nnoremap <silent> <M-Up> :resize +1<CR>
+nnoremap <silent> <M-Down> :resize -1<CR>
 
 function s:UpdatePlugins()
     call delete(g:dein#install_log_filename)
@@ -289,22 +296,13 @@ if dein#tap('vim-airline')
     let g:airline_highlighting_cache = 1
 endif
 
-if dein#tap('deoplete.nvim')
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
-    " let g:deoplete#omni#input_patterns = {}
-    " let g:deoplete#omni#input_patterns.r = ['\w+']
-    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
-    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
-    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
-
+if dein#tap('nvim-completion-manager')
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: pumvisible() ? "\<C-n>" : "\<TAB>"
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
-    nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('denite.nvim')
@@ -313,16 +311,18 @@ if dein#tap('denite.nvim')
     nmap <silent> <c-g> :<C-u>Denite grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
-    nmap <silent> <leader>y :<C-u>Denite neoyank<cr>
+    nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
+    nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
     nmap <silent> <leader>u :<C-u>Denite -resume<cr>
     nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
     nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
-    nmap <silent> <leader>m :<C-u>Denite -start-insert file_mru<cr>
     nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#option('default', 'statusline', 0)
+    call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
+    call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -353,6 +353,8 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
+    let g:R_args_in_stline = 1
+    let g:R_complete = 2
     let g:R_applescript = 0
     let g:R_assign = 0
     let g:R_close_term = 1
@@ -360,12 +362,14 @@ if dein#tap('Nvim-R')
     let g:R_tmux_split = 0
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "horizontal"
-    let g:R_openpdf = 1
+    let g:R_openpdf = 0
+    let g:R_openhtml = 0
     let g:R_tmux_title = "automatic"
     let R_hl_term = 1
     let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     let R_synctex = 0
+    let R_latexcmd = ['pdflatex']
     if !has("mac")
         let g:R_pdfviewer = 'okular'
     endif
@@ -397,6 +401,7 @@ endif
 
 if dein#tap('vim-projectroot')
     nnoremap <leader>cp :ProjectRootCD<cr>
+    let g:rootmarkers = ['DESCRIPTION','.svn','.hg','.git']
 endif
 
 if dein#tap('vim-easy-align')
@@ -420,13 +425,30 @@ if dein#tap('vimtex')
     endif
 endif
 
+if dein#tap('nvim-miniyank')
+    map p <Plug>(miniyank-autoput)
+    map P <Plug>(miniyank-autoPut)
+    " map <leader>p <Plug>(miniyank-startput)
+    " map <leader>P <Plug>(miniyank-startPut)
+    nmap <c-n> <Plug>(miniyank-cycle)
+endif
+
+if dein#tap('far.vim')
+    let g:far#window_layout = 'tab'
+endif
+
+
 " ======================================================================================================================
-" Colorscheme
+" Colorscheme / Terminal
 " ======================================================================================================================
 set background=dark
 set t_Co=256
 if has("termguicolors")
     set termguicolors
+endif
+
+if !empty($KONSOLE_PROFILE_NAME)
+    set guicursor=
 endif
 
 if dein#tap('gruvbox')

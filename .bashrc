@@ -11,7 +11,6 @@ if [ -d ~/.R/library/rt/bin ]; then
     PATH=~/.R/library/rt/bin:$PATH
 fi
 
-
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias la="ls -alh"
@@ -20,3 +19,4 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bash_local ] && source ~/.bash_local
