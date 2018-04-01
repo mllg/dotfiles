@@ -359,7 +359,6 @@ if dein#tap('Nvim-R')
     let g:R_assign = 0
     let g:R_close_term = 1
     let g:R_in_buffer = 1
-    let g:R_tmux_split = 0
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "horizontal"
     let g:R_openpdf = 0
