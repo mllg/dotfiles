@@ -206,6 +206,8 @@ function! SetTermOptions()
     set nobuflisted
     setlocal scrollback=10000
     setlocal nonumber
+    nnoremap <buffer> <c-h> <Nop>
+    nnoremap <buffer> <c-l> <Nop>
 endfunction
 
 augroup terminal_fixes
