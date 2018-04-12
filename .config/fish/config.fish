@@ -17,7 +17,9 @@ set -U fish_user_abbreviations \
     'lmk=latexmk -pdf' \
     'du=du -h' \
     'df=df -h' \
-    'pjo=pj open'
+    'pjo=pj open' \
+    'fd=fd -I'
+
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
