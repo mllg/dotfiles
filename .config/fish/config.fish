@@ -27,7 +27,10 @@ alias glog='nvim -c "GV" -c "1bd"'
 alias depclean="sudo pacman -Rns (pacman -Qtdq)"
 alias ...="cd ../../"
 alias ....="cd ../../../"
-fish_vi_key_bindings
+
+fish_default_key_bindings
+# fish_vi_key_bindings
+# set -g theme_display_vi yes
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
@@ -40,7 +43,6 @@ set -gx FZF_TMUX 1
 set -gx PROJECT_PATHS ~/Projekte
 
 set -g theme_color_scheme gruvbox
-set -g theme_display_vi yes
 set -g theme_display_user yes
 set -g theme_title_display_process yes
 set fish_color_command brgreen
