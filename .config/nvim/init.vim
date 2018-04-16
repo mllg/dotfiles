@@ -12,7 +12,7 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Essentials
     call dein#add('tpope/vim-repeat') " Repeat more
-    call dein#add('tpope/vim-abolish') " Case insensitive replace
+    call dein#add('tpope/vim-abolish') " Case insensitive replace, ... and other stuff
     call dein#add('tpope/vim-eunuch') " Commands like :Remove
     call dein#add('tpope/vim-sensible') " Better defaults
     call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
