@@ -14,6 +14,7 @@
     max.print = 10000,
     repos = repos,
     datatable.print.class = TRUE,
+    datatable.print.keys = TRUE,
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
     rt.maintainer = "Michel Lang <michellang@gmail.com>"
   )
