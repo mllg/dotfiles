@@ -31,10 +31,9 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
-    call dein#add('roxma/nvim-completion-manager')
-    call dein#add('roxma/ncm-clang')
-    call dein#add('Shougo/neoinclude.vim')
+    call dein#add('Shougo/deoplete.nvim') " Completion
     call dein#add('Shougo/neco-vim') " vim completion
+    call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -73,7 +72,6 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Languages
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    call dein#add('gaalcaras/ncm-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
@@ -298,13 +296,22 @@ if dein#tap('vim-airline')
     let g:airline_highlighting_cache = 1
 endif
 
-if dein#tap('nvim-completion-manager')
+if dein#tap('deoplete.nvim')
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
+    " let g:deoplete#omni#input_patterns = {}
+    " let g:deoplete#omni#input_patterns.r = ['\w+']
+    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
+    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
+    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
+
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: pumvisible() ? "\<C-n>" : "\<TAB>"
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
+    " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('denite.nvim')
