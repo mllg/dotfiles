@@ -34,6 +34,8 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/deoplete.nvim') " Completion
     call dein#add('Shougo/neco-vim') " vim completion
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
+    call dein#add('ponko2/deoplete-fish')
+    call dein#add('ujihisa/neco-look')
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -283,6 +285,7 @@ command Update call s:UpdatePlugins()
 
 command Cleanup call map(dein#check_clean(), "delete(v:val, 'rf')")
 command Print exec ':hardcopy >~/vimprint.ps'
+
 nmap <F9> :Gstatus<cr>
 
 
