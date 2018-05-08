@@ -26,7 +26,6 @@ alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias mkdir="mkdir -p"
 alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
 alias glog='nvim -c "GV" -c "1bd"'
-alias depclean="sudo pacman -Rns (pacman -Qtdq)"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
