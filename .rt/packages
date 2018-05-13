@@ -23,7 +23,6 @@ inline
 rdatsci/rt
 covr
 profvis
-hadley/pkgdown
 pryr
 crayon
 r-lib/debugme
