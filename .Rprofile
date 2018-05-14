@@ -92,6 +92,13 @@
       x$.__enclos_env__[["private"]]
     }
 
+    ee$pkgdeps = function(repo) {
+      requireNamespace("pkgdepends")
+      r = pkgdepends::remotes$new(repo, lib = tempfile())
+      r$solve()
+      r$draw_tree()
+    }
+
     if ("data.table" %in% loadedNamespaces()) {
       ee$print.data.frame = function(x, ...) {
         data.table:::print.data.table(x)

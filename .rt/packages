@@ -26,6 +26,7 @@ profvis
 pryr
 crayon
 r-lib/debugme
+r-lib/pkgdepends
 
 # frequently used
 data.table
