@@ -92,9 +92,12 @@
       x$.__enclos_env__[["private"]]
     }
 
-    ee$pkgdeps = function(repo) {
+    ee$pkgdeps = function(repo, suggests = FALSE) {
       requireNamespace("pkgdepends")
-      r = pkgdepends::remotes$new(repo, lib = tempfile())
+      config = list()
+      if (isTRUE(suggests))
+        config$dependencies = TRUE
+      r = pkgdepends::remotes$new(repo, config, lib = tempfile())
       r$solve()
       r$draw_tree()
     }
