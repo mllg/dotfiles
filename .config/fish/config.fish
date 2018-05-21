@@ -55,6 +55,6 @@ for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/*/rt/bin $HOME
     end
 end
 
-if test -r "~/.config/fish/local.fish"
-  source "~/.config/fish/local.fish"
+if test -r ~/.config/fish/local.fish
+  source ~/.config/fish/local.fish
 end
