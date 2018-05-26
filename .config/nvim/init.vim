@@ -17,7 +17,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-sensible') " Better defaults
     call dein#add('tpope/vim-endwise') " Some completions for viml/zsh/...
     call dein#add('dietsche/vim-lastplace') " restore cursor position at start
-    call dein#add('junegunn/vim-slash') " better in-buffer search
 
     " Appearance
     call dein#add('morhetz/gruvbox')
