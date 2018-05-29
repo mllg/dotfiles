@@ -37,7 +37,7 @@
   .libPaths(user.lib)
 
   if (interactive()) {
-    pkgs = c("data.table", "devtools")
+    pkgs = c("data.table", "devtools", "gtfo")
     for (pkg in pkgs) {
       if (suppressPackageStartupMessages(!require(pkg, character.only = TRUE, quietly = TRUE)))
         message(sprintf("Package '%s' not installed", pkg))
