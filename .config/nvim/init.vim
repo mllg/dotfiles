@@ -122,6 +122,7 @@ set mouse=a
 set clipboard=unnamedplus
 set conceallevel=0
 set noautochdir
+set shell=/bin/bash
 
 " Timeout
 set timeout
@@ -427,7 +428,6 @@ endif
 
 if dein#tap('ale')
     let g:ale_enabled = 0
-    set shell=/bin/bash
 endif
 
 if dein#tap('vimtex')
