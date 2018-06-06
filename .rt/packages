@@ -30,6 +30,7 @@ r-lib/debugme
 r-lib/pkgdepends
 
 # frequently used
+OpenML
 data.table
 knitr
 ggplot2
