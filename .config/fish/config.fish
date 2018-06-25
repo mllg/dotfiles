@@ -29,9 +29,9 @@ alias glog='nvim -c "GV" -c "1bd"'
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
-fish_default_key_bindings
-# fish_vi_key_bindings
-# set -g theme_display_vi yes
+# fish_default_key_bindings
+fish_vi_key_bindings
+set -g theme_display_vi yes
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
