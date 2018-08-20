@@ -423,7 +423,11 @@ if dein#tap('vim-easy-align')
 endif
 
 if dein#tap('vim-move')
-    let g:move_key_modifier = 'C'
+    let g:move_map_keys = 0
+    nmap <C-j> <Plug>MoveLineDown
+    nmap <C-k> <Plug>MoveLineUp
+    vmap <C-j> <Plug>MoveBlockDown
+    vmap <C-k> <Plug>MoveBlockUp
 endif
 
 if dein#tap('ale')
