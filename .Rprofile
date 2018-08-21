@@ -64,11 +64,14 @@
       cat(header("Internal:"), "\n", sep = "")
       .Internal(inspect(x))
       if (!is.function(x)) {
-        m = methods(class = class(x))
-        tab = attr(m, "info")
-        if (nrow(tab) > 0L) {
-          cat("\n", header(paste0("Generics for `", class(x), "`:")), "\n", sep = "")
-          cat(paste(tab$generic, collapse = ", "), "\n")
+        classes = class(x)
+        for (cl in classes) {
+          m = methods(class = cl)
+          tab = attr(m, "info")
+          if (nrow(tab) > 0L) {
+            cat("\n", header(paste0("Generics for `", cl, "`:")), "\n", sep = "")
+            cat(paste(tab$generic, collapse = ", "), "\n")
+          }
         }
       }
       cat("\n", header("Structure:"), "\n", sep = "")
