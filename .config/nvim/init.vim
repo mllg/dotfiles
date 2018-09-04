@@ -449,7 +449,7 @@ if dein#tap('nvim-miniyank')
 endif
 
 if dein#tap('far.vim')
-    " let g:far#window_layout = 'tab'
+    let g:far#window_layout = 'tab'
     let g:far#source = 'rg'
 
 endif
