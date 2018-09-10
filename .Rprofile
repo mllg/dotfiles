@@ -9,7 +9,6 @@
     useFancyQuotes = FALSE,
     mc.cores = cores,
     Ncpus = cores,
-    mlrng.debug = TRUE,
     setWidthOnResize = TRUE,
     max.print = 10000,
     repos = repos,
