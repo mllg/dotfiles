@@ -82,9 +82,12 @@
       invisible(x)
     }
 
-    ee$mb = function(...) {
-      requireNamespace("microbenchmark")
-      microbenchmark::microbenchmark(...)
+    ee$bm = function(..., plot = FALSE) {
+      requireNamespace("bench")
+      bm = bench::mark(...)
+      if (plot)
+          print(ggplot2::autoplot(bm))
+      return(bm)
     }
 
     ee$private = function(x) {

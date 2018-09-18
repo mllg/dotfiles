@@ -41,6 +41,7 @@ tikzDevice
 pander
 xtable
 microbenchmark
+bench
 Rcpp
 RcppEigen
 rmarkdown
