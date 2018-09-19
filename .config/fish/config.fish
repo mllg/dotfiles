@@ -30,7 +30,7 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 
 # fish_default_key_bindings
-# fish_vi_key_bindings
+fish_vi_key_bindings
 set -g theme_display_vi yes
 
 set -gx EDITOR nvim
@@ -42,6 +42,8 @@ set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 set -gx FZF_TMUX 1
 set -gx PROJECT_PATHS ~/Projekte
+set -gx LANG en_US.UTF8
+set -gx LANGUAGE en
 
 set -g theme_color_scheme gruvbox
 set -g theme_display_user yes
