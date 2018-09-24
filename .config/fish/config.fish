@@ -37,12 +37,10 @@ set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
 
-set -gx OPENBLAS_NUM_THREADS 1
+# set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 set -gx FZF_TMUX 1
-set -gx PROJECT_PATHS ~/Projekte
-set -gx LANG en_US.UTF8
 set -gx LANGUAGE en
 
 set -g theme_color_scheme gruvbox
