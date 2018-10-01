@@ -333,7 +333,7 @@ if dein#tap('denite.nvim')
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-    call denite#custom#option('default', 'statusline', 0)
+    "call denite#custom#option('default', 'statusline', 0)
     call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
     call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 

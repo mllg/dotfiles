@@ -41,6 +41,8 @@ set -gx MANPAGER "nvim -c 'set ft=man' -"
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 set -gx FZF_TMUX 1
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
+set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -gx LANGUAGE en
 
 set -g theme_color_scheme gruvbox
