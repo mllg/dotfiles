@@ -57,7 +57,7 @@
     utils::rc.settings(ipck = TRUE)
 
     ee = new.env()
-    ee$info = function(x) {
+    ee$inspect = function(x) {
       requireNamespace("crayon", quietly = TRUE)
       header = crayon::combine_styles(crayon::bold, crayon::green)
       cat(header("Internal:"), "\n", sep = "")
