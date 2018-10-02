@@ -33,6 +33,7 @@
     message("Creating empty user library ", user.lib)
     dir.create(user.lib, recursive = TRUE)
   }
+  Sys.setenv("R_LIBS_USER" = user.lib)
   .libPaths(user.lib)
 
   if (interactive()) {
