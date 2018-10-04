@@ -20,13 +20,13 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Appearance
     call dein#add('morhetz/gruvbox')
-    call dein#add('icymind/NeoSolarized')
-    call dein#add('chriskempson/vim-tomorrow-theme')
-    call dein#add('NLKNguyen/papercolor-theme')
+    " call dein#add('icymind/NeoSolarized')
+    " call dein#add('chriskempson/vim-tomorrow-theme')
+    " call dein#add('NLKNguyen/papercolor-theme')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
-    call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
+    " call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
     " call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('kshenoy/vim-signature') " Show marks
 
@@ -36,6 +36,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('ponko2/deoplete-fish')
     call dein#add('ujihisa/neco-look')
+    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -54,7 +55,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
-    call dein#add('w0rp/ale') " Linting
+    " call dein#add('w0rp/ale') " Linting
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -67,13 +68,17 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
+    " FZF
+    " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
+    " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+
     " FS navigation
     call dein#add('justinmk/vim-dirvish')
     call dein#add('justinmk/vim-gtfo')
     call dein#add('dbakker/vim-projectroot')
 
     " Languages
-    call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('jalvesaq/Nvim-R', {'rev' : '0df0de1012ed017c9d9949b7e12c9a4d64ab0e50', 'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
@@ -303,11 +308,15 @@ endif
 if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
+    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
     " let g:deoplete#omni#input_patterns = {}
     " let g:deoplete#omni#input_patterns.r = ['\w+']
     " let g:deoplete#omni#input_patterns.rmd = ['\w+']
     " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
-    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
+
+    " call deoplete#custom#option('omni_patterns', {
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
+    " \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -316,6 +325,12 @@ if dein#tap('deoplete.nvim')
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
     " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
+endif
+
+if dein#tap('LanguageClient-neovim')
+    let g:LanguageClient_serverCommands = {
+        \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ }
 endif
 
 if dein#tap('denite.nvim')
@@ -366,8 +381,9 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
+    let g:R_complete = 1
     let g:R_args_in_stline = 1
-    let g:R_complete = 2
+
     let g:R_applescript = 0
     let g:R_assign = 0
     let g:R_close_term = 1

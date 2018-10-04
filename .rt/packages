@@ -16,6 +16,7 @@ spatial
 survival
 
 # devel
+languageserver
 devtools
 roxygen2
 testthat
