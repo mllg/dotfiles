@@ -36,7 +36,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('ponko2/deoplete-fish')
     call dein#add('ujihisa/neco-look')
-    " call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -78,7 +78,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('dbakker/vim-projectroot')
 
     " Languages
-    call dein#add('jalvesaq/Nvim-R', {'rev' : '0df0de1012ed017c9d9949b7e12c9a4d64ab0e50', 'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
@@ -314,9 +314,9 @@ if dein#tap('deoplete.nvim')
     " let g:deoplete#omni#input_patterns.rmd = ['\w+']
     " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
 
-    call deoplete#custom#option('omni_patterns', {
-    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
-    \ })
+    " call deoplete#custom#option('omni_patterns', {
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
+    " \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
