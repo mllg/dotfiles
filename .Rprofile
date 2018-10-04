@@ -120,14 +120,13 @@
   fns = c("~/.R/local", "~/.Rprofile.local")
   lapply(fns[file.exists(fns)], sys.source, envir = .GlobalEnv)
 
-  setHook(packageEvent("languageserver", "onLoad"), function(...) {
-    if (requireNamespace("lintr", quietly = TRUE)) {
-      x = lintr::default_linters
-      x[] = list(NULL)
-      options(languageserver.default_linters = x)
-    }
-  })
+#   setHook(packageEvent("languageserver", "onLoad"), function(...) {
+#     if (requireNamespace("lintr", quietly = TRUE)) {
+#       x = lintr::default_linters
+#       x[] = list(NULL)
+#       options(languageserver.default_linters = x)
+#     }
+#   })
 }
-
 
 # vim: ft=r
