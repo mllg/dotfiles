@@ -23,12 +23,13 @@ if dein#load_state(expand('~/.cache/dein'))
     " call dein#add('icymind/NeoSolarized')
     " call dein#add('chriskempson/vim-tomorrow-theme')
     " call dein#add('NLKNguyen/papercolor-theme')
-    call dein#add('vim-airline/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
+    " call dein#add('vim-airline/vim-airline')
+    " call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('ap/vim-buftabline')
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     " call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
     " call dein#add('christoomey/vim-tmux-navigator')
-    call dein#add('kshenoy/vim-signature') " Show marks
+    " call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
     call dein#add('Shougo/deoplete.nvim') " Completion
@@ -64,7 +65,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " Denite
-    call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/denite.nvim', {'rev' : '92e2f5d9183956a64db222ca1bf31f2413f811db'})
     call dein#add('Shougo/neomru.vim') " mru source for unite
     call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
@@ -78,8 +79,8 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('dbakker/vim-projectroot')
 
     " Languages
-    call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    " call dein#add('/home/lang/Projekte/vim-devtools-plugin')
+    call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
+    call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('octol/vim-cpp-enhanced-highlight')
