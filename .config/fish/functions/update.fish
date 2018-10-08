@@ -12,7 +12,6 @@ function update
     else
         info "Updating fisherman plugins"
         fisher
-        fisher up
     end
 
     if test -d $HOME/.fzf
