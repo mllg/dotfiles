@@ -36,7 +36,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('ponko2/deoplete-fish')
     call dein#add('ujihisa/neco-look')
-    " call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -64,7 +64,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " Denite
-    call dein#add('Shougo/denite.nvim')
+    " call dein#add('Shougo/denite.nvim')
     " call dein#add('Shougo/neomru.vim') " mru source for unite
     " call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
@@ -306,17 +306,18 @@ if dein#tap('vim-airline')
 endif
 
 if dein#tap('deoplete.nvim')
+    set shortmess+=c
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
+    " let g:deoplete#enable_smart_case = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
     " let g:deoplete#omni#input_patterns = {}
     " let g:deoplete#omni#input_patterns.r = ['\w+']
     " let g:deoplete#omni#input_patterns.rmd = ['\w+']
     " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
 
-    call deoplete#custom#option('omni_patterns', {
-    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
-    \ })
+    " call deoplete#custom#option('omni_patterns', {
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
+    " \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -403,8 +404,8 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
-    let g:R_complete = 1
-    let g:R_args_in_stline = 1
+    let g:R_complete = 2
+    " let g:R_args_in_stline = 1
 
     let g:R_applescript = 0
     let g:R_assign = 0
