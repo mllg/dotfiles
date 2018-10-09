@@ -36,7 +36,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('ponko2/deoplete-fish')
     call dein#add('ujihisa/neco-look')
-    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+    " call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -64,8 +64,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " Denite
-    " call dein#add('Shougo/denite.nvim', {'rev' : '92e2f5d9183956a64db222ca1bf31f2413f811db'})
-    " call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/denite.nvim')
     " call dein#add('Shougo/neomru.vim') " mru source for unite
     " call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
@@ -315,9 +314,9 @@ if dein#tap('deoplete.nvim')
     " let g:deoplete#omni#input_patterns.rmd = ['\w+']
     " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
 
-    " call deoplete#custom#option('omni_patterns', {
-    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
-    " \ })
+    call deoplete#custom#option('omni_patterns', {
+    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
+    \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -335,15 +334,32 @@ if dein#tap('LanguageClient-neovim')
 endif
 
 if dein#tap('fzf.vim')
+    function! s:build_quickfix_list(lines)
+      call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+      copen
+      cc
+    endfunction
+    let g:fzf_action = { 'ctrl-q': function('s:build_quickfix_list') }
+
     nmap <silent> <c-o> :Files<cr>
     nmap <silent> <c-g> :Rg<cr>
     nmap <silent> <leader>b :Buffers<cr>
-    nmap <silent> <leader>t :Tags<cr>
-    nmap <silent> <leader>fw :call fzf#vim#grep('rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1)
-    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(expand('<cword>')), 1, <bang>0)
-    nmap <silent> <leader>fw :Find<cr>
+    nmap <silent> <c-t> :Tags<cr>
+    nmap <silent> <leader>fw :call fzf#vim#grep('rg --column --line-number --no-heading --color=always '.shellescape(expand('<cword>')), 1)<cr>
 
+    " Disable fuzzy matching for grep
+    command! -bang -nargs=* Rg
+                \ call fzf#vim#grep(
+                \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+                \   { 'options' : '--exact'},
+                \   <bang>0)
+endif
+
+if dein#tap('denite.nvim')
+    " nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
+    " nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
     " nmap <silent> <c-g> :<C-u>Denite grep<cr>
+    " nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     " nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
     " nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
     " nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
@@ -351,21 +367,6 @@ if dein#tap('fzf.vim')
     " nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
     " nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
     " nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
-
-endif
-
-if dein#tap('denite.nvim')
-    nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
-    nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
-    nmap <silent> <c-g> :<C-u>Denite grep<cr>
-    nmap <silent> <leader>b :<C-u>Denite buffer<cr>
-    nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
-    nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
-    nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
-    nmap <silent> <leader>u :<C-u>Denite -resume<cr>
-    nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
-    nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
-    nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
@@ -376,7 +377,7 @@ if dein#tap('denite.nvim')
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
         call denite#custom#var('grep', 'command', ['rg'])
-        call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+        call denite#custom#var('grep', 'default_opts', ['--column --line-number', '--no-heading'])
         call denite#custom#var('grep', 'recursive_opts', [])
         call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
         call denite#custom#var('grep', 'separator', ['--'])

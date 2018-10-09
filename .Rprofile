@@ -15,7 +15,8 @@
     datatable.print.class = TRUE,
     datatable.print.keys = TRUE,
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
-    rt.maintainer = "Michel Lang <michellang@gmail.com>"
+    rt.maintainer = "Michel Lang <michellang@gmail.com>",
+    languageserver.default_linters = list()
   )
 
   Sys.setenv(LANGUAGE = "en")
@@ -119,14 +120,6 @@
 
   fns = c("~/.R/local", "~/.Rprofile.local")
   lapply(fns[file.exists(fns)], sys.source, envir = .GlobalEnv)
-
-  setHook(packageEvent("languageserver", "onLoad"), function(...) {
-    if (requireNamespace("lintr", quietly = TRUE)) {
-      x = lintr::default_linters
-      x[] = list(NULL)
-      options(languageserver.default_linters = x)
-    }
-  })
 }
 
 # vim: ft=r

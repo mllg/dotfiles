@@ -30,6 +30,7 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 
 # fish_default_key_bindings
+function fish_vi_cursor; end
 fish_vi_key_bindings
 set -g theme_display_vi yes
 
@@ -43,6 +44,7 @@ set -gx COLORTERM 1
 set -gx FZF_TMUX 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore'
 set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+set -gx FZF_DEFAULT_OPTS '--bind alt-a:select-all'
 set -gx LANGUAGE en
 
 set -g theme_color_scheme gruvbox
