@@ -36,7 +36,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('ponko2/deoplete-fish')
     call dein#add('ujihisa/neco-look')
-    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+    " call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -64,13 +64,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
 
     " Denite
-    " call dein#add('Shougo/denite.nvim')
-    " call dein#add('Shougo/neomru.vim') " mru source for unite
-    " call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
+    call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/neomru.vim') " mru source for unite
+    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
 
     " FZF
-    call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
-    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+    " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
+    " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
     " FS navigation
     call dein#add('justinmk/vim-dirvish')
@@ -357,28 +357,28 @@ if dein#tap('fzf.vim')
 endif
 
 if dein#tap('denite.nvim')
-    " nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
-    " nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
-    " nmap <silent> <c-g> :<C-u>Denite grep<cr>
-    " nmap <silent> <leader>b :<C-u>Denite buffer<cr>
-    " nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
-    " nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
-    " nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
-    " nmap <silent> <leader>u :<C-u>Denite -resume<cr>
-    " nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
-    " nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
-    " nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
+    nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
+    nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
+    nmap <silent> <c-g> :<C-u>Denite grep<cr>
+    nmap <silent> <leader>b :<C-u>Denite buffer<cr>
+    nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
+    nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
+    nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
+    nmap <silent> <leader>u :<C-u>Denite -resume<cr>
+    nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
+    nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
+    nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-    "call denite#custom#option('default', 'statusline', 0)
+    call denite#custom#option('default', 'statusline', 0)
     call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
     call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 
     if executable('rg')
         call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
         call denite#custom#var('grep', 'command', ['rg'])
-        call denite#custom#var('grep', 'default_opts', ['--column --line-number', '--no-heading'])
+        call denite#custom#var('grep', 'default_opts', ['--column', '--line-number', '--no-heading'])
         call denite#custom#var('grep', 'recursive_opts', [])
         call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
         call denite#custom#var('grep', 'separator', ['--'])
@@ -391,6 +391,10 @@ if dein#tap('denite.nvim')
         call denite#custom#var('grep', 'pattern_opt', [])
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'final_opts', [])
+    endif
+
+    if executable('fd')
+        call denite#custom#var('file_rec', 'command', ['fd', '--type', 'f', '--hidden', '--follow', '--exclude=.git', '--ignore-file=.ignore', '--full-path=.'])
     endif
 endif
 
