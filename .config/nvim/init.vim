@@ -81,7 +81,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
     call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
+    call dein#add('lervag/vimtex')
     call dein#add('octol/vim-cpp-enhanced-highlight')
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
@@ -147,9 +147,10 @@ set shiftwidth=0
 set softtabstop=-1
 set shiftround
 set smartindent
-set cinkeys=0{,0},0),:,!^F,o,O,e
 set wrap
 set breakindent
+
+set cinkeys=0{,0},0),:,!^F,o,O,e
 inoremap # X<c-h>#
 
 " Search
@@ -173,13 +174,6 @@ set spellsuggest=fast,20
 " ======================================================================================================================
 " Autocommands
 " ======================================================================================================================
-function! MoveHelpRight()
-    if !exists('w:help_is_moved') || w:help_is_moved != 'right'
-        wincmd L
-        let w:help_is_moved = 'right'
-    endif
-endfunction
-
 function! MakeSpellFiles()
     for d in glob('~/.config/nvim/spell/*.add', 1, 1)
         if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
@@ -187,6 +181,12 @@ function! MakeSpellFiles()
         endif
     endfor
 endfunction
+
+augroup mkspellfiles
+    autocmd!
+    autocmd VimEnter * call MakeSpellFiles()
+augroup END
+
 
 function! <SID>AutoProjectRootCD()
     try
@@ -203,10 +203,6 @@ augroup projectroot
     autocmd BufEnter * call <SID>AutoProjectRootCD()
 augroup END
 
-augroup help_pages
-    autocmd!
-    autocmd FileType help nested call MoveHelpRight()
-augroup END
 
 function! SetTermOptions()
     set nobuflisted
@@ -235,11 +231,6 @@ augroup comment_string
     autocmd!
     autocmd FileType r setlocal commentstring=#\ %s
     autocmd FileType rnoweb setlocal commentstring=%\ %s
-augroup END
-
-augroup mkspellfiles
-    autocmd!
-    autocmd VimEnter * call MakeSpellFiles()
 augroup END
 
 " ======================================================================================================================
@@ -306,18 +297,15 @@ if dein#tap('vim-airline')
 endif
 
 if dein#tap('deoplete.nvim')
+    call deoplete#custom#option('auto_complete_delay', 250)
     set shortmess+=c
     let g:deoplete#enable_at_startup = 1
     " let g:deoplete#enable_smart_case = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
-    " let g:deoplete#omni#input_patterns = {}
-    " let g:deoplete#omni#input_patterns.r = ['\w+']
-    " let g:deoplete#omni#input_patterns.rmd = ['\w+']
-    " let g:deoplete#omni#input_patterns.rnoweb = ['\w+']
 
-    " call deoplete#custom#option('omni_patterns', {
-    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
-    " \ })
+    call deoplete#custom#option('omni_patterns', {
+    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
+    \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -325,7 +313,6 @@ if dein#tap('deoplete.nvim')
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
         \: "\<TAB>"
-    " nmap <leader>c :let g:deoplete#disable_auto_complete=!g:deoplete#disable_auto_complete<cr>
 endif
 
 if dein#tap('LanguageClient-neovim')
@@ -409,8 +396,6 @@ endif
 
 if dein#tap('Nvim-R')
     let g:R_complete = 2
-    " let g:R_args_in_stline = 1
-
     let g:R_applescript = 0
     let g:R_assign = 0
     let g:R_close_term = 1
@@ -421,7 +406,6 @@ if dein#tap('Nvim-R')
     let g:R_openhtml = 0
     let g:R_tmux_title = "automatic"
     let R_hl_term = 1
-    let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     let R_synctex = 0
     let R_latexcmd = ['pdflatex']
@@ -477,6 +461,7 @@ if dein#tap('ale')
     let g:ale_enabled = 0
 endif
 
+let g:tex_flavor = 'latex'
 if dein#tap('vimtex')
     if filereadable(expand('~/.local/bin/nvr'))
         let g:vimtex_compiler_progname = '/home/lang/.local/bin/nvr'
