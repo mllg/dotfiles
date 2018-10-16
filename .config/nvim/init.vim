@@ -461,11 +461,9 @@ if dein#tap('ale')
     let g:ale_enabled = 0
 endif
 
-let g:tex_flavor = 'latex'
 if dein#tap('vimtex')
-    if filereadable(expand('~/.local/bin/nvr'))
-        let g:vimtex_compiler_progname = '/home/lang/.local/bin/nvr'
-    endif
+    let g:tex_flavor = 'latex'
+    let g:vimtex_compiler_progname = 'nvr'
 endif
 
 if dein#tap('nvim-miniyank')
