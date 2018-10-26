@@ -303,9 +303,10 @@ if dein#tap('deoplete.nvim')
     " let g:deoplete#enable_smart_case = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
-    call deoplete#custom#option('omni_patterns', {
-    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
-    \ })
+    " call deoplete#custom#option('omni_patterns', {
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\w*']
+    " \ })
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
