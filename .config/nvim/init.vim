@@ -81,7 +81,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
     call dein#add('/home/lang/Projekte/vim-devtools-plugin')
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    call dein#add('lervag/vimtex')
+    call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('octol/vim-cpp-enhanced-highlight')
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
@@ -147,10 +147,9 @@ set shiftwidth=0
 set softtabstop=-1
 set shiftround
 set smartindent
+set cinkeys=0{,0},0),:,!^F,o,O,e
 set wrap
 set breakindent
-
-set cinkeys=0{,0},0),:,!^F,o,O,e
 inoremap # X<c-h>#
 
 " Search
@@ -181,7 +180,6 @@ function! MakeSpellFiles()
         endif
     endfor
 endfunction
-
 augroup mkspellfiles
     autocmd!
     autocmd VimEnter * call MakeSpellFiles()
@@ -197,7 +195,6 @@ function! <SID>AutoProjectRootCD()
         " Silently ignore invalid buffers
     endtry
 endfunction
-
 augroup projectroot
     autocmd!
     autocmd BufEnter * call <SID>AutoProjectRootCD()
@@ -211,26 +208,8 @@ function! SetTermOptions()
     nnoremap <buffer> <c-h> <Nop>
     nnoremap <buffer> <c-l> <Nop>
 endfunction
-
 augroup terminal_fixes
     autocmd TermOpen * call SetTermOptions()
-augroup END
-
-augroup spellcheck_on
-    autocmd!
-    autocmd FileType gitcommit,tex,rmd,markdown,rnoweb setlocal spell
-augroup END
-
-augroup ftdetect_fixes
-    autocmd!
-    autocmd BufNewFile,BufReadPost *.Rmd set filetype=rmd
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-augroup END
-
-augroup comment_string
-    autocmd!
-    autocmd FileType r setlocal commentstring=#\ %s
-    autocmd FileType rnoweb setlocal commentstring=%\ %s
 augroup END
 
 " ======================================================================================================================
@@ -300,11 +279,11 @@ if dein#tap('deoplete.nvim')
     call deoplete#custom#option('auto_complete_delay', 250)
     set shortmess+=c
     let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#enable_smart_case = 1
+    let g:deoplete#enable_smart_case = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     " call deoplete#custom#option('omni_patterns', {
-    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\w*']
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
     " \ })
     " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
 
@@ -359,7 +338,7 @@ if dein#tap('denite.nvim')
 
     call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-    call denite#custom#option('default', 'statusline', 0)
+    "call denite#custom#option('default', 'statusline', 0)
     call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
     call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 
@@ -407,6 +386,7 @@ if dein#tap('Nvim-R')
     let g:R_openhtml = 0
     let g:R_tmux_title = "automatic"
     let R_hl_term = 1
+    let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     let R_synctex = 0
     let R_latexcmd = ['pdflatex']
