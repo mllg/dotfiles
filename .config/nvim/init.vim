@@ -53,7 +53,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
     call dein#add('Shougo/neosnippet.vim') " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
-    call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
+    " call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('w0rp/ale') " Linting
 
@@ -78,8 +78,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('dbakker/vim-projectroot')
 
     " Languages
-    call dein#add('jalvesaq/Nvim-R', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
-    call dein#add('/home/lang/Projekte/vim-devtools-plugin')
+    call dein#add('jalvesaq/Nvim-R') ", {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('octol/vim-cpp-enhanced-highlight')
