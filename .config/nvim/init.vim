@@ -358,10 +358,6 @@ if dein#tap('denite.nvim')
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'final_opts', [])
     endif
-
-    if executable('fd')
-        call denite#custom#var('file_rec', 'command', ['fd', '--type', 'f', '--hidden', '--follow', '--exclude=.git', '--ignore-file=.ignore', '--full-path=.'])
-    endif
 endif
 
 if dein#tap('neosnippet.vim')
