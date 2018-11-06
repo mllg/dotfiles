@@ -278,11 +278,10 @@ if dein#tap('deoplete.nvim')
     call deoplete#custom#option('auto_complete_delay', 250)
     set shortmess+=c
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
     call deoplete#custom#option('omni_patterns', {
-    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
+    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
     \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -370,9 +369,7 @@ if dein#tap('Nvim-R')
     let g:R_nvimpager = "horizontal"
     let g:R_openpdf = 0
     let g:R_openhtml = 0
-    let g:R_tmux_title = "automatic"
     let R_hl_term = 1
-    let g:r_indent_align_args = 0
     let g:tex_conceal = ""
     let R_synctex = 0
     let R_latexcmd = ['pdflatex']
