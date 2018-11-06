@@ -367,6 +367,7 @@ if dein#tap('Nvim-R')
     let g:R_in_buffer = 1
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = "horizontal"
+    let g:r_indent_align_args = 0
     let g:R_openpdf = 0
     let g:R_openhtml = 0
     let R_hl_term = 1
