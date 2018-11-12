@@ -275,14 +275,14 @@ if dein#tap('vim-airline')
 endif
 
 if dein#tap('deoplete.nvim')
-    call deoplete#custom#option('auto_complete_delay', 250)
     set shortmess+=c
     let g:deoplete#enable_at_startup = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
-    call deoplete#custom#option('omni_patterns', {
-    \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
-    \ })
+    " call deoplete#custom#option('auto_complete_delay', 250)
+    " call deoplete#custom#option('omni_patterns', {
+    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
+    " \ })
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -360,7 +360,7 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
-    let g:R_complete = 2
+    " let g:R_complete = 1
     let g:R_applescript = 0
     let g:R_assign = 0
     let g:R_close_term = 1
