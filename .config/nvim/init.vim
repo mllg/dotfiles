@@ -56,6 +56,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('w0rp/ale') " Linting
+    call dein#add('dhruvasagar/vim-table-mode')
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
