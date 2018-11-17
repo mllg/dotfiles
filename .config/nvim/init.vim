@@ -19,6 +19,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('dietsche/vim-lastplace') " restore cursor position at start
 
     " Appearance
+    call dein#add('ryanoasis/vim-devicons')
     call dein#add('morhetz/gruvbox')
     call dein#add('icymind/NeoSolarized')
     call dein#add('chriskempson/vim-tomorrow-theme')
@@ -125,7 +126,7 @@ set nostartofline
 set shortmess=aIT
 set mouse=a
 set clipboard=unnamedplus
-set conceallevel=0
+" set conceallevel=0
 set noautochdir
 set shell=/bin/bash
 
@@ -372,7 +373,7 @@ if dein#tap('Nvim-R')
     let g:R_openpdf = 0
     let g:R_openhtml = 0
     let R_hl_term = 1
-    let g:tex_conceal = ""
+    " let g:tex_conceal = ""
     let R_synctex = 0
     let R_latexcmd = ['pdflatex']
     if !has("mac")
