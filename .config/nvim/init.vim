@@ -83,7 +83,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jalvesaq/Nvim-R') ", {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
-    call dein#add('octol/vim-cpp-enhanced-highlight')
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
     call dein#add('honza/dockerfile.vim')
@@ -281,10 +280,12 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
-    " call deoplete#custom#option('auto_complete_delay', 250)
+    call deoplete#custom#option('auto_complete_delay', 250)
     " call deoplete#custom#option('omni_patterns', {
-    " \ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
+    " \ 'r' : ['\h\w*::\w*', '\h\w*\$\w*', '\h\w*', '\h\w*(\w*']
     " \ })
+
+    "\ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
 
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -394,6 +395,10 @@ if dein#tap('vim-startify')
     nmap <F2> :Startify<cr>
     let g:startify_bookmarks = [ {'n': '~/.config/nvim/init.vim'}, {'f': '~/.config/fish/config.fish'}, {'r': '~/.Rprofile'} ]
     let g:startify_change_to_dir = 0
+
+    function! StartifyEntryFormat()
+        return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+    endfunction
 endif
 
 if dein#tap('vim-surround')
@@ -452,11 +457,10 @@ endif
 " Colorscheme / Terminal
 " ======================================================================================================================
 set background=dark
-set t_Co=256
+let g:gruvbox_italic=1
 if has("termguicolors")
     set termguicolors
 endif
-
 if !empty($KONSOLE_PROFILE_NAME)
     set guicursor=
 endif
