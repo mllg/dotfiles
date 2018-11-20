@@ -37,7 +37,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
     call dein#add('ponko2/deoplete-fish')
     call dein#add('ujihisa/neco-look')
-    " call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -111,6 +111,7 @@ set showmode
 set textwidth=999
 set hidden
 set autowriteall
+set autoread
 set lazyredraw
 set encoding=utf-8
 set fileformats+=mac
@@ -212,6 +213,11 @@ augroup terminal_fixes
     autocmd TermOpen * call SetTermOptions()
 augroup END
 
+augroup autoread
+    autocmd!
+    autocmd FocusGained * :checktime
+augroup END
+
 " ======================================================================================================================
 " Mappings
 " ======================================================================================================================
@@ -280,7 +286,7 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
-    call deoplete#custom#option('auto_complete_delay', 250)
+    " call deoplete#custom#option('auto_complete_delay', 250)
     " call deoplete#custom#option('omni_patterns', {
     " \ 'r' : ['\h\w*::\w*', '\h\w*\$\w*', '\h\w*', '\h\w*(\w*']
     " \ })
