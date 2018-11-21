@@ -28,7 +28,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
-    " call dein#add('christoomey/vim-tmux-navigator')
+    call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('kshenoy/vim-signature') " Show marks
 
     " Completion
@@ -456,6 +456,16 @@ if dein#tap('far.vim')
     let g:far#window_layout = 'tab'
     let g:far#source = 'rg'
 
+endif
+
+if dein#tap('vim-tmux-navigator')
+    let g:tmux_navigator_no_mappings = 1
+
+    nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+    nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+    nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+    nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+    nnoremap <silent> <M-w> :TmuxNavigatePrevious<cr>
 endif
 
 
