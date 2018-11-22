@@ -53,7 +53,7 @@ set -g theme_title_display_process yes
 set fish_color_command brgreen
 set fish_color_param brbrown
 
-for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/*/rt/bin $HOME/.yarn/bin $HOME/.fzf/bin $HOME/.local/bin
+for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/*/rt/bin $HOME/.fzf/bin $HOME/.local/bin
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end
