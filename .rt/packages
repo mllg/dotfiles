@@ -27,12 +27,12 @@ profvis
 pryr
 crayon
 mllg/gtfo
-r-lib/debugme
-r-lib/pkgdepends
+debugme
+r-lib/revdepcheck
 
 # frequently used
 OpenML
-mlr-org/farff
+farff
 data.table
 knitr
 ggplot2
@@ -51,4 +51,3 @@ mlr
 batchtools
 mlbench
 DataExplorer
-jimhester/lookup

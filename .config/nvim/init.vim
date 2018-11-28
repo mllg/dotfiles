@@ -56,7 +56,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
     call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('w0rp/ale') " Linting
-    call dein#add('dhruvasagar/vim-table-mode')
+    call dein#add('dhruvasagar/vim-table-mode', {'on_cmd' : ['TableModeToggle']})
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
@@ -67,7 +67,7 @@ if dein#load_state(expand('~/.cache/dein'))
     " Denite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
-    call dein#add('bfredl/nvim-miniyank') " Yankring + denite source
+    call dein#add('Shougo/neoyank.vim')
 
     " FZF
     " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
@@ -80,7 +80,10 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Languages
     call dein#add('jalvesaq/Nvim-R') ", {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
-    call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    " call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    call dein#add('~/Projekte/vim-devtools-plugin/', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    " call dein#add('sgibb/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
@@ -316,7 +319,7 @@ if dein#tap('fzf.vim')
     nmap <silent> <c-o> :Files<cr>
     nmap <silent> <c-g> :Rg<cr>
     nmap <silent> <leader>b :Buffers<cr>
-    nmap <silent> <c-t> :Tags<cr>
+    nmap <silent> <leader>t :Tags<cr>
     nmap <silent> <leader>fw :call fzf#vim#grep('rg --column --line-number --no-heading --color=always '.shellescape(expand('<cword>')), 1)<cr>
 
     " Disable fuzzy matching for grep
@@ -334,6 +337,7 @@ if dein#tap('denite.nvim')
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
     nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
+    nmap <silent> <leader>t :<C-u>Denite tag<cr>
     nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
     nmap <silent> <leader>u :<C-u>Denite -resume<cr>
     nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
@@ -373,7 +377,7 @@ if dein#tap('Nvim-R')
     let g:R_close_term = 1
     let g:R_in_buffer = 1
     let g:rout_follow_colorscheme = 1
-    let g:R_nvimpager = "horizontal"
+    let g:R_nvimpager = 'no'
     let g:r_indent_align_args = 0
     let g:R_openpdf = 0
     let g:R_openhtml = 0
@@ -464,6 +468,10 @@ if dein#tap('vim-tmux-navigator')
     nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
     nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
     nnoremap <silent> <M-w> :TmuxNavigatePrevious<cr>
+endif
+
+if dein#tap('editorconfig-vim')
+    let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 endif
 
 
