@@ -371,14 +371,14 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
+    let g:r_indent_align_args = 0
     " let g:R_complete = 1
-    let g:R_applescript = 0
+    " let g:R_applescript = 0
     let g:R_assign = 0
-    let g:R_close_term = 1
-    let g:R_in_buffer = 1
+    " let g:R_close_term = 1
+    " let g:R_in_buffer = 1
     let g:rout_follow_colorscheme = 1
     let g:R_nvimpager = 'no'
-    let g:r_indent_align_args = 0
     let g:R_openpdf = 0
     let g:R_openhtml = 0
     let R_hl_term = 1
@@ -474,6 +474,18 @@ if dein#tap('editorconfig-vim')
     let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 endif
 
+
+if dein#tap('vim-devtools-plugin')
+    let g:devtools_commands = 0
+    command! -complete=dir -nargs=? RLoadPackage :call devtools#simple_cmd('load_all', <f-args>)
+    command! -complete=dir -nargs=? RCheckPackage :call devtools#simple_cmd('check', <f-args>)
+    command! -complete=dir -nargs=? RDocumentPackage :call devtools#simple_cmd('document', <f-args>)
+    command! -complete=dir -nargs=? RClean :call devtools#simple_cmd('clean_dll', <f-args>)
+    command! -complete=dir -nargs=* RTestPackage :call devtools#test(<f-args>)
+    command! -complete=dir -nargs=? RMake :call devtools#make(<f-args>)
+    command! -complete=dir -nargs=? RBuildPackageTags :call devtools#build_tags(<f-args>)
+    command! -complete=file -nargs=? RUsage :call devtools#usage(<f-args>)
+endif
 
 " ======================================================================================================================
 " Colorscheme / Terminal
