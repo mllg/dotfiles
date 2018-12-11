@@ -16,7 +16,7 @@
     datatable.print.keys = TRUE,
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
     rt.maintainer = "Michel Lang <michellang@gmail.com>",
-    help_type = "html",
+    # help_type = "html",
     languageserver.default_linters = list()
   )
 
@@ -29,15 +29,11 @@
       function(...) grDevices::quartz.options(dpi = 96))
   }
 
-  # v = paste(getRversion()[1L, 1:2], collapse = ".")
-  # user.lib = normalizePath(file.path("~", ".R", "library", v), mustWork = FALSE)
   user.lib = Sys.getenv("R_LIBS_USER")
   if (!dir.exists(user.lib)) {
     message("Creating empty user library ", user.lib)
     dir.create(user.lib, recursive = TRUE)
   }
-  # Sys.setenv("R_LIBS_USER" = user.lib)
-  # .libPaths(user.lib)
 
   if (interactive()) {
     pkgs = c("data.table", "gtfo")
