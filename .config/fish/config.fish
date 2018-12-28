@@ -1,25 +1,23 @@
-set -U fish_user_abbreviations \
-    'vi=nvim' \
-    'vim=nvim' \
-    'gc=git commit' \
-    'gd=git diff' \
-    'ga=git add' \
-    'gp=git push' \
-    'gco=git checkout' \
-    'gcl=git clone' \
-    'gl=git pull' \
-    'gs=git status' \
-    'gst=git status' \
-    'amend=git commit --amend --no-edit' \
-    'rtf=rtest --filter' \
-    'rgg=rg --files -uu --glob' \
-    'rgf=rg -F' \
-    'lmk=latexmk -pdf' \
-    'du=du -h' \
-    'df=df -h' \
-    'pjo=pj open' \
-    'fd=fd -I'
-
+abbr --add vi 'nvim'
+abbr --add vim 'nvim'
+abbr --add gc 'git commit'
+abbr --add gd 'git diff'
+abbr --add ga 'git add'
+abbr --add gp 'git push'
+abbr --add gco 'git checkout'
+abbr --add gcl 'git clone'
+abbr --add gl 'git pull'
+abbr --add gs 'git status'
+abbr --add gst 'git status'
+abbr --add amend 'git commit --amend --no-edit'
+abbr --add rtf 'rtest --filter'
+abbr --add rgg 'rg --files -uu --glob'
+abbr --add rgf 'rg -F'
+abbr --add lmk 'latexmk -pdf'
+abbr --add du 'du -h'
+abbr --add df 'df -h'
+abbr --add pjo 'pj open'
+abbr --add fd 'fd -I'
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
