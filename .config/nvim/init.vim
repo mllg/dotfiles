@@ -67,7 +67,7 @@ if dein#load_state(expand('~/.cache/dein'))
     " Denite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
-    call dein#add('Shougo/neoyank.vim')
+    call dein#add('bfredl/nvim-miniyank')
 
     " FZF
     " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
