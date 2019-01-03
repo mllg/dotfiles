@@ -284,8 +284,10 @@ endif
 if dein#tap('deoplete.nvim')
     set shortmess+=c
     let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
 
+    call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
+
+    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
     " call deoplete#custom#option('auto_complete_delay', 250)
     " call deoplete#custom#option('omni_patterns', {
     " \ 'r' : ['\h\w*::\w*', '\h\w*\$\w*', '\h\w*', '\h\w*(\w*']
