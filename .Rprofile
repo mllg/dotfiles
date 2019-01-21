@@ -118,6 +118,13 @@
 
   fns = c("~/.R/local", "~/.Rprofile.local")
   lapply(fns[file.exists(fns)], sys.source, envir = .GlobalEnv)
+
+  if (requireNamespace("rlang", quietly = TRUE)) {
+    options(
+        error = quote(rlang::entrace()),
+        rlang__backtrace_on_error = "collapse" # or "branch" or "full"
+    )
+  }
 }
 
 # vim: ft=r
