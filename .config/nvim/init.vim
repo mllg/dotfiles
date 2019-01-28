@@ -126,6 +126,7 @@ set nojoinspaces
 set virtualedit=block
 set nostartofline
 set shortmess=aIT
+set cmdheight=2
 set clipboard=unnamedplus
 " set conceallevel=0
 set noautochdir
