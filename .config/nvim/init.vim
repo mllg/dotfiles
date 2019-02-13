@@ -132,6 +132,7 @@ set clipboard=unnamedplus
 " set conceallevel=0
 set noautochdir
 set shell=/bin/bash
+set formatoptions+=roc
 
 " Timeout
 set timeout
@@ -150,11 +151,11 @@ set tabstop=4
 set shiftwidth=0
 set softtabstop=-1
 set shiftround
-set smartindent
-set cinkeys=0{,0},0),:,!^F,o,O,e
+set cindent
+" set cinkeys=0{,0},0),:,!^F,o,O,e
+" inoremap # X<c-h>#
 set wrap
 set breakindent
-inoremap # X<c-h>#
 
 " Search
 set inccommand=nosplit
