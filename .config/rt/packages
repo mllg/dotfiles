@@ -26,14 +26,13 @@ covr
 profvis
 pryr
 crayon
+cli
 mllg/gtfo
 debugme
 r-lib/revdepcheck
 
 # frequently used
 OpenML
-farff
-data.table
 knitr
 ggplot2
 gridExtra
@@ -43,10 +42,8 @@ pander
 xtable
 microbenchmark
 bench
-Rcpp
 RcppEigen
 rmarkdown
-tinytex
 mlr
 batchtools
 mlbench
