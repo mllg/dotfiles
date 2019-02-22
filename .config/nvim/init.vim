@@ -28,6 +28,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('mhinz/vim-startify') " better start screen with bookmarks and mru
     call dein#add('equalsraf/neovim-gui-shim') " for nvim-qt
     call dein#add('christoomey/vim-tmux-navigator')
+    call dein#add('tmux-plugins/vim-tmux-focus-events')
     call dein#add('kshenoy/vim-signature') " Show marks
     call dein#add('luochen1990/rainbow') " Rainbow parentheses
 
