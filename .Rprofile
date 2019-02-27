@@ -107,6 +107,26 @@
       r$draw_tree()
     }
 
+    ee$on_change = function(path, fun) {
+        path = normalizePath(path)
+        before = fileSnapshot(path)
+        fun(path, rownames(before$info))
+        repeat {
+            Sys.sleep(1)
+            after = fileSnapshot(path)
+            changed = changedFiles(before, after)$changes
+            files = rownames(changed)[apply(changed, 1, any)]
+            fun(path, files)
+            before = after
+        }
+    }
+
+    ee$build_vignettes = function() {
+        requireNamespace("rprojroot")
+        root = rprojroot::find_root(rprojroot::is_r_package)
+        on_change(file.path(root, "vignettes"), function(path, files) if (length(files)) pkgdown::build_articles(root, lazy = TRUE, preview = FALSE))
+    }
+
     if ("data.table" %in% loadedNamespaces()) {
       ee$print.data.frame = function(x, ...) {
         data.table:::print.data.table(x)
