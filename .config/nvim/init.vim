@@ -338,8 +338,8 @@ if dein#tap('fzf.vim')
 endif
 
 if dein#tap('denite.nvim')
-    nmap <silent> <c-t> :<C-u>Denite file_rec<cr>
-    nmap <silent> <c-o> :<C-u>DeniteProjectDir file_rec<cr>
+    nmap <silent> <c-t> :<C-u>Denite file/rec<cr>
+    nmap <silent> <c-o> :<C-u>DeniteProjectDir file/rec<cr>
     nmap <silent> <c-g> :<C-u>Denite grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
