@@ -13,4 +13,5 @@ for (lib in .libPaths()[1L]) {
   }
 }
 
-install.packages(unique(packages))
+if (length(packages))
+  install.packages(unique(packages))
