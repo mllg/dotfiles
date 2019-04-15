@@ -102,7 +102,7 @@
       config = list()
       if (isTRUE(suggests))
         config$dependencies = TRUE
-      r = pkgdepends::remotes$new(repo, config, lib = tempfile())
+      r = pkgdepends::remotes()$new(repo, config, lib = tempfile())
       r$solve()
       r$draw_tree()
     }
