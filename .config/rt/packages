@@ -30,6 +30,7 @@ cli
 mllg/gtfo
 debugme
 r-lib/revdepcheck
+pkgdown
 
 # frequently used
 OpenML
@@ -37,8 +38,6 @@ knitr
 ggplot2
 gridExtra
 RColorBrewer
-tikzDevice
-pander
 xtable
 microbenchmark
 bench
