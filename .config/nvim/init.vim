@@ -55,11 +55,12 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('vim-scripts/ReplaceWithRegister') " replace motion with register using gr<motion>
     call dein#add('Shougo/neosnippet.vim') " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
-    call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' })
-    call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
+    call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' }) " Kill Buffers
+    " call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('w0rp/ale') " Linting
     call dein#add('dhruvasagar/vim-table-mode', {'on_cmd' : ['TableModeToggle']})
     call dein#add('salsifis/vim-transpose', {'on_cmd' : ['TransposeWords']})
+    call dein#add('dyng/ctrlsf.vim')
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
