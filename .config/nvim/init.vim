@@ -71,7 +71,7 @@ if dein#load_state(expand('~/.cache/dein'))
     " Denite
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/neomru.vim') " mru source for unite
-    call dein#add('bfredl/nvim-miniyank')
+    call dein#add('Shougo/neoyank.vim')
 
     " FZF
     " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
@@ -345,7 +345,7 @@ if dein#tap('denite.nvim')
     nmap <silent> <c-g> :<C-u>Denite grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
-    nmap <silent> <leader>y :<C-u>Denite miniyank<cr>
+    nmap <silent> <leader>y :<C-u>Denite neoyank<cr>
     nmap <silent> <leader>t :<C-u>Denite tag<cr>
     nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
     nmap <silent> <leader>u :<C-u>Denite -resume<cr>
@@ -457,14 +457,6 @@ endif
 if dein#tap('vimtex')
     let g:tex_flavor = 'latex'
     let g:vimtex_compiler_progname = 'nvr'
-endif
-
-if dein#tap('nvim-miniyank')
-    map p <Plug>(miniyank-autoput)
-    map P <Plug>(miniyank-autoPut)
-    " map <leader>p <Plug>(miniyank-startput)
-    " map <leader>P <Plug>(miniyank-startPut)
-    nmap <c-n> <Plug>(miniyank-cycle)
 endif
 
 if dein#tap('far.vim')
