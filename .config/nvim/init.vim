@@ -66,7 +66,9 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('tpope/vim-fugitive') " git support
     call dein#add('tpope/vim-rhubarb')  " github support
     call dein#add('mhinz/vim-signify') " Highlight changed lines
+    " call dein#add('airblade/vim-gitgutter') " Highlight changed lines
     call dein#add('junegunn/gv.vim', {'on_cmd' : 'GV'}) " git browser
+    call dein#add('jreybert/vimagit', {'on_cmd': 'Magit'}) " yet another git plugin?
 
     " Denite
     call dein#add('Shougo/denite.nvim')
@@ -285,6 +287,7 @@ if dein#tap('vim-airline')
     let g:airline_extensions = ['branch', 'tabline', 'quickfix', 'whitespace', 'wordcount']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_highlighting_cache = 1
+    set noshowmode
 endif
 
 if dein#tap('deoplete.nvim')
