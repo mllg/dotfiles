@@ -138,7 +138,7 @@
     if (requireNamespace("rlang", quietly = TRUE)) {
         options(
             error = quote(rlang::entrace()),
-            rlang__backtrace_on_error = "collapse" # or "branch" or "full"
+            rlang_backtrace_on_error = "collapse" # or "branch" or "full"
         )
     }
   }
