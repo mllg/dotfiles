@@ -26,6 +26,7 @@ alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
 alias glog='nvim -c "GV" -c "1bd"'
 alias ...="cd ../../"
 alias ....="cd ../../../"
+alias misticks="rg '^[^`]*`([^`]*`[^`]*`)*[^`]*\$'"
 
 # fish_default_key_bindings
 function fish_vi_cursor; end
