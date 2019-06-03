@@ -19,7 +19,7 @@ if dein#load_state(expand('~/.cache/dein'))
 
     " Appearance
     call dein#add('ryanoasis/vim-devicons')
-    call dein#add('morhetz/gruvbox')
+    call dein#add('gruvbox-community/gruvbox')
     call dein#add('icymind/NeoSolarized')
     call dein#add('chriskempson/vim-tomorrow-theme')
     call dein#add('NLKNguyen/papercolor-theme')
@@ -60,7 +60,7 @@ if dein#load_state(expand('~/.cache/dein'))
     " call dein#add('w0rp/ale') " Linting
     call dein#add('dhruvasagar/vim-table-mode', {'on_cmd' : ['TableModeToggle']})
     call dein#add('salsifis/vim-transpose', {'on_cmd' : ['TransposeWords']})
-    call dein#add('dyng/ctrlsf.vim')
+    call dein#add('dyng/ctrlsf.vim', {'on_cmd': ['CtrlSF']})
 
     " Git/version control support
     call dein#add('tpope/vim-fugitive') " git support
