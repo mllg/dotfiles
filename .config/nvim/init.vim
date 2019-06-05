@@ -1,4 +1,4 @@
-" ======================================================================================================================
+" ======
 " Plugin Manager
 " ======================================================================================================================
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -71,13 +71,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jreybert/vimagit', {'on_cmd': 'Magit'}) " yet another git plugin?
 
     " Denite
-    call dein#add('Shougo/denite.nvim')
-    call dein#add('Shougo/neomru.vim') " mru source for unite
-    call dein#add('Shougo/neoyank.vim')
+    " call dein#add('Shougo/denite.nvim')
+    " call dein#add('Shougo/neomru.vim') " mru source for unite
+    " call dein#add('Shougo/neoyank.vim')
 
     " FZF
-    " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
-    " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+    call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
     " FS navigation
     call dein#add('justinmk/vim-dirvish')
@@ -343,9 +343,9 @@ if dein#tap('fzf.vim')
 endif
 
 if dein#tap('denite.nvim')
-    nmap <silent> <c-t> :<C-u>Denite file/rec<cr>
-    nmap <silent> <c-o> :<C-u>DeniteProjectDir file/rec<cr>
-    nmap <silent> <c-g> :<C-u>Denite grep<cr>
+    nmap <silent> <c-t> :<C-u>Denite -start-filter file/rec<cr>
+    nmap <silent> <c-o> :<C-u>DeniteProjectDir -start-filter file/rec<cr>
+    nmap <silent> <c-g> :<C-u>Denite -start-filter grep<cr>
     nmap <silent> <leader>b :<C-u>Denite buffer<cr>
     nmap <silent> <leader>d :<C-u>Denite directory_rec<cr>
     nmap <silent> <leader>y :<C-u>Denite neoyank<cr>
@@ -356,8 +356,8 @@ if dein#tap('denite.nvim')
     nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
     nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
-    call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-    call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+    " call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+    " call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
     "call denite#custom#option('default', 'statusline', 0)
     call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
     call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
