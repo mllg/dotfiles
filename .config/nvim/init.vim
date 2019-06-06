@@ -499,15 +499,13 @@ endif
 " Colorscheme / Terminal
 " ======================================================================================================================
 set background=dark
-let g:gruvbox_italic=1
-if has("termguicolors")
-    set termguicolors
-endif
+set termguicolors
 if !empty($KONSOLE_PROFILE_NAME)
     set guicursor=
 endif
 
 if dein#tap('gruvbox')
+    let g:gruvbox_italic=1
     colorscheme gruvbox
     hi! link rPreProc GruvboxBlue
     hi! link rFunction GruvboxAqua
