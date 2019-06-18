@@ -56,7 +56,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('Shougo/neosnippet.vim') " Snippet engine
     call dein#add('Shougo/neosnippet-snippets', {'depends' : 'neosnippet.vim'}) " Snippets
     call dein#add('mhinz/vim-sayonara', { 'on_cmd' : 'Sayonara' }) " Kill Buffers
-    " call dein#add('brooth/far.vim', {'on_cmd' : ['Far', 'FarDo', 'Farundo']}) " Find And Replace
     " call dein#add('w0rp/ale') " Linting
     call dein#add('dhruvasagar/vim-table-mode', {'on_cmd' : ['TableModeToggle']})
     call dein#add('salsifis/vim-transpose', {'on_cmd' : ['TransposeWords']})
@@ -88,7 +87,6 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jalvesaq/Nvim-R') ", {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
     " call dein#add('~/Projekte/vim-devtools-plugin/', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    " call dein#add('sgibb/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
 
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('keith/tmux.vim')
@@ -343,6 +341,22 @@ if dein#tap('fzf.vim')
 endif
 
 if dein#tap('denite.nvim')
+    function! s:denite_my_settings() abort
+        nnoremap <silent><buffer><expr> <CR>
+        \ denite#do_map('do_action')
+        nnoremap <silent><buffer><expr> d
+        \ denite#do_map('do_action', 'delete')
+        nnoremap <silent><buffer><expr> p
+        \ denite#do_map('do_action', 'preview')
+        nnoremap <silent><buffer><expr> q
+        \ denite#do_map('quit')
+        nnoremap <silent><buffer><expr> i
+        \ denite#do_map('open_filter_buffer')
+        nnoremap <silent><buffer><expr> <Space>
+        \ denite#do_map('toggle_select').'j'
+    endfunction
+    autocmd FileType denite call s:denite_my_settings()
+
     nmap <silent> <c-t> :<C-u>Denite -start-filter file/rec<cr>
     nmap <silent> <c-o> :<C-u>DeniteProjectDir -start-filter file/rec<cr>
     nmap <silent> <c-g> :<C-u>Denite -start-filter grep<cr>
@@ -352,14 +366,11 @@ if dein#tap('denite.nvim')
     nmap <silent> <leader>t :<C-u>Denite tag<cr>
     nmap <silent> <leader>m :<C-u>Denite file_mru<cr>
     nmap <silent> <leader>u :<C-u>Denite -resume<cr>
-    nmap <silent> <leader>n :<C-u>Denite -resume -select=+1 -immediately<cr>
-    nmap <silent> <leader>p :<C-u>Denite -resume -select=-1 -immediately<cr>
+    nmap <silent> <leader>n :<C-u>Denite -resume -cursor-pos=+1 -immediately<cr>
+    nmap <silent> <leader>p :<C-u>Denite -resume -cursor-pos=-1 -immediately<cr>
     nmap <silent> <leader>fw :<C-u>DeniteCursorWord grep<CR><CR><C-W><CR>
 
-    " call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-    " call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-    "call denite#custom#option('default', 'statusline', 0)
-    call denite#custom#source('grep', 'args', ['', '', '!']) " grep interactively
+	call denite#custom#source('grep', 'args', ['', '', '!'])
     call denite#custom#source('grep', 'sorters', []) " keep sort order of rg
 
     if executable('rg')
