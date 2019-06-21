@@ -70,13 +70,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jreybert/vimagit', {'on_cmd': 'Magit'}) " yet another git plugin?
 
     " Denite
-    " call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/denite.nvim')
     " call dein#add('Shougo/neomru.vim') " mru source for unite
     " call dein#add('Shougo/neoyank.vim')
 
     " FZF
-    call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
-    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+    " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
+    " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
     " FS navigation
     call dein#add('justinmk/vim-dirvish')
@@ -338,6 +338,10 @@ if dein#tap('fzf.vim')
                 \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
                 \   { 'options' : '--exact'},
                 \   <bang>0)
+    let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 endif
 
 if dein#tap('denite.nvim')
