@@ -40,6 +40,7 @@ set -gx MANPAGER "nvim -c 'set ft=man' -"
 # set -gx OPENBLAS_NUM_THREADS 1
 set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
+set -gx GTK_USE_PORTAL 1
 set -gx FZF_TMUX 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore'
 set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
