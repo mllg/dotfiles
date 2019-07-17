@@ -5,16 +5,20 @@ function update
         set_color normal
     end
 
-    if not test -f $HOME/.config/fish/functions/fisher.fish
+    if not test -f $HOME/.config/fish/functions/fundle.fish
         info "Installing fisherman"
-        curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
-        fisher
+        wget https://git.io/fundle -O $HOME/.config/fish/functions/fundle.fish
+        fundle install
     else
-        info "Updating fisherman plugins"
-        fisher
+        info "Updating fundle plugins"
+        fundle self-update
+        fundle update
     end
 
-    if test -d $HOME/.fzf
+    if not test -d $HOME/.fzf
+        info "Installing fzf"
+        git clone --depth=1 https://github.com/junegunn/fzf.git $HOME/.fzf
+    else
         info "Updating fzf"
         git -C "$HOME/.fzf" pull
         eval $HOME/.fzf/install --bin
@@ -27,7 +31,6 @@ function update
     else
         info "Updating TPM plugins"
         ~/.tmux/plugins/tpm/bin/install_plugins
-        ~/.tmux/plugins/tpm/bin/clean_plugins
         ~/.tmux/plugins/tpm/bin/update_plugins all
     end
 
@@ -46,8 +49,8 @@ function update
         rupdate
     end
 
-    if test -d $HOME/.config/fish/fish_history
-        info "Removing obsolete history file"
-        rm $HOME/.config/fish/fish_history
-    end
+    # if test -d $HOME/.config/fish/fish_history
+    #     info "Removing obsolete history file"
+    #     rm $HOME/.config/fish/fish_history
+    # end
 end

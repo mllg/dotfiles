@@ -24,34 +24,23 @@ alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias mkdir="mkdir -p"
 alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
 alias glog='nvim -c "GV" -c "1bd"'
-alias ...="cd ../../"
-alias ....="cd ../../../"
 alias misticks="rg '^[^`]*`([^`]*`[^`]*`)*[^`]*\$'"
 
 # fish_default_key_bindings
-function fish_vi_cursor; end
 fish_vi_key_bindings
-set -g theme_display_vi yes
+# function fish_vi_cursor; end
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
-
 # set -gx OPENBLAS_NUM_THREADS 1
-set -gx WEKA_HOME $HOME/.wekafiles
 set -gx COLORTERM 1
 set -gx GTK_USE_PORTAL 1
 set -gx FZF_TMUX 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore'
-set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -gx FZF_DEFAULT_OPTS '--bind alt-a:select-all'
 set -gx LANGUAGE en
 
-set -g theme_color_scheme gruvbox
-set -g theme_display_user yes
-set -g theme_title_display_process yes
-set fish_color_command brgreen
-set fish_color_param brbrown
 
 for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rt/bin $HOME/.fzf/bin $HOME/.local/bin
     if test -d "$p"
@@ -62,3 +51,22 @@ end
 if test -r ~/.config/fish/local.fish
   source ~/.config/fish/local.fish
 end
+
+
+fundle plugin 'danhper/fish-fastdir'
+fundle plugin 'jethrokuan/fzf'
+fundle plugin 'jethrokuan/z'
+fundle plugin 'edc/bass'
+
+if [ $TERM != 'linux' ];
+    fundle plugin 'oh-my-fish/theme-bobthefish'
+    set -g theme_display_vi yes
+    set -g theme_color_scheme gruvbox
+    set -g theme_nerd_fonts yes
+    set -g theme_title_display_process yes
+    set -g theme_display_user yes
+    set fish_color_command brgreen
+    set fish_color_param brbrown
+end
+
+fundle init
