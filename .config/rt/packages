@@ -44,6 +44,5 @@ bench
 RcppEigen
 rmarkdown
 mlr
-batchtools
 mlbench
 DataExplorer
