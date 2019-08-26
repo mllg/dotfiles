@@ -43,7 +43,7 @@ set -gx COLORTERM 1
 set -gx GTK_USE_PORTAL 1
 set -gx FZF_TMUX 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore'
-set -gx FZF_DEFAULT_OPTS '--bind alt-a:select-all'
+#set -gx FZF_DEFAULT_OPTS '--bind alt-a:select-all'
 set -gx LANGUAGE en
 
 
@@ -51,6 +51,11 @@ for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rt/bin $HOME/.
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end
+end
+
+
+if status --is-interactive; and type -q 'keychain'
+    keychain --eval --quiet -Q id_rsa | source
 end
 
 if test -r ~/.config/fish/local.fish

@@ -70,13 +70,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('jreybert/vimagit', {'on_cmd': 'Magit'}) " yet another git plugin?
 
     " Denite
-    call dein#add('Shougo/denite.nvim')
+    " call dein#add('Shougo/denite.nvim')
     " call dein#add('Shougo/neomru.vim') " mru source for unite
     " call dein#add('Shougo/neoyank.vim')
 
     " FZF
-    " call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
-    " call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+    call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
     " FS navigation
     call dein#add('justinmk/vim-dirvish')
@@ -319,29 +319,18 @@ if dein#tap('LanguageClient-neovim')
 endif
 
 if dein#tap('fzf.vim')
-    function! s:build_quickfix_list(lines)
-      call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-      copen
-      cc
-    endfunction
-    let g:fzf_action = { 'ctrl-q': function('s:build_quickfix_list') }
-
     nmap <silent> <c-o> :Files<cr>
-    nmap <silent> <c-g> :Rg<cr>
+    nmap <silent> <c-g> :Rg<space>
     nmap <silent> <leader>b :Buffers<cr>
     nmap <silent> <leader>t :Tags<cr>
-    nmap <silent> <leader>fw :call fzf#vim#grep('rg --column --line-number --no-heading --color=always '.shellescape(expand('<cword>')), 1)<cr>
-
+    nnoremap <silent> <Leader>fw :Rg <C-R><C-W><CR>
+    xnoremap <silent> <Leader>fw y:Rg <C-R>"<CR>
     " Disable fuzzy matching for grep
     command! -bang -nargs=* Rg
                 \ call fzf#vim#grep(
                 \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
                 \   { 'options' : '--exact'},
                 \   <bang>0)
-    let g:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit' }
 endif
 
 if dein#tap('denite.nvim')
