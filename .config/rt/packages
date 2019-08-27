@@ -30,7 +30,6 @@ cli
 mllg/gtfo
 debugme
 r-lib/revdepcheck
-pkgdown
 
 # frequently used
 OpenML
