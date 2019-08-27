@@ -21,7 +21,7 @@ function update
     else
         info "Updating fzf"
         git -C "$HOME/.fzf" pull
-        eval $HOME/.fzf/install --bin
+        eval $HOME/.fzf/install --bin --64
     end
 
     if not test -d $HOME/.tmux/plugins/tpm
