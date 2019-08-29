@@ -75,7 +75,7 @@ if dein#load_state(expand('~/.cache/dein'))
     " call dein#add('Shougo/neoyank.vim')
 
     " FZF
-    call dein#add('junegunn/fzf', { 'build': './install --64 --no-key-bindings --no-completion --no-update-rc --no-fish', 'merged': 0 })
+    call dein#add('~/.fzf')
     call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
     " FS navigation
