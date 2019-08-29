@@ -86,7 +86,7 @@ if dein#load_state(expand('~/.cache/dein'))
     " Languages
     call dein#add('jalvesaq/Nvim-R') ", {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']} )
     call dein#add('mllg/vim-devtools-plugin', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
-    " call dein#add('~/Projekte/vim-devtools-plugin/', {'on_ft' : ['r', 'rmd', 'rdoc', 'rnoweb'], 'on_path' : ['DESCRIPTION', 'NAMESPACE']})
+    " call dein#add('~/Projekte/vim-devtools-plugin/')
 
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('keith/tmux.vim')
@@ -331,6 +331,19 @@ if dein#tap('fzf.vim')
                 \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
                 \   { 'options' : '--exact'},
                 \   <bang>0)
+
+    function! s:fzf_r_history()
+        let l:history_file = expand('~/.Rhistory')
+        call g:devtools#send_cmd('utils::savehistory("' . l:history_file . '")')
+        call fzf#run({
+                    \ 'source': 'cat ' . l:history_file . ' | grep -v "# \\[history skip\\]$" | uniq',
+                    \ 'sink' :  g:SendCmdToR,
+                    \ 'options': '--no-sort --tac',
+                    \ 'down' : '40%' })
+    endfunction
+
+    command! RHistory call s:fzf_r_history()
+    nmap <silent> <leader>r :RHistory<cr>
 endif
 
 if dein#tap('denite.nvim')

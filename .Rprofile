@@ -42,7 +42,7 @@
         library(pkg, character.only = TRUE)
     }
 
-    hist = normalizePath(Sys.getenv("R_HISTFILE", "~/.Rhistory"), mustWork = FALSE)
+    hist = normalizePath("~/.Rhistory", mustWork = FALSE)
     if (!dir.exists(dirname(hist)))
       dir.create(dirname(hist), recursive = TRUE)
 
