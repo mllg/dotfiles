@@ -142,7 +142,7 @@ set timeout
 set timeoutlen=750
 
 " Completion
-set completeopt=longest,menuone
+set completeopt=noinsert,menuone,noselect
 set wildmenu
 set wildignore+=.git,.svn
 set wildignore+=.DS_Store
@@ -292,10 +292,10 @@ if dein#tap('deoplete.nvim')
     set shortmess+=c
     let g:deoplete#enable_at_startup = 1
 
-    call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
+    " call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
 
+    " call deoplete#custom#option('auto_complete_delay', 100)
     " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
-    " call deoplete#custom#option('auto_complete_delay', 250)
     " call deoplete#custom#option('omni_patterns', {
     " \ 'r' : ['\h\w*::\w*', '\h\w*\$\w*', '\h\w*', '\h\w*(\w*']
     " \ })
