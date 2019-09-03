@@ -43,6 +43,9 @@ set -gx COLORTERM 1
 set -gx GTK_USE_PORTAL 1
 set -gx FZF_TMUX 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore'
+set -gx FZF_FIND_FILE_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore . $dir'
+set -gx FZF_OPEN_COMMAND 'fd --type f --hidden --follow --exclude .git --ignore-file .ignore . $dir'
+
 #set -gx FZF_DEFAULT_OPTS '--bind alt-a:select-all'
 set -gx LANGUAGE en
 
