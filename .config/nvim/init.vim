@@ -33,12 +33,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('luochen1990/rainbow') " Rainbow parentheses
 
     " Completion
-    call dein#add('Shougo/deoplete.nvim') " Completion
-    call dein#add('Shougo/neco-vim') " vim completion
-    call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
-    call dein#add('ponko2/deoplete-fish')
-    call dein#add('ujihisa/neco-look')
-    call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('ncm2/ncm2')
+    call dein#add('gaalcaras/ncm-R')
+    call dein#add('ncm2/ncm2-bufword')
+    call dein#add('ncm2/ncm2-path')
+    call dein#add('ncm2/ncm2-neosnippet')
+    call dein#add('ncm2/ncm2-tmux')
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
@@ -288,27 +289,15 @@ if dein#tap('vim-airline')
     set noshowmode
 endif
 
-if dein#tap('deoplete.nvim')
+if dein#tap('ncm2')
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    set completeopt=noinsert,menuone,noselect
+
     set shortmess+=c
-    let g:deoplete#enable_at_startup = 1
-
-    " call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
-
-    " call deoplete#custom#option('auto_complete_delay', 100)
-    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
-    " call deoplete#custom#option('omni_patterns', {
-    " \ 'r' : ['\h\w*::\w*', '\h\w*\$\w*', '\h\w*', '\h\w*(\w*']
-    " \ })
-
-    "\ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
-
-    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: pumvisible() ? "\<C-n>" : "\<TAB>"
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: "\<TAB>"
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 endif
+
 
 if dein#tap('LanguageClient-neovim')
     let g:LanguageClient_diagnosticsList = 'Location'
