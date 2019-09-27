@@ -93,7 +93,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('lervag/vimtex', {'on_ft' : ['tex', 'Rnw']})
     call dein#add('keith/tmux.vim')
     call dein#add('dag/vim-fish')
-    call dein#add('honza/dockerfile.vim')
+    " call dein#add('honza/dockerfile.vim')
 
     call dein#end()
     call dein#save_state()
