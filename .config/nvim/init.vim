@@ -40,6 +40,9 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('ncm2/ncm2-path')
     call dein#add('ncm2/ncm2-neosnippet')
     call dein#add('ncm2/ncm2-tmux')
+    call dein#add('Shougo/neco-syntax')
+    call dein#add('ncm2/ncm2-syntax')
+    call dein#add('fgrsnau/ncm-otherbuf')
 
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
