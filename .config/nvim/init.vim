@@ -33,7 +33,7 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('luochen1990/rainbow') " Rainbow parentheses
 
     " Completion
-    " call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/nvim-yarp')
     call dein#add('ncm2/ncm2')
     call dein#add('gaalcaras/ncm-R')
     call dein#add('ncm2/ncm2-bufword')
