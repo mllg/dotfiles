@@ -42,6 +42,13 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('ncm2/ncm2-tmux')
     call dein#add('fgrsnau/ncm-otherbuf')
 
+    " call dein#add('Shougo/deoplete.nvim') " Completion
+    " call dein#add('Shougo/neco-vim') " vim completion
+    " call dein#add('wellle/tmux-complete.vim') " complete with words from other panes
+    " call dein#add('ponko2/deoplete-fish')
+    " call dein#add('ujihisa/neco-look')
+    " call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+
     " Edit helpers
     call dein#add('editorconfig/editorconfig-vim') " Support for editorconfig
     call dein#add('matze/vim-move') " Move lines with <c-h> etc
@@ -288,6 +295,28 @@ if dein#tap('vim-airline')
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_highlighting_cache = 1
     set noshowmode
+endif
+
+if dein#tap('deoplete.nvim')
+    set shortmess+=c
+    let g:deoplete#enable_at_startup = 1
+
+    call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
+
+    " let g:deoplete#_keyword_patterns = {'_' : '[a-zA-Z_ÄÖÜäöüß]\k*'}
+    " call deoplete#custom#option('auto_complete_delay', 250)
+    " call deoplete#custom#option('omni_patterns', {
+    " \ 'r' : ['\h\w*::\w*', '\h\w*\$\w*', '\h\w*', '\h\w*(\w*']
+    " \ })
+
+    "\ 'r' : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(\w*']
+
+    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: "\<TAB>"
 endif
 
 if dein#tap('ncm2')
