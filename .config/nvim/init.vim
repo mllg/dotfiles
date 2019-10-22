@@ -256,6 +256,9 @@ nnoremap <backspace> :Sayonara!<cr>
 nnoremap <Del> :Sayonara<cr>
 vnoremap . :normal .<cr>
 
+" terminal
+tnoremap <Esc> <C-\><C-n>
+
 " Keep search matches in the middle of the screen.
 nnoremap n nzz
 nnoremap N Nzz
