@@ -155,7 +155,7 @@ set completeopt=noinsert,menuone,noselect
 set wildmenu
 set wildignore+=.git,.svn
 set wildignore+=.DS_Store
-set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.o,*.lo,*.pdf
+set wildignore+=*.o,*.lo
 
 " Indent
 set expandtab
