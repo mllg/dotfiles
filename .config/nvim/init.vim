@@ -426,6 +426,7 @@ if dein#tap('neosnippet.vim')
 endif
 
 if dein#tap('Nvim-R')
+    " let r_syntax_hl_roxygen = 0
     let g:r_indent_align_args = 0
     " let g:R_complete = 1
     " let g:R_applescript = 0
