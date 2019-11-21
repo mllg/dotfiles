@@ -36,7 +36,7 @@
   }
 
   if (interactive()) {
-    pkgs = c("data.table", "gtfo")
+    pkgs = c("data.table")
     for (pkg in pkgs) {
       if (length(find.package(pkg, quiet = TRUE)))
         library(pkg, character.only = TRUE)
