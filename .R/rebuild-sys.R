@@ -4,6 +4,7 @@ libs = c("libopenblas", "libicu")
 
 packages = character()
 patterns = sprintf("^%s.* => not found$", libs)
+
 for (lib in .libPaths()) {
   files = list.files(path = lib, pattern = "\\.so(\\.[0-9]+)*$", recursive = TRUE, 
     ignore.case = TRUE, full.names = TRUE, no.. = TRUE)
@@ -17,5 +18,6 @@ for (lib in .libPaths()) {
   }
 }
 
-if (length(packages))
+if (length(packages)) {
   install.packages(unique(packages))
+}
