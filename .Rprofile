@@ -97,14 +97,11 @@
       x$.__enclos_env__[["private"]]
     }
 
-    ee$pkgdeps = function(repo, suggests = FALSE) {
+    ee$pkgdeps = function(pkg) {
       requireNamespace("pkgdepends")
-      config = list()
-      if (isTRUE(suggests))
-        config$dependencies = TRUE
-      r = pkgdepends::remotes()$new(repo, config, lib = tempfile())
-      r$solve()
-      r$draw_tree()
+      x = pkgdepends::new_pkg_deps(pkg)
+      x$solve()
+      x$draw()
     }
 
     ee$on_change = function(path, fun) {
