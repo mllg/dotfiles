@@ -1,0 +1,20 @@
+# VER=
+# CCACHE=ccache
+# CC=$(CCACHE) gcc$(VER)
+# CXX=$(CCACHE) g++$(VER)
+# CXX11=$(CCACHE) g++$(VER)
+# CXX14=$(CCACHE) g++$(VER)
+# FC=$(CCACHE) gfortran$(VER)
+# F77=$(CCACHE) gfortran$(VER)
+CFLAGS=-march=native -O2 -fstack-protector-strong --param=ssp-buffer-size=4
+CPPFLAGS=-march=native -O2 -fstack-protector-strong --param=ssp-buffer-size=4 
+CXXFLAGS=-march=native -O2 -fstack-protector-strong --param=ssp-buffer-size=4 
+CXX1XFLAGS=-march=native -O2 -fstack-protector-strong --param=ssp-buffer-size=4
+FFLAGS=-march=native -O2 -g
+
+STRIP=-Wl,-S
+SHLIB_CXXLDFLAGS = $(STRIP) -shared
+SHLIB_CXX11LDFLAGS = $(STRIP) -shared
+SHLIB_CXX14LDFLAGS = $(STRIP) -shared
+SHLIB_FCLDFLAGS = $(STRIP) -shared
+SHLIB_LDFLAGS = $(STRIP) -shared
