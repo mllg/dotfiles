@@ -18,6 +18,7 @@ abbr --add du 'du -h'
 abbr --add df 'df -h'
 abbr --add pjo 'pj open'
 abbr --add fd 'fd -I --hidden'
+abbr --add 2x2 'pdfnup --nup 2x2 --suffix "2x2"'
 
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
