@@ -5,31 +5,32 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'gruvbox-community/gruvbox'
-Plug 'junegunn/vim-easy-align'
-Plug 'liuchengxu/vim-clap'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
+Plug 'dag/vim-fish'
 Plug 'dietsche/vim-lastplace'
-Plug 'mhinz/vim-startify'
-Plug 'lifepillar/vim-solarized8'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'matze/vim-move'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'wellle/targets.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-commentary'
-Plug 'mhinz/vim-signify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'gruvbox-community/gruvbox'
 Plug 'honza/vim-snippets'
-Plug 'jalvesaq/Nvim-R'
-Plug 'mllg/vim-devtools-plugin'
+Plug 'jalvesaq/Nvim-R', { 'for': ['r', 'rmd'] }
+Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-gtfo'
-Plug 'AndrewRadev/switch.vim'
-Plug 'dag/vim-fish'
+Plug 'lifepillar/vim-solarized8'
+Plug 'liuchengxu/vim-clap'
+Plug 'matze/vim-move'
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-startify'
+Plug 'mllg/vim-devtools-plugin', { 'for': ['r', 'rmd'] }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'wellle/targets.vim'
 
 call plug#end()
 
@@ -47,8 +48,6 @@ set spellsuggest=fast,20
 set smartcase
 set ignorecase
 set wrapscan
-let mapleader = ','
-let maplocalleader = 'ß'
 
 function! SetTermOptions()
     set nobuflisted
@@ -61,9 +60,21 @@ augroup terminal_fixes
     autocmd TermOpen * call SetTermOptions()
 augroup END
 
+
+" Commands
+let mapleader = ','
+let maplocalleader = 'ß'
+
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+tnoremap <Esc> <C-\><C-n>
+nnoremap <backspace> :Sayonara!<cr>
+nnoremap <Del> :Sayonara<cr>
+nmap K <nop>
+
 " Colorscheme
 set termguicolors
 colorscheme gruvbox
+let g:gruvbox_italic=1
 
 " Airline
 let g:airline_powerline_fonts = 1
