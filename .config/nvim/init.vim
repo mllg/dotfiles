@@ -6,7 +6,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
-Plug 'dag/vim-fish'
 Plug 'dietsche/vim-lastplace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'gruvbox-community/gruvbox'
@@ -23,6 +22,7 @@ Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mllg/vim-devtools-plugin', { 'for': ['r', 'rmd'] }
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
