@@ -24,8 +24,6 @@ abbr --add 2x2 'pdfnup --nup 2x2 --suffix "2x2"'
 alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
 alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
 alias mkdir="mkdir -p"
-alias gstatus='nvim -c "Gstatus" -c "only" ..emptyfile'
-alias glog='nvim -c "GV" -c "1bd"'
 alias misticks="rg '^[^`]*`([^`]*`[^`]*`)*[^`]*\$'"
 
 # fish_default_key_bindings
