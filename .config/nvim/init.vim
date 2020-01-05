@@ -18,19 +18,18 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/vim-clap'
 Plug 'matze/vim-move'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mllg/vim-devtools-plugin', { 'for': ['r', 'rmd'] }
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -110,7 +109,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
-let g:coc_global_extensions = ['coc-snippets', 'coc-vimlsp', 'coc-r-lsp', 'coc-yaml']
+let g:coc_global_extensions = ['coc-snippets', 'coc-vimlsp', 'coc-r-lsp', 'coc-yaml', 'coc-git', 'coc-texlab']
 
 nmap <silent> gd <Plug>(coc-definition)
 
