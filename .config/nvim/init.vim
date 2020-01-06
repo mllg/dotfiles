@@ -167,11 +167,16 @@ let g:switch_mapping = ""
 nmap <silent> + :Switch<cr>
 
 function! FindRoot(markers)
-    if &ft == 'fugitive' || &ft == 'help'
+    let l:path = fnamemodify(expand('%'), ':p')
+
+    if empty(l:path)
+        let l:path = getcwd()
+    endif
+
+    if l:path[0] != '/'
         return ''
     endif
 
-    let l:path = fnamemodify(expand('%'), ':p')
     while 1
         let l:path = fnamemodify(l:path, ':h')
 
@@ -193,10 +198,13 @@ endfunction
 
 function! AutoRoot()
     try
-        let l:path = FindRoot(['.projectroot', '.editorconfig', '.git', '.svn', 'DESCRIPTION'])
-        if strlen(l:path)
-            echo '[AutoRoot] ' . l:path
-            execute ':cd' fnameescape(l:path)
+        if !exists('b:root_dir')
+            let b:root_dir = FindRoot(['.projectroot', '.editorconfig', '.git', '.svn', 'DESCRIPTION'])
+        endif
+
+        if strlen(b:root_dir) && b:root_dir !=# getcwd()
+            echo '[AutoRoot] ' . b:root_dir
+            execute ':cd' fnameescape(b:root_dir)
         endif
     catch
         " Silently ignore invalid buffers
@@ -205,5 +213,5 @@ endfunction
 
 augroup autoroot
     autocmd!
-    autocmd BufEnter * call AutoRoot()
+    autocmd VimEnter,BufEnter * call AutoRoot()
 augroup END
