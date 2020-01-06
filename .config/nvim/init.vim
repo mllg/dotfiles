@@ -31,6 +31,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
 Plug 'lervag/vimtex'
+Plug 'mllg/vim-cdroot'
 
 call plug#end()
 
@@ -166,52 +167,5 @@ let g:switch_custom_definitions = [['TRUE', 'FALSE']]
 let g:switch_mapping = ""
 nmap <silent> + :Switch<cr>
 
-function! FindRoot(markers)
-    let l:path = fnamemodify(expand('%'), ':p')
-
-    if empty(l:path)
-        let l:path = getcwd()
-    endif
-
-    if l:path[0] != '/'
-        return ''
-    endif
-
-    while 1
-        let l:path = fnamemodify(l:path, ':h')
-
-        " do not search in '~' or parents of '~'
-        if l:path == expand('$HOME') || l:path == '/'
-            break
-        endif
-
-        for marker in a:markers
-            let l:fn = l:path . '/' . marker
-            if filereadable(fn) || isdirectory(fn)
-                return path
-            endif
-        endfor
-    endwhile
-
-    return ''
-endfunction
-
-function! AutoRoot()
-    try
-        if !exists('b:root_dir')
-            let b:root_dir = FindRoot(['.projectroot', '.editorconfig', '.git', '.svn', 'DESCRIPTION'])
-        endif
-
-        if strlen(b:root_dir) && b:root_dir !=# getcwd()
-            echo '[AutoRoot] ' . b:root_dir
-            execute ':cd' fnameescape(b:root_dir)
-        endif
-    catch
-        " Silently ignore invalid buffers
-    endtry
-endfunction
-
-augroup autoroot
-    autocmd!
-    autocmd VimEnter,BufEnter * call AutoRoot()
-augroup END
+" cdroot
+let g:cdroot_markers = ['.projectroot', '.git', '.svn', 'DESCRIPTION', '.editorconfig']
