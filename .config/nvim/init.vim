@@ -24,6 +24,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -68,7 +69,7 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 tnoremap <Esc> <C-\><C-n>
 nnoremap <backspace> :Sayonara!<cr>
 nnoremap <Del> :Sayonara<cr>
-nmap K <nop>
+" nmap K <nop>
 
 " Colorscheme
 set termguicolors
@@ -164,3 +165,45 @@ let g:gtfo#terminals = { 'unix' : 'konsole --workdir' }
 let g:switch_custom_definitions = [['TRUE', 'FALSE']]
 let g:switch_mapping = ""
 nmap <silent> + :Switch<cr>
+
+function! FindRoot(markers)
+    if &ft == 'fugitive' || &ft == 'help'
+        return ''
+    endif
+
+    let l:path = fnamemodify(expand('%'), ':p')
+    while 1
+        let l:path = fnamemodify(l:path, ':h')
+
+        " do not search in '~' or parents of '~'
+        if l:path == expand('$HOME') || l:path == '/'
+            break
+        endif
+
+        for marker in a:markers
+            let l:fn = l:path . '/' . marker
+            if filereadable(fn) || isdirectory(fn)
+                return path
+            endif
+        endfor
+    endwhile
+
+    return ''
+endfunction
+
+function! AutoRoot()
+    try
+        let l:path = FindRoot(['.projectroot', '.editorconfig', '.git', '.svn', 'DESCRIPTION'])
+        if strlen(l:path)
+            echo '[AutoRoot] ' . l:path
+            execute ':cd' fnameescape(l:path)
+        endif
+    catch
+        " Silently ignore invalid buffers
+    endtry
+endfunction
+
+augroup autoroot
+    autocmd!
+    autocmd BufEnter * call AutoRoot()
+augroup END
