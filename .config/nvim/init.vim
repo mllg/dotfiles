@@ -24,7 +24,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -62,6 +62,21 @@ augroup terminal_fixes
 augroup END
 
 
+" set dictionary for completion
+function! SetDictionary()
+    let l:parts = split(&spelllang, ',')
+    if index(l:parts, 'en') != -1
+        setlocal dictionary+=/usr/share/dict/american-english
+    endif
+    if index(l:parts, 'de') != -1
+        setlocal dictionary+=/usr/share/dict/german
+    endif
+endfunction
+
+augroup set_dictionary
+    autocmd BufReadPost * call SetDictionary()
+augroup END
+
 " Commands
 let mapleader = ','
 let maplocalleader = 'ß'
@@ -74,8 +89,8 @@ nnoremap <Del> :Sayonara<cr>
 
 " Colorscheme
 set termguicolors
+let g:gruvbox_italic = 1
 colorscheme gruvbox
-let g:gruvbox_italic=1
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -99,19 +114,20 @@ set updatetime=300
 set cmdheight=2
 set signcolumn=yes
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
 let g:coc_snippet_next = '<tab>'
-let g:coc_global_extensions = ['coc-snippets', 'coc-vimlsp', 'coc-r-lsp', 'coc-yaml', 'coc-git', 'coc-texlab']
+let g:coc_global_extensions = ['coc-snippets', 'coc-vimlsp', 'coc-r-lsp', 'coc-yaml', 'coc-git', 'coc-texlab', 'coc-dictionary']
 
 nmap <silent> gd <Plug>(coc-definition)
 
