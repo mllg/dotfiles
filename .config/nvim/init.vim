@@ -21,7 +21,6 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'mhinz/vim-startify'
 Plug 'mllg/vim-devtools-plugin', { 'for': ['r', 'rmd'] }
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
@@ -32,6 +31,9 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
 Plug 'lervag/vimtex'
 Plug 'mllg/vim-cdroot'
+Plug 'dag/vim-fish'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'ericpruitt/tmux.vim'
 
 call plug#end()
 
