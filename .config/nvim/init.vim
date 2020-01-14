@@ -40,6 +40,7 @@ call plug#end()
 " Settings
 set expandtab
 set tabstop=4
+set shiftwidth=0
 set clipboard=unnamedplus
 set undofile
 set hidden
@@ -48,8 +49,9 @@ set number
 set printoptions=paper:A4,number:y
 set spelllang=en,de
 set spellsuggest=fast,20
-set smartcase
 set ignorecase
+set smartcase
+set gdefault
 set wrapscan
 
 function! SetTermOptions()
