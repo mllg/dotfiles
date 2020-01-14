@@ -34,6 +34,7 @@ Plug 'mllg/vim-cdroot'
 Plug 'dag/vim-fish'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'ericpruitt/tmux.vim'
+Plug 'machakann/vim-swap'
 
 call plug#end()
 
