@@ -15,7 +15,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-gtfo'
 Plug 'lifepillar/vim-solarized8'
-Plug 'liuchengxu/vim-clap'
 Plug 'matze/vim-move'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'mhinz/vim-startify'
@@ -35,6 +34,8 @@ Plug 'dag/vim-fish'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'ericpruitt/tmux.vim'
 Plug 'machakann/vim-swap'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -101,10 +102,6 @@ colorscheme gruvbox
 let g:airline_powerline_fonts = 1
 let g:airline_extensions = ['branch', 'tabline', 'quickfix', 'whitespace', 'wordcount']
 let g:airline#extensions#tabline#enabled = 1
-
-" Clap
-nmap <c-o> :Clap files<cr>
-nmap <c-g> :Clap grep<cr>
 
 
 " Mappings
@@ -190,3 +187,57 @@ nmap <silent> + :Switch<cr>
 
 " cdroot
 let g:cdroot_markers = ['.projectroot', '.git', '.svn', 'DESCRIPTION', '.editorconfig']
+
+" FZF
+nmap <silent> <c-o> :Files<cr>
+nmap <silent> <c-g> :RG<cr>
+nmap <silent> <leader>b :Buffers<cr>
+nmap <silent> <leader>t :Tags<cr>
+nnoremap <silent> <Leader>fw :Rg <C-R><C-W><CR>
+xnoremap <silent> <Leader>fw y:Rg <C-R>"<CR>
+
+" Disable fuzzy matching for grep
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   { 'options' : '--exact'},
+            \   <bang>0)
+
+function! s:fzf_r_history()
+    let l:history_file = expand('~/.Rhistory')
+    call g:devtools#send_cmd('utils::savehistory("' . l:history_file . '")')
+    call fzf#run({
+                \ 'source': 'cat ' . l:history_file . ' | grep -v "# \\[history skip\\]$" | uniq',
+                \ 'sink' :  g:SendCmdToR,
+                \ 'options': '--no-sort --tac',
+                \ 'down' : '40%' })
+endfunction
+
+command! RHistory call s:fzf_r_history()
+nmap <silent> <leader>r :RHistory<cr>
+
+function! FloatingFZF()
+    let width = float2nr(&columns * 0.9)
+    let height = float2nr(&lines * 0.6)
+    let opts = { 'relative': 'editor',
+                \ 'row': (&lines - height) / 2,
+                \ 'col': (&columns - width) / 2,
+                \ 'width': width,
+                \ 'height': height }
+
+    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+endfunction
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
