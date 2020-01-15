@@ -40,6 +40,7 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Settings
+set autoread
 set expandtab
 set tabstop=4
 set shiftwidth=0
