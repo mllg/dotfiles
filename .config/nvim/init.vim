@@ -40,6 +40,7 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Settings
+set mouse=a
 set autoread
 set expandtab
 set tabstop=4
@@ -60,6 +61,7 @@ set wrapscan
 function! SetTermOptions()
     set nobuflisted
     setlocal scrollback=10000
+    setlocal signcolumn=no
     setlocal nonumber
     nnoremap <buffer> <c-h> <Nop>
     nnoremap <buffer> <c-l> <Nop>
