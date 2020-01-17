@@ -16,5 +16,7 @@ set smartcase
 set gdefault
 set wrapscan
 set termguicolors
+set breakindent
+set formatoptions+=roc
 
 colorscheme gruvbox
