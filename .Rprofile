@@ -133,6 +133,10 @@
     attach(ee, warn.conflicts = FALSE)
   }
 
+  if (requireNamespace("rlang", quietly = TRUE)) {
+      options(error = rlang::entrace, rlang_backtrace_on_error = "branch")
+  }
+
   fns = c("~/.R/local", "~/.Rprofile.local")
   lapply(fns[file.exists(fns)], sys.source, envir = .GlobalEnv)
 }

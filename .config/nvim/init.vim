@@ -28,5 +28,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
+Plug 'itspriddle/vim-stripper', {'on' : 'Stripper'}
 
 call plug#end()
