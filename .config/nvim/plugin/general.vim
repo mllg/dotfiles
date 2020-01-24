@@ -18,5 +18,6 @@ set wrapscan
 set termguicolors
 set breakindent
 set formatoptions+=roc
+set completeopt-=preview
 
 colorscheme gruvbox
