@@ -9,39 +9,14 @@
     undo-commit = reset --soft HEAD^
     track = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`"
 	prune-branches = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D"
-[color]
-    branch = auto
-    diff = auto
-    interactive = auto
-    status = auto
-    ui = auto
-    interactive = auto
 [core]
     autocrlf = input
     ignorecase = false
 [clean]
     requireForce = false
-[diff]
-    tool = vimdiff
-	guitool = kdiff3
-[difftool]
-    prompt = false
-[difftool "vimdiff"]
-    cmd = "nvim -d '$LOCAL' '$REMOTE'"
-[merge]
-    tool = vimdiff
-	tool = kdiff3
-[mergetool]
-    prompt = true
-[mergetool "vimdiff"]
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [hub]
 	protocol = git
-[mergetool "kdiff3"]
-	trustExitCode = false
-[difftool "kdiff3"]
-	trustExitCode = false
 [fetch]
 	prune = true
 [push]
-	default = current
+    default = current
