@@ -17,7 +17,8 @@
     BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
     rt.maintainer = "Michel Lang <michellang@gmail.com>",
     # help_type = "html",
-    languageserver.default_linters = list()
+    languageserver.default_linters = list(),
+    usethis.full_name = "Michel Lang"
   )
 
   Sys.setenv(LANGUAGE = "en")
