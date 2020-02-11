@@ -7,7 +7,7 @@ endif
 let mapleader = ','
 let maplocalleader = 'ß'
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.cache/plugged')
 
 for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
     execute 'source' f
