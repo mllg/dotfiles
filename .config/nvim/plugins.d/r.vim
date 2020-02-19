@@ -26,14 +26,14 @@ command! -complete=dir -nargs=? RMake :call devtools#make(<f-args>)
 command! -complete=dir -nargs=? RBuildPackageTags :call devtools#build_tags(<f-args>)
 command! -complete=file -nargs=? RUsage :call devtools#usage(<f-args>)
 
-function! s:fzf_r_history()
-    let l:history_file = expand('~/.Rhistory')
-    call g:devtools#send_cmd('utils::savehistory("' . l:history_file . '")')
-    call fzf#run(fzf#wrap({
-                \ 'source': 'cat ' . l:history_file . ' | grep -v "# \\[history skip\\]$" | uniq',
-                \ 'sink' :  g:SendCmdToR,
-                \ 'options': '--no-sort --tac'}))
-endfunction
+" function! s:fzf_r_history()
+"     let l:history_file = expand('~/.Rhistory')
+"     call g:devtools#send_cmd('utils::savehistory("' . l:history_file . '")')
+"     call fzf#run(fzf#wrap({
+"                 \ 'source': 'cat ' . l:history_file . ' | grep -v "# \\[history skip\\]$" | uniq',
+"                 \ 'sink' :  g:SendCmdToR,
+"                 \ 'options': '--no-sort --tac'}))
+" endfunction
 
-command! RHistory call s:fzf_r_history()
-nmap <silent><leader>r :RHistory<cr>
+" command! RHistory call s:fzf_r_history()
+" nmap <silent><leader>r :RHistory<cr>
