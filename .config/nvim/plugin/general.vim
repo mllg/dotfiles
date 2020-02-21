@@ -19,5 +19,6 @@ set termguicolors
 set breakindent
 set formatoptions+=roc
 set completeopt-=preview
+set scrolloff=2
 
 colorscheme gruvbox
