@@ -11,3 +11,5 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
+
+nmap <F9> :Gstatus<cr>
