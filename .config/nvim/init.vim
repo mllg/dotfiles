@@ -31,5 +31,6 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
 Plug 'itspriddle/vim-stripper', {'on' : 'Stripper'}
 Plug 'kshenoy/vim-signature'
+Plug 'junegunn/gv.vim'
 
 call plug#end()
