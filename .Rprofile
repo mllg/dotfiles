@@ -18,7 +18,8 @@
     rt.maintainer = "Michel Lang <michellang@gmail.com>",
     # help_type = "html",
     languageserver.default_linters = list(),
-    usethis.full_name = "Michel Lang"
+    usethis.full_name = "Michel Lang",
+    browser = "xdg-open"
   )
 
   Sys.setenv(LANGUAGE = "en")
