@@ -32,5 +32,6 @@ Plug 'wellle/targets.vim'
 Plug 'itspriddle/vim-stripper', {'on' : 'Stripper'}
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/gv.vim'
+Plug 'rhysd/vim-grammarous'
 
 call plug#end()
