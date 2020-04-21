@@ -2,7 +2,7 @@
   repos = getOption("repos")
   repos[["CRAN"]] = "https://bioconductor.statistik.tu-dortmund.de/cran/"
   Sys.setenv(TZ = "Europe/Berlin")
-  cores = Sys.getenv("NCPUS", parallel::detectCores())
+  cores = as.integer(Sys.getenv("NCPUS", parallel::detectCores()))
 
   options(
     menu.graphics = FALSE,
