@@ -16,32 +16,34 @@ spatial
 survival
 
 # devel
-languageserver
-devtools
-roxygen2
-testthat
-inline
-rdatsci/rt
+cli
 covr
+crayon
+debugme
+devtools
+inline
+languageserver
+mllg/gtfo
 profvis
 pryr
-crayon
-cli
-mllg/gtfo
-debugme
+rdatsci/rt
 r-lib/revdepcheck
+roxygen2
+rprojroot
+testthat
 
 # frequently used
-OpenML
-knitr
+bench
+DataExplorer
 ggplot2
 gridExtra
-RColorBrewer
-xtable
+knitr
 microbenchmark
-bench
+mlbench
+mlr
+mlr3verse
+OpenML
+RColorBrewer
 RcppEigen
 rmarkdown
-mlr
-mlbench
-DataExplorer
+xtable
