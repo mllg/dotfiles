@@ -15,14 +15,14 @@ function update
         fundle update
     end
 
-    if not test -d $HOME/.fzf
-        info "Installing fzf"
-        git clone --depth=1 https://github.com/junegunn/fzf.git $HOME/.fzf
-    else
-        info "Updating fzf"
-        git -C "$HOME/.fzf" pull
-        eval $HOME/.fzf/install --bin --64
-    end
+    # if not test -d $HOME/.fzf
+    #     info "Installing fzf"
+    #     git clone --depth=1 https://github.com/junegunn/fzf.git $HOME/.fzf
+    # else
+    #     info "Updating fzf"
+    #     git -C "$HOME/.fzf" pull
+    #     eval $HOME/.fzf/install --bin --64
+    # end
 
     if not test -d $HOME/.tmux/plugins/tpm
         info "Installing TPM"
