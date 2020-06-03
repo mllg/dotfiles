@@ -26,7 +26,7 @@ languageserver
 mllg/gtfo
 profvis
 pryr
-rdatsci/rt
+rdatsci/rtcl
 r-lib/revdepcheck
 roxygen2
 rprojroot
