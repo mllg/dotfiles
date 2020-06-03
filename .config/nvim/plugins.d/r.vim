@@ -6,7 +6,9 @@ let g:r_syntax_hl_roxygen = 0
 
 let g:r_indent_align_args = 0
 let g:R_assign = 0
+let Rout_more_colors = 1
 let g:rout_follow_colorscheme = 1
+" let R_hi_fun_paren = 1 " might be slow according to docs
 let g:R_nvimpager = 'horizontal'
 let g:R_openpdf = 0
 let g:R_openhtml = 0
