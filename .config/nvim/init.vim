@@ -33,5 +33,7 @@ Plug 'itspriddle/vim-stripper', {'on' : 'Stripper'}
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/gv.vim'
 Plug 'rhysd/vim-grammarous'
+Plug 'dhruvasagar/vim-table-mode'
+
 
 call plug#end()
