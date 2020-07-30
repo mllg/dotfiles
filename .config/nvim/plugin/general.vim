@@ -22,3 +22,4 @@ set completeopt-=preview
 set scrolloff=2
 
 colorscheme gruvbox
+let g:gruvbox_italic=1
