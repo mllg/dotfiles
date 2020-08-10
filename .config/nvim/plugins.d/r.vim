@@ -15,7 +15,8 @@ let g:R_openpdf = 0
 let g:R_openhtml = 0
 let R_hl_term = 1
 let R_synctex = 0
-let R_latexcmd = ['pdflatex']
+let R_latexcmd = ['latexmk', '-pdf', '-pdflatex="xelatex %O -synctex=1 %S"']
+
 if !has("mac")
     let g:R_pdfviewer = 'okular'
 endif
