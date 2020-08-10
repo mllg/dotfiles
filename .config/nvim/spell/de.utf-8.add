@@ -110,8 +110,13 @@ visualisierbar
 Entscheidungsgrenzen
 Klassifikators
 Verlustfunktionen
+<<<<<<< HEAD
 Klassenwahrscheinlichkeiten
 Klassenhäufigkeiten
 Trainingsdaten
 Terminalknoten
 Minimierungsproblem
+=======
+Optimierungsproblem
+Lernproblem
+>>>>>>> 542bd48... ...
