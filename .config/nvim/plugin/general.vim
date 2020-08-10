@@ -20,6 +20,7 @@ set breakindent
 set formatoptions+=roc
 set completeopt-=preview
 set scrolloff=2
+set nofoldenable
 
 colorscheme gruvbox
 let g:gruvbox_italic=1
