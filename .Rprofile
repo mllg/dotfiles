@@ -120,11 +120,11 @@
         }
     }
 
-    ee$build_vignettes = function() {
-        requireNamespace("rprojroot")
-        root = rprojroot::find_root(rprojroot::is_r_package)
-        on_change(file.path(root, "vignettes"), function(path, files) if (length(files)) pkgdown::build_articles(root, lazy = TRUE, preview = FALSE))
-    }
+    # ee$build_vignettes = function() {
+    #     requireNamespace("rprojroot")
+    #     root = rprojroot::find_root(rprojroot::is_r_package)
+    #     on_change(file.path(root, "vignettes"), function(path, files) if (length(files)) pkgdown::build_articles(root, lazy = TRUE, preview = FALSE))
+    # }
 
     if ("data.table" %in% loadedNamespaces()) {
       ee$print.data.frame = function(x, ...) {
