@@ -44,3 +44,5 @@ command! -complete=file -nargs=? RUsage :call devtools#usage(<f-args>)
 
 " command! RHistory call s:fzf_r_history()
 " nmap <silent><leader>r :RHistory<cr>
+"
+
