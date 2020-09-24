@@ -86,6 +86,9 @@
 
     ee$bm = function(..., plot = FALSE) {
       requireNamespace("bench")
+      requireNamespace("withr")
+
+      withr::local_options(list(datatable.verbose = FALSE))
       bm = bench::mark(...)
       if (plot)
           print(ggplot2::autoplot(bm))
