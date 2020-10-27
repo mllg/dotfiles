@@ -32,3 +32,6 @@
   prompt = false
 [diff]
   tool = vimdiff
+
+[alias]
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
