@@ -2,6 +2,9 @@ Plug 'jalvesaq/R-Vim-runtime'
 Plug 'jalvesaq/Nvim-R', { 'for': ['r', 'rmd'] }
 Plug 'mllg/vim-devtools-plugin', { 'for': ['r', 'rmd'] }
 
+"let R_path='/opt/r-devel/bin/'
+
+
 let g:r_syn_minlines = 100
 let g:r_syntax_hl_roxygen = 1
 
