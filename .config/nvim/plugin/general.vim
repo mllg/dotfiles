@@ -21,6 +21,7 @@ set formatoptions+=roc
 set completeopt-=preview
 set scrolloff=2
 set nofoldenable
+set splitright
 
 colorscheme gruvbox
 let g:gruvbox_italic=1
