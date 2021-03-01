@@ -1,1 +1,7 @@
-using OhMyREPL
+pkgs = ["OhMyREPL"]
+
+try
+    using OhMyREPL
+catch
+end
+
