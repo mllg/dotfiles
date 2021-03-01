@@ -18,7 +18,7 @@ inoremap <silent><expr> <Tab>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 let g:coc_snippet_next = '<tab>'
-let g:coc_global_extensions = ['coc-snippets', 'coc-vimlsp', 'coc-r-lsp', 'coc-yaml', 'coc-git', 'coc-texlab', 'coc-dictionary', 'coc-lists']
+let g:coc_global_extensions = ['coc-snippets', 'coc-vimlsp', 'coc-r-lsp', 'coc-yaml', 'coc-git', 'coc-texlab', 'coc-dictionary', 'coc-lists', 'coc-julia']
 
 nmap <silent> gd <Plug>(coc-definition)
 
