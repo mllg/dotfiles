@@ -25,8 +25,7 @@ let R_nvim_wd = 0
 if !has("mac")
     let g:R_pdfviewer = 'okular'
 endif
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
+
 
 let g:devtools_commands = 0
 command! -complete=dir -nargs=? RLoadPackage :call devtools#simple_cmd('load_all', <f-args>)
