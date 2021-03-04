@@ -9,6 +9,10 @@ fun! StartREPL()
   wincmd p
   execute 'let b:slime_config = {"jobid": "'. t:term_id . '"}'
   xmap <leader>s <Plug>SlimeRegionSend
+  vmap <leader>s <Plug>SlimeRegionSend
   nmap <leader>s <Plug>SlimeMotionSend
-  nmap <space> <Plug>SlimeLineSend
+  nmap <space> <Plug>SlimeLineSend<cr>
+  nmap <leader>r :%SlimeSend<cr>
 endfun
+
+nmap <leader>j :call StartREPL()<cr>
