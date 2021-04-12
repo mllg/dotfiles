@@ -34,6 +34,11 @@ function fish_user_key_bindings
 end
 end
 
+# disable command lookup via pacman etc.
+function fish_command_not_found
+    __fish_default_command_not_found_handler $argv[1]
+end
+
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx MANPAGER "nvim -c 'set ft=man' -"
