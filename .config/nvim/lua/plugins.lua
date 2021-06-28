@@ -26,7 +26,7 @@ require('packer').startup(function()
 
     use { 'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter textobjects
         config = function()
-            require'nvim-treesitter.configs'.setup {
+            require('nvim-treesitter.configs').setup {
                 textobjects = {
                     swap = {
                         enable = true,
@@ -53,7 +53,10 @@ require('packer').startup(function()
         end
     }
 
-    use { 'neovim/nvim-lspconfig' -- LSP support
+    use { 'neovim/nvim-lspconfig', -- LSP support
+        config = function()
+            require('lspconfig').r_language_server.setup{}
+        end
     }
 
     use { 'hrsh7th/nvim-compe', -- completion
@@ -90,11 +93,14 @@ require('packer').startup(function()
     }
 
     -- appearance
-    use {'maaslalani/nordbuddy',
+    --[[ use {'maaslalani/nordbuddy',
         requires = {'tjdevries/colorbuddy.nvim'}
+    } ]]
+
+    use { 'npxbr/gruvbox.nvim',
+        requires = {'rktjmp/lush.nvim'}
     }
 
-    -- use { 'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}} -- colorscheme
     use { 'romgrk/barbar.nvim', -- tabline
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }

@@ -2,4 +2,5 @@ local opt = vim.opt
 
 opt.termguicolors = true
 opt.background = 'dark'
-require('colorbuddy').colorscheme('nordbuddy')
+-- require('colorbuddy').colorscheme('nordbuddy')
+vim.cmd([[ colorscheme gruvbox ]])
