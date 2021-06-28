@@ -1,4 +1,3 @@
-" set terminal options
 function! SetTermOptions()
     set nobuflisted
     setlocal scrollback=10000
@@ -6,6 +5,7 @@ function! SetTermOptions()
     setlocal nonumber
     nnoremap <buffer> <c-h> <Nop>
     nnoremap <buffer> <c-l> <Nop>
+    nnoremap <buffer> <c-c> i<c-c>
 endfunction
 
 augroup terminal_fixes
