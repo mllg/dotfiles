@@ -115,7 +115,9 @@ require('packer').startup(function()
     use { 'hoob3rt/lualine.nvim', -- statusline
         requires = {'kyazdani42/nvim-web-devicons', opt = true },
         config = function()
-            require('lualine').setup()
+            require('lualine').setup {
+                sections = { lualine_c = { { 'filename', path = 1 } } } -- relative file name
+            }
         end
     }
 
@@ -183,7 +185,10 @@ require('packer').startup(function()
         end
     }
 
-    use { 'mllg/vim-cdroot'
+    use { 'mllg/vim-cdroot',
+        config = function()
+			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION' }
+        end
     }
 
 end)

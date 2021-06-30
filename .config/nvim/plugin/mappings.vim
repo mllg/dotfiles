@@ -1,6 +1,16 @@
 let mapleader = ','
 let maplocalleader = 'ß'
 
+nnoremap Y y$
+nnoremap Q @q
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Keep search matches in the middle of the screen.
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+
 " inoremap <silent><expr> <C-Space> compe#complete()
 " inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 " inoremap <silent><expr> <C-e>     compe#close('<C-e>')
@@ -25,3 +35,4 @@ nnoremap <silent>    <A-7> :BufferGoto 7<CR>
 nnoremap <silent>    <A-8> :BufferGoto 8<CR>
 nnoremap <silent>    <A-9> :BufferLast<CR>
 nnoremap <silent>    <A-c> :BufferClose<CR>
+
