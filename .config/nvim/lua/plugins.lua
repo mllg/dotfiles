@@ -131,6 +131,12 @@ require('packer').startup(function()
         end
     }
 
+    use { 'kyazdani42/nvim-tree.lua',
+        config = function()
+
+        end
+    }
+
     -- edit helpers
     use { 'editorconfig/editorconfig-vim',
         config = function()
@@ -162,9 +168,15 @@ require('packer').startup(function()
     use { 'b3nj5m1n/kommentary'
     }
 
+    use { 'wellle/targets.vim'
+    }
+
     -- git
     use { 'TimUntersberger/neogit',
         requires = 'nvim-lua/plenary.nvim'
+    }
+
+    use { 'tpope/vim-fugitive' -- git support
     }
 
     -- R
