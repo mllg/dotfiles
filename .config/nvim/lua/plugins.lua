@@ -133,11 +133,18 @@ require('packer').startup(function()
 
     use { 'kyazdani42/nvim-tree.lua',
         config = function()
-
+            local map = vim.api.nvim_set_keymap
+            map('n', '<F3>', ':NvimTreeToggle<cr>', { noremap = false })
         end
     }
 
     -- edit helpers
+    use { 'mllg/vim-cdroot',
+        config = function()
+			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION', '.editorconfig' }
+        end
+    }
+
     use { 'editorconfig/editorconfig-vim',
         config = function()
             vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*'}
@@ -197,12 +204,6 @@ require('packer').startup(function()
 
             vim.api.nvim_set_keymap('v', '<A-r>', '<Plug>RDSendSelection', { noremap = false })
             vim.api.nvim_set_keymap('n', '<A-r>', '<Plug>RDSendLine', { noremap = false })
-        end
-    }
-
-    use { 'mllg/vim-cdroot',
-        config = function()
-			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION' }
         end
     }
 
