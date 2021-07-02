@@ -13,7 +13,22 @@ require('packer').startup(function()
 
     -- navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
+		config = function()
+            local map = vim.api.nvim_set_keymap
+			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
+			map('n', '<A-g>', ':Telescope live_grep<cr>', { noremap = true })
+			map('n', '<A-b>', ':Telescope buffers<cr>', { noremap = true })
+			map('n', '<A-s>', ':Telescope spell_suggest<cr>', { noremap = true })
+			map('n', '<A-b>', ':Telescope git_branches<cr>', { noremap = true })
+		end
+    }
+
+    use { 'nvim-telescope/telescope-github.nvim',
+        requires =  { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            require('telescope').load_extension('gh')
+        end
     }
 
     use { 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
@@ -63,6 +78,7 @@ require('packer').startup(function()
     use { 'tpope/vim-repeat' -- repeat more stuff
     }
 
+    -- appearance
     use { 'npxbr/gruvbox.nvim',
         requires = {'rktjmp/lush.nvim'},
         config = function()
@@ -74,15 +90,30 @@ require('packer').startup(function()
     }
 
     use { 'romgrk/barbar.nvim', -- tabline
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        config = function()
+            local map = vim.api.nvim_set_keymap
+			map('n', '<C-h>', ':BufferPrevious<CR>', { noremap = true, silent = true })
+			map('n', '<C-l>', ':BufferNext<CR>', { noremap = true, silent = true })
+			map('n', '<A-1>', ':BufferGoto 1<CR>', { noremap = true, silent = true })
+			map('n', '<A-2>', ':BufferGoto 2<CR>', { noremap = true, silent = true })
+			map('n', '<A-3>', ':BufferGoto 3<CR>', { noremap = true, silent = true })
+			map('n', '<A-4>', ':BufferGoto 4<CR>', { noremap = true, silent = true })
+			map('n', '<A-5>', ':BufferGoto 5<CR>', { noremap = true, silent = true })
+			map('n', '<A-6>', ':BufferGoto 6<CR>', { noremap = true, silent = true })
+			map('n', '<A-7>', ':BufferGoto 7<CR>', { noremap = true, silent = true })
+			map('n', '<A-8>', ':BufferGoto 8<CR>', { noremap = true, silent = true })
+			map('n', '<A-9>', ':BufferGoto 9<CR>', { noremap = true, silent = true })
+			map('n', '<A-c>', ':BufferClose<CR>', { noremap = true, silent = true })
+        end
     }
 
-    use { 'mhinz/vim-startify', -- start screen
+    --[[ use { 'mhinz/vim-startify', -- start screen
         config = function()
             vim.g.startify_bookmarks = { {n = '~/.config/nvim/init.lua'}, {f = '~/.config/fish/config.fish'}, {r = '~/.Rprofile'} }
             vim.g.startify_change_to_dir = 0
         end
-    }
+    } ]]
 
     use { 'hoob3rt/lualine.nvim', -- statusline
         requires = {'kyazdani42/nvim-web-devicons', opt = true },
@@ -156,6 +187,12 @@ require('packer').startup(function()
     use { 'wellle/targets.vim'
     }
 
+    use { 'mllg/vim-cdroot',
+        config = function()
+			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION' }
+        end
+    }
+
     -- git
     use { 'TimUntersberger/neogit',
         requires = 'nvim-lua/plenary.nvim',
@@ -180,6 +217,7 @@ require('packer').startup(function()
             local g = vim.g
             local map = vim.api-nvim_set_keymap
 
+            g.R_nvim_wd = -1
             g.R_assign = 0
             g.R_applescript = 0
             g.rout_follow_colorscheme = 1
