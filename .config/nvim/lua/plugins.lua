@@ -225,11 +225,6 @@ require('packer').startup(function()
     use { 'wellle/targets.vim'
     }
 
-    use { 'mllg/vim-cdroot',
-        config = function()
-			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION' }
-        end
-    }
 
     -- git
     use { 'TimUntersberger/neogit',
