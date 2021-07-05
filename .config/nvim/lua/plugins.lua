@@ -36,7 +36,45 @@ require('packer').startup(function()
 
     -- core features
     use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
-        run = ':TSUpdate'
+        run = ':TSUpdate',
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                ensure_installed = { "r", "c", "cpp", "lua", "python", "julia", "bash", "fish", "latex", "bibtex", "yaml", "json" },
+                highlight = {
+                    enable = true,
+                },
+                indent = {
+                    enable = true,
+                }
+            }
+        end
+    }
+
+    use { '~/Projekte/nvim-treesitter-textobjects', -- treesitter textobjects
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                textobjects = {
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ['<leader>a'] = '@parameter.inner',
+                        },
+                        swap_previous = {
+                            ['<leader>A'] = '@parameter.inner',
+                        },
+                    },
+
+                    select = {
+                        enable = true,
+                        keymaps = {
+                            ['af'] = '@function.outer',
+                            ['if'] = '@function.inner',
+                            ['ia'] = '@parameter.inner',
+                        },
+                    },
+                }
+            }
+        end
     }
 
     use { 'neovim/nvim-lspconfig', -- LSP support
@@ -208,7 +246,10 @@ require('packer').startup(function()
     use { 'tpope/vim-fugitive' -- git support
     }
 
-    -- R
+    -- languages
+    use { 'dag/vim-fish'
+    }
+
     use { 'jalvesaq/Nvim-R',
         as = 'r',
         requires = 'mllg/vim-devtools-plugin',
