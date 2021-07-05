@@ -160,6 +160,9 @@ require('packer').startup(function()
     use { 'TimUntersberger/neogit',
         requires = 'nvim-lua/plenary.nvim',
         config = function()
+            local neogit = require('neogit')
+            neogit.setup { disable_commit_confirmation = true }
+
             local map = vim.api.nvim_set_keymap
             map('n', '<F2>', ':Neogit<cr>', { noremap = false })
         end
