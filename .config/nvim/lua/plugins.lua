@@ -103,12 +103,12 @@ require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    use { 'mhinz/vim-startify', -- start screen
+    --[[ use { 'mhinz/vim-startify', -- start screen
         config = function()
-            vim.g.startify_bookmarks = { {n = '~/.config/nvim/init.vim'}, {f = '~/.config/fish/config.fish'}, {r = '~/.Rprofile'} }
+            vim.g.startify_bookmarks = { {n = '~/.config/nvim/init.lua'}, {f = '~/.config/fish/config.fish'}, {r = '~/.Rprofile'} }
             vim.g.startify_change_to_dir = 0
         end
-    }
+    } ]]
 
     use { 'hoob3rt/lualine.nvim', -- statusline
         requires = {'kyazdani42/nvim-web-devicons', opt = true },
@@ -127,6 +127,12 @@ require('packer').startup(function()
     }
 
     use { 'kyazdani42/nvim-tree.lua',
+        setup = function()
+            local g = vim.g
+            g.nvim_tree_disable_netrw = 0
+            g.nvim_tree_hijack_netrw = 0
+        end,
+
         config = function()
             local map = vim.api.nvim_set_keymap
             map('n', '<F3>', ':NvimTreeToggle<cr>', { noremap = false })
