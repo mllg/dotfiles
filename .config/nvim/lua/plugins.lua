@@ -24,35 +24,6 @@ require('packer').startup(function()
         run = ':TSUpdate'
     }
 
-    --[[ use { 'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter textobjects
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                textobjects = {
-                    swap = {
-                        enable = true,
-                        swap_next = {
-                            ['<leader>a'] = '@parameter.inner',
-                        },
-                        swap_previous = {
-                            ['<leader>A'] = '@parameter.inner',
-                        },
-                    },
-
-                    select = {
-                        enable = true,
-                        keymaps = {
-                            ['af'] = '@function.outer',
-                            ['if'] = '@function.inner',
-                            ['ac'] = '@class.outer',
-                            ['ic'] = '@class.inner',
-                            ['ia'] = '@parameter.inner',
-                        },
-                    },
-                }
-            }
-        end
-    } ]]
-
     use { 'neovim/nvim-lspconfig', -- LSP support
         config = function()
             require('lspconfig').r_language_server.setup{}
@@ -99,16 +70,19 @@ require('packer').startup(function()
         end
     }
 
+    use { "lukas-reineke/indent-blankline.nvim"
+    }
+
     use { 'romgrk/barbar.nvim', -- tabline
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    --[[ use { 'mhinz/vim-startify', -- start screen
+    use { 'mhinz/vim-startify', -- start screen
         config = function()
             vim.g.startify_bookmarks = { {n = '~/.config/nvim/init.lua'}, {f = '~/.config/fish/config.fish'}, {r = '~/.Rprofile'} }
             vim.g.startify_change_to_dir = 0
         end
-    } ]]
+    }
 
     use { 'hoob3rt/lualine.nvim', -- statusline
         requires = {'kyazdani42/nvim-web-devicons', opt = true },
@@ -140,6 +114,9 @@ require('packer').startup(function()
     }
 
     -- edit helpers
+    use { 'lambdalisue/suda.vim'
+    }
+
     use { 'mllg/vim-cdroot',
         config = function()
 			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION', '.editorconfig' }
@@ -181,7 +158,11 @@ require('packer').startup(function()
 
     -- git
     use { 'TimUntersberger/neogit',
-        requires = 'nvim-lua/plenary.nvim'
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            local map = vim.api.nvim_set_keymap
+            map('n', '<F2>', ':Neogit<cr>', { noremap = false })
+        end
     }
 
     use { 'tpope/vim-fugitive' -- git support
@@ -194,6 +175,7 @@ require('packer').startup(function()
         ft = {'r', 'rmd'},
         config = function()
             local g = vim.g
+            local map = vim.api-nvim_set_keymap
 
             g.R_assign = 0
             g.R_applescript = 0
@@ -203,8 +185,8 @@ require('packer').startup(function()
             g.R_openhtml = 0
             g.r_indent_align_args = 0
 
-            vim.api.nvim_set_keymap('v', '<A-r>', '<Plug>RDSendSelection', { noremap = false })
-            vim.api.nvim_set_keymap('n', '<A-r>', '<Plug>RDSendLine', { noremap = false })
+            map('v', '<A-r>', '<Plug>RDSendSelection', { noremap = false })
+            map('n', '<A-r>', '<Plug>RDSendLine', { noremap = false })
         end
     }
 
