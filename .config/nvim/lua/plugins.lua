@@ -24,7 +24,7 @@ require('packer').startup(function()
         run = ':TSUpdate'
     }
 
-    use { 'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter textobjects
+    --[[ use { 'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter textobjects
         config = function()
             require('nvim-treesitter.configs').setup {
                 textobjects = {
@@ -51,7 +51,7 @@ require('packer').startup(function()
                 }
             }
         end
-    }
+    } ]]
 
     use { 'neovim/nvim-lspconfig', -- LSP support
         config = function()
@@ -91,11 +91,6 @@ require('packer').startup(function()
 
     use { 'tpope/vim-repeat' -- repeat more stuff
     }
-
-    -- appearance
-    --[[ use {'maaslalani/nordbuddy',
-        requires = {'tjdevries/colorbuddy.nvim'}
-    } ]]
 
     use { 'npxbr/gruvbox.nvim',
         requires = {'rktjmp/lush.nvim'},
