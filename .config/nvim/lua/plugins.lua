@@ -50,33 +50,6 @@ require('packer').startup(function()
         end
     }
 
-    use { '~/Projekte/nvim-treesitter-textobjects', -- treesitter textobjects
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                textobjects = {
-                    swap = {
-                        enable = true,
-                        swap_next = {
-                            ['<leader>a'] = '@parameter.inner',
-                        },
-                        swap_previous = {
-                            ['<leader>A'] = '@parameter.inner',
-                        },
-                    },
-
-                    select = {
-                        enable = true,
-                        keymaps = {
-                            ['af'] = '@function.outer',
-                            ['if'] = '@function.inner',
-                            ['ia'] = '@parameter.inner',
-                        },
-                    },
-                }
-            }
-        end
-    }
-
     use { 'neovim/nvim-lspconfig', -- LSP support
         config = function()
             require('lspconfig').r_language_server.setup{}
@@ -251,7 +224,7 @@ require('packer').startup(function()
         ft = {'r', 'rmd'},
         config = function()
             local g = vim.g
-            local map = vim.api-nvim_set_keymap
+            local map = vim.api.nvim_set_keymap
 
             g.R_nvim_wd = -1
             g.R_assign = 0
