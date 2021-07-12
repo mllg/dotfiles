@@ -240,4 +240,8 @@ require('packer').startup(function()
         end
     }
 
+    use { 'lervag/vimtex',
+
+    }
+
 end)
