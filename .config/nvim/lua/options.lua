@@ -17,7 +17,7 @@ opt.hidden = true
 opt.autochdir = false
 
 
--- indentation
+-- formating
 opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 0
@@ -25,6 +25,7 @@ opt.softtabstop = -1
 opt.shiftround = true
 opt.wrap = true
 opt.breakindent = true
+opt.formatoptions:append { r = true, o = true, c = true }
 
 
 -- searches
