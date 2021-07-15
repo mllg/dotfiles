@@ -28,6 +28,17 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('telescope').load_extension('gh')
+            local map = vim.api.nvim_set_keymap
+			map('n', '<A-h>', ':Telescope gh<cr>', { noremap = true })
+        end
+    }
+
+    use { 'nvim-telescope/telescope-project.nvim',
+        requires =  { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            require'telescope'.load_extension('project')
+            local map = vim.api.nvim_set_keymap
+			map('n', '<A-p>', ':Telescope project<cr>', { noremap = true })
         end
     }
 
