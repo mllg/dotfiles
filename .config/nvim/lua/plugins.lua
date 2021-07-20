@@ -19,8 +19,8 @@ require('packer').startup(function()
 			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
 			map('n', '<A-g>', ':Telescope live_grep<cr>', { noremap = true })
 			map('n', '<A-b>', ':Telescope buffers<cr>', { noremap = true })
-			map('n', '<A-s>', ':Telescope spell_suggest<cr>', { noremap = true })
-			map('n', '<A-b>', ':Telescope git_branches<cr>', { noremap = true })
+		    map('n', '<A-s>', ':Telescope search_history<cr>', { noremap = true })
+			map('n', '<A-t>', ':Telescope git_branches<cr>', { noremap = true })
 		end
     }
 
@@ -29,7 +29,8 @@ require('packer').startup(function()
         config = function()
             require('telescope').load_extension('gh')
             local map = vim.api.nvim_set_keymap
-			map('n', '<A-h>', ':Telescope gh<cr>', { noremap = true })
+			map('n', '<A-i>', ':Telescope gh issues<cr>', { noremap = true })
+			map('n', '<A-p>', ':Telescope gh pull_request<cr>', { noremap = true })
         end
     }
 
@@ -38,7 +39,7 @@ require('packer').startup(function()
         config = function()
             require'telescope'.load_extension('project')
             local map = vim.api.nvim_set_keymap
-			map('n', '<A-p>', ':Telescope project<cr>', { noremap = true })
+			map('n', '<F4>', ':Telescope project<cr>', { noremap = true })
         end
     }
 
