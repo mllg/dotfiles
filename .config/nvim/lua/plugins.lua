@@ -156,13 +156,12 @@ require('packer').startup(function()
     }
 
     use { 'kyazdani42/nvim-tree.lua',
+        opt = true,
+        cmd = 'NvimTreeToggle',
         setup = function()
             local g = vim.g
             g.nvim_tree_disable_netrw = 0
             g.nvim_tree_hijack_netrw = 0
-        end,
-
-        config = function()
             local map = vim.api.nvim_set_keymap
             map('n', '<F3>', ':NvimTreeToggle<cr>', { noremap = false })
         end
