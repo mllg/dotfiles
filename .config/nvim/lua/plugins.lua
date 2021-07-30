@@ -155,7 +155,7 @@ require('packer').startup(function()
         end
     }
 
-    use { 'kyazdani42/nvim-tree.lua',
+    use { 'kyazdani42/nvim-tree.lua', -- file tree / browser
         opt = true,
         cmd = 'NvimTreeToggle',
         setup = function()
@@ -212,7 +212,7 @@ require('packer').startup(function()
 
 
     -- git
-    use { 'TimUntersberger/neogit',
+    use { 'TimUntersberger/neogit', -- magit-like git interface
         requires = 'nvim-lua/plenary.nvim',
         config = function()
             local neogit = require('neogit')
