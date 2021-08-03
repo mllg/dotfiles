@@ -256,4 +256,8 @@ require('packer').startup(function()
 
     }
 
+    use { 'cespare/vim-toml',
+
+    }
+
 end)
