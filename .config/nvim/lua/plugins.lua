@@ -14,7 +14,9 @@ require('packer').startup(function()
     -- navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
-		config = function()
+        opt = true,
+        cmd = "Telescope",
+		setup = function()
             local map = vim.api.nvim_set_keymap
 			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
 			map('n', '<A-g>', ':Telescope live_grep<cr>', { noremap = true })
