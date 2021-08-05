@@ -11,11 +11,13 @@ require('packer').startup(function()
     -- packer manages itself
     use { 'wbthomason/packer.nvim' }
 
+    use { 'nvim-lua/plenary.nvim' }
+
     -- navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
-        opt = true,
-        cmd = "Telescope",
+        --[[ opt = true,
+        cmd = "Telescope", ]]
 		setup = function()
             local map = vim.api.nvim_set_keymap
 			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
@@ -116,7 +118,7 @@ require('packer').startup(function()
     }
 
     use { 'romgrk/barbar.nvim', -- tabline
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        requires = { 'kyazdani42/nvim-web-devicons' },
         config = function()
             local map = vim.api.nvim_set_keymap
 			map('n', '<C-h>', ':BufferPrevious<CR>', { noremap = true, silent = true })
@@ -142,7 +144,7 @@ require('packer').startup(function()
     }
 
     use { 'hoob3rt/lualine.nvim', -- statusline
-        requires = {'kyazdani42/nvim-web-devicons', opt = true },
+        requires = {'kyazdani42/nvim-web-devicons' },
         config = function()
             require('lualine').setup {
                 sections = { lualine_c = { { 'filename', path = 1 } } } -- relative file name
@@ -158,8 +160,8 @@ require('packer').startup(function()
     }
 
     use { 'kyazdani42/nvim-tree.lua', -- file tree / browser
-        opt = true,
-        cmd = 'NvimTreeToggle',
+        --[[ opt = true,
+        cmd = 'NvimTreeToggle', ]]
         setup = function()
             local g = vim.g
             g.nvim_tree_disable_netrw = 0
