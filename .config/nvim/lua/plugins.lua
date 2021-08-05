@@ -170,6 +170,9 @@ require('packer').startup(function()
     }
 
     -- edit helpers
+    use { 'inkarkat/vim-ReplaceWithRegister'
+    }
+
     use { 'lambdalisue/suda.vim'
     }
 
