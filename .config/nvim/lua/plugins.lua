@@ -160,8 +160,8 @@ require('packer').startup(function()
     }
 
     use { 'kyazdani42/nvim-tree.lua', -- file tree / browser
-        --[[ opt = true,
-        cmd = 'NvimTreeToggle', ]]
+        opt = true,
+        cmd = 'NvimTreeToggle',
         setup = function()
             local g = vim.g
             g.nvim_tree_disable_netrw = 0
