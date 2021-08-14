@@ -48,6 +48,14 @@ require('packer').startup(function()
         end
     }
 
+    use { 'ahmedkhalf/project.nvim',
+        config = function()
+            require('project_nvim').setup {
+                patterns = { ".projectroot", ".git", ".hg", ".bzr", ".svn", "Makefile", "package.json", "DESCRIPTION" }
+            }
+        end
+    }
+
     use { 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
     }
 
@@ -176,12 +184,6 @@ require('packer').startup(function()
     }
 
     use { 'lambdalisue/suda.vim'
-    }
-
-    use { 'mllg/vim-cdroot',
-        config = function()
-			vim.g.cdroot_markers = { '.projectroot', '.git', '.svn', 'DESCRIPTION', '.editorconfig' }
-        end
     }
 
     use { 'editorconfig/editorconfig-vim',
