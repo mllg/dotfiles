@@ -39,20 +39,15 @@ require('packer').startup(function()
         end
     }
 
-    use { 'nvim-telescope/telescope-project.nvim',
-        requires =  { 'nvim-telescope/telescope.nvim' },
-        config = function()
-            require'telescope'.load_extension('project')
-            local map = vim.api.nvim_set_keymap
-			map('n', '<F4>', ':Telescope project<cr>', { noremap = true })
-        end
-    }
-
     use { 'ahmedkhalf/project.nvim',
+        requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('project_nvim').setup {
                 patterns = { ".projectroot", ".git", ".hg", ".bzr", ".svn", "Makefile", "package.json", "DESCRIPTION" }
             }
+            local map = vim.api.nvim_set_keymap
+            map('n', '<F4>', ':Telescope project<cr>', { noremap = true })
+            require('telescope').load_extension('projects')
         end
     }
 
