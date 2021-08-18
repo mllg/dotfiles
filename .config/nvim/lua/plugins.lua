@@ -214,6 +214,9 @@ require('packer').startup(function()
     use { 'wellle/targets.vim'
     }
 
+    use { 'machakann/vim-swap' -- swap arguments
+    }
+
 
     -- git
     use { 'TimUntersberger/neogit', -- magit-like git interface
