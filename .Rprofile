@@ -53,7 +53,7 @@
       message("History could not be loaded: ", hist)
     } else {
       message("Loaded history: ", hist)
-      .Last <<- function() try(utils::savehistory(hist))
+      assign(".Last", function() try(utils::savehistory(hist)), envir = .GlobalEnv)
     }
 
     utils::rc.settings(ipck = TRUE)
