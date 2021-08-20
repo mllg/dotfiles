@@ -162,6 +162,9 @@ require('packer').startup(function()
         end
     }
 
+    use { 'kshenoy/vim-signature' -- visual marks
+    }
+
     use { 'kyazdani42/nvim-tree.lua', -- file tree / browser
         opt = true,
         cmd = 'NvimTreeToggle',
