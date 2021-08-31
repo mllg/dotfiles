@@ -223,10 +223,15 @@ require('packer').startup(function()
 
     -- git
     use { 'TimUntersberger/neogit', -- magit-like git interface
-        requires = 'nvim-lua/plenary.nvim',
+        requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
         config = function()
             local neogit = require('neogit')
-            neogit.setup { disable_commit_confirmation = true }
+            neogit.setup {
+                disable_commit_confirmation = true,
+                integrations = {
+                    diffview = true
+                }
+            }
 
             local map = vim.api.nvim_set_keymap
             map('n', '<F2>', ':Neogit<cr>', { noremap = false })
