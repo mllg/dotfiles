@@ -178,6 +178,11 @@ require('packer').startup(function()
     }
 
     -- edit helpers
+    use { 'junegunn/vim-easy-align',
+        opt = true,
+        cmd = 'EasyAlign'
+    }
+
     use { 'inkarkat/vim-ReplaceWithRegister'
     }
 
