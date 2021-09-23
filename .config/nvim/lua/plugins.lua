@@ -18,7 +18,7 @@ require('packer').startup(function()
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
         --[[ opt = true,
         cmd = "Telescope", ]]
-		setup = function()
+		config = function()
             local map = vim.api.nvim_set_keymap
 			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
 			map('n', '<A-g>', ':Telescope live_grep<cr>', { noremap = true })
