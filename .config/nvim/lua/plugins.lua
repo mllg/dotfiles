@@ -29,6 +29,13 @@ require('packer').startup(function()
 		end
     }
 
+    use { 'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+        config = function()
+            require('telescope').load_extension('fzf')
+        end
+    }
+
     use { 'nvim-telescope/telescope-github.nvim',
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
