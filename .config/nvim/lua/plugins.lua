@@ -125,6 +125,13 @@ require('packer').startup(function()
         end
     }
 
+    use { 'marko-cerovac/material.nvim',
+
+        config = function()
+            vim.g.material_style = 'lighter'
+        end
+    }
+
     use { "lukas-reineke/indent-blankline.nvim"
     }
 
