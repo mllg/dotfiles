@@ -4,6 +4,9 @@ let maplocalleader = 'ß'
 nnoremap Y y$
 nnoremap Q @q
 
+" do not yank replaced text in visual mode
+vnoremap p "_dP
+
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
