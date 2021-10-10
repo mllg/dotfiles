@@ -182,8 +182,13 @@ require('packer').startup(function()
 
     use { 'kyazdani42/nvim-tree.lua', -- file tree / browser
         requires = 'kyazdani42/nvim-web-devicons',
-        --[[ opt = true,
-        cmd = 'NvimTreeToggle', ]]
+        opt = true,
+        cmd = 'NvimTreeToggle',
+        setup = function()
+            local map = vim.api.nvim_set_keymap
+            map('n', '<F3>', ':NvimTreeToggle<cr>', { noremap = false })
+        end,
+
         config = function()
             require('nvim-tree').setup {
                 disable_netrw = true,
@@ -192,9 +197,6 @@ require('packer').startup(function()
                     enable = true
                 }
             }
-
-            local map = vim.api.nvim_set_keymap
-            map('n', '<F3>', ':NvimTreeToggle<cr>', { noremap = false })
         end
     }
 
