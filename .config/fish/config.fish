@@ -41,7 +41,7 @@ end
 
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
-set -gx MANPAGER "nvim -c 'set ft=man' -"
+# set -gx MANPAGER "nvim -c 'set ft=man' -"
 # set -gx OPENBLAS_NUM_THREADS 1
 set -gx COLORTERM 1
 set -gx GTK_USE_PORTAL 1
@@ -54,7 +54,7 @@ set -gx FZF_OPEN_COMMAND 'fd --type f --hidden --follow --exclude .git . $dir'
 set -gx LANGUAGE en
 
 
-for p in /usr/local/opt/coreutils/libexec/gnubin $HOME/.R/library/rtcl/bin $HOME/.local/bin
+for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end
