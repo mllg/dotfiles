@@ -54,7 +54,7 @@ require('packer').startup(function()
                 patterns = { ".projectroot", ".git", ".hg", ".bzr", ".svn", "Makefile", "package.json", "DESCRIPTION" }
             }
             local map = vim.api.nvim_set_keymap
-            map('n', '<A-z>', ':Telescope project<cr>', { noremap = true })
+            map('n', '<A-z>', ':Telescope projects<cr>', { noremap = true })
             require('telescope').load_extension('projects')
         end
     }
