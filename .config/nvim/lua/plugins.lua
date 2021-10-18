@@ -51,7 +51,7 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('project_nvim').setup {
-                patterns = { ".projectroot", ".git", ".hg", ".bzr", ".svn", "Makefile", "package.json", "DESCRIPTION" }
+                patterns = { ".projectroot", ".git", ".hg", ".bzr", ".svn", "Makefile", "package.json", "DESCRIPTION", "init.lua" }
             }
             local map = vim.api.nvim_set_keymap
             map('n', '<A-z>', ':Telescope projects<cr>', { noremap = true })

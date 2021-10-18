@@ -17,3 +17,6 @@ nnoremap * *zz
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nmap <c-n> :cnext<cr>
+nmap <c-p> :cprev<cr>
