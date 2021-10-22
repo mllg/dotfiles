@@ -13,7 +13,7 @@ require('packer').startup(function()
 
     use { 'nvim-lua/plenary.nvim' }
 
-    -- navigation
+    -- file navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
         --[[ opt = true,
@@ -59,8 +59,9 @@ require('packer').startup(function()
         end
     }
 
-    use { 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
-    }
+    use 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
+
+    use 'justinmk/vim-dirvish' -- better netwr
 
     -- core features
     use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
@@ -193,16 +194,16 @@ require('packer').startup(function()
     }
 
     -- edit helpers
+    use 'ggandor/lightspeed.nvim'
+
     use { 'junegunn/vim-easy-align',
         opt = true,
         cmd = 'EasyAlign'
     }
 
-    use { 'inkarkat/vim-ReplaceWithRegister'
-    }
+    use 'inkarkat/vim-ReplaceWithRegister'
 
-    use { 'lambdalisue/suda.vim'
-    }
+    use 'lambdalisue/suda.vim'
 
     use { 'editorconfig/editorconfig-vim',
         config = function()
@@ -210,14 +211,11 @@ require('packer').startup(function()
         end
     }
 
-    use { 'tpope/vim-endwise' -- completions for viml/zsh/...
-    }
+    use 'tpope/vim-endwise' -- completions for viml/zsh/...
 
-    use { 'tpope/vim-surround' -- additional surroundings
-    }
+    use 'tpope/vim-surround' -- additional surroundings
 
-    use { 'farmergreg/vim-lastplace' -- restore curson position
-    }
+    use 'farmergreg/vim-lastplace' -- restore curson position
 
     use { 'matze/vim-move', -- move lines/selections quickly up and down
         as = 'move',
@@ -231,24 +229,19 @@ require('packer').startup(function()
         end
     }
 
-    use { 'b3nj5m1n/kommentary'
-    }
+    use 'b3nj5m1n/kommentary' -- comment in and out
 
-    use { 'wellle/targets.vim'
-    }
+    use 'wellle/targets.vim' -- more targets
 
-    use { 'machakann/vim-swap' -- swap arguments
-    }
+    use 'machakann/vim-swap' -- swap arguments
 
 
     -- git
 
-    use { 'tpope/vim-fugitive' -- git support
-    }
+    use 'tpope/vim-fugitive' -- git support
 
-    -- languages
-    use { 'dag/vim-fish'
-    }
+    -- language support
+    use 'dag/vim-fish'
 
     use { 'jalvesaq/Nvim-R',
         as = 'r',
@@ -272,12 +265,8 @@ require('packer').startup(function()
         end
     }
 
-    use { 'lervag/vimtex',
+    use 'lervag/vimtex'
 
-    }
-
-    use { 'cespare/vim-toml',
-
-    }
+    use 'cespare/vim-toml'
 
 end)
