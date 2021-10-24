@@ -85,32 +85,27 @@ require('packer').startup(function()
         end
     }
 
-    use { 'hrsh7th/nvim-compe', -- completion
+    use { 'hrsh7th/nvim-cmp', -- completion
+        requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'uga-rosa/cmp-dictionary' },
         config = function()
-            require'compe'.setup {
-                enabled = true;
-                autocomplete = true;
-                debug = false;
-                min_length = 1;
-                preselect = 'enable';
-                throttle_time = 80;
-                source_timeout = 200;
-                incomplete_delay = 400;
-                max_abbr_width = 100;
-                max_kind_width = 100;
-                max_menu_width = 100;
-                documentation = true;
+            local cmp = require'cmp'
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-                source = {
-                    path = true;
-                    buffer = true;
-                    calc = true;
-                    nvim_lsp = true;
-                    nvim_lua = true;
-                    vsnip = false;
-                    ultisnips = false;
-                    treesitter = true;
-                };
+            cmp.setup {
+                mapping = {
+                    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+                },
+                sources = cmp.config.sources({
+                    { name = 'nvim_lsp' },
+                    -- { name = 'vsnip' }, -- For vsnip users.
+                    -- { name = 'luasnip' }, -- For luasnip users.
+                    -- { name = 'ultisnips' }, -- For ultisnips users.
+                    -- { name = 'snippy' }, -- For snippy users.
+                    { name = 'path' },
+                    { name = 'buffer' },
+                    { name = 'dictionary' },
+                })
             }
         end
     }
