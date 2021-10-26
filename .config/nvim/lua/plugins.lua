@@ -63,6 +63,8 @@ require('packer').startup(function()
 
     use 'justinmk/vim-dirvish' -- better netwr
 
+    use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
+
     -- core features
     use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
         run = ':TSUpdate',
