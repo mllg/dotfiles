@@ -264,4 +264,13 @@ require('packer').startup(function()
 
     use 'cespare/vim-toml'
 
+    use { 'rhysd/vim-grammarous',
+        config = function()
+            local map = vim.api.nvim_set_keymap
+            map('n', '<leader>gf', '<Plug>(grammarous-fixit)', { noremap = false })
+            map('n', '<leader>gn', '<Plug>(grammarous-move-to-next-error)', { noremap = false })
+            map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)', { noremap = false })
+        end
+    }
+
 end)
