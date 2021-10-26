@@ -17,7 +17,7 @@ require('packer').startup(function()
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
         --[[ opt = true,
-        cmd = "Telescope", ]]
+        cmd = 'Telescope', ]]
 		config = function()
             local map = vim.api.nvim_set_keymap
 			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
@@ -51,7 +51,7 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('project_nvim').setup {
-                patterns = { ".projectroot", ".git", ".hg", ".bzr", ".svn", "Makefile", "package.json", "DESCRIPTION", "init.lua" }
+                patterns = { '.projectroot', '.git', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'DESCRIPTION', 'init.lua' }
             }
             local map = vim.api.nvim_set_keymap
             map('n', '<A-z>', ':Telescope projects<cr>', { noremap = true })
@@ -67,8 +67,8 @@ require('packer').startup(function()
     use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
         run = ':TSUpdate',
         config = function()
-            require("nvim-treesitter.configs").setup {
-                ensure_installed = { "r", "c", "cpp", "lua", "python", "julia", "bash", "fish", "latex", "bibtex", "yaml", "json" },
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = { 'r', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json' },
                 highlight = {
                     enable = true,
                 },
@@ -121,7 +121,7 @@ require('packer').startup(function()
         end
     }
 
-    use { "lukas-reineke/indent-blankline.nvim" }
+    use { 'lukas-reineke/indent-blankline.nvim' } -- visual indent lines
 
     use { 'romgrk/barbar.nvim', -- tabline
         requires = { 'kyazdani42/nvim-web-devicons' },
@@ -166,26 +166,6 @@ require('packer').startup(function()
     }
 
     use { 'kshenoy/vim-signature' -- visual marks
-    }
-
-    use { 'kyazdani42/nvim-tree.lua', -- file tree / browser
-        requires = 'kyazdani42/nvim-web-devicons',
-        opt = true,
-        cmd = 'NvimTreeToggle',
-        setup = function()
-            local map = vim.api.nvim_set_keymap
-            map('n', '<F3>', ':NvimTreeToggle<cr>', { noremap = false })
-        end,
-
-        config = function()
-            require('nvim-tree').setup {
-                disable_netrw = true,
-                hijack_netrw = true,
-                update_focused_file = {
-                    enable = true
-                }
-            }
-        end
     }
 
     -- edit helpers
@@ -264,7 +244,10 @@ require('packer').startup(function()
 
     use 'cespare/vim-toml'
 
+    -- spell / grammar
     use { 'rhysd/vim-grammarous',
+        opt = true,
+        cmd = 'GrammarousCheck',
         config = function()
             local map = vim.api.nvim_set_keymap
             map('n', '<leader>gf', '<Plug>(grammarous-fixit)', { noremap = false })
