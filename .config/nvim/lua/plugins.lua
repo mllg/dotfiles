@@ -171,7 +171,9 @@ require('packer').startup(function()
     }
 
     -- edit helpers
-    use 'ggandor/lightspeed.nvim'
+
+    -- replace with hop?
+    -- use 'ggandor/lightspeed.nvim'
 
     use { 'junegunn/vim-easy-align',
         opt = true,
