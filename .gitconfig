@@ -40,4 +40,4 @@
 [init]
 	defaultBranch = main
 [commit]
-	template = /home/michel/.config/git/commit.template
+    template = ~/.config/git/commit.template
