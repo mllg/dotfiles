@@ -37,7 +37,7 @@ opt.wrapscan = true
 
 
 -- completion
-opt.completeopt = "menuone,noselect"
+opt.completeopt = "menu,menuone,noselect"
 opt.shortmess:append { c = true }
 
 
