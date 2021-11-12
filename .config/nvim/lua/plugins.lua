@@ -82,9 +82,6 @@ require('packer').startup(function()
     }
 
     use { 'neovim/nvim-lspconfig', -- LSP support
-        config = function()
-            require('lspconfig').r_language_server.setup{}
-        end
     }
 
     use { 'hrsh7th/nvim-cmp', -- completion
@@ -93,6 +90,7 @@ require('packer').startup(function()
             local cmp = require'cmp'
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+            require('lspconfig').r_language_server.setup{ capabilities }
 
             cmp.setup {
                 mapping = {
@@ -250,9 +248,10 @@ require('packer').startup(function()
         cmd = 'GrammarousCheck',
         config = function()
             local map = vim.api.nvim_set_keymap
-            map('n', '<leader>gf', '<Plug>(grammarous-fixit)', { noremap = false })
-            map('n', '<leader>gn', '<Plug>(grammarous-move-to-next-error)', { noremap = false })
-            map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)', { noremap = false })
+            local opts = { noremap = false }
+            map('n', '<leader>gf', '<Plug>(grammarous-fixit)', opts)
+            map('n', '<leader>gn', '<Plug>(grammarous-move-to-next-error)', opts)
+            map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)', opts)
         end
     }
 
