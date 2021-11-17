@@ -93,10 +93,13 @@ require('packer').startup(function()
             require('lspconfig').r_language_server.setup{ capabilities }
 
             cmp.setup {
-                mapping = {
-                    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+                snippet = {
+                    expand = function(args)
+                        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                    end,
                 },
                 sources = cmp.config.sources({
+                    { name = 'vsnip' },
                     { name = 'nvim_lsp' },
                     { name = 'path' },
                     { name = 'buffer' },
@@ -104,6 +107,10 @@ require('packer').startup(function()
                 })
             }
         end
+    }
+
+    use { 'hrsh7th/vim-vsnip',
+        requires = { 'hrsh7th/cmp-vsnip', 'rafamadriz/friendly-snippets', 'hrsh7th/vim-vsnip-integ' }
     }
 
     use { 'tpope/vim-repeat' -- repeat more stuff
