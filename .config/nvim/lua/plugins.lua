@@ -11,7 +11,11 @@ require('packer').startup(function()
     -- packer manages itself
     use { 'wbthomason/packer.nvim' }
 
-    use { 'nvim-lua/plenary.nvim' }
+    use { 'nvim-lua/plenary.nvim',
+        config = function()
+            require'plenary.filetype'.add_file('r')
+        end
+    }
 
     -- file navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
