@@ -1,6 +1,5 @@
 local opt = vim.opt
 
-
 -- appearance
 opt.termguicolors = true
 opt.background = 'dark'
@@ -13,7 +12,6 @@ opt.scrolloff = 2
 -- buffers
 opt.autowriteall = true
 opt.autoread = true
-opt.hidden = true
 opt.autochdir = false
 
 

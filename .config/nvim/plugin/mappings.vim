@@ -1,7 +1,6 @@
 let mapleader = ','
 let maplocalleader = 'ß'
 
-nnoremap Y y$
 nnoremap Q @q
 
 " do not yank replaced text in visual mode

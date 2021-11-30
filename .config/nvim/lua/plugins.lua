@@ -77,10 +77,14 @@ require('packer').startup(function()
                 ensure_installed = { 'r', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json' },
                 highlight = {
                     enable = true,
+                    disable = { 'r' }
                 },
                 indent = {
                     enable = true,
-                }
+                },
+                textobjects = {
+                    enable = true
+                },
             }
         end
     }
