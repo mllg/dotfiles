@@ -32,6 +32,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.gdefault = true
 opt.wrapscan = true
+opt.inccommand = "nosplit"
 
 
 -- completion
