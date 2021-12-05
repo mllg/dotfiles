@@ -217,7 +217,7 @@ require('packer').startup(function()
         end
     }
 
-    use 'b3nj5m1n/kommentary' -- comment in and out
+    use 'numToStr/Comment.nvim' -- comment stuff
 
     use 'wellle/targets.vim' -- more targets
 
