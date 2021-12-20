@@ -93,7 +93,7 @@ require('packer').startup(function()
     }
 
     use { 'hrsh7th/nvim-cmp', -- completion
-        requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'uga-rosa/cmp-dictionary' },
+        requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path' },
         config = function()
             local cmp = require'cmp'
             local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -111,7 +111,6 @@ require('packer').startup(function()
                     { name = 'nvim_lsp' },
                     { name = 'path' },
                     { name = 'buffer' },
-                    { name = 'dictionary' },
                 })
             }
         end
@@ -217,7 +216,11 @@ require('packer').startup(function()
         end
     }
 
-    use 'numToStr/Comment.nvim' -- comment stuff
+    use { 'numToStr/Comment.nvim', -- comment stuff
+        config = function()
+            require('Comment').setup()
+        end
+    }
 
     use 'wellle/targets.vim' -- more targets
 
