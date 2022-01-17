@@ -69,6 +69,18 @@ require('packer').startup(function()
 
     use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
 
+    use { 'sidebar-nvim/sidebar.nvim', -- sidebar
+        config = function()
+            local sidebar = require("sidebar-nvim")
+            local opts = {
+                open = false,
+                sections = { 'git', 'files', 'diagnostics', 'todos' },
+                files = { show_hidden = true },
+            }
+            sidebar.setup(opts)
+        end
+    }
+
     -- core features
     use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
         run = ':TSUpdate',
