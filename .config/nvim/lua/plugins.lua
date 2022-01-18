@@ -200,7 +200,16 @@ require('packer').startup(function()
         cmd = 'EasyAlign'
     }
 
-    use 'inkarkat/vim-ReplaceWithRegister'
+    -- use 'inkarkat/vim-ReplaceWithRegister'
+    use { 'svermeulen/vim-subversive',
+        config = function()
+            local map = vim.api.nvim_set_keymap
+            local opts = { noremap = false }
+            map('n', 's', '<Plug>(SubversiveSubstitute)', opts)
+            map('n', 'ss', '<Plug>(SubversiveSubstituteLine)', opts)
+            map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', opts)
+        end
+    }
 
     use 'lambdalisue/suda.vim'
 
@@ -221,10 +230,11 @@ require('packer').startup(function()
         config = function()
             vim.g.move_map_keys = 0
             local map = vim.api.nvim_set_keymap
-            map('n', '<C-j>', '<Plug>MoveLineDown', { noremap = false })
-            map('n', '<C-k>', '<Plug>MoveLineUp', { noremap = false })
-            map('v', '<C-j>', '<Plug>MoveBlockDown', { noremap = false })
-            map('v', '<C-k>', '<Plug>MoveBlockUp', { noremap = false })
+            local opts = { noremap = false }
+            map('n', '<C-j>', '<Plug>MoveLineDown', opts)
+            map('n', '<C-k>', '<Plug>MoveLineUp', opts)
+            map('v', '<C-j>', '<Plug>MoveBlockDown', opts)
+            map('v', '<C-k>', '<Plug>MoveBlockUp', opts)
         end
     }
 
