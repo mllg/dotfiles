@@ -129,10 +129,27 @@
     #     on_change(file.path(root, "vignettes"), function(path, files) if (length(files)) pkgdown::build_articles(root, lazy = TRUE, preview = FALSE))
     # }
 
-    if ("data.table" %in% loadedNamespaces()) {
-      ee$print.data.frame = function(x, ...) {
-        data.table:::print.data.table(x)
-      }
+    ee$revert_to_cran = function() {
+      inst = unname(installed.packages()[, "Package"])
+      avail = unname(available.packages()[, "Package"])
+
+      remotes = sapply(inst, function(pkg) {
+        desc = tryCatch(utils::packageDescription(pkg),
+          error = function(e) NA,
+          warning = function(e) NA
+        )
+
+        if (identical(desc, NA) || is.null(desc$RemoteType)) {
+          return("cran")
+        }
+
+        desc$RemoteType
+        })
+
+      remotes = names(remotes[remotes != "cran"])
+      remotes = intersect(remotes, avail)
+      message("Installing %i packages: %s", length(remotes), paste0(remotes, collapse = ", "))
+      install.packages(remotes)
     }
 
     attach(ee, warn.conflicts = FALSE)
