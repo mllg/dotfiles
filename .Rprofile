@@ -148,7 +148,7 @@
 
       remotes = names(remotes[remotes != "cran"])
       remotes = intersect(remotes, avail)
-      message("Installing %i packages: %s", length(remotes), paste0(remotes, collapse = ", "))
+      message(sprintf("Installing %i packages: %s", length(remotes), paste0(remotes, collapse = ", ")))
       install.packages(remotes)
     }
 
