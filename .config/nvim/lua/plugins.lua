@@ -95,11 +95,33 @@ require('packer').startup(function()
                     enable = true,
                 },
                 textobjects = {
-                    enable = true
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["aa"] = "@parameter.outer",
+                            ["ia"] = "@parameter.inner",
+                        },
+                    },
+
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>a"] = "@parameter.inner",
+                        },
+                        swap_previous = {
+                            ["<leader>A"] = "@parameter.inner",
+                        },
+                    },
                 },
+
             }
         end
     }
+
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     use { 'neovim/nvim-lspconfig', -- LSP support
     }
@@ -238,25 +260,21 @@ require('packer').startup(function()
         end
     }
 
-    use { 'numToStr/Comment.nvim', -- comment stuff
+    use { 'numToStr/Comment.nvim',  -- comment stuff
         config = function()
             require('Comment').setup()
         end
     }
 
-    use 'wellle/targets.vim' -- more targets
-
-    use 'machakann/vim-swap' -- swap arguments
-
+    -- use 'wellle/targets.vim' -- more targets
 
     -- git
-
     use 'tpope/vim-fugitive' -- git support
 
     -- language support
     use 'dag/vim-fish'
 
-    use { 'jalvesaq/Nvim-R',
+    use { 'jalvesaq/Nvim-R', -- r support
         as = 'r',
         requires = 'mllg/vim-devtools-plugin',
         ft = {'r', 'rmd'},
@@ -278,12 +296,12 @@ require('packer').startup(function()
         end
     }
 
-    use 'lervag/vimtex'
+    use 'lervag/vimtex' -- tex support
 
-    use 'cespare/vim-toml'
+    use 'cespare/vim-toml' -- better toml
 
-    -- spell / grammar
-    use { 'rhysd/vim-grammarous',
+
+    use { 'rhysd/vim-grammarous', -- spell / grammar
         opt = true,
         cmd = 'GrammarousCheck',
         config = function()
@@ -294,5 +312,4 @@ require('packer').startup(function()
             map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)', opts)
         end
     }
-
 end)
