@@ -14,17 +14,16 @@
     repos = repos,
     datatable.print.class = TRUE,
     datatable.print.keys = TRUE,
-    BioC_mirror = "http://bioconductor.statistik.tu-dortmund.de",
+    # BioC_mirror = "https://bioconductor.statistik.tu-dortmund.de",
     rt.maintainer = "Michel Lang <michellang@gmail.com>",
     # help_type = "html",
-    languageserver.default_linters = list(),
     usethis.full_name = "Michel Lang",
     browser = "xdg-open"
   )
 
   Sys.setenv(LANGUAGE = "en")
-  Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
+  Sys.setlocale("LC_ALL", "en_US.UTF-8")
   if (Sys.info()[["sysname"]] == "Darwin") {
     # Fix for wrong DPI if second monitor is connected
     setHook(packageEvent("grDevices", "onLoad"),
@@ -115,8 +114,8 @@
         fun(path, rownames(before$info))
         repeat {
             Sys.sleep(1)
-            after = fileSnapshot(path)
             changed = changedFiles(before, after)$changes
+        after = fileSnapshot(path)
             files = rownames(changed)[apply(changed, 1, any)]
             fun(path, files)
             before = after
