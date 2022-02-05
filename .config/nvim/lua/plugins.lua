@@ -92,7 +92,7 @@ require('packer').startup(function()
                     -- disable = { 'r' }
                 },
                 indent = {
-                    enable = true,
+                    enable = false,
                 },
                 textobjects = {
                     select = {
