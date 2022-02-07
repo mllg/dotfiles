@@ -51,6 +51,15 @@ require('packer').startup(function()
         end
     }
 
+    use { 'mllg/telescope-rhistory.nvim',
+        requires =  { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            require('telescope').load_extension('rhistory')
+            local map = vim.api.nvim_set_keymap
+			map('n', '<A-h>', ':Telescope rhistory<cr>', { noremap = true })
+        end
+    }
+
     use { 'ahmedkhalf/project.nvim',
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
