@@ -286,7 +286,7 @@ require('packer').startup(function()
     use { 'jalvesaq/Nvim-R', -- r support
         as = 'r',
         requires = 'mllg/vim-devtools-plugin',
-        ft = {'r', 'rmd'},
+        ft = {'r', 'rmd', 'rnoweb'},
         config = function()
             local g = vim.g
             local map = vim.api.nvim_set_keymap
