@@ -78,16 +78,12 @@ require('packer').startup(function()
 
     use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
 
-    use { 'sidebar-nvim/sidebar.nvim', -- sidebar
-        config = function()
-            local sidebar = require("sidebar-nvim")
-            local opts = {
-                open = false,
-                sections = { 'git', 'files', 'diagnostics', 'todos' },
-                files = { show_hidden = true },
-            }
-            sidebar.setup(opts)
-        end
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        config = function() require'nvim-tree'.setup {} end
     }
 
     -- core features
