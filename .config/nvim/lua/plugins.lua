@@ -30,6 +30,7 @@ require('packer').startup(function()
 		    map('n', '<A-s>', ':Telescope search_history<cr>', { noremap = true })
 			map('n', '<A-t>', ':Telescope git_branches<cr>', { noremap = true })
 			map('n', '<A-y>', ':Telescope registers<cr>', { noremap = true })
+			map('n', '<A-n>', ':Telescope resume<cr>', { noremap = true })
 		end
     }
 
