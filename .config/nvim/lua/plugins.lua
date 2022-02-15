@@ -83,7 +83,12 @@ require('packer').startup(function()
         requires = {
             'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
-        config = function() require'nvim-tree'.setup {} end
+        config = function()
+            require'nvim-tree'.setup { }
+
+            local map = vim.api.nvim_set_keymap
+			map('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+        end
     }
 
     -- core features
