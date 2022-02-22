@@ -75,7 +75,7 @@ require('packer').startup(function()
 
     use 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
 
-    use 'justinmk/vim-dirvish' -- better netwr
+    -- use 'justinmk/vim-dirvish' -- better netwr
 
     use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
 
