@@ -225,6 +225,15 @@ require('packer').startup(function()
 
     -- edit helpers
 
+    use {
+        'zegervdv/nrpattern.nvim',
+        config = function()
+            local patterns = require("nrpattern.default")
+            patterns[{"TRUE", "FALSE"}] = {priority = 1}
+            require"nrpattern".setup(patterns)
+        end,
+    }
+
     -- replace with hop?
     -- use 'ggandor/lightspeed.nvim'
 
