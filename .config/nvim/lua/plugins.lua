@@ -250,6 +250,10 @@ require('packer').startup(function()
             map('n', 's', '<Plug>(SubversiveSubstitute)', opts)
             map('n', 'ss', '<Plug>(SubversiveSubstituteLine)', opts)
             map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', opts)
+
+            map('x', 's', '<plug>(SubversiveSubstitute)', opts)
+            map('x', 'p', '<plug>(SubversiveSubstitute)', opts)
+            map('x', 'P', '<plug>(SubversiveSubstitute)', opts)
         end
     }
 
