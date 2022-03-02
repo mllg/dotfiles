@@ -31,6 +31,7 @@ require('packer').startup(function()
 			map('n', '<A-t>', ':Telescope git_branches<cr>', { noremap = true })
 			map('n', '<A-y>', ':Telescope registers<cr>', { noremap = true })
 			map('n', '<A-n>', ':Telescope resume<cr>', { noremap = true })
+			map('n', '<A-l>', ':Telescope lsp_workspace_symbols<cr>', { noremap = FALSE })
 		end
     }
 
