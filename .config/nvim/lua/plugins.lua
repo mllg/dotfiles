@@ -93,6 +93,8 @@ require('packer').startup(function()
         end
     }
 
+    use { 'elihunter173/dirbuf.nvim' }
+
     -- core features
     use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
         run = ':TSUpdate',
