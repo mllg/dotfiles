@@ -76,7 +76,7 @@ require('packer').startup(function()
 
     use 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
 
-    -- use 'justinmk/vim-dirvish' -- better netwr
+    use 'justinmk/vim-dirvish' -- better netwr
 
     use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
 
@@ -86,7 +86,9 @@ require('packer').startup(function()
             'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
         config = function()
-            require'nvim-tree'.setup { }
+            require'nvim-tree'.setup {
+                hijack_netrw = false
+            }
 
             local map = vim.api.nvim_set_keymap
 			map('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
