@@ -1,5 +1,3 @@
 *
 !.password-store
 !.password-store/*
-!.config/nvim/plugins.d
-!.config/nvim/plugins.d/*
