@@ -11,12 +11,6 @@ require('packer').startup(function()
     -- packer manages itself
     use { 'wbthomason/packer.nvim' }
 
-    use { 'nvim-lua/plenary.nvim',
-        config = function()
-            require'plenary.filetype'.add_file('r')
-        end
-    }
-
     -- file navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
@@ -78,8 +72,7 @@ require('packer').startup(function()
 
     use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
 
-    use {
-        'kyazdani42/nvim-tree.lua',
+    use { 'kyazdani42/nvim-tree.lua',
         requires = {
             'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
@@ -326,7 +319,6 @@ require('packer').startup(function()
     use 'lervag/vimtex' -- tex support
 
     use 'cespare/vim-toml' -- better toml
-
 
     use { 'rhysd/vim-grammarous', -- spell / grammar
         opt = true,
