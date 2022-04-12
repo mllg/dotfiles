@@ -108,8 +108,8 @@ require('packer').startup(function()
                         keymaps = {
                             ["af"] = "@function.outer",
                             ["if"] = "@function.inner",
-                            -- ["aa"] = "@parameter.outer",
-                            -- ["ia"] = "@parameter.inner",
+                            ["aa"] = "@parameter.outer",
+                            ["ia"] = "@parameter.inner",
                         },
                     },
 
@@ -286,7 +286,7 @@ require('packer').startup(function()
         end
     }
 
-    use 'wellle/targets.vim' -- more targets
+    -- use 'wellle/targets.vim' -- more targets
 
     -- git
     use 'tpope/vim-fugitive' -- git support
