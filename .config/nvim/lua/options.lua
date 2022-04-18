@@ -7,6 +7,7 @@ opt.cursorline = true
 opt.number = true
 opt.relativenumber = false
 opt.scrolloff = 2
+opt.laststatus = 3
 
 
 -- buffers

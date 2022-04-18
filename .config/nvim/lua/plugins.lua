@@ -14,18 +14,16 @@ require('packer').startup(function()
     -- file navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
-        --[[ opt = true,
-        cmd = 'Telescope', ]]
 		config = function()
-            local map = vim.api.nvim_set_keymap
-			map('n', '<A-f>', ':Telescope find_files<cr>', { noremap = true })
-			map('n', '<A-g>', ':Telescope live_grep<cr>', { noremap = true })
-			map('n', '<A-b>', ':Telescope buffers<cr>', { noremap = true })
-		    map('n', '<A-s>', ':Telescope search_history<cr>', { noremap = true })
-			map('n', '<A-t>', ':Telescope git_branches<cr>', { noremap = true })
-			map('n', '<A-y>', ':Telescope registers<cr>', { noremap = true })
-			map('n', '<A-n>', ':Telescope resume<cr>', { noremap = true })
-			map('n', '<A-l>', ':Telescope lsp_workspace_symbols<cr>', { noremap = FALSE })
+            local map = vim.keymap.set
+			map('n', '<A-f>', ':Telescope find_files<cr>')
+			map('n', '<A-g>', ':Telescope live_grep<cr>')
+			map('n', '<A-b>', ':Telescope buffers<cr>')
+		    map('n', '<A-s>', ':Telescope search_history<cr>')
+			map('n', '<A-t>', ':Telescope git_branches<cr>')
+			map('n', '<A-y>', ':Telescope registers<cr>')
+			map('n', '<A-n>', ':Telescope resume<cr>')
+			map('n', '<A-l>', ':Telescope lsp_workspace_symbols<cr>')
 		end
     }
 
@@ -41,9 +39,9 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('telescope').load_extension('gh')
-            local map = vim.api.nvim_set_keymap
-			map('n', '<A-i>', ':Telescope gh issues<cr>', { noremap = true })
-			map('n', '<A-p>', ':Telescope gh pull_request<cr>', { noremap = true })
+            local map = vim.keymap.set
+			map('n', '<A-i>', ':Telescope gh issues<cr>')
+			map('n', '<A-p>', ':Telescope gh pull_request<cr>')
         end
     }
 
@@ -51,8 +49,7 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('telescope').load_extension('rhistory')
-            local map = vim.api.nvim_set_keymap
-			map('n', '<A-h>', ':Telescope rhistory<cr>', { noremap = true })
+			vim.keymap.set('n', '<A-h>', ':Telescope rhistory<cr>')
         end
     }
 
@@ -62,8 +59,7 @@ require('packer').startup(function()
             require('project_nvim').setup {
                 patterns = { '.projectroot', '.git', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'DESCRIPTION', 'init.lua' }
             }
-            local map = vim.api.nvim_set_keymap
-            map('n', '<A-z>', ':Telescope projects<cr>', { noremap = true })
+            vim.keymap.set('n', '<A-z>', ':Telescope projects<cr>')
             require('telescope').load_extension('projects')
         end
     }
@@ -204,7 +200,10 @@ require('packer').startup(function()
         requires = {'kyazdani42/nvim-web-devicons' },
         config = function()
             require('lualine').setup {
-                sections = { lualine_c = { { 'filename', path = 1 } } } -- relative file name
+                options = {
+                    globalstatus = true
+                },
+                sections = { lualine_c = { { 'filename', path = 1 } } } -- relative file name,
             }
         end
     }
@@ -230,9 +229,6 @@ require('packer').startup(function()
         end,
     }
 
-    -- replace with hop?
-    -- use 'ggandor/lightspeed.nvim'
-
     use { 'junegunn/vim-easy-align',
         opt = true,
         cmd = 'EasyAlign'
@@ -241,15 +237,14 @@ require('packer').startup(function()
     -- use 'inkarkat/vim-ReplaceWithRegister'
     use { 'svermeulen/vim-subversive',
         config = function()
-            local map = vim.api.nvim_set_keymap
-            local opts = { noremap = false }
-            map('n', 's', '<Plug>(SubversiveSubstitute)', opts)
-            map('n', 'ss', '<Plug>(SubversiveSubstituteLine)', opts)
-            map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', opts)
+            local map = vim.keymap.set
+            map('n', 's', '<Plug>(SubversiveSubstitute)')
+            map('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
+            map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
 
-            map('x', 's', '<plug>(SubversiveSubstitute)', opts)
-            map('x', 'p', '<plug>(SubversiveSubstitute)', opts)
-            map('x', 'P', '<plug>(SubversiveSubstitute)', opts)
+            map('x', 's', '<plug>(SubversiveSubstitute)')
+            map('x', 'p', '<plug>(SubversiveSubstitute)')
+            map('x', 'P', '<plug>(SubversiveSubstitute)')
         end
     }
 
@@ -271,12 +266,11 @@ require('packer').startup(function()
         as = 'move',
         config = function()
             vim.g.move_map_keys = 0
-            local map = vim.api.nvim_set_keymap
-            local opts = { noremap = false }
-            map('n', '<C-j>', '<Plug>MoveLineDown', opts)
-            map('n', '<C-k>', '<Plug>MoveLineUp', opts)
-            map('v', '<C-j>', '<Plug>MoveBlockDown', opts)
-            map('v', '<C-k>', '<Plug>MoveBlockUp', opts)
+            local map = vim.keymap.set
+            map('n', '<C-j>', '<Plug>MoveLineDown')
+            map('n', '<C-k>', '<Plug>MoveLineUp')
+            map('v', '<C-j>', '<Plug>MoveBlockDown')
+            map('v', '<C-k>', '<Plug>MoveBlockUp')
         end
     }
 
@@ -300,7 +294,6 @@ require('packer').startup(function()
         ft = {'r', 'rmd', 'rnoweb'},
         config = function()
             local g = vim.g
-            local map = vim.api.nvim_set_keymap
 
             g.R_nvim_wd = -1
             g.R_assign = 0
@@ -311,8 +304,9 @@ require('packer').startup(function()
             g.R_openhtml = 0
             g.r_indent_align_args = 0
 
-            map('v', '<A-r>', '<Plug>RDSendSelection', { noremap = false })
-            map('n', '<A-r>', '<Plug>RDSendLine', { noremap = false })
+            local map = vim.keymap.set
+            map('v', '<A-r>', '<Plug>RDSendSelection')
+            map('n', '<A-r>', '<Plug>RDSendLine')
         end
     }
 
@@ -324,11 +318,10 @@ require('packer').startup(function()
         opt = true,
         cmd = 'GrammarousCheck',
         config = function()
-            local map = vim.api.nvim_set_keymap
-            local opts = { noremap = false }
-            map('n', '<leader>gf', '<Plug>(grammarous-fixit)', opts)
-            map('n', '<leader>gn', '<Plug>(grammarous-move-to-next-error)', opts)
-            map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)', opts)
+            local map = vim.keymap.set
+            map('n', '<leader>gf', '<Plug>(grammarous-fixit)')
+            map('n', '<leader>gn', '<Plug>(grammarous-move-to-next-error)')
+            map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)')
         end
     }
 end)
