@@ -16,14 +16,14 @@ require('packer').startup(function()
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
 		config = function()
             local map = vim.keymap.set
-			map('n', '<A-f>', ':Telescope find_files<cr>')
-			map('n', '<A-g>', ':Telescope live_grep<cr>')
-			map('n', '<A-b>', ':Telescope buffers<cr>')
-		    map('n', '<A-s>', ':Telescope search_history<cr>')
-			map('n', '<A-t>', ':Telescope git_branches<cr>')
-			map('n', '<A-y>', ':Telescope registers<cr>')
-			map('n', '<A-n>', ':Telescope resume<cr>')
-			map('n', '<A-l>', ':Telescope lsp_workspace_symbols<cr>')
+			map('n', '<A-f>', require('telescope.builtin').find_files)
+			map('n', '<A-g>', require('telescope.builtin').live_grep)
+			map('n', '<A-b>', require('telescope.builtin').buffers)
+		    map('n', '<A-s>', require('telescope.builtin').search_history)
+			map('n', '<A-t>', require('telescope.builtin').git_branches)
+			map('n', '<A-y>', require('telescope.builtin').registers)
+			map('n', '<A-n>', require('telescope.builtin').resume)
+			map('n', '<A-l>', require('telescope.builtin').lsp_workspace_symbols)
 		end
     }
 
@@ -39,9 +39,8 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('telescope').load_extension('gh')
-            local map = vim.keymap.set
-			map('n', '<A-i>', ':Telescope gh issues<cr>')
-			map('n', '<A-p>', ':Telescope gh pull_request<cr>')
+			vim.keymap.set('n', '<A-i>', ':Telescope gh issues<cr>')
+			vim.keymap.set('n', '<A-p>', ':Telescope gh pull_request<cr>')
         end
     }
 
@@ -57,10 +56,10 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('project_nvim').setup {
-                patterns = { '.projectroot', '.git', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'DESCRIPTION', 'init.lua' }
+                patterns = { '.projectroot', '.git', '.svn', 'Makefile', 'package.json', 'DESCRIPTION', 'init.lua' }
             }
-            vim.keymap.set('n', '<A-z>', ':Telescope projects<cr>')
             require('telescope').load_extension('projects')
+            vim.keymap.set('n', '<A-z>', ':Telescope projects<cr>')
         end
     }
 
@@ -77,8 +76,7 @@ require('packer').startup(function()
                 hijack_netrw = false
             }
 
-            local map = vim.api.nvim_set_keymap
-			map('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+			vim.api.nvim_set_keymap('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
         end
     }
 
@@ -127,6 +125,10 @@ require('packer').startup(function()
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     use { 'neovim/nvim-lspconfig', -- LSP support
+        config = function()
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+        end
     }
 
     use { 'hrsh7th/nvim-cmp', -- completion
@@ -174,18 +176,19 @@ require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons' },
         config = function()
             local map = vim.api.nvim_set_keymap
-			map('n', '<C-h>', ':BufferPrevious<CR>', { noremap = true, silent = true })
-			map('n', '<C-l>', ':BufferNext<CR>', { noremap = true, silent = true })
-			map('n', '<A-1>', ':BufferGoto 1<CR>', { noremap = true, silent = true })
-			map('n', '<A-2>', ':BufferGoto 2<CR>', { noremap = true, silent = true })
-			map('n', '<A-3>', ':BufferGoto 3<CR>', { noremap = true, silent = true })
-			map('n', '<A-4>', ':BufferGoto 4<CR>', { noremap = true, silent = true })
-			map('n', '<A-5>', ':BufferGoto 5<CR>', { noremap = true, silent = true })
-			map('n', '<A-6>', ':BufferGoto 6<CR>', { noremap = true, silent = true })
-			map('n', '<A-7>', ':BufferGoto 7<CR>', { noremap = true, silent = true })
-			map('n', '<A-8>', ':BufferGoto 8<CR>', { noremap = true, silent = true })
-			map('n', '<A-9>', ':BufferGoto 9<CR>', { noremap = true, silent = true })
-			map('n', '<A-c>', ':BufferClose<CR>', { noremap = true, silent = true })
+            local opts = { noremap = true, silent = true }
+			map('n', '<C-h>', ':BufferPrevious<CR>', opts)
+			map('n', '<C-l>', ':BufferNext<CR>', opts)
+			map('n', '<A-1>', ':BufferGoto 1<CR>', opts)
+			map('n', '<A-2>', ':BufferGoto 2<CR>', opts)
+			map('n', '<A-3>', ':BufferGoto 3<CR>', opts)
+			map('n', '<A-4>', ':BufferGoto 4<CR>', opts)
+			map('n', '<A-5>', ':BufferGoto 5<CR>', opts)
+			map('n', '<A-6>', ':BufferGoto 6<CR>', opts)
+			map('n', '<A-7>', ':BufferGoto 7<CR>', opts)
+			map('n', '<A-8>', ':BufferGoto 8<CR>', opts)
+			map('n', '<A-9>', ':BufferGoto 9<CR>', opts)
+			map('n', '<A-c>', ':BufferClose<CR>', opts)
         end
     }
 
@@ -247,8 +250,6 @@ require('packer').startup(function()
             map('x', 'P', '<plug>(SubversiveSubstitute)')
         end
     }
-
-    use 'lambdalisue/suda.vim'
 
     use { 'editorconfig/editorconfig-vim',
         config = function()
