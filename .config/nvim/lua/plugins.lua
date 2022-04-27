@@ -11,6 +11,9 @@ require('packer').startup(function()
     -- packer manages itself
     use { 'wbthomason/packer.nvim' }
 
+    -- bytecode cache
+    use 'lewis6991/impatient.nvim'
+
     -- file navigation
     use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
