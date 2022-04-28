@@ -137,12 +137,42 @@ require('packer').startup(function()
     use { 'hrsh7th/nvim-cmp', -- completion
         requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path' },
         config = function()
-            local cmp = require'cmp'
+            local cmp = require('cmp')
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
             require('lspconfig').r_language_server.setup{ capabilities }
 
+            local has_words_before = function()
+                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            end
+
+            local feedkey = function(key, mode)
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+            end
+
             cmp.setup {
+                mapping = {
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif vim.fn["vsnip#available"](1) == 1 then
+                            feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                        end
+                    end, { "i", "s" }),
+
+                    ["<S-Tab>"] = cmp.mapping(function()
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+                            feedkey("<Plug>(vsnip-jump-prev)", "")
+                        end
+                    end, { "i", "s" }),
+                },
                 snippet = {
                     expand = function(args)
                         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
@@ -195,12 +225,26 @@ require('packer').startup(function()
         end
     }
 
-    use { 'mhinz/vim-startify', -- start screen
-        config = function()
-            vim.g.startify_bookmarks = { {n = '~/.config/nvim/lua/plugins.lua'}, {f = '~/.config/fish/config.fish'}, {r = '~/.Rprofile'} }
-            vim.g.startify_change_to_dir = 0
+    use {
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+        config = function ()
+            local startify = require'alpha.themes.startify'
+            require'alpha'.setup(startify.config)
+            startify.section.bottom_buttons.val = {
+                startify.file_button('~/.config/nvim/lua/plugins.lua', 'p'),
+                startify.file_button('~/.config/nvim/lua/init.lua', 'i'),
+                startify.file_button('~/.config/fish/config.fish', 'f')
+            }
         end
     }
+
+    -- use { 'mhinz/vim-startify', -- start screen
+    --     config = function()
+    --         vim.g.startify_bookmarks = { {n = '~/.config/nvim/lua/plugins.lua'}, {f = '~/.config/fish/config.fish'}, {r = '~/.Rprofile'} }
+    --         vim.g.startify_change_to_dir = 0
+    --     end
+    -- }
 
     use { 'hoob3rt/lualine.nvim', -- statusline
         requires = {'kyazdani42/nvim-web-devicons' },
