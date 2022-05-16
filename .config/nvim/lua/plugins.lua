@@ -235,7 +235,7 @@ require('packer').startup(function()
                 startify.file_button('~/.config/nvim/lua/plugins.lua', 'p'),
                 startify.file_button('~/.config/nvim/lua/init.lua', 'i'),
                 startify.file_button('~/.config/fish/config.fish', 'f'),
-                startify.button('q', '  Quit NVIM' , ':qa<CR>'),
+                startify.button('q', '  quit' , ':qa<CR>'),
             }
         end
     }
