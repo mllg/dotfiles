@@ -1,5 +1,3 @@
-abbr --add vi 'nvim'
-abbr --add vim 'nvim'
 abbr --add gc 'git commit'
 abbr --add gd 'git diff'
 abbr --add ga 'git add'
@@ -20,8 +18,15 @@ abbr --add pjo 'pj open'
 abbr --add fd 'fd -I --hidden'
 abbr --add 2x2 'pdfnup --nup 2x2 --suffix "2x2"'
 
-alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
-alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
+set os (uname)
+
+if [ $os = "Darwin" ]
+    alias ll="ls -lhF"
+    alias la="ls -lhFa"
+else
+    alias ll="ls -lhF --time-style=+%Y-%m-%d\ %H:%M"
+    alias la="ls -lhFa --time-style=+%Y-%m-%d\ %H:%M"
+end
 alias mkdir="mkdir -p"
 alias misticks="rg '^[^`]*`([^`]*`[^`]*`)*[^`]*\$'"
 
@@ -54,7 +59,7 @@ set -gx FZF_OPEN_COMMAND 'fd --type f --hidden --follow --exclude .git . $dir'
 set -gx LANGUAGE en
 
 
-for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin
+for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin /opt/homebrew/bin
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end
