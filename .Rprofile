@@ -21,13 +21,13 @@
     browser = "xdg-open"
   )
 
-  Sys.setenv(LANGUAGE = "en")
-
-  Sys.setlocale("LC_ALL", "en_US.UTF-8")
-  if (Sys.info()[["sysname"]] == "Darwin") {
-    # Fix for wrong DPI if second monitor is connected
-    setHook(packageEvent("grDevices", "onLoad"),
-      function(...) grDevices::quartz.options(dpi = 96))
+  if (Sys.info()[["sysname"]] != "Darwin") {
+      Sys.setenv(LANGUAGE = "en")
+      Sys.setlocale("LC_ALL", "en_US.UTF-8")
+  } else {
+      # Fix for wrong DPI if second monitor is connected
+      # setHook(packageEvent("grDevices", "onLoad"),
+      #        function(...) grDevices::quartz.options(dpi = 96))
   }
 
   user.lib = Sys.getenv("R_LIBS_USER")
