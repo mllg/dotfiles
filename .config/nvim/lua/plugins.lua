@@ -327,6 +327,8 @@ require('packer').startup(function()
             local map = vim.keymap.set
             map('v', '<leader>r', '<Plug>RDSendSelection')
             map('n', '<leader>r', '<Plug>RDSendLine')
+            map('v', '<c-r>', '<Plug>RDSendSelection')
+            map('n', '<c-r>', '<Plug>RDSendLine')
         end
     }
 
