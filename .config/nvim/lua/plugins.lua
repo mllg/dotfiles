@@ -19,14 +19,14 @@ require('packer').startup(function()
         requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
 		config = function()
             local map = vim.keymap.set
-			map('n', '<A-f>', require('telescope.builtin').find_files)
-			map('n', '<A-g>', require('telescope.builtin').live_grep)
-			map('n', '<A-b>', require('telescope.builtin').buffers)
-		    map('n', '<A-s>', require('telescope.builtin').search_history)
-			map('n', '<A-t>', require('telescope.builtin').git_branches)
-			map('n', '<A-y>', require('telescope.builtin').registers)
-			map('n', '<A-n>', require('telescope.builtin').resume)
-			map('n', '<A-l>', require('telescope.builtin').lsp_workspace_symbols)
+			map('n', '<leader>f', require('telescope.builtin').find_files)
+			map('n', '<leader>g', require('telescope.builtin').live_grep)
+			map('n', '<leader>b', require('telescope.builtin').buffers)
+		    map('n', '<leader>s', require('telescope.builtin').search_history)
+			map('n', '<leader>t', require('telescope.builtin').git_branches)
+			map('n', '<leader>y', require('telescope.builtin').registers)
+			map('n', '<leader>n', require('telescope.builtin').resume)
+			map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
 		end
     }
 
@@ -42,8 +42,8 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('telescope').load_extension('gh')
-			vim.keymap.set('n', '<A-i>', ':Telescope gh issues<cr>')
-			vim.keymap.set('n', '<A-p>', ':Telescope gh pull_request<cr>')
+			vim.keymap.set('n', '<leader>i', ':Telescope gh issues<cr>')
+			vim.keymap.set('n', '<leader>p', ':Telescope gh pull_request<cr>')
         end
     }
 
@@ -51,7 +51,7 @@ require('packer').startup(function()
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('telescope').load_extension('rhistory')
-			vim.keymap.set('n', '<A-h>', ':Telescope rhistory<cr>')
+			vim.keymap.set('n', '<leader>h', ':Telescope rhistory<cr>')
         end
     }
 
@@ -62,7 +62,7 @@ require('packer').startup(function()
                 patterns = { '.projectroot', '.git', '.svn', 'Makefile', 'package.json', 'DESCRIPTION', 'init.lua' }
             }
             require('telescope').load_extension('projects')
-            vim.keymap.set('n', '<A-z>', ':Telescope projects<cr>')
+            vim.keymap.set('n', '<leader>z', ':Telescope projects<cr>')
         end
     }
 
@@ -212,16 +212,7 @@ require('packer').startup(function()
             local opts = { noremap = true, silent = true }
 			map('n', '<C-h>', ':BufferPrevious<CR>', opts)
 			map('n', '<C-l>', ':BufferNext<CR>', opts)
-			map('n', '<A-1>', ':BufferGoto 1<CR>', opts)
-			map('n', '<A-2>', ':BufferGoto 2<CR>', opts)
-			map('n', '<A-3>', ':BufferGoto 3<CR>', opts)
-			map('n', '<A-4>', ':BufferGoto 4<CR>', opts)
-			map('n', '<A-5>', ':BufferGoto 5<CR>', opts)
-			map('n', '<A-6>', ':BufferGoto 6<CR>', opts)
-			map('n', '<A-7>', ':BufferGoto 7<CR>', opts)
-			map('n', '<A-8>', ':BufferGoto 8<CR>', opts)
-			map('n', '<A-9>', ':BufferGoto 9<CR>', opts)
-			map('n', '<A-c>', ':BufferClose<CR>', opts)
+			map('n', '<leader>c', ':BufferClose<CR>', opts)
         end
     }
 
@@ -347,23 +338,12 @@ require('packer').startup(function()
             g.r_indent_align_args = 0
 
             local map = vim.keymap.set
-            map('v', '<A-r>', '<Plug>RDSendSelection')
-            map('n', '<A-r>', '<Plug>RDSendLine')
+            map('v', '<leader>r', '<Plug>RDSendSelection')
+            map('n', '<leader>r', '<Plug>RDSendLine')
         end
     }
 
     use 'lervag/vimtex' -- tex support
 
     use 'cespare/vim-toml' -- better toml
-
-    use { 'rhysd/vim-grammarous', -- spell / grammar
-        opt = true,
-        cmd = 'GrammarousCheck',
-        config = function()
-            local map = vim.keymap.set
-            map('n', '<leader>gf', '<Plug>(grammarous-fixit)')
-            map('n', '<leader>gn', '<Plug>(grammarous-move-to-next-error)')
-            map('n', '<leader>gp', '<Plug>(grammarous-move-to-previous-error)')
-        end
-    }
 end)
