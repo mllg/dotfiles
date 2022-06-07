@@ -70,19 +70,6 @@ require('packer').startup(function()
 
     use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
 
-    use { 'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icon
-        },
-        config = function()
-            require'nvim-tree'.setup {
-                hijack_netrw = false
-            }
-
-			vim.api.nvim_set_keymap('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-        end
-    }
-
     use { 'elihunter173/dirbuf.nvim' }
 
     -- core features
