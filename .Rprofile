@@ -20,10 +20,12 @@
     usethis.full_name = "Michel Lang"
   )
 
-  if (Sys.info()[["sysname"]] != "Darwin") {
+
+  if (Sys.info()[["sysname"]] == "Darwin") {
+      options(install.packages.check.source = "no", pkgType = "binary")
+  } else {
       Sys.setenv(LANGUAGE = "en")
       Sys.setlocale("LC_ALL", "en_US.UTF-8")
-  } else {
       # Fix for wrong DPI if second monitor is connected
       # setHook(packageEvent("grDevices", "onLoad"),
       #        function(...) grDevices::quartz.options(dpi = 96))
