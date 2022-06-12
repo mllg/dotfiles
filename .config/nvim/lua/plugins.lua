@@ -305,9 +305,6 @@ require('packer').startup(function()
     -- git
     use 'tpope/vim-fugitive' -- git support
 
-    -- language support
-    use 'dag/vim-fish'
-
     use { 'jalvesaq/Nvim-R', -- r support
         as = 'r',
         requires = 'mllg/vim-devtools-plugin',
