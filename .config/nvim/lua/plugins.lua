@@ -77,7 +77,7 @@ require('packer').startup(function()
         run = ':TSUpdate',
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'r', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json' },
+                ensure_installed = { 'r', 'rnoweb', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json' },
                 highlight = {
                     enable = true,
                     -- disable = { 'r' }
