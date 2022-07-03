@@ -124,7 +124,6 @@ require('packer').startup(function()
     use { 'hrsh7th/nvim-cmp', -- completion
         requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path' },
         config = function()
-            local cmp = require('cmp')
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
             require('lspconfig').r_language_server.setup{ capabilities }
@@ -134,49 +133,68 @@ require('packer').startup(function()
                 return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
             end
 
-            local feedkey = function(key, mode)
-                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-            end
-
+            local cmp = require('cmp')
+            local snippy = require("snippy")
             cmp.setup {
                 mapping = {
                     ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
+                        if snippy.can_jump(1) then
+                            snippy.next()
+                        elseif cmp.visible() then
                             cmp.select_next_item()
-                        elseif vim.fn["vsnip#available"](1) == 1 then
-                            feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                        elseif snippy.can_expand_or_advance() then
+                            snippy.expand_or_advance()
                         elseif has_words_before() then
                             cmp.complete()
                         else
-                            fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                            fallback()
                         end
                     end, { "i", "s" }),
 
-                    ["<S-Tab>"] = cmp.mapping(function()
-                        if cmp.visible() then
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if snippy.can_jump(-1) then
+                            snippy.previous()
+                        elseif cmp.visible() then
                             cmp.select_prev_item()
-                        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                            feedkey("<Plug>(vsnip-jump-prev)", "")
+                        else
+                            fallback()
                         end
                     end, { "i", "s" }),
-                },
-                snippet = {
-                    expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-                    end,
+
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 },
                 sources = cmp.config.sources({
-                    { name = 'vsnip' },
+                    { name = 'snippy' },
                     { name = 'nvim_lsp' },
                     { name = 'path' },
                     { name = 'buffer' },
-                })
+                }),
+
+                snippet = {
+                    expand = function(args)
+                        require('snippy').expand_snippet(args.body)
+                    end
+                }
             }
         end
     }
 
-    use { 'hrsh7th/vim-vsnip',
-        requires = { 'hrsh7th/cmp-vsnip', 'rafamadriz/friendly-snippets', 'hrsh7th/vim-vsnip-integ' }
+    -- Snippets
+    use { 'dcampos/nvim-snippy',
+        requires = { 'honza/vim-snippets', 'dcampos/cmp-snippy' },
+        config = function()
+            require('snippy').setup({
+                mappings = {
+                    is = {
+                        ['<Tab>'] = 'expand_or_advance',
+                        ['<S-Tab>'] = 'previous',
+                    },
+                    nx = {
+                        ['<leader>x'] = 'cut_text',
+                    },
+                },
+            })
+        end
     }
 
     use { 'tpope/vim-repeat' -- repeat more stuff
