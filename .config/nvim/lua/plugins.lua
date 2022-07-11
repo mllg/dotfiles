@@ -77,7 +77,7 @@ require('packer').startup(function()
         run = ':TSUpdate',
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'r', 'rnoweb', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json' },
+                ensure_installed = { 'r', 'rnoweb', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json', 'markdown' },
                 highlight = {
                     enable = true,
                     -- disable = { 'r' }
@@ -264,8 +264,8 @@ require('packer').startup(function()
         'zegervdv/nrpattern.nvim',
         config = function()
             local patterns = require("nrpattern.default")
-            patterns[{"TRUE", "FALSE"}] = {priority = 1}
-            require"nrpattern".setup(patterns)
+            patterns[{"TRUE", "FALSE"}] = { priority = 1 }
+            require'nrpattern'.setup(patterns)
         end,
     }
 
@@ -350,4 +350,5 @@ require('packer').startup(function()
     use 'lervag/vimtex' -- tex support
 
     use 'cespare/vim-toml' -- better toml
+
 end)
