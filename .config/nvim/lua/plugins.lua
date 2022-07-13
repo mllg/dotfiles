@@ -26,6 +26,7 @@ require('packer').startup(function()
 			map('n', '<leader>t', require('telescope.builtin').git_branches)
 			map('n', '<leader>y', require('telescope.builtin').registers)
 			map('n', '<leader>n', require('telescope.builtin').resume)
+            map('n', '<leader>m', require('telescope.builtin').oldfiles)
 			map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
 		end
     }
