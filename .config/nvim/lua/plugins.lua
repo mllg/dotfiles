@@ -326,7 +326,7 @@ require('packer').startup(function()
 
     use { 'jalvesaq/Nvim-R', -- r support
         as = 'r',
-        requires = { 'mllg/vim-devtools-plugin', 'quarto-dev/quarto-vim', 'vim-pandoc/vim-pandoc-syntax' },
+        requires = { 'mllg/vim-devtools-plugin' },
         ft = {'r', 'rmd', 'rnoweb'},
         config = function()
             local g = vim.g
