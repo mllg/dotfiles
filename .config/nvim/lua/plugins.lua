@@ -203,7 +203,6 @@ require('packer').startup(function()
 
     -- appearance
     use { 'ellisonleao/gruvbox.nvim',
-        requires = {'rktjmp/lush.nvim'},
         config = function()
             vim.cmd([[colorscheme gruvbox]])
         end
