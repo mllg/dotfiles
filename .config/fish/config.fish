@@ -59,7 +59,7 @@ set -gx FZF_OPEN_COMMAND 'fd --type f --hidden --follow --exclude .git . $dir'
 set -gx LANGUAGE en
 
 
-for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin /opt/homebrew/opt/openjdk/bin /opt/homebrew/bin
+for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin /opt/homebrew/opt/openjdk/bin /opt/homebrew/bin /Users/michel/Library/Python/3.8/bin
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end
