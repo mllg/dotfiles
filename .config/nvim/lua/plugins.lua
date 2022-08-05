@@ -2,33 +2,91 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.api.nvim_command 'packadd packer.nvim'
+  fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
--- Plugins
 require('packer').startup(function()
     -- packer manages itself
-    use { 'wbthomason/packer.nvim' }
+    use {
+        'wbthomason/packer.nvim'
+    }
 
-    -- bytecode cache
-    use 'lewis6991/impatient.nvim'
+    -- LSP
+    use {
+        'neovim/nvim-lspconfig',
+        config = function()
+            require('lspconfig').r_language_server.setup{}
 
-    -- file navigation
-    use { 'nvim-telescope/telescope.nvim', -- fuzzy finder
-        requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
-		config = function()
-            local map = vim.keymap.set
-			map('n', '<leader>f', require('telescope.builtin').find_files)
-			map('n', '<leader>g', require('telescope.builtin').live_grep)
-			map('n', '<leader>b', require('telescope.builtin').buffers)
-		    map('n', '<leader>s', require('telescope.builtin').search_history)
-			map('n', '<leader>t', require('telescope.builtin').git_branches)
-			map('n', '<leader>y', require('telescope.builtin').registers)
-			map('n', '<leader>n', require('telescope.builtin').resume)
-            map('n', '<leader>m', require('telescope.builtin').oldfiles)
-			map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
-		end
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+
+            require'lspconfig'.sumneko_lua.setup {
+                settings = {
+                    Lua = {
+                        runtime = {
+                            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                            version = 'LuaJIT',
+                        },
+                        diagnostics = {
+                            -- Get the language server to recognize the `vim` global
+                            globals = { 'vim', 'use' },
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = vim.api.nvim_get_runtime_file("", true),
+                        },
+                        -- Do not send telemetry data containing a randomized but unique identifier
+                        telemetry = {
+                            enable = false,
+                        },
+                    },
+                },
+            }
+
+        end
+    }
+
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        requires = 'nvim-treesitter/nvim-treesitter-textobjects',
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = { 'lua', 'r', 'c', 'bash' },
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+                indent = {
+                    enable = true
+                },
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ['af'] = '@function.outer',
+                            ['if'] = '@function.inner',
+                            ['aa'] = '@parameter.outer',
+                            ['ia'] = '@parameter.inner',
+                            ['ic'] = '@conditional.inner',
+                            ['ac'] = '@conditional.outer',
+                        },
+                    },
+
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ['<leader>a'] = '@parameter.inner',
+                        },
+                        swap_previous = {
+                            ['<leader>A'] = '@parameter.inner',
+                        },
+                    },
+                },
+            }
+        end
     }
 
     use { 'nvim-telescope/telescope-fzf-native.nvim',
@@ -36,15 +94,6 @@ require('packer').startup(function()
         run = 'make',
         config = function()
             require('telescope').load_extension('fzf')
-        end
-    }
-
-    use { 'nvim-telescope/telescope-github.nvim',
-        requires =  { 'nvim-telescope/telescope.nvim' },
-        config = function()
-            require('telescope').load_extension('gh')
-			vim.keymap.set('n', '<leader>i', ':Telescope gh issues<cr>')
-			vim.keymap.set('n', '<leader>p', ':Telescope gh pull_request<cr>')
         end
     }
 
@@ -56,95 +105,79 @@ require('packer').startup(function()
         end
     }
 
+    -- fuzzy finder
+    use { 'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
+		config = function()
+            local map = vim.keymap.set
+			map('n', '<leader>f', require('telescope.builtin').find_files)
+			map('n', '<leader>g', require('telescope.builtin').live_grep)
+			map('n', '<leader>b', require('telescope.builtin').buffers)
+            map('n', '<leader>m', require('telescope.builtin').oldfiles)
+			map('n', '<leader>n', require('telescope.builtin').resume)
+			-- map('n', '<leader>s', require('telescope.builtin').search_history)
+			-- map('n', '<leader>t', require('telescope.builtin').git_branches)
+			-- map('n', '<leader>y', require('telescope.builtin').registers)
+			-- map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
+		end
+    }
+
     use { 'ahmedkhalf/project.nvim',
         requires =  { 'nvim-telescope/telescope.nvim' },
         config = function()
             require('project_nvim').setup {
-                patterns = { '.projectroot', '.git', '.svn', 'Makefile', 'package.json', 'DESCRIPTION', 'init.lua' }
+                patterns = { '.projectroot', '.git', '.svn', 'Makefile', 'package.json', 'DESCRIPTION' }
             }
             require('telescope').load_extension('projects')
             vim.keymap.set('n', '<leader>z', ':Telescope projects<cr>')
         end
     }
 
-    use 'tpope/vim-eunuch' -- some file system commands (e.g., :Remove)
 
-    use 'justinmk/vim-gtfo' -- start filemanager or terminal in dir of current buffer
+    -- EditorConfig Support
+    -- use { 'editorconfig/editorconfig-vim',
+    -- }
 
-    use { 'elihunter173/dirbuf.nvim' }
 
-    -- core features
-    use { 'nvim-treesitter/nvim-treesitter', -- tree sitter support
-        run = ':TSUpdate',
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'r', 'rnoweb', 'c', 'cpp', 'lua', 'python', 'julia', 'bash', 'fish', 'latex', 'bibtex', 'yaml', 'json', 'markdown' },
-                highlight = {
-                    enable = true,
-                    -- disable = { 'r' }
-                },
-                indent = {
-                    enable = false,
-                },
-                textobjects = {
-                    select = {
-                        enable = true,
-                        lookahead = true,
-                        keymaps = {
-                            ["af"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                            ["aa"] = "@parameter.outer",
-                            ["ia"] = "@parameter.inner",
-                        },
-                    },
+    -- Restore cursor position
+    use 'farmergreg/vim-lastplace'
 
-                    swap = {
-                        enable = true,
-                        swap_next = {
-                            ["<leader>a"] = "@parameter.inner",
-                        },
-                        swap_previous = {
-                            ["<leader>A"] = "@parameter.inner",
-                        },
-                    },
-                },
 
-            }
-        end
+    -- Colorscheme
+    use { 'sainnhe/gruvbox-material',
+    }
+    use { 'ellisonleao/gruvbox.nvim',
     }
 
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
 
-    use { 'neovim/nvim-lspconfig', -- LSP support
+    -- Completion
+    use { 'hrsh7th/nvim-cmp',
+        requires = {'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',  'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
         config = function()
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
-            vim.keymap.set('n', 'gr', vim.lsp.buf.references)
-        end
-    }
-
-    use { 'hrsh7th/nvim-cmp', -- completion
-        requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path' },
-        config = function()
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-            require('lspconfig').r_language_server.setup{ capabilities }
-
             local has_words_before = function()
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                 return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
             end
-
             local cmp = require('cmp')
-            local snippy = require("snippy")
-            cmp.setup {
+            local luasnip = require('luasnip')
+            cmp.setup{
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end
+                },
+                sources = cmp.config.sources({
+                    { name = 'luasnip' },
+                    { name = 'nvim_lsp' },
+                    { name = 'buffer' },
+                    { name = 'path' },
+                }),
                 mapping = {
                     ["<Tab>"] = cmp.mapping(function(fallback)
-                        if snippy.can_jump(1) then
-                            snippy.next()
-                        elseif cmp.visible() then
+                        if cmp.visible() then
                             cmp.select_next_item()
-                        elseif snippy.can_expand_or_advance() then
-                            snippy.expand_or_advance()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
                         elseif has_words_before() then
                             cmp.complete()
                         else
@@ -153,176 +186,116 @@ require('packer').startup(function()
                     end, { "i", "s" }),
 
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if snippy.can_jump(-1) then
-                            snippy.previous()
-                        elseif cmp.visible() then
+                        if cmp.visible() then
                             cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
                         else
                             fallback()
                         end
                     end, { "i", "s" }),
 
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                },
-                sources = cmp.config.sources({
-                    { name = 'snippy' },
-                    { name = 'nvim_lsp' },
-                    { name = 'path' },
-                    { name = 'buffer' },
-                }),
+                    ['<C-e>'] = cmp.mapping({
+                        i = cmp.mapping.abort(),
+                        c = cmp.mapping.close(),
+                    }),                }
 
-                snippet = {
-                    expand = function(args)
-                        require('snippy').expand_snippet(args.body)
-                    end
-                }
             }
-        end
-    }
 
-    -- Snippets
-    use { 'dcampos/nvim-snippy',
-        requires = { 'honza/vim-snippets', 'dcampos/cmp-snippy' },
-        config = function()
-            require('snippy').setup({
-                mappings = {
-                    is = {
-                        ['<Tab>'] = 'expand_or_advance',
-                        ['<S-Tab>'] = 'previous',
-                    },
-                    nx = {
-                        ['<leader>x'] = 'cut_text',
-                    },
-                },
-            })
-        end
-    }
-
-    use { 'tpope/vim-repeat' -- repeat more stuff
-    }
-
-    -- appearance
-    use { 'ellisonleao/gruvbox.nvim',
-        config = function()
-            vim.cmd([[colorscheme gruvbox]])
-        end
-    }
-
-    use { 'lukas-reineke/indent-blankline.nvim' } -- visual indent lines
-
-    use { 'romgrk/barbar.nvim', -- tabline
-        requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function()
-            local map = vim.api.nvim_set_keymap
-            local opts = { noremap = true, silent = true }
-			map('n', '<C-h>', ':BufferPrevious<CR>', opts)
-			map('n', '<C-l>', ':BufferNext<CR>', opts)
-			map('n', '<leader>c', ':BufferClose<CR>', opts)
-        end
-    }
-
-    use {
-        'goolord/alpha-nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function ()
-            local startify = require'alpha.themes.startify'
-            require'alpha'.setup(startify.config)
-            startify.section.bottom_buttons.val = {
-                startify.file_button('~/.config/nvim/lua/plugins.lua', 'p'),
-                startify.file_button('~/.config/nvim/lua/init.lua', 'i'),
-                startify.file_button('~/.config/fish/config.fish', 'f'),
-                startify.button('q', '  quit' , ':qa<CR>'),
+            local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+            require('lspconfig')['r_language_server'].setup {
+                capabilities = capabilities
             }
-        end
-    }
-
-    use { 'hoob3rt/lualine.nvim', -- statusline
-        requires = {'kyazdani42/nvim-web-devicons' },
-        config = function()
-            require('lualine').setup {
-                options = {
-                    globalstatus = true
-                },
-                sections = { lualine_c = { { 'filename', path = 1 } } } -- relative file name,
-            }
-        end
-    }
-
-    use { 'lewis6991/gitsigns.nvim', -- sign column
-        requires = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('gitsigns').setup()
-        end
-    }
-
-    use { 'kshenoy/vim-signature' -- visual marks
-    }
-
-    -- edit helpers
-
-    use {
-        'zegervdv/nrpattern.nvim',
-        config = function()
-            local patterns = require("nrpattern.default")
-            patterns[{"TRUE", "FALSE"}] = { priority = 1 }
-            require'nrpattern'.setup(patterns)
         end,
     }
 
-    use { 'junegunn/vim-easy-align',
-        opt = true,
-        cmd = 'EasyAlign'
-    }
-
-    -- use 'inkarkat/vim-ReplaceWithRegister'
-    use { 'svermeulen/vim-subversive',
+    -- Collection of mini plugins
+    use { 'echasnovski/mini.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
         config = function()
-            local map = vim.keymap.set
-            map('n', 's', '<Plug>(SubversiveSubstitute)')
-            map('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
-            map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
+            local bufremove = require('mini.bufremove')
+            bufremove.setup{
+            }
 
-            map('x', 's', '<plug>(SubversiveSubstitute)')
-            map('x', 'p', '<plug>(SubversiveSubstitute)')
-            map('x', 'P', '<plug>(SubversiveSubstitute)')
+            local cursorword = require('mini.cursorword')
+            cursorword.setup{
+                delay = 250
+            }
+
+            local jump = require('mini.jump')
+            jump.setup{}
+
+            local surround = require('mini.surround')
+            surround.setup{}
+
+            local comment = require('mini.comment')
+            comment.setup{
+                mappings = {
+                    comment = 'gc',
+                    comment_line = 'gcc',
+                    textobject = 'gc',
+                },
+            }
+
+            local statusline = require('mini.statusline')
+            statusline.setup{
+                set_vim_settings = false,
+                use_icons = true
+            }
+
+            local tabline = require('mini.tabline')
+            tabline.setup{
+                show_icons = true
+            }
         end
     }
 
-    use { 'editorconfig/editorconfig-vim',
-        config = function()
-            vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*'}
-        end
-    }
-
-    use 'tpope/vim-endwise' -- completions for viml/zsh/...
-
-    use 'tpope/vim-surround' -- additional surroundings
-
-    use 'farmergreg/vim-lastplace' -- restore curson position
-
-    use { 'matze/vim-move', -- move lines/selections quickly up and down
-        as = 'move',
-        config = function()
-            vim.g.move_map_keys = 0
-            local map = vim.keymap.set
-            map('n', '<C-j>', '<Plug>MoveLineDown')
-            map('n', '<C-k>', '<Plug>MoveLineUp')
-            map('v', '<C-j>', '<Plug>MoveBlockDown')
-            map('v', '<C-k>', '<Plug>MoveBlockUp')
-        end
-    }
-
-    use { 'numToStr/Comment.nvim',  -- comment stuff
-        config = function()
-            require('Comment').setup()
-        end
-    }
-
-    -- use 'wellle/targets.vim' -- more targets
-
-    -- git
-    use 'tpope/vim-fugitive' -- git support
-
+--     use { 'hkupty/iron.nvim',
+--         config = function()
+--             local iron = require("iron.core")
+--             iron.setup({
+--                 config = {
+--                     scratch_repl = false,
+--                     repl_open_cmd = 'belowright 15 split',
+--                 },
+--                 keymaps = {
+--                     send_motion = "<space>sc",
+--                     visual_send = "<space>sc",
+--                     send_file = "<space>sf",
+--                     send_line = "<space>sl",
+--                     send_mark = "<space>sm",
+--                     mark_motion = "<space>mc",
+--                     mark_visual = "<space>mc",
+--                     remove_mark = "<space>md",
+--                     cr = "<space>s<cr>",
+--                     interrupt = "<space>s<space>",
+--                     exit = "<space>sq",
+--                     clear = "<space>cl",
+--                 },
+--             })
+--
+--
+--             vim.keymap.set('n', '<space><space>', function()
+--                 iron.send_line()
+--
+--                 local pos = vim.api.nvim_win_get_cursor(0)
+--                 if (pos[1] < vim.fn.line('$')) then
+--                     vim.api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
+--                 end
+--             end)
+--
+--
+--             local cmds = {
+--                 RLoadAll = 'devtools::load_all()',
+--                 RCheck = 'devtools::check()',
+--             }
+--             for cmd, data in pairs(cmds) do
+--                 vim.api.nvim_create_user_command(cmd, function() iron.send(nil, data) end, {})
+--             end
+--
+--         end
+    -- }
     use { 'jalvesaq/Nvim-R', -- r support
         as = 'r',
         requires = { 'mllg/vim-devtools-plugin' },
@@ -342,13 +315,33 @@ require('packer').startup(function()
             local map = vim.keymap.set
             map('v', '<leader>r', '<Plug>RDSendSelection')
             map('n', '<leader>r', '<Plug>RDSendLine')
-            map('v', '<c-r>', '<Plug>RDSendSelection')
-            map('n', '<c-r>', '<Plug>RDSendLine')
         end
     }
 
-    use 'lervag/vimtex' -- tex support
+    use { 'matze/vim-move', -- move lines/selections quickly up and down
+        as = 'move',
+        config = function()
+            vim.g.move_map_keys = 0
+            local map = vim.keymap.set
+            map('n', '<C-j>', '<Plug>MoveLineDown')
+            map('n', '<C-k>', '<Plug>MoveLineUp')
+            map('v', '<C-j>', '<Plug>MoveBlockDown')
+            map('v', '<C-k>', '<Plug>MoveBlockUp')
+        end
+    }
 
-    use 'cespare/vim-toml' -- better toml
+    use { 'chentoast/marks.nvim',
+    }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+
+
+    use { 'elihunter173/dirbuf.nvim' -- file system browser + vidir
+    }
 
 end)

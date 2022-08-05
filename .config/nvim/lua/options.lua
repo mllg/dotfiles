@@ -1,30 +1,31 @@
 local opt = vim.opt
 
 -- appearance
+vim.cmd([[colorscheme gruvbox-material]])
 opt.termguicolors = true
-opt.background = 'dark'
 opt.cursorline = true
 opt.number = true
 opt.relativenumber = false
 opt.scrolloff = 2
 opt.laststatus = 3
+opt.guifont='FiraCode Nerd Font Mono:h15'
 
 
 -- buffers
 opt.autowriteall = true
 opt.autoread = true
-opt.autochdir = false
 
 
 -- formating
 opt.expandtab = true
 opt.tabstop = 4
-opt.shiftwidth = 0
-opt.softtabstop = -1
-opt.shiftround = true
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.formatoptions:remove({'r', 'c'})
+
+
 opt.wrap = true
 opt.breakindent = true
-opt.formatoptions:append { r = true, o = true, c = true }
 
 
 -- searches
@@ -33,27 +34,23 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.gdefault = true
 opt.wrapscan = true
-opt.inccommand = "nosplit"
+opt.inccommand = 'nosplit'
 
 
 -- completion
-opt.completeopt = "menu,menuone,noselect"
-opt.shortmess:append { c = true }
-
+opt.completeopt = 'menu,menuone,noselect'
+-- opt.shortmess:append { c = true }
 
 -- os integration
 opt.clipboard = 'unnamedplus'
-opt.mouse = 'a'
 
 
 -- file handling
-opt.encoding = 'utf-8'
-opt.fileformats:append { 'mac' }
-opt.nrformats:remove { 'octal' }
 opt.undofile = true
-
 
 -- localization
 opt.spelllang = 'en,de'
 opt.spellsuggest = 'fast,20'
 opt.printoptions = 'paper:A4,number:y'
+
+

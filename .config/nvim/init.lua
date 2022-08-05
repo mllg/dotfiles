@@ -1,7 +1,5 @@
-pcall(require, 'impatient')
-
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 0
-
+require('mappings')
 require('plugins')
+require('autocommands')
+require('terminal')
 require('options')
