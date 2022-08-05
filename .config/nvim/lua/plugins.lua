@@ -344,4 +344,6 @@ require('packer').startup(function()
     use { 'elihunter173/dirbuf.nvim' -- file system browser + vidir
     }
 
+    use 'tpope/vim-fugitive' -- git support
+
 end)
