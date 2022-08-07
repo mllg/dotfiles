@@ -168,8 +168,15 @@ require('packer').startup(function()
                 },
                 sources = cmp.config.sources({
                     { name = 'luasnip' },
+                    { 
+                        name = 'buffer',
+                        option = {
+                            get_bufnrs = function()
+                                return vim.api.nvim_list_bufs()
+                            end
+                        }
+                    },
                     { name = 'nvim_lsp' },
-                    { name = 'buffer' },
                     { name = 'path' },
                 }),
                 mapping = {
