@@ -143,11 +143,25 @@ require('packer').startup(function()
     use 'farmergreg/vim-lastplace'
 
 
-    -- Colorscheme
-    use { 'sainnhe/gruvbox-material',
+    -- Look
+    use { 'sainnhe/gruvbox-material' }
+    use { 'ellisonleao/gruvbox.nvim' }
+    use { "lukas-reineke/indent-blankline.nvim" }
+    use {
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+        config = function ()
+            local startify = require'alpha.themes.startify'
+            require'alpha'.setup(startify.config)
+            startify.section.bottom_buttons.val = {
+                startify.file_button('~/.config/nvim/lua/plugins.lua', 'p'),
+                startify.file_button('~/.config/nvim/lua/init.lua', 'i'),
+                startify.file_button('~/.config/fish/config.fish', 'f'),
+                startify.button('q', '  quit' , ':qa<CR>'),
+            }
+        end
     }
-    use { 'ellisonleao/gruvbox.nvim',
-    }
+
 
 
     -- Completion
@@ -221,9 +235,12 @@ require('packer').startup(function()
     use { 'echasnovski/mini.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
         config = function()
+            local map = vim.keymap.set
+
             local bufremove = require('mini.bufremove')
-            bufremove.setup{
-            }
+            bufremove.setup{}
+            map('n', '<leader>c', MiniBufremove.delete, { noremap = true})
+
 
             local cursorword = require('mini.cursorword')
             cursorword.setup{
@@ -330,10 +347,10 @@ require('packer').startup(function()
         config = function()
             vim.g.move_map_keys = 0
             local map = vim.keymap.set
-            map('n', '<C-j>', '<Plug>MoveLineDown')
-            map('n', '<C-k>', '<Plug>MoveLineUp')
-            map('v', '<C-j>', '<Plug>MoveBlockDown')
-            map('v', '<C-k>', '<Plug>MoveBlockUp')
+            map('n', '<c-j>', '<Plug>MoveLineDown')
+            map('n', '<c-k>', '<Plug>MoveLineUp')
+            map('v', '<c-j>', '<Plug>MoveBlockDown')
+            map('v', '<c-k>', '<Plug>MoveBlockUp')
         end
     }
 
