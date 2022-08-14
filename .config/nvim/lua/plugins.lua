@@ -348,8 +348,7 @@ require('packer').startup(function()
     use { 'chentoast/marks.nvim',
     }
 
-    use {
-        'lewis6991/gitsigns.nvim',
+    use { 'lewis6991/gitsigns.nvim',
         config = function()
             require('gitsigns').setup()
         end
