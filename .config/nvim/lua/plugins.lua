@@ -6,14 +6,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup(function()
-    -- packer manages itself
-    use {
-        'wbthomason/packer.nvim'
+    -- let packer manage itself
+    use { 'wbthomason/packer.nvim'
     }
 
     -- LSP
-    use {
-        'neovim/nvim-lspconfig',
+    use { 'neovim/nvim-lspconfig',
         config = function()
             require('lspconfig').r_language_server.setup{}
 
@@ -24,36 +22,30 @@ require('packer').startup(function()
                 settings = {
                     Lua = {
                         runtime = {
-                            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                             version = 'LuaJIT',
                         },
                         diagnostics = {
-                            -- Get the language server to recognize the `vim` global
                             globals = { 'vim', 'use' },
                         },
                         workspace = {
-                            -- Make the server aware of Neovim runtime files
                             library = vim.api.nvim_get_runtime_file("", true),
                         },
-                        -- Do not send telemetry data containing a randomized but unique identifier
                         telemetry = {
                             enable = false,
                         },
                     },
                 },
             }
-
         end
     }
 
     -- Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
+    use { 'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         requires = 'nvim-treesitter/nvim-treesitter-textobjects',
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'lua', 'r', 'c', 'bash' },
+                ensure_installed = { 'lua', 'r', 'c', 'cpp', 'bash', 'fish' },
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
@@ -74,7 +66,6 @@ require('packer').startup(function()
                             ['ac'] = '@conditional.outer',
                         },
                     },
-
                     swap = {
                         enable = true,
                         swap_next = {
@@ -86,6 +77,34 @@ require('packer').startup(function()
                     },
                 },
             }
+        end
+    }
+
+    -- fuzzy finder
+    use { 'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
+		config = function()
+            local map = vim.keymap.set
+			map('n', '<leader>f', require('telescope.builtin').find_files)
+			map('n', '<leader>g', require('telescope.builtin').live_grep)
+			map('n', '<leader>b', require('telescope.builtin').buffers)
+            map('n', '<leader>m', require('telescope.builtin').oldfiles)
+			map('n', '<leader>n', require('telescope.builtin').resume)
+			-- map('n', '<leader>s', require('telescope.builtin').search_history)
+			-- map('n', '<leader>t', require('telescope.builtin').git_branches)
+			-- map('n', '<leader>y', require('telescope.builtin').registers)
+			map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
+		end
+    }
+
+    use { 'ahmedkhalf/project.nvim',
+        requires =  { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            require('project_nvim').setup {
+                patterns = { '.projectroot', '.git', '.svn', 'Makefile', 'package.json', 'DESCRIPTION' }
+            }
+            require('telescope').load_extension('projects')
+            vim.keymap.set('n', '<leader>z', ':Telescope projects<cr>')
         end
     }
 
@@ -105,43 +124,14 @@ require('packer').startup(function()
         end
     }
 
-    -- fuzzy finder
-    use { 'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
-		config = function()
-            local map = vim.keymap.set
-			map('n', '<leader>f', require('telescope.builtin').find_files)
-			map('n', '<leader>g', require('telescope.builtin').live_grep)
-			map('n', '<leader>b', require('telescope.builtin').buffers)
-            map('n', '<leader>m', require('telescope.builtin').oldfiles)
-			map('n', '<leader>n', require('telescope.builtin').resume)
-			-- map('n', '<leader>s', require('telescope.builtin').search_history)
-			-- map('n', '<leader>t', require('telescope.builtin').git_branches)
-			-- map('n', '<leader>y', require('telescope.builtin').registers)
-			-- map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
-		end
-    }
-
-    use { 'ahmedkhalf/project.nvim',
-        requires =  { 'nvim-telescope/telescope.nvim' },
-        config = function()
-            require('project_nvim').setup {
-                patterns = { '.projectroot', '.git', '.svn', 'Makefile', 'package.json', 'DESCRIPTION' }
-            }
-            require('telescope').load_extension('projects')
-            vim.keymap.set('n', '<leader>z', ':Telescope projects<cr>')
-        end
-    }
-
-
     -- EditorConfig Support
-    -- use { 'editorconfig/editorconfig-vim',
-    -- }
+    use { 'editorconfig/editorconfig-vim',
+    }
 
 
     -- Restore cursor position
-    use 'farmergreg/vim-lastplace'
-
+    use { 'farmergreg/vim-lastplace',
+    }
 
     -- Look
     use { 'sainnhe/gruvbox-material' }
@@ -182,7 +172,7 @@ require('packer').startup(function()
                 },
                 sources = cmp.config.sources({
                     { name = 'luasnip' },
-                    { 
+                    {
                         name = 'buffer',
                         option = {
                             get_bufnrs = function()
@@ -240,7 +230,6 @@ require('packer').startup(function()
             local bufremove = require('mini.bufremove')
             bufremove.setup{}
             map('n', '<leader>c', MiniBufremove.delete, { noremap = true})
-
 
             local cursorword = require('mini.cursorword')
             cursorword.setup{
@@ -320,7 +309,9 @@ require('packer').startup(function()
 --
 --         end
     -- }
-    use { 'jalvesaq/Nvim-R', -- r support
+
+    -- r support
+    use { 'jalvesaq/Nvim-R',
         as = 'r',
         requires = { 'mllg/vim-devtools-plugin' },
         ft = {'r', 'rmd', 'rnoweb'},
@@ -364,10 +355,17 @@ require('packer').startup(function()
         end
     }
 
-
-    use { 'elihunter173/dirbuf.nvim' -- file system browser + vidir
+    -- file system browser + vidir
+    use { 'elihunter173/dirbuf.nvim'
     }
 
-    use 'tpope/vim-fugitive' -- git support
+    -- git support
+    use 'tpope/vim-fugitive'
+
+    -- auto pairs
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 
 end)
