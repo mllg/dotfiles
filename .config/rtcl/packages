@@ -22,12 +22,12 @@ crayon
 debugme
 devtools
 inline
-languageserver
 mllg/gtfo
 profvis
 pryr
 rdatsci/rtcl
 r-lib/revdepcheck
+REditorSupport/languageserver
 roxygen2
 rprojroot
 testthat

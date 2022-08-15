@@ -128,6 +128,7 @@
 
       remotes = names(remotes[remotes != "cran"])
       remotes = intersect(remotes, avail)
+      remotes = setdiff(remotes, "languageserver")
       message(sprintf("Installing %i packages: %s", length(remotes), paste0(remotes, collapse = ", ")))
       install.packages(remotes)
     }
