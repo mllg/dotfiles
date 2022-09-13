@@ -1,6 +1,6 @@
 root = true
 
-[{.tmux.conf,.Rprofile,.nvimrc,.config/nvim/init.vim,.config/fish/config.fish}]
+[{.tmux.conf,.Rprofile,.config/nvim/init.vim,.config/fish/config.fish}]
 charset = utf8
 end_of_line = lf
 insert_final_newline = true
