@@ -45,7 +45,7 @@ require('packer').startup(function()
         requires = 'nvim-treesitter/nvim-treesitter-textobjects',
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'lua', 'r', 'c', 'cpp', 'bash', 'fish' },
+                ensure_installed = { 'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql' },
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
