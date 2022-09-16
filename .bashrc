@@ -18,5 +18,4 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.bash_local ] && source ~/.bash_local
