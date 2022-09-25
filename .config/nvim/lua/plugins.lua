@@ -261,6 +261,9 @@ require('packer').startup(function()
             tabline.setup{
                 show_icons = true
             }
+
+            local trailspace = require('mini.trailspace')
+            trailspace.setup{}
         end
     }
 
