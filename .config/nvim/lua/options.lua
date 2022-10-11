@@ -48,6 +48,7 @@ opt.clipboard = 'unnamedplus'
 -- file handling
 opt.undofile = true
 
+
 -- localization
 opt.spelllang = 'en,de'
 opt.spellsuggest = 'fast,20'

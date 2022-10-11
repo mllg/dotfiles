@@ -16,6 +16,6 @@ map('n', 'N', 'Nzzzv', opts)
 map('v', '<', '<gv', opts)
 map('v', '>', '>gv', opts)
 
-local opts = { noremap = true, silent = true, expr = true }
+opts = { noremap = true, silent = true, expr = true }
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", opts)
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", opts)

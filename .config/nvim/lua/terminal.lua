@@ -10,8 +10,9 @@ vim.api.nvim_create_autocmd('TermOpen', {
         vim.opt_local.signcolumn = 'no'
         vim.opt_local.number = false
 
-        map('n', '<c-h>', '<Nop>', { buffer = true, noremap = true })
-        map('n', '<c-l>', '<Nop>', { buffer = true, noremap = true })
-        map('n', '<c-c>', 'i<c-c>', { buffer = true, noremap = true })
+        local opts = { buffer = true, noremap = true }
+        map('n', '<c-h>', '<Nop>', opts)
+        map('n', '<c-l>', '<Nop>', opts)
+        map('n', '<c-c>', 'i<c-c>', opts)
     end
 })
