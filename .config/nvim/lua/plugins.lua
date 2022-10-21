@@ -317,7 +317,7 @@ require('packer').startup(function()
     -- r support
     use { 'jalvesaq/Nvim-R',
         as = 'r',
-        requires = { 'mllg/vim-devtools-plugin' },
+        requires = { 'mllg/vim-devtools-plugin', 'jalvesaq/R-Vim-runtime' },
         ft = {'r', 'rmd', 'rnoweb'},
         config = function()
             local g = vim.g
