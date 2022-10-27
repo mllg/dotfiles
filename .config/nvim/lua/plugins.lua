@@ -45,7 +45,7 @@ require('packer').startup(function()
         requires = 'nvim-treesitter/nvim-treesitter-textobjects',
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql' },
+                ensure_installed = { 'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment' },
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
@@ -91,8 +91,8 @@ require('packer').startup(function()
             map('n', '<leader>m', require('telescope.builtin').oldfiles)
 			map('n', '<leader>n', require('telescope.builtin').resume)
 			-- map('n', '<leader>s', require('telescope.builtin').search_history)
-			-- map('n', '<leader>t', require('telescope.builtin').git_branches)
-			-- map('n', '<leader>y', require('telescope.builtin').registers)
+			map('n', '<leader>t', require('telescope.builtin').git_branches)
+			map('n', '<leader>y', require('telescope.builtin').registers)
 			map('n', '<leader>l', require('telescope.builtin').lsp_workspace_symbols)
 		end
     }
@@ -157,21 +157,26 @@ require('packer').startup(function()
     -- Completion
     use { 'hrsh7th/nvim-cmp',
         requires = {'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',  'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+
         config = function()
             local has_words_before = function()
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                 return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
             end
+
             local cmp = require('cmp')
             local luasnip = require('luasnip')
+
             cmp.setup{
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
                     end
                 },
-                sources = cmp.config.sources({
+
+                sources = {
                     { name = 'luasnip' },
+                    { name = 'path' },
                     {
                         name = 'buffer',
                         option = {
@@ -181,8 +186,7 @@ require('packer').startup(function()
                         }
                     },
                     -- { name = 'nvim_lsp' },
-                    { name = 'path' },
-                }),
+                },
                 mapping = {
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
@@ -210,15 +214,11 @@ require('packer').startup(function()
                     ['<C-e>'] = cmp.mapping({
                         i = cmp.mapping.abort(),
                         c = cmp.mapping.close(),
-                    }),                }
-
+                    }),
+                }
             }
 
-            -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-            -- require('lspconfig')['r_language_server'].setup {
-            --     capabilities = capabilities
-            -- }
+
         end,
     }
 
@@ -367,8 +367,20 @@ require('packer').startup(function()
 
     -- auto pairs
     use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
+        'windwp/nvim-autopairs',
+        config = function() require('nvim-autopairs').setup {} end
+    }
+
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function ()
+            require'octo'.setup()
+        end
     }
 
 end)
