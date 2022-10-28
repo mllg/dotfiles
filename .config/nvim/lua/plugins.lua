@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
         config = function()
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
             vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+
+            require('lspconfig').r_language_server.setup{}
         end
     }
 
