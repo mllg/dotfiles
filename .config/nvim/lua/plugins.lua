@@ -12,6 +12,11 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
+    -- let packer handle itself
+    use {
+        'wbthomason/packer.nvim'
+    }
+
     -- colorscheme
     use {
         "catppuccin/nvim",
@@ -27,21 +32,34 @@ return require('packer').startup(function(use)
 
     -- LSP
     use {
-        'neovim/nvim-lspconfig'
+        'neovim/nvim-lspconfig',
+
+        config = function()
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+        end
     }
 
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        requires = 'nvim-treesitter/nvim-treesitter-textobjects',
+        requires = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            'nvim-treesitter/nvim-treesitter-refactor',
+            'RRethy/nvim-treesitter-endwise',
+        },
 
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment' },
+                ensure_installed = {
+                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment'
+                },
+
                 indent = {
                     enable = true
                 },
+
                 textobjects = {
                     select = {
                         enable = true,
@@ -65,7 +83,80 @@ return require('packer').startup(function(use)
                         },
                     },
                 },
+
+                refactor = {
+                    smart_rename = {
+                        enable = true,
+                        keymaps = {
+                            smart_rename = 'grr',
+                        },
+                    },
+                },
             }
+        end
+    }
+
+    -- Completion
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            { 'L3MON4D3/LuaSnip', requires = 'rafamadriz/friendly-snippets' },
+            { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+            { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+            { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+            { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
+            { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+        },
+
+
+        event = 'InsertEnter',
+
+        config = function()
+            local cmp = require('cmp')
+            local luasnip = require('luasnip')
+            require("luasnip.loaders.from_vscode").lazy_load()
+
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end,
+                },
+
+                sources = cmp.config.sources({
+                    { name = 'luasnip' },
+                    { name = 'buffer' },
+                    { name = 'path' },
+                    { name = 'nvim_lsp' },
+                    { name = 'calc' },
+                }),
+
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<CR>'] = cmp.mapping.confirm {
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = true,
+                    },
+                    ['<Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+                    ['<S-Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+                }),
+            })
         end
     }
 
@@ -128,16 +219,23 @@ return require('packer').startup(function(use)
     -- git magit
     use {
         'TimUntersberger/neogit',
+        opt = true,
+        cmd = 'Neogit',
         config = function()
             local neogit = require('neogit')
             neogit.setup{}
         end
     }
 
-    -- extension manager
+    -- git conflict merge helper
     use {
-        'wbthomason/packer.nvim'
+        'akinsho/git-conflict.nvim',
+        tag = "*",
+        config = function()
+            require('git-conflict').setup()
+        end
     }
+
 
     -- EditorConfig Support
     use {
