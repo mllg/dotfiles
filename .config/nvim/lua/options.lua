@@ -1,7 +1,6 @@
 local opt = vim.opt
 
 -- appearance
-vim.cmd([[colorscheme gruvbox-material]])
 opt.termguicolors = true
 opt.cursorline = true
 opt.number = true
