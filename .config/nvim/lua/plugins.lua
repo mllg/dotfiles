@@ -55,7 +55,7 @@ return require('packer').startup(function(use)
         config = function()
             require('nvim-treesitter.configs').setup {
                 ensure_installed = {
-                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment'
+                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline',
                 },
 
                 indent = {
