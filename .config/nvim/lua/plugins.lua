@@ -62,6 +62,10 @@ return require('packer').startup(function(use)
                     enable = true
                 },
 
+                endwise = {
+                    enable = true,
+                },
+
                 textobjects = {
                     select = {
                         enable = true,
@@ -304,6 +308,46 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {
+        'hkupty/iron.nvim',
+        -- cmd = { 'IronRepl', 'IronSend', 'IronReplHere' },
+
+        config = function()
+            local iron = require('iron.core')
+            iron.setup {
+                config = {
+                    scratch_repl = false,
+                    repl_open_cmd = 'belowright 15 split',
+                },
+                keymaps = {
+                    send_motion = "<space>r",
+                    visual_send = "<space>r",
+                    send_file = "<space>rf",
+                    -- send_line = "<space>sl",
+                    -- send_mark = "<space>sm",
+                    -- mark_motion = "<space>mc",
+                    -- mark_visual = "<space>mc",
+                    -- remove_mark = "<space>md",
+                    -- cr = "<space>r<cr>",
+                    -- interrupt = "<space>s<space>",
+                    -- exit = "<space>sq",
+                },
+            }
+            -- vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
+            -- vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
+            -- vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
+            -- vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+
+            vim.keymap.set('n', '<cr>', function()
+                iron.send_line()
+
+                local pos = vim.api.nvim_win_get_cursor(0)
+                if (pos[1] < vim.fn.line('$')) then
+                    vim.api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
+                end
+            end)
+        end
+    }
 
     if packer_bootstrap then
         require('packer').sync()
