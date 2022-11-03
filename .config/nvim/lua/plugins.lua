@@ -314,15 +314,22 @@ return require('packer').startup(function(use)
 
         config = function()
             local iron = require('iron.core')
+            local view = require('iron.view')
+
             iron.setup {
                 config = {
                     scratch_repl = false,
-                    repl_open_cmd = 'belowright 15 split',
+                    repl_open_cmd = view.split.vertical.botright(0.35),
+                    repl_definition = {
+                        r = {
+                            command = 'R'
+                        }
+                    },
                 },
                 keymaps = {
                     send_motion = "<space>r",
-                    visual_send = "<space>r",
-                    send_file = "<space>rf",
+                    visual_send = "<cr>",
+                    -- send_file = "<space>rf",
                     -- send_line = "<space>sl",
                     -- send_mark = "<space>sm",
                     -- mark_motion = "<space>mc",
@@ -333,12 +340,16 @@ return require('packer').startup(function(use)
                     -- exit = "<space>sq",
                 },
             }
+            local map = vim.keymap.set
+
+            map('n', '<f10>', '<cmd>IronRepl<cr>')
+
             -- vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
             -- vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
             -- vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
             -- vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 
-            vim.keymap.set('n', '<cr>', function()
+            map('n', '<cr>', function()
                 iron.send_line()
 
                 local pos = vim.api.nvim_win_get_cursor(0)
@@ -347,6 +358,10 @@ return require('packer').startup(function(use)
                 end
             end)
         end
+    }
+
+    -- file system browser + vidir
+    use { 'elihunter173/dirbuf.nvim'
     }
 
     if packer_bootstrap then

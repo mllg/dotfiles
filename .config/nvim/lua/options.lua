@@ -40,6 +40,7 @@ opt.inccommand = 'nosplit'
 opt.completeopt = 'menu,menuone,noselect'
 -- opt.shortmess:append { c = true }
 
+
 -- os integration
 opt.clipboard = 'unnamedplus'
 
@@ -52,5 +53,3 @@ opt.undofile = true
 opt.spelllang = 'en,de'
 opt.spellsuggest = 'fast,20'
 opt.printoptions = 'paper:A4,number:y'
-
-
