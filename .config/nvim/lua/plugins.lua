@@ -55,7 +55,7 @@ return require('packer').startup(function(use)
         config = function()
             require('nvim-treesitter.configs').setup {
                 ensure_installed = {
-                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline',
+                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline', 'latex'
                 },
 
                 indent = {
@@ -230,6 +230,9 @@ return require('packer').startup(function(use)
         config = function()
             local neogit = require('neogit')
             neogit.setup{}
+
+            local map = vim.keymap.set
+            map('n', '<f12>', '<cmd>Neogit<cr>')
         end
     }
 
@@ -310,7 +313,6 @@ return require('packer').startup(function(use)
 
     use {
         'hkupty/iron.nvim',
-        -- cmd = { 'IronRepl', 'IronSend', 'IronReplHere' },
 
         config = function()
             local iron = require('iron.core')
@@ -329,9 +331,9 @@ return require('packer').startup(function(use)
                 keymaps = {
                     send_motion = "<space>r",
                     visual_send = "<cr>",
-                    -- send_file = "<space>rf",
+                    send_file = "<space>rf",
                     -- send_line = "<space>sl",
-                    -- send_mark = "<space>sm",
+                    -- send_mark = "<space>rm",
                     -- mark_motion = "<space>mc",
                     -- mark_visual = "<space>mc",
                     -- remove_mark = "<space>md",
@@ -341,14 +343,7 @@ return require('packer').startup(function(use)
                 },
             }
             local map = vim.keymap.set
-
             map('n', '<f10>', '<cmd>IronRepl<cr>')
-
-            -- vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-            -- vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-            -- vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-            -- vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
-
             map('n', '<cr>', function()
                 iron.send_line()
 
