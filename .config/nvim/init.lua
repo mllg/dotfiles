@@ -1,3 +1,5 @@
+require('impatient')
+
 require('mappings')
 require('plugins')
 require('autocommands')

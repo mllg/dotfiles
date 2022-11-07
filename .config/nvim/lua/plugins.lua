@@ -17,6 +17,11 @@ return require('packer').startup(function(use)
         'wbthomason/packer.nvim'
     }
 
+    -- lua cache
+    use {
+        'lewis6991/impatient.nvim'
+    }
+
     -- colorscheme
     use {
         "catppuccin/nvim",
