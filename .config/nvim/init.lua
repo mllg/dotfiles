@@ -1,4 +1,4 @@
-require('impatient')
+local status, impatient = pcall(require, 'impatient')
 
 require('mappings')
 require('plugins')

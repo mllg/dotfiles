@@ -63,6 +63,16 @@ return require('packer').startup(function(use)
                     'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline', 'latex'
                 },
 
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = ".",
+                        node_incremental = ".",
+                        scope_incremental = "",
+                        node_decremental = "",
+                    }
+                },
+
                 indent = {
                     enable = true
                 },
