@@ -55,10 +55,15 @@ return require('packer').startup(function(use)
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-treesitter/nvim-treesitter-refactor',
             'RRethy/nvim-treesitter-endwise',
+            'nvim-treesitter/playground',
         },
 
         config = function()
             require('nvim-treesitter.configs').setup {
+                playground = {
+                    enable = true,
+                },
+
                 ensure_installed = {
                     'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline', 'latex'
                 },
@@ -66,8 +71,8 @@ return require('packer').startup(function(use)
                 incremental_selection = {
                     enable = true,
                     keymaps = {
-                        init_selection = ".",
-                        node_incremental = ".",
+                        init_selection = ",",
+                        node_incremental = ",",
                     }
                 },
 
@@ -90,6 +95,9 @@ return require('packer').startup(function(use)
                             ['ia'] = '@parameter.inner',
                             ['ic'] = '@conditional.inner',
                             ['ac'] = '@conditional.outer',
+                            ['im'] = '@fenced_code_block_delimiter.inner',
+                            ['am'] = '@fenced_code_block_delimiter.outer',
+
                         },
                     },
                     swap = {
