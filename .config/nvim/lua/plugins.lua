@@ -68,8 +68,6 @@ return require('packer').startup(function(use)
                     keymaps = {
                         init_selection = ".",
                         node_incremental = ".",
-                        scope_incremental = "",
-                        node_decremental = "",
                     }
                 },
 
@@ -340,7 +338,10 @@ return require('packer').startup(function(use)
                     repl_definition = {
                         r = {
                             command = 'R'
-                        }
+                        },
+                        rmd = {
+                            command = 'R'
+                        },
                     },
                 },
                 keymaps = {
