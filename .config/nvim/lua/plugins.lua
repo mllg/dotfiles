@@ -383,6 +383,8 @@ return require('packer').startup(function(use)
     use { 'elihunter173/dirbuf.nvim'
     }
 
+    use 'rafcamlet/nvim-luapad'
+
     if packer_bootstrap then
         require('packer').sync()
     end
