@@ -4,8 +4,10 @@ opt.shiftwidth = 2
 opt.spell = true
 opt.spelllang = 'en'
 
+
+local iron = require('iron.core')
+
 local function iron_send(str)
-    local iron = require('iron.core')
     iron.send('r', { str })
 end
 
@@ -50,8 +52,21 @@ vim.api.nvim_create_user_command('RHelp',
 local map = vim.keymap.set
 map('n', '<leader>rh',
     function()
-        local iron = require('iron.core')
         iron.send('r', { 'help("' .. vim.fn.expand('<cword>') .. '")' })
+    end,
+    { noremap = true}
+)
+
+map('n', '<leader>rp',
+    function()
+        iron.send('r', { 'print(' .. vim.fn.expand('<cword>') .. ')' })
+    end,
+    { noremap = true}
+)
+
+map('n', '<leader>rt',
+    function()
+        iron.send('r', { 'str(' .. vim.fn.expand('<cword>') .. ')' })
     end,
     { noremap = true}
 )
