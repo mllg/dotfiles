@@ -65,7 +65,7 @@ return require('packer').startup(function(use)
                 },
 
                 ensure_installed = {
-                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline', 'latex'
+                    'lua', 'r', 'c', 'cpp', 'bash', 'fish', 'sql', 'comment', 'markdown', 'markdown_inline', 'latex', 'html', 'css', 'scss'
                 },
 
                 incremental_selection = {
