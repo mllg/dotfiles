@@ -56,10 +56,21 @@ return require('packer').startup(function(use)
             'nvim-treesitter/nvim-treesitter-refactor',
             'RRethy/nvim-treesitter-endwise',
             'nvim-treesitter/playground',
+            'p00f/nvim-ts-rainbow',
         },
 
         config = function()
             require('nvim-treesitter.configs').setup {
+                highlight = {
+                    enable = true,
+                },
+
+                rainbow = {
+                    enable = true,
+                    extenden_mode = true,
+                    max_file_lines = nil,
+                },
+
                 playground = {
                     enable = true,
                 },
