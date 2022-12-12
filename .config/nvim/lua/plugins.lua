@@ -72,7 +72,7 @@ return require('packer').startup(function(use)
                 },
 
                 playground = {
-                    enable = true,
+                    enable = false,
                 },
 
                 ensure_installed = {
@@ -385,7 +385,7 @@ return require('packer').startup(function(use)
     use { 'elihunter173/dirbuf.nvim'
     }
 
-    use 'rafcamlet/nvim-luapad'
+    -- use 'rafcamlet/nvim-luapad'
 
     if packer_bootstrap then
         require('packer').sync()
