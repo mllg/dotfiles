@@ -268,6 +268,18 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function ()
+            require"octo".setup()
+        end
+    }
+
 
     -- EditorConfig Support
     use {
@@ -386,6 +398,11 @@ return require('packer').startup(function(use)
     }
 
     -- use 'rafcamlet/nvim-luapad'
+    use {
+        "quarto-dev/quarto-vim",
+        requires = {"vim-pandoc/vim-pandoc-syntax"},
+        ft = {"quarto"},
+    }
 
     if packer_bootstrap then
         require('packer').sync()
