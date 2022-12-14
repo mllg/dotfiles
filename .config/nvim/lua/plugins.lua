@@ -368,7 +368,7 @@ return require('packer').startup(function(use)
                 },
                 keymaps = {
                     send_motion = "<space>r",
-                    visual_send = "<cr>",
+                    visual_send = "<space><space>",
                     send_file = "<space>rf",
                     -- send_line = "<space>sl",
                     -- send_mark = "<space>rm",
@@ -382,7 +382,7 @@ return require('packer').startup(function(use)
             }
             local map = vim.keymap.set
             map('n', '<f10>', '<cmd>IronRepl<cr>')
-            map('n', '<cr>', function()
+            map('n', '<space><space>', function()
                 iron.send_line()
 
                 local pos = vim.api.nvim_win_get_cursor(0)

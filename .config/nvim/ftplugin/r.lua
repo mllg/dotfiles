@@ -52,7 +52,7 @@ vim.api.nvim_create_user_command('RHelp',
 
 local map = vim.keymap.set
 
-map('n', '<cr>', function()
+map('n', '<space><space>', function()
     local pos = vim.api.nvim_win_get_cursor(0)
     local linenr = pos[1] - 1
     local buf_line = vim.trim(vim.api.nvim_buf_get_lines(0, linenr, linenr + 1, 0)[1])
