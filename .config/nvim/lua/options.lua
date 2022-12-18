@@ -1,34 +1,35 @@
-local opt = vim.opt
+-- [[ Setting options ]]
 
--- appearance
-opt.termguicolors = true
-opt.cursorline = true
-opt.number = true
-opt.scrolloff = 2
-opt.laststatus = 3
+-- Set highlight on search
+vim.o.hlsearch = false
+
+-- Make line numbers default
+vim.wo.number = true
+
+-- Enable mouse mode
+vim.o.mouse = 'a'
+
+-- Enable break indent
+vim.o.breakindent = true
+
+-- Save undo history
+vim.o.undofile = true
+
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- Decrease update time
+vim.o.updatetime = 250
+vim.wo.signcolumn = 'yes'
+
+-- Set colorscheme
+vim.o.termguicolors = true
+vim.cmd [[colorscheme onedark]]
 
 
--- -- formating
--- -- opt.formatoptions:remove({'r', 'c'})
-opt.breakindent = true
+vim.o.clipboard = 'unnamedplus'
 
--- -- searches
-opt.ignorecase = true
-opt.smartcase = true
-opt.showmatch = true
- opt.gdefault = true
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
--- -- completion
-opt.completeopt = 'menuone,noselect'
-
--- -- os integration
-opt.clipboard = 'unnamedplus'
-
--- -- file handling
-opt.undofile = true
-
-
--- -- localization
-opt.spelllang = 'en,de'
-opt.spellsuggest = 'fast,20'
-opt.printoptions = 'paper:A4,number:y'
