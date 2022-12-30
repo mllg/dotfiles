@@ -1,8 +1,11 @@
 local map = vim.keymap.set
 
-map('n', '<Space>', '<Nop>', { noremap = false })
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- deal with word wrap
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { silent = true, expr = true })
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { silent = true, expr = true })
+
 
 local opts = { noremap = true, silent = true}
 map('n', 'Q', '@q', opts)
@@ -15,7 +18,3 @@ map('n', 'n', 'nzzzv', opts)
 map('n', 'N', 'Nzzzv', opts)
 map('v', '<', '<gv', opts)
 map('v', '>', '>gv', opts)
-
-opts = { noremap = true, silent = true, expr = true }
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", opts)
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", opts)

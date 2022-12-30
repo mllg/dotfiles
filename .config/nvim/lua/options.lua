@@ -6,6 +6,7 @@ opt.cursorline = true
 opt.number = true
 opt.scrolloff = 2
 opt.laststatus = 3
+opt.signcolumn = 'yes'
 
 
 -- formating
@@ -26,6 +27,8 @@ opt.completeopt = 'menuone,noselect'
 
 -- os integration
 opt.clipboard = 'unnamedplus'
+opt.updatetime = 250
+opt.mouse = 'a'
 
 
 -- file handling
