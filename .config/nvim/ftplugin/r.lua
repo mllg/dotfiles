@@ -13,7 +13,7 @@ local function iron_send(str)
 end
 
 local function r_send(str)
-    return function(opts)
+    return function()
         iron_send(str)
     end
 end
@@ -58,7 +58,7 @@ map('n', '<space><space>', function()
     local buf_line = vim.trim(vim.api.nvim_buf_get_lines(0, linenr, linenr + 1, 0)[1])
 
     -- check if we are in a roxygen example region
-    -- if yes, remove the "#'" prefix
+    -- if yes, remove the "#'" prefix and remaining send line
     -- this should be done using treesitter :/
     if vim.startswith(buf_line, "#'") then
         for i = linenr, 0, -1 do
