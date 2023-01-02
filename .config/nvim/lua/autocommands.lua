@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
         vim.opt_local.signcolumn = 'no'
         vim.opt_local.number = false
 
-
         local map = vim.keymap.set
         local opts = { buffer = true, noremap = true }
         map('n', '<c-h>', '<Nop>', opts)
@@ -18,14 +17,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
         map('n', '<c-c>', 'i<c-c>', opts)
     end
 })
-
--- group = vim.api.nvim_create_augroup('HighlightYank', { clear = true })
--- vim.api.nvim_create_autocmd('TextYankPost', {
---     group = group,
---     callback = function()
---         vim.highlight.on_yank{timeout = 250}
---     end
--- })
 
 -- show cursor line only in active window
 group = vim.api.nvim_create_augroup('DisableCursorLine', { clear = true })
@@ -48,5 +39,16 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
             vim.api.nvim_win_set_var(0, 'auto-cursorline', cl)
             vim.wo.cursorline = false
         end
+    end,
+})
+
+
+-- use markdown syntax for quarto
+group = vim.api.nvim_create_augroup('QuartoFileType', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+    group = group,
+    pattern = '*.qmd',
+    callback = function()
+        vim.bo.filetype = 'markdown'
     end,
 })

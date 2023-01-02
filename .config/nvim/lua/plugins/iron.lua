@@ -19,6 +19,9 @@ local M = {
                     quarto = {
                         command = { 'R' }
                     },
+                    markdown = {
+                        command = { 'R' }
+                    },
                 },
             },
             keymaps = {
