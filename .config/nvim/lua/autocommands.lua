@@ -19,33 +19,33 @@ vim.api.nvim_create_autocmd('TermOpen', {
     end
 })
 
-group = vim.api.nvim_create_augroup('HighlightYank', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = group,
-    callback = function()
-        vim.highlight.on_yank{timeout = 250}
-    end
-})
+-- group = vim.api.nvim_create_augroup('HighlightYank', { clear = true })
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--     group = group,
+--     callback = function()
+--         vim.highlight.on_yank{timeout = 250}
+--     end
+-- })
 
 -- show cursor line only in active window
 group = vim.api.nvim_create_augroup('DisableCursorLine', { clear = true })
-vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
     group = group,
     callback = function()
-        local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
+        local ok, cl = pcall(vim.api.nvim_win_get_var, 0, 'auto-cursorline')
         if ok and cl then
             vim.wo.cursorline = true
-            vim.api.nvim_win_del_var(0, "auto-cursorline")
+            vim.api.nvim_win_del_var(0, 'auto-cursorline')
         end
     end,
 })
 group = vim.api.nvim_create_augroup('EnableCursorLine', { clear = true })
-vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
     group = group,
     callback = function()
         local cl = vim.wo.cursorline
         if cl then
-            vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
+            vim.api.nvim_win_set_var(0, 'auto-cursorline', cl)
             vim.wo.cursorline = false
         end
     end,
