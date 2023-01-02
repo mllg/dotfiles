@@ -19,31 +19,20 @@ survival
 cli
 covr
 crayon
-debugme
 devtools
 inline
-mllg/gtfo
 profvis
 pryr
 rdatsci/rtcl
 r-lib/revdepcheck
-REditorSupport/languageserver
 roxygen2
 rprojroot
 testthat
 
 # frequently used
 bench
-DataExplorer
 ggplot2
-gridExtra
 knitr
-microbenchmark
-mlbench
-mlr
+bench
 mlr3verse
-OpenML
-RColorBrewer
-RcppEigen
 rmarkdown
-xtable
