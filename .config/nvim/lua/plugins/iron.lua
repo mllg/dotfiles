@@ -1,7 +1,7 @@
 local M = {
     'hkupty/iron.nvim',
 
-    ft = { 'r', 'rmd', 'julia' },
+    ft = { 'r', 'rmd', 'quarto', 'julia' },
 
     keys = {
         { '<f10>', '<cmd>IronRepl<cr>' }
@@ -15,6 +15,11 @@ local M = {
             config = {
                 scratch_repl = false,
                 repl_open_cmd = view.split.vertical.botright(0.35),
+                repl_definition = {
+                    quarto = {
+                        command = { 'R' }
+                    },
+                },
             },
             keymaps = {
                 send_motion = '<space>r',
