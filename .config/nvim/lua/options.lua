@@ -27,7 +27,7 @@ opt.completeopt = 'menuone,noselect'
 
 -- os integration
 opt.clipboard = 'unnamedplus'
-opt.updatetime = 250
+opt.updatetime = 500
 opt.mouse = 'a'
 
 
@@ -36,6 +36,11 @@ opt.undofile = true
 
 
 -- localization
-opt.spelllang = 'en,de'
-opt.spellsuggest = 'fast,20'
+opt.spelllang = { 'en_us', 'de' }
+opt.spellsuggest = 'best,10'
 opt.printoptions = 'paper:A4,number:y'
+
+-- use ripgrep
+if (vim.fn.executable('rg')) then
+    opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+end
