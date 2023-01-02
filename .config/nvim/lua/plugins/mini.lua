@@ -4,7 +4,6 @@ local M = { 'echasnovski/mini.nvim',
     config = function()
         local bufremove = require('mini.bufremove')
         bufremove.setup{}
-        vim.keymap.set('n', '<leader>c', MiniBufremove.delete, { noremap = true})
 
         local jump = require('mini.jump')
         jump.setup{}
@@ -34,7 +33,11 @@ local M = { 'echasnovski/mini.nvim',
 
         local trailspace = require('mini.trailspace')
         trailspace.setup{}
-    end
+
+        vim.keymap.set('n', '<backspace>', function()
+            bufremove.delete()
+        end, { noremap = true})
+    end,
 }
 
 return M
