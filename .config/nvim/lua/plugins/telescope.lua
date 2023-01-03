@@ -5,7 +5,7 @@ local M = {
         'nvim-lua/plenary.nvim',
         'kyazdani42/nvim-web-devicons',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        'ahmedkhalf/project.nvim',
+        'nvim-telescope/telescope-z.nvim',
     },
 
     cmd = 'Telescope',
@@ -19,14 +19,14 @@ local M = {
         { '<leader>t', '<cmd>Telescope treesitter<cr>', desc = 'Treesitter Symbols' },
         { '<leader>y', '<cmd>Telescope yank_history<cr>', desc = 'Yanks' },
         { '<leader>ls', '<cmd>Telescope lsp_workspace_symbols<cr>', desc = 'LSP Workspace Symbols' },
-        { '<leader>z', '<cmd>Telescope projects<cr>', desc = 'List Projects' },
+        { '<leader>z', '<cmd>Telescope z list<cr>', desc = 'List Recent Directories' },
     },
 
     config = function()
         local telescope = require('telescope')
         telescope.load_extension('fzf')
-        telescope.load_extension('projects')
         telescope.load_extension('yank_history')
+        telescope.load_extension('z')
     end,
 }
 

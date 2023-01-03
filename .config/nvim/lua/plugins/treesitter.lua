@@ -5,6 +5,7 @@ local M = {
         'nvim-treesitter/nvim-treesitter-textobjects',
         'RRethy/nvim-treesitter-endwise',
         'nvim-treesitter/nvim-treesitter-refactor',
+        'JoosepAlviste/nvim-ts-context-commentstring',
     },
 
     build = function()
@@ -70,6 +71,11 @@ local M = {
                         ['<leader>A'] = '@parameter.inner',
                     },
                 },
+            },
+
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
             }
         }
     end,

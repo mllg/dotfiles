@@ -5,12 +5,6 @@ local M = { 'echasnovski/mini.nvim',
         local bufremove = require('mini.bufremove')
         bufremove.setup{}
 
-        local jump = require('mini.jump')
-        jump.setup{}
-
-        local surround = require('mini.surround')
-        surround.setup{}
-
         local comment = require('mini.comment')
         comment.setup{
             mappings = {
@@ -18,13 +12,29 @@ local M = { 'echasnovski/mini.nvim',
                 comment_line = 'gcc',
                 textobject = 'gc',
             },
+
+            hooks = {
+                pre = function()
+                    require('ts_context_commentstring.internal').update_commentstring()
+                end,
+            },
         }
+
+        local jump = require('mini.jump')
+        jump.setup{}
+
+        local misc = require('mini.misc')
+        misc.setup{}
+        misc.setup_auto_root({ '.projectroot', '.git', '.svn', 'Makefile', 'DESCRIPTION' })
 
         local statusline = require('mini.statusline')
         statusline.setup{
             set_vim_settings = false,
             use_icons = true
         }
+
+        local surround = require('mini.surround')
+        surround.setup{}
 
         local tabline = require('mini.tabline')
         tabline.setup{
