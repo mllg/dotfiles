@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 local function iron_send(str)
     require('iron.core').send('r', { str })
 end
@@ -42,7 +40,7 @@ vim.api.nvim_create_user_command('RHelp',
     { nargs = 1 }
 )
 
-map('n', '<space><space>', function()
+vim.keymap.set('n', '<localleader><localleader>', function()
     local pos = vim.api.nvim_win_get_cursor(0)
     local linenr = pos[1] - 1
     local buf_line = vim.trim(vim.api.nvim_buf_get_lines(0, linenr, linenr + 1, 0)[1])
@@ -70,31 +68,31 @@ map('n', '<space><space>', function()
     end
 end)
 
-map('n', '<leader>rh',
+vim.keymap.set('n', '<localleader>rh',
     function()
         require('iron.core').send('r', { 'help("' .. vim.fn.expand('<cword>') .. '")' })
     end,
-    { noremap = true}
+    { noremap = true, buffer = true }
 )
 
-map('n', '<leader>rp',
+vim.keymap.set('n', '<localleader>rp',
     function()
         require('iron.core').send('r', { 'print(' .. vim.fn.expand('<cword>') .. ')' })
     end,
-    { noremap = true}
+    { noremap = true, buffer = true }
 )
 
-map('n', '<leader>ri',
+vim.keymap.set('n', '<localleader>ri',
     function()
         require('iron.core').send('r', { '.Internal(inspect(' .. vim.fn.expand('<cword>') .. '))' })
     end,
-    { noremap = true}
+    { noremap = true, buffer = true }
 )
 
 
-map('n', '<leader>rt',
+vim.keymap.set('n', '<localleader>rt',
     function()
         require('iron.core').send('r', { 'str(' .. vim.fn.expand('<cword>') .. ')' })
     end,
-    { noremap = true}
+    { noremap = true, buffer = true }
 )

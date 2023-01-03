@@ -9,13 +9,15 @@ local M = {
 
     config = function()
         local iron = require('iron.core')
-        local view = require('iron.view')
 
         iron.setup {
             config = {
                 scratch_repl = false,
-                repl_open_cmd = view.split.vertical.botright(0.35),
+                repl_open_cmd = require('iron.view').split.vertical.botright(0.35),
                 repl_definition = {
+                    r = {
+                        command = { 'R' },
+                    },
                     quarto = {
                         command = { 'R' }
                     },
@@ -25,9 +27,9 @@ local M = {
                 },
             },
             keymaps = {
-                send_motion = '<space>r',
-                visual_send = '<space><space>',
-                send_file = '<space>rf',
+                send_motion = '<localleader>r',
+                visual_send = '<localleader><localleader>',
+                send_file = '<localleader>rf',
                 -- send_line = '<space>sl',
                 -- send_mark = '<space>rm',
                 -- mark_motion = '<space>mc',
@@ -38,7 +40,7 @@ local M = {
                 -- exit = '<space>sq',
             },
         }
-        vim.keymap.set('n', '<space><space>', function()
+        vim.keymap.set('n', '<localleader><localleader>', function()
             iron.send_line()
 
             local pos = vim.api.nvim_win_get_cursor(0)

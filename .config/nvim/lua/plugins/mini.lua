@@ -36,7 +36,7 @@ local M = { 'echasnovski/mini.nvim',
 
         vim.keymap.set('n', '<backspace>', function()
             bufremove.delete()
-        end, { noremap = true})
+        end, { noremap = true })
     end,
 }
 
