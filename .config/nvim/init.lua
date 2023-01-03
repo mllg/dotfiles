@@ -21,6 +21,3 @@ require("options")
 require("mappings")
 require("terminal")
 require("spell")
-
--- set colorscheme
-vim.cmd[[colorscheme catppuccin]]
