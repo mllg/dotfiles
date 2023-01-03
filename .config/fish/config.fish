@@ -1,6 +1,8 @@
-set fish_greeting
-
 if status is-interactive
+    if not functions -q fisher
+        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    end
+
     abbr --add gc 'git commit'
     abbr --add gd 'git diff'
     abbr --add ga 'git add'
@@ -33,6 +35,7 @@ if status is-interactive
 
 end
 
+set fish_greeting
 set -gx LANGUAGE en
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
