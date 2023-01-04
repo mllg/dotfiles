@@ -52,3 +52,11 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
         vim.bo.filetype = 'markdown'
     end,
 })
+
+
+-- check for changes and reload
+group = vim.api.nvim_create_augroup('CheckTime', { clear = true })
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+    group = group,
+    command = 'checktime'
+})
