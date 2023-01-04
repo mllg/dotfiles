@@ -19,7 +19,7 @@
     rt.maintainer = "Michel Lang <michellang@gmail.com>",
     help_type = "html",
     usethis.full_name = "Michel Lang",
-    browser = 'xdg-open'
+    browser = "xdg-open"
   )
 
 
