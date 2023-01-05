@@ -13,6 +13,7 @@ local M = {
         iron.setup {
             config = {
                 scratch_repl = false,
+                scope = require('iron.scope').singleton,
                 repl_open_cmd = require('iron.view').split.vertical.botright(0.35),
                 repl_definition = {
                     r = {
