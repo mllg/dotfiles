@@ -19,8 +19,10 @@ vim.api.nvim_create_user_command('RCheckPackage',
 )
 
 vim.api.nvim_create_user_command('RTestPackage',
-    r_send('devtools::test()'),
-    { nargs = 0 }
+    function(opts)
+        iron_send('devtools::test(filter = "' .. opts.args .. '")')
+    end,
+    { nargs = '?' }
 )
 
 vim.api.nvim_create_user_command('RDocumentPackage',
@@ -96,3 +98,6 @@ vim.keymap.set('n', '<localleader>rt',
     end,
     { noremap = true, buffer = true }
 )
+
+-- vVaf
+--lua require'nvim-treesitter.textobjects.select'.select_textobject('@function.outer')
