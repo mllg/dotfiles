@@ -1,7 +1,7 @@
 root = true
 
-[{.tmux.conf,.Rprofile,.config/nvim/init.vim,.config/fish/config.fish}]
-charset = utf8
+[{.tmux.conf,.Rprofile,.config/fish/config.fish}]
+charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 indent_style = space
