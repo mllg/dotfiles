@@ -1,23 +1,6 @@
 -- Automatically source and re-compile packer whenever you save this init.lua
 local group
 
-group = vim.api.nvim_create_augroup('TerminalTweaks', { clear = true })
-vim.api.nvim_create_autocmd('TermOpen', {
-    group = group,
-    callback = function()
-        vim.opt.buflisted = false
-        vim.opt_local.scrollback = 10000
-        vim.opt_local.signcolumn = 'no'
-        vim.opt_local.number = false
-
-        local map = vim.keymap.set
-        local opts = { buffer = true, noremap = true }
-        map('n', '<c-h>', '<Nop>', opts)
-        map('n', '<c-l>', '<Nop>', opts)
-        map('n', '<c-c>', 'i<c-c>', opts)
-    end
-})
-
 -- show cursor line only in active window
 group = vim.api.nvim_create_augroup('DisableCursorLine', { clear = true })
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
