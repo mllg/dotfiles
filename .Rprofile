@@ -1,7 +1,7 @@
 .First = function() {
   repos = getOption("repos")
   repos[["CRAN"]] = "https://bioconductor.statistik.tu-dortmund.de/cran/"
-  repos[["CRAN"]] = "https://cloud.r-project.org"
+  # repos[["CRAN"]] = "https://cloud.r-project.org"
   Sys.setenv(TZ = "Europe/Berlin")
   cores = as.integer(Sys.getenv("NCPUS", parallel::detectCores()))
 
