@@ -17,13 +17,13 @@ local M = {
                 repl_open_cmd = require('iron.view').split.vertical.botright(0.35),
                 repl_definition = {
                     r = {
-                        command = { 'R' },
+                        command = { 'R', '--no-save' }
                     },
                     quarto = {
-                        command = { 'R' }
+                        command = { 'R', '--no-save' }
                     },
                     markdown = {
-                        command = { 'R' }
+                        command = { 'R', '--no-save' }
                     },
                 },
             },
@@ -38,7 +38,7 @@ local M = {
                 -- remove_mark = '<space>md',
                 -- cr = '<space>r<cr>',
                 -- interrupt = '<space>s<space>',
-                -- exit = '<space>sq',
+                -- exit = '<localleader>rq',
             },
         }
         vim.keymap.set('n', '<localleader><localleader>', function()

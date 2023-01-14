@@ -99,5 +99,9 @@ vim.keymap.set('n', '<localleader>rt',
     { noremap = true, buffer = true }
 )
 
--- vVaf
---lua require'nvim-treesitter.textobjects.select'.select_textobject('@function.outer')
+vim.keymap.set('n', '<localleader>rq',
+    function()
+        require('iron.core').close_repl('r')
+    end,
+    { noremap = true, buffer = true }
+)
