@@ -27,6 +27,9 @@ local M = { 'echasnovski/mini.nvim',
         misc.setup{}
         misc.setup_auto_root({ '.projectroot', '.git', '.svn', 'Makefile', 'DESCRIPTION' })
 
+        local move = require('mini.move')
+        move.setup{}
+
         local statusline = require('mini.statusline')
         statusline.setup{
             set_vim_settings = false,
