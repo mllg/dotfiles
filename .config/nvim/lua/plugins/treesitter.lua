@@ -62,15 +62,15 @@ local M = {
                         ['ic'] = '@class.inner',
                     },
                 },
-                swap = {
-                    enable = true,
-                    swap_next = {
-                        ['<leader>a'] = '@parameter.inner',
-                    },
-                    swap_previous = {
-                        ['<leader>A'] = '@parameter.inner',
-                    },
-                },
+                -- swap = {
+                --     enable = true,
+                --     swap_next = {
+                --         ['<leader>a'] = '@parameter.inner',
+                --     },
+                --     swap_previous = {
+                --         ['<leader>A'] = '@parameter.inner',
+                --     },
+                -- },
             },
 
             context_commentstring = {

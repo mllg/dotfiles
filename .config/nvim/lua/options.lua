@@ -10,7 +10,7 @@ opt.signcolumn = 'yes'
 
 
 -- formating
--- opt.formatoptions:remove({'r', 'c'})
+opt.formatoptions:append('r')
 opt.breakindent = true
 
 
