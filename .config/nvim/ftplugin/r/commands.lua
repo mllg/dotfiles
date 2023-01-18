@@ -65,7 +65,7 @@ vim.keymap.set('n', '<localleader><localleader>', function()
 
     iron_send(buf_line)
 
-    if (pos[1] < vim.fn.line('$')) then
+    if (pos[1] < vim.api.nvim_buf_line_count(0)) then
         vim.api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
     end
 end)

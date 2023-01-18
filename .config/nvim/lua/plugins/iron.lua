@@ -45,7 +45,7 @@ local M = {
             iron.send_line()
 
             local pos = vim.api.nvim_win_get_cursor(0)
-            if (pos[1] < vim.fn.line('$')) then
+            if (pos[1] < vim.api.nvim_buf_line_count(0)) then
                 vim.api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
             end
         end, { noremap = true })

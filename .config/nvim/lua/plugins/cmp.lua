@@ -57,7 +57,18 @@ local M = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'nvim_lua' },
-                { name = 'buffer' },
+                { name = 'buffer',
+                    option = {
+                        get_bufnrs = function()
+                            local bufs = {}
+                            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                                local bytes = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                                bufs[buf] = (bytes < 1048576) -- 1 MB
+                            end
+                            return vim.tbl_keys(bufs)
+                        end
+                    },
+                },
                 { name = 'path' },
                 { name = 'calc' },
 
