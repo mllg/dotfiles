@@ -10,6 +10,8 @@ opt.signcolumn = 'yes'
 
 
 -- formating
+opt.shiftwidth = 4
+opt.softtabstop = 4
 opt.expandtab = true
 opt.formatoptions:append('r')
 opt.breakindent = true
