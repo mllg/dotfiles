@@ -25,6 +25,9 @@ local M = {
                     markdown = {
                         command = { 'R', '--no-save' }
                     },
+                    lua = {
+                        command = { 'luajit' },
+                    },
                 },
             },
             keymaps = {
