@@ -2,6 +2,22 @@ local M = { 'echasnovski/mini.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
 
     config = function()
+        local basics = require('mini.basics')
+        basics.setup{
+            options = {
+                extra_ui = true
+            },
+            mappings = {
+                basic = true,
+                option_toggle_prefix = '',
+                windows = true,
+            },
+            autocommands = {
+                basic = false,
+                relnum_in_visual_mode = true,
+            }
+        }
+
         local bufremove = require('mini.bufremove')
         bufremove.setup{}
 

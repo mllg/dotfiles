@@ -1,41 +1,27 @@
 local opt = vim.opt
 
 -- appearance
-opt.termguicolors = true
-opt.cursorline = true
-opt.number = true
 opt.scrolloff = 2
 opt.laststatus = 3
-opt.signcolumn = 'yes'
 
 
 -- formating
 opt.shiftwidth = 4
-opt.softtabstop = 4
 opt.expandtab = true
 opt.formatoptions:append('r')
-opt.breakindent = true
 
 
 -- searches
-opt.ignorecase = true
-opt.smartcase = true
 opt.showmatch = true
 opt.gdefault = false
 
 -- completion
-opt.completeopt = 'menuone,noselect'
 -- opt.shortmess:append { c = true }
 
 
 -- os integration
 opt.clipboard = 'unnamedplus'
 opt.updatetime = 500
-opt.mouse = 'a'
-
-
--- file handling
-opt.undofile = true
 
 
 -- localization
