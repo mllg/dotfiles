@@ -10,10 +10,6 @@ local M = {
     config = function()
         local iron = require('iron.core')
         local bracketed_paste = require("iron.fts.common").bracketed_paste
-        local r_repl = {
-            command = { 'radian', '--no-save' },
-            format = bracketed_paste
-        },
 
         iron.setup {
             config = {
@@ -22,9 +18,18 @@ local M = {
                 repl_open_cmd = require('iron.view').split.vertical.botright(0.35),
 
                 repl_definition = {
-                    r = r_repl,
-                    quarto = r_repl,
-                    markdown = r_repl,
+                    r = {
+                        command = { 'radian' },
+                        format = bracketed_paste
+                    },
+                    quarto = {
+                        command = { 'radian' },
+                        format = bracketed_paste
+                    },
+                    markdown = {
+                        command = { 'radian' },
+                        format = bracketed_paste
+                    },
                     lua = {
                         command = { 'luajit' },
                     },
