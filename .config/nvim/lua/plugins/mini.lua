@@ -1,7 +1,16 @@
-local M = { 'echasnovski/mini.nvim',
+local M = {
+    { 'echasnovski/mini.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
 
     config = function()
+        local align = require('mini.align')
+        align.setup({
+            mappings = {
+                start = '',
+                start_with_preview = 'ga'
+            }
+        })
+
         local basics = require('mini.basics')
         basics.setup{
             options = {
@@ -20,6 +29,10 @@ local M = { 'echasnovski/mini.nvim',
 
         local bufremove = require('mini.bufremove')
         bufremove.setup{}
+        vim.keymap.set('n', '<backspace>', function()
+            bufremove.delete(0, false)
+        end, { noremap = true })
+
 
         local comment = require('mini.comment')
         comment.setup{
@@ -42,6 +55,7 @@ local M = { 'echasnovski/mini.nvim',
         local misc = require('mini.misc')
         misc.setup{}
         misc.setup_auto_root({ '.projectroot', '.git', '.svn', 'Makefile', 'DESCRIPTION' })
+        misc.setup_restore_cursor()
 
         local move = require('mini.move')
         move.setup{}
@@ -62,11 +76,7 @@ local M = { 'echasnovski/mini.nvim',
 
         local trailspace = require('mini.trailspace')
         trailspace.setup{}
-
-        vim.keymap.set('n', '<backspace>', function()
-            bufremove.delete()
-        end, { noremap = true })
     end,
-}
+}}
 
 return M
