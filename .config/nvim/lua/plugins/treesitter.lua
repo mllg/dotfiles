@@ -20,7 +20,7 @@ local M = {
                 'json', 'toml', 'yaml',
                 'gitcommit', 'gitignore',
                 'html', 'css', 'javascript',
-                'comment', 'help',
+                'make', 'comment', 'help',
             },
 
             highlight = {
