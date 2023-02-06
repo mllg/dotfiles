@@ -5,6 +5,7 @@ local M = {
 
     dependencies = {
         { 'L3MON4D3/LuaSnip', requires = 'rafamadriz/friendly-snippets' },
+        { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' },
         { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
         { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
