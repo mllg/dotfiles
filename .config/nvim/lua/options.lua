@@ -9,6 +9,7 @@ opt.laststatus = 3
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.formatoptions:append('r')
+opt.wrap = true
 
 
 -- searches
