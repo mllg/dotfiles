@@ -15,22 +15,7 @@ vim.opt.runtimepath:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
-require("lazy").setup("plugins", {
-    performance = {
-        rtp = {
-            disabled_plugins = {
-                'gzip',
-                'matchit',
-                'matchparen',
-                'netrwPlugin',
-                'tarPlugin',
-                'tohtml',
-                'tutor',
-                'zipPlugin',
-            },
-        },
-    }
-})
+require("lazy").setup("plugins", { })
 require("autocommands")
 require("options")
 require("mappings")
