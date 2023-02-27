@@ -40,7 +40,7 @@ set -gx LANGUAGE en
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 
-for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin /opt/homebrew/opt/openjdk/bin /opt/homebrew/bin
+for p in $HOME/.R/library/rtcl/bin $HOME/.local/bin /opt/homebrew/opt/openjdk/bin /opt/homebrew/bin /opt/R/arm64/gfortran/bin
     if test -d "$p"
         set -g fish_user_paths $p $fish_user_paths
     end
