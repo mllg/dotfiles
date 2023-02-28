@@ -34,3 +34,6 @@ opt.printoptions = 'paper:A4,number:y'
 if (vim.fn.executable('rg')) then
     opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 end
+
+
+-- vim.opt.listchars:append("tab = '>'")
