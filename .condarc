@@ -1,4 +1,0 @@
-anaconda_upload: true
-channels:
-  - mllg
-  - defaults
