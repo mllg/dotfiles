@@ -14,7 +14,7 @@ local M = {
         local basics = require('mini.basics')
         basics.setup{
             options = {
-                extra_ui = true
+                extra_ui = false,
             },
             mappings = {
                 basic = true,

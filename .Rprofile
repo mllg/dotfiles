@@ -24,7 +24,7 @@
 
 
   if (Sys.info()[["sysname"]] == "Darwin") {
-      options(install.packages.check.source = "no", pkgType = "binary")
+      # options(install.packages.check.source = "no", pkgType = "binary")
   } else {
       Sys.setenv(LANGUAGE = "en")
       Sys.setlocale("LC_ALL", "en_US.UTF-8")
