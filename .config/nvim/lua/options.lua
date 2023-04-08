@@ -28,7 +28,6 @@ opt.updatetime = 500
 -- localization
 opt.spelllang = { 'en_us', 'de' }
 opt.spellsuggest = 'best,10'
-opt.printoptions = 'paper:A4,number:y'
 
 -- use ripgrep
 if (vim.fn.executable('rg')) then
