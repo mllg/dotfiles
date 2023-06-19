@@ -6,7 +6,6 @@ local M = {
     dependencies = {
         'williamboman/mason-lspconfig.nvim',
         'williamboman/mason.nvim',
-        'j-hui/fidget.nvim',
         'folke/neodev.nvim',
     },
 
@@ -82,9 +81,6 @@ local M = {
                 }
             end,
         }
-
-        -- Turn on lsp status information
-        require('fidget').setup()
     end
 }
 
