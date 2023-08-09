@@ -4,14 +4,14 @@ local M = {
     event = 'InsertEnter',
 
     dependencies = {
-        { 'L3MON4D3/LuaSnip', requires = 'rafamadriz/friendly-snippets' },
-        { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
-        { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+        { 'L3MON4D3/LuaSnip', dependencies = 'rafamadriz/friendly-snippets' },
+        { 'rafamadriz/friendly-snippets' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'hrsh7th/cmp-calc' },
+        { 'saadparwaiz1/cmp_luasnip' },
     },
 
 
