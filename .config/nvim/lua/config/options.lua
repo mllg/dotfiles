@@ -10,3 +10,5 @@ opt.breakindent = true
 
 opt.spelllang = { "en_us", "de" }
 opt.spellsuggest = "best,10"
+
+opt.relativenumber = false
