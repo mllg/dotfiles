@@ -3,6 +3,12 @@ local M = {
   dependencies = "mllg/vim-devtools-plugin",
   ft = { "r", "rmd", "quarto" },
 
+  -- keys = {
+  --   { "<leader>ra", "<Plug>RDSendAboveLines()", desc = "Send Above Lines" },
+  --   { "<leader>rr", "<Plug>RDSendLine", desc = "Send Line" },
+  --   { "<leader>rf", "<Plug>RDSendFile()", desc = "Send File" },
+  -- },
+
   config = function()
     local g = vim.g
     g.R_assign = 0
@@ -16,8 +22,8 @@ local M = {
     -- g.r_indent_align_args = 0
 
     local map = vim.keymap.set
-    map("v", "<localleader>", "<Plug>RDSendSelection")
     map("n", "<localleader><localleader>", "<Plug>RDSendLine")
+    -- map("n", "<leader>ra", "<Plug>RDSendAboveLines", desc = "Send Above Lines")
   end,
 }
 
