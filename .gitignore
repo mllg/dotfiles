@@ -1,3 +1,5 @@
 *
+!.gitignore
 !.password-store
 !.password-store/*
+!.config/nvim/
