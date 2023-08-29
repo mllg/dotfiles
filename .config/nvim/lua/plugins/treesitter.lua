@@ -1,16 +1,44 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  opts = function(_, opts)
-    -- add tsx and treesitter
-    vim.list_extend(opts.ensure_installed, {
+  opts = {
+    ensure_installed = {
+      "bash",
+      "html",
+      "javascript",
+      "json",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "query",
+      "regex",
+      "tsx",
+      "typescript",
+      "vim",
+      "yaml",
       "c",
       "cpp",
       "r",
       "fish",
       "latex",
       "bibtex",
+      "html",
+      "css",
+      "javascript",
+      "php",
       "make",
       "comment",
-    })
-  end,
+      "gitcommit",
+      "gitignore",
+    },
+
+    highlight = {
+      enable = true,
+      disable = { "r" } -- for roxygen highlighting
+    },
+
+    indent = {
+      enable = true
+    }
+  },
 }
