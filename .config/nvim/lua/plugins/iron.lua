@@ -9,7 +9,6 @@ return {
 
   config = function()
     local iron = require("iron.core")
-    local map = vim.keymap.set
 
     iron.setup({
       config = {
@@ -27,6 +26,5 @@ return {
         },
       },
     })
-
   end,
 }
