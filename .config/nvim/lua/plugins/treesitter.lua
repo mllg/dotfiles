@@ -19,6 +19,7 @@ return {
       "c",
       "cpp",
       "r",
+      "rnoweb",
       "fish",
       "latex",
       "bibtex",
