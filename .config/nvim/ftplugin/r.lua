@@ -2,44 +2,34 @@ local function send(str)
     require('r.send').cmd(str)
 end
 
-local function r_send(str)
-    return function()
-      require('r.send').cmd(str)
-    end
-end
-
 -- Commands
 vim.api.nvim_create_user_command(
   'RLoadPackage',
-  function()
-    r_send('devtools::load_all()')
-  end,
+  function() send('devtools::load_all()') end,
   { nargs = 0 }
 )
 
 vim.api.nvim_create_user_command(
   'RCheckPackage',
-  r_send('devtools::check()'),
+  function() send('devtools::check()') end,
   { nargs = 0 }
 )
 
 vim.api.nvim_create_user_command(
   'RTestPackage',
-  function(opts)
-    send('devtools::test(filter = "' .. opts.args .. '")')
-  end,
+  function(opts) send('devtools::test(filter = "' .. opts.args .. '")') end,
   { nargs = '?' }
 )
 
 vim.api.nvim_create_user_command(
   'RDocumentPackage',
-  r_send('devtools::document()'),
+  function() send('devtools::document()') end,
   { nargs = 0 }
 )
 
 vim.api.nvim_create_user_command(
   'RMake',
-  r_send('devtools::document(); devtools::install()'),
+  function() send('devtools::document(); devtools::install()') end,
   { nargs = 0 }
 )
 
