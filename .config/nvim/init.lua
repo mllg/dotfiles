@@ -45,8 +45,6 @@ end)
 
 -- UI
 now(function()
-    vim.o.termguicolors = true
-    vim.cmd('colorscheme minischeme')
     require('mini.notify').setup()
     vim.notify = require('mini.notify').make_notify()
 
@@ -55,6 +53,9 @@ now(function()
 
     require('mini.tabline').setup()
     require('mini.statusline').setup()
+
+    vim.o.termguicolors = true
+    vim.cmd('colorscheme minischeme')
 end)
 
 -- TS
@@ -76,6 +77,11 @@ now(function()
     add('stevearc/oil.nvim')
     require('oil').setup()
     map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+end)
+
+now(function()
+    add('ethanholz/nvim-lastplace')
+    require('nvim-lastplace').setup()
 end)
 
 -- Edit helpers
@@ -106,3 +112,7 @@ later(function()
     require('mini.fuzzy').setup()
     require('mini.visits').setup()
 end)
+
+
+vim.opt.clipboard="unnamedplus"
+vim.opt.wrap = true
