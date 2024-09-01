@@ -12,6 +12,7 @@
 [core]
     autocrlf = input
     ignorecase = false
+	pager = delta --line-numbers --dark
 [clean]
     requireForce = false
 [hub]
@@ -38,3 +39,5 @@
 	defaultBranch = main
 [commit]
     template = ~/.config/git/commit.template
+[delta]
+	side-by-side = true
