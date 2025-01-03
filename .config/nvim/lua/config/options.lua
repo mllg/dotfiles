@@ -3,5 +3,4 @@
 -- Add any additional options here
 vim.g.maplocalleader = "ß"
 vim.g.autoformat = false
-vim.g.lazyvim_picker = "telescope"
 vim.g.root_spec = { "lsp", { ".git", "DESCRIPTION", "lua" }, "cwd" }
