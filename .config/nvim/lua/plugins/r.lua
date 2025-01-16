@@ -1,5 +1,8 @@
 return {
   "R-nvim/R.nvim",
+  lazy = true,
+  ft = { "r", "qmd" },
+
   opts = function(_, opts)
     local default_on_ft = opts.hook.on_filetype
 

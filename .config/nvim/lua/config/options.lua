@@ -3,4 +3,6 @@
 -- Add any additional options here
 vim.g.maplocalleader = "ß"
 vim.g.autoformat = false
+vim.g.snacks_animate = false
+vim.g.lazyvim_picker = "snacks"
 vim.g.root_spec = { "lsp", { ".git", "DESCRIPTION", "lua" }, "cwd" }
