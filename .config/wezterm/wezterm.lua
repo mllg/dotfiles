@@ -1,5 +1,5 @@
 local wezterm = require 'wezterm'
-local config = wezterm.config_builder()
+local config = {}
 
 config.color_scheme = 'Gruvbox Dark'
 config.initial_rows = 50
